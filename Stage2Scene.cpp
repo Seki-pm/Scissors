@@ -9,6 +9,9 @@ Stage2Scene::Stage2Scene(GameObject* parent)
 //初期化
 void Stage2Scene::Initialize()
 {
+    Global::MAXHP = 500;
+    Global::GameOver = false;
+
     //ステージ
     Instantiate<Stage>(this);
 

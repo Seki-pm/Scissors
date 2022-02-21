@@ -23,7 +23,7 @@ void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
 	//o‚·êŠ
 	trans.position_.x = x;
 	trans.position_.y = y;
-	trans.scale_ = XMFLOAT3(1.f, 1.02f, 0.96f);
+	trans.scale_ = XMFLOAT3(2.f, 1.3f, 0.96f);
 
 	//‰æ‘œ‚Ì•(%)
 	float ImageWidth_ = 512;           //‰æ‘œ‚Ì•
@@ -46,10 +46,10 @@ void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
 	trans.Calclation();
 
 	//ƒQ[ƒW‚ğŒ¸‚ç‚·
-	Image::SetRect(hPict, X, 0, image, 130);
+	Image::SetRect(hPict, X, 0, wid, 130);
 
 	//•`‰æ
-	Image::SetTransform(hPict, trans);
+ 	Image::SetTransform(hPict, trans);
 	Image::Draw(hPict);
 }
 

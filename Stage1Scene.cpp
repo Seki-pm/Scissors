@@ -17,6 +17,7 @@ Stage1Scene::Stage1Scene(GameObject* parent)
 //初期化
 void Stage1Scene::Initialize()
 {
+    Global::MAXHP = 300;
     Global::GameOver = false;
 
     //ステージ

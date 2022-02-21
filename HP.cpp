@@ -39,7 +39,7 @@ void HP::Draw()
 {
 
     pNumber_->Draw(Global::HP, 0, 0, NumberHandle_);
-    pGauge_->Draw(Global::HP, -0.5f, 0.8f, GaugeHandle_, MaxHp);
+    pGauge_->Draw(Global::HP, -0.58f, 0.77f, GaugeHandle_, MaxHp);
     Image::Draw(GaugeFrame_);
 }
 
