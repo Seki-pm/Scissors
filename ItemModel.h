@@ -2,8 +2,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/SphereCollider.h"
 #include "Engine/Model.h"
-#include "PolygonCollider.h"
-#include "Stage.h"
+#include "Engine/Input.h"
 #include "Global.h"
 
 
@@ -11,6 +10,7 @@
 class ItemModel : public GameObject
 {
     int hModel_;
+    int rotate; //回転数
 
 
 public:
@@ -35,4 +35,8 @@ public:
     //何かに当たった
     //引数：pTarget 当たった相手
     void OnCollision(GameObject* pTarget) override;
+
+    //アニメーション
+    void Animation();
+
 };

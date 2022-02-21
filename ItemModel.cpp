@@ -2,7 +2,7 @@
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
-    :GameObject(parent, "ItemModel"), hModel_(-1)
+    :GameObject(parent, "ItemModel"), hModel_(-1),rotate(8)
 {
 }
 
@@ -18,11 +18,10 @@ void ItemModel::Initialize()
     hModel_ = Model::Load("SuccessModel/Coin.fbx");
     assert(hModel_ >= 0);
 
-    transform_.position_ = XMFLOAT3(-2.8f,2, 0);
-    transform_.scale_ = XMFLOAT3(0.9f, 0.9f, 0.9f);
+    transform_.position_ = XMFLOAT3(-0.8f, 0 , 0);
 
     SphereCollider* collision = 
-        new SphereCollider(XMFLOAT3(1.3f, 16, 0), 0.8f);
+    new SphereCollider(XMFLOAT3(-0.6f, 0, 0), 0.6f);
     AddCollider(collision);
 }
 
@@ -31,7 +30,14 @@ void ItemModel::Update()
 {
     if (Global::GetCoin)
     {
-        Model::SetAnimFrame(hModel_, 1, 60, 1);
+        if (transform_.rotate_.y < rotate * 180)
+        {
+            Animation();
+        }
+        else
+        {
+            KillMe();
+        }
     }
 }
 
@@ -55,6 +61,12 @@ void ItemModel::OnCollision(GameObject* pTarget)
     if (pTarget->GetObjectName() == "Scissors")
     {
         Global::GetCoin = true;
-        Model::SetAnimFrame(hModel_, 1, 120, 1);
     }
+}
+
+//簡易アニメーション
+void ItemModel::Animation()
+{
+    transform_.position_.y += 0.01f * 3;
+    transform_.rotate_.y += 16.6f * 3;
 }
