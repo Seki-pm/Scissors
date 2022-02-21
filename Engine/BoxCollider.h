@@ -1,0 +1,32 @@
+#pragma once
+#include "Collider.h"
+
+
+//-----------------------------------------------------------
+//箱型の当たり判定
+//-----------------------------------------------------------
+class BoxCollider :	public Collider
+{
+	//Colliderクラスのprivateメンバにアクセスできるようにする
+	friend class Collider;
+
+public:
+	//コンストラクタ（当たり判定の作成）
+	//引数：basePos	当たり判定の中心位置（ゲームオブジェクトの原点から見た位置）
+	//引数：size	当たり判定のサイズ（幅、高さ、奥行き）
+	BoxCollider(XMFLOAT3 basePos, XMFLOAT3 size);
+
+
+	//点との当たり判定
+	//引数：position　点の位置
+	//戻値：当たってるかどうか
+	bool IsHitBoxVsPoint(XMFLOAT3 position);
+
+
+private:
+	//接触判定
+	//引数：target	相手の当たり判定
+	//戻値：接触してればtrue
+	bool IsHit(Collider* target) override;
+};
+
