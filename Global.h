@@ -29,6 +29,7 @@ public:
 	static bool Unlock3;
 
 	static int HP;
+	static int MAXHP;
 	static int NORMAL_DAMAGE;
 	static float JumpStart;
 	static float JumpEnd;
@@ -36,6 +37,7 @@ public:
 	static int prevHP;
 
 	static bool GetCoin;
+	static bool GameOver;
 
 
 	void SetTransPos_X(float x);

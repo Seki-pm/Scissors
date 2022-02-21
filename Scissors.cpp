@@ -33,7 +33,7 @@ void Scissors::Initialize()
     transform_.position_ = Global::InitPos;
 
     SphereCollider* collision =
-    new SphereCollider(XMFLOAT3(transform_.position_.x, transform_.position_.y - 2, transform_.position_.z), 0.5f);
+    new SphereCollider(XMFLOAT3(transform_.position_.x, transform_.position_.y - 2, transform_.position_.z), 0.3f);
     AddCollider(collision);
 }
 
@@ -58,11 +58,12 @@ void Scissors::Update()
     SetPosition();
 
     //スタートからやり直し（リトライ）
-    Restart();
+    if (Input::IsKeyDown(DIK_R))  Restart();
 
     if (transform_.position_.y <= -5)
     {
         move_ = XMFLOAT3(0, 0, 0);
+        Global::GameOver = true;
     }
 
 }
@@ -177,6 +178,8 @@ void Scissors::Move()
 //ジャンプと落下
 void Scissors::JumpAndFall()
 {
+    HP* pHP = (HP*)FindObject("HP");
+
     //どっちも刺さってなければ
     if (!pBlade_L->IsPrick() && !pBlade_R->IsPrick())
     {
@@ -203,7 +206,7 @@ void Scissors::JumpAndFall()
         if (Calc)
         {
             //現在のHPを計算
-            HPCalc();
+            pHP->HPCalc();
             Calc = false;
         }
 
@@ -281,7 +284,7 @@ void Scissors::Reflection()
 
     while (true)
     {
-        if (cnt >= 2) break;
+        if (cnt >= 3) break;
 
         // ① xを1フレーム前の位置に戻す
         transform_.position_.x -= move_.x;
@@ -353,42 +356,15 @@ void Scissors::RotateMax()
     AnglePass_ = XMConvertToDegrees(angle);
 }
 
-//HP計算
-void Scissors::HPCalc()
-{
-    Global::prevHP = Global::HP;
-
-    float JS = Global::JumpStart;
-    float JE = Global::JumpEnd;
-    float ND = Global::NORMAL_DAMAGE;
-
-    //高いところから降りたら
-    if (JS - JE > 0.5f)
-    {
-        Global::HP -= JS - JE + ND;
-    }
-
-    //平面移動or上った
-    if (JS - JE <= 0.5f)
-    {
-        Global::HP -= ND;
-    }
-
-    Global::NowHP = Global::HP;
-}
-
 //リスタート
 void Scissors::Restart()
 {
-    if (Input::IsKeyDown(DIK_R))
-    {
-        move_ = XMFLOAT3(0, 0, 0);
-        transform_.position_ = Global::InitPos;
-        transform_.rotate_ = Global::InitRot;
-        Global::HP = 200;
-        pBlade_L->SetRotateZ(0);
-        pBlade_R->SetRotateZ(90);
-    }
+    move_ = XMFLOAT3(0, 0, 0);
+    transform_.position_ = Global::InitPos;
+    transform_.rotate_ = Global::InitRot;
+    Global::HP = Global::MAXHP;
+    pBlade_L->SetRotateZ(0);
+    pBlade_R->SetRotateZ(90);
 }
 
 

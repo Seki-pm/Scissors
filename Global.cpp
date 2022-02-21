@@ -19,15 +19,16 @@ int Global::Select = 0;
 bool Global::Unlock2 = true;
 bool Global::Unlock3 = false;
 
-bool Global::GetCoin = false;
+bool Global::GetCoin  = false;
+bool Global::GameOver = false;
 
 
-int   Global::HP = 200;
-int   Global::NORMAL_DAMAGE = 10;
+int   Global::HP = Global::MAXHP;
+int   Global::MAXHP = 300;
+int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
-int Global::NowHP = 0;
-int Global::prevHP = 0;
+
 
 //xç¿ïW
 void Global::SetTransPos_X(float x)

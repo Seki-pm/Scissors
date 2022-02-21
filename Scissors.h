@@ -3,10 +3,12 @@
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
 #include "Engine/Fbx.h"
+#include "Engine/SphereCollider.h"
 #include "Blade.h"
 #include "Global.h"
+#include "HP.h"
 #include <vector>
-#include "Engine/SphereCollider.h"
+
 
 //ハサミを管理するクラス
 class Scissors : public GameObject
@@ -71,8 +73,6 @@ public:
 
     //回転限度
     void RotateMax();
-
-    void HPCalc();
 
     void Restart();
 };

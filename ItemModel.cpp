@@ -18,16 +18,18 @@ void ItemModel::Initialize()
     hModel_ = Model::Load("SuccessModel/Coin.fbx");
     assert(hModel_ >= 0);
 
-    transform_.position_ = XMFLOAT3(-0.8f, 0 , 0);
+    transform_.position_ = XMFLOAT3(-1.5f, 18, 0);
+    transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
 
     SphereCollider* collision = 
-    new SphereCollider(XMFLOAT3(-0.6f, 0, 0), 0.6f);
+    new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
 }
 
 //çXêV
 void ItemModel::Update()
 {
+
     if (Global::GetCoin)
     {
         if (transform_.rotate_.y < rotate * 180)

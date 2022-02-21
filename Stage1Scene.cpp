@@ -4,6 +4,7 @@
 #include "Stage.h"
 #include "Sign.h"
 #include "HP.h"
+#include "GameOver.h"
 
 
 
@@ -16,6 +17,8 @@ Stage1Scene::Stage1Scene(GameObject* parent)
 //初期化
 void Stage1Scene::Initialize()
 {
+    Global::GameOver = false;
+
     //ステージ
     Instantiate<Stage>(this);
 
@@ -40,6 +43,11 @@ void Stage1Scene::Update()
     Z = gl.GetTransPos_Z();
 
     CameraMove(gl.GetCameraStart(), gl.GetCameraGoal());
+
+    //ゲームオーバー
+    if (Global::GameOver) {
+        Instantiate<GameOver>(this);
+    }
 }
 
 //描画
@@ -80,7 +88,6 @@ void Stage1Scene::CameraMove(float start, float goal)
     //そうでない場合Playerに追従する
     else
     {
-
         Camera::SetPosition(XMFLOAT3(X, 3 ,-10));
         Camera::SetTarget(XMFLOAT3(X, 3, Z));
     }

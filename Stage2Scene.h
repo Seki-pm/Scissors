@@ -10,11 +10,11 @@
 #include "Global.h"
 #include "HP.h"
 #include "ItemModel.h"
+#include "GameOver.h"
 
 //ステージ2シーンを管理するクラス
 class Stage2Scene : public GameObject
 {
-
 	Scissors* pScissors;
 	float X, Y, Z;
 

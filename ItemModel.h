@@ -12,7 +12,7 @@ class ItemModel : public GameObject
     int hModel_;
     int rotate; //回転数
 
-
+ 
 public:
     //コンストラクタ
     ItemModel(GameObject* parent);

@@ -33,6 +33,11 @@ void Stage2Scene::Update()
 
     CameraMove(gl.GetCameraStart(), gl.GetCameraGoal());
 
+    //ゲームオーバー
+    if (Global::GameOver) {
+        Instantiate<GameOver>(this);
+    }
+
 }
 
 //描画

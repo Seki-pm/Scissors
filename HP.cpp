@@ -4,7 +4,7 @@
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
     pNumber_(nullptr), pGauge_(nullptr),
-    MaxHp(Global::HP)
+    MaxHp(Global::MAXHP)
 {
 }
 
@@ -39,11 +39,36 @@ void HP::Draw()
 {
 
     pNumber_->Draw(Global::HP, 0, 0, NumberHandle_);
-    pGauge_->Draw(Global::HP, 0, 0.5f, GaugeHandle_, MaxHp);
+    pGauge_->Draw(Global::HP, -0.5f, 0.8f, GaugeHandle_, MaxHp);
     Image::Draw(GaugeFrame_);
 }
 
 //開放
 void HP::Release()
 {
+}
+
+void HP::HPCalc()
+{
+    float JS = Global::JumpStart;
+    float JE = Global::JumpEnd;
+    float ND = Global::NORMAL_DAMAGE;
+
+    //高いところから降りたら
+    if (JS - JE > 0.5f)
+    {
+        Global::HP -= JS - JE + ND;
+    }
+
+    //平面移動or上った
+    if (JS - JE <= 0.5f)
+    {
+        Global::HP -= ND;
+    }
+
+    //ゲームオーバー判定
+    if (Global::HP <= 0)
+    {
+        Global::GameOver = true;
+    }
 }
