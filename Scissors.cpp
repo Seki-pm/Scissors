@@ -284,12 +284,12 @@ void Scissors::Reflection()
 
     while (true)
     {
-        if (cnt >= 3) break;
+        //if (cnt >= 3) break;
 
         // ① xを1フレーム前の位置に戻す
         transform_.position_.x -= move_.x;
 
-        // ② 再度当たり判定を行う
+        // ② 再度当たり判定を行う Yのチェック
         if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
             pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
         {
@@ -300,6 +300,7 @@ void Scissors::Reflection()
         }
         // ぶつかっていないなら終わり
         else {
+            move_.x = 0;
             break;
         }
 
@@ -309,9 +310,13 @@ void Scissors::Reflection()
         {
             // ⑤ XもYも1フレーム前に戻す
             transform_.position_.x -= move_.x;
+
+            move_.x = 0;
+            move_.y = 0;
         }
         // ぶつかっていないなら終わり
         else{
+            move_.y = 0;
             break;
         }
         cnt++;

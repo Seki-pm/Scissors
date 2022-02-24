@@ -29,7 +29,7 @@ void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
 	float ImageWidth_ = 512;           //画像の幅
 	float w = ImageWidth_ / 100;       //画像幅(1%)
 	float width = ImageWidth_ / 200;   //画像幅(0.5%)
-	float wid = w * 50;
+	float wid = w * 50;                //画像幅(50%)
 
 	//現在のHP(%)
 	float hp_    = Global::HP;          //現在のHP
@@ -37,10 +37,9 @@ void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
 
 
 	//画像幅に現在HPの割合をかける
-	float image = width * Nowhp + wid;
+	float X = width * Nowhp;            //切り抜き開始位置は半分の所
 	//float image = w * Nowhp;
 
-	float X = image - wid;
 
 	//各行列の計算
 	trans.Calclation();

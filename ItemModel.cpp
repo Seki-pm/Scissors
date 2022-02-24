@@ -18,7 +18,7 @@ void ItemModel::Initialize()
     hModel_ = Model::Load("SuccessModel/Coin.fbx");
     assert(hModel_ >= 0);
 
-    transform_.position_ = XMFLOAT3(-1.5f, 18, 0);
+    transform_.position_ = XMFLOAT3(-1.5f, 1, 0);
     transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
 
     SphereCollider* collision = 
