@@ -26,16 +26,16 @@ void GameOver::Initialize()
     GameOverBackImage_ = Image::Load("Image/GameOverBack.png");
     assert(GameOverBackImage_ >= 0);
     //リトライ
-    RetryImage_ = Image::Load("Image/GameOverBack.png");
+    RetryImage_ = Image::Load("Image/Easy.png");
     assert(RetryImage_ >= 0);
     //リトライ(選択)
-    RetryUpImage_ = Image::Load("Image/GameOverBack.png");
+    RetryUpImage_ = Image::Load("Image/Hard.png");
     assert(RetryUpImage_ >= 0);
     //戻る
-    BackMenuImage_ = Image::Load("Image/GameOverBack.png");
+    BackMenuImage_ = Image::Load("Image/Normal.png");
     assert(BackMenuImage_ >= 0);
     //戻る(選択)
-    BackMenuUpImage_ = Image::Load("Image/GameOverBack.png");
+    BackMenuUpImage_ = Image::Load("Image/HP.png");
     assert(BackMenuUpImage_ >= 0);
 }
 
@@ -74,10 +74,10 @@ void GameOver::Draw()
     //リトライが選択されいるとき
     if (select_ == 0)
     {
-        Image::SetTransform(RetryUpImage_, BackMenu);
+        Image::SetTransform(RetryUpImage_, Retry);
         Image::Draw(RetryUpImage_);
 
-        Image::SetTransform(BackMenuImage_, Retry);
+        Image::SetTransform(BackMenuImage_, BackMenu);
         Image::Draw(BackMenuImage_);
 
     }

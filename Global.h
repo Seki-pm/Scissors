@@ -39,7 +39,6 @@ public:
 	static bool GetCoin;
 	static bool GameOver;
 
-
 	void SetTransPos_X(float x);
 	float GetTransPos_X();
 

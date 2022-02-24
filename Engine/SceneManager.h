@@ -1,5 +1,6 @@
 #pragma once
 #include "global.h"
+#include "Global.h"
 #include "GameObject.h"
 
 //ゲームに登場するシーン
@@ -32,8 +33,10 @@ public:
 	//引数：next	次のシーンのID
 	void ChangeScene(SCENE_ID next);
 
+
 private:
-	SCENE_ID currentSceneID_;	//現在のシーン
 	SCENE_ID nextSceneID_;		//次のシーン
+	SCENE_ID currentSceneID_;	//現在のシーン
+
 
 };

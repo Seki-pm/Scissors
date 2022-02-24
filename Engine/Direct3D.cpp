@@ -42,7 +42,6 @@ namespace Direct3D
 	int						screenHeight_ = 0;
 
 
-
 	//‰Šú‰»ˆ—
 	HRESULT Direct3D::Initialize(HWND hWnd, int screenWidth, int screenHeight)
 	{
@@ -319,7 +318,7 @@ namespace Direct3D
 		if (NULL == pSwapChain_) return;
 
 		//”wŒi‚ÌF
-		float clearColor[4] = { 0.1f, 0.5f, 0.5f, 1.0f };//R,G,B,A
+		float clearColor[4] = { 0.0f, 0.6f, 0.4f, 0.8f };//R,G,B,A
 
 		//‰æ–Ê‚ðƒNƒŠƒA
 		pContext_->ClearRenderTargetView(pRenderTargetView_, clearColor);
