@@ -3,8 +3,7 @@
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pNumber_(nullptr), pGauge_(nullptr),
-    MaxHp(Global::MAXHP)
+    pNumber_(nullptr), pGauge_(nullptr)
 {
 }
 
@@ -39,7 +38,7 @@ void HP::Draw()
 {
 
     pNumber_->Draw(Global::HP, 0, 0, NumberHandle_);
-    pGauge_->Draw(Global::HP, -0.58f, 0.77f, GaugeHandle_, MaxHp);
+    pGauge_->Draw(Global::HP, -0.978f, 0.77f, GaugeHandle_);
     Image::Draw(GaugeFrame_);
 }
 

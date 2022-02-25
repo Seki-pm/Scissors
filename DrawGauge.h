@@ -25,7 +25,7 @@ public:
 	//　　 Y座標
 	//　　 ロードした画像
 	//     最大HP
-	void Draw(int val, float x, float y, int hPict,int maxhp);
+	void Draw(int val, float x, float y, int hPict);
 
 	//開放
 	void Release();

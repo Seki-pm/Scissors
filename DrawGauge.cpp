@@ -16,7 +16,7 @@ void DrawGauge::Initialize()
 }
 
 //描画
-void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
+void DrawGauge::Draw(int val, float x, float y, int hPict)
 {
 	Transform trans;
 
@@ -28,24 +28,33 @@ void DrawGauge::Draw(int val, float x, float y, int hPict, int maxhp)
 	//画像の幅(%)
 	float ImageWidth_ = 512;           //画像の幅
 	float w = ImageWidth_ / 100;       //画像幅(1%)
-	float width = ImageWidth_ / 200;   //画像幅(0.5%)
-	float wid = w * 50;                //画像幅(50%)
+	float wid = ImageWidth_ / 200;   //画像幅(0.5%)
 
 	//現在のHP(%)
 	float hp_    = Global::HP;          //現在のHP
-	float Nowhp  = hp_ / maxhp * 100;   //現在のHP(%)
+	float Nowhp  = hp_ / Global::MAXHP * 100;   //現在のHP(%)
 
 
-	//画像幅に現在HPの割合をかける
-	float X = width * Nowhp;            //切り抜き開始位置は半分の所
-	//float image = w * Nowhp;
+	//使用している画像が右半分なので減少量も半分にする
+	float SubHP = 256 - wid * Nowhp;       //  減少したHP量   =  
+	float X = SubHP;                       //切り取り開始位置 = 減少したHP 
+	float width = ImageWidth_ - SubHP * 2; //切り取り終了位置 = 画像幅 -
+
+
+
+
+
+
+
+
+
 
 
 	//各行列の計算
 	trans.Calclation();
 
 	//ゲージを減らす
-	Image::SetRect(hPict, X, 0, wid, 130);
+	Image::SetRect(hPict, X, 0, width, 130);
 
 	//描画
  	Image::SetTransform(hPict, trans);
