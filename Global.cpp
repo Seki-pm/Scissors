@@ -25,7 +25,7 @@ bool Global::GameOver = false;
 
 int   Global::HP = Global::MAXHP;
 int   Global::MAXHP = 300;
-int   Global::NORMAL_DAMAGE = 10;
+int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
 

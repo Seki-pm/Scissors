@@ -96,7 +96,6 @@
     <ClCompile Include="Engine\Text.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="PolygonCollider.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Stage1Scene.cpp">
@@ -135,6 +134,9 @@
       <Filter>InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="Stage.cpp">
+      <Filter>InGameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -198,7 +200,6 @@
     <ClInclude Include="Engine\Text.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h" />
     <ClInclude Include="PolygonCollider.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Stage1Scene.h">
@@ -237,6 +238,9 @@
       <Filter>InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="Stage.h">
+      <Filter>InGameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

@@ -284,7 +284,7 @@ void Scissors::Reflection()
 
     while (true)
     {
-        //if (cnt >= 3) break;
+        if (cnt >= 50) break;
 
         // ① xを1フレーム前の位置に戻す
         transform_.position_.x -= move_.x;

@@ -25,35 +25,26 @@ void DrawGauge::Draw(int val, float x, float y, int hPict)
 	trans.position_.y = y;
 	trans.scale_ = XMFLOAT3(2.f, 1.3f, 0.96f);
 
-	//画像の幅(%)
-	float ImageWidth_ = 512;           //画像の幅
-	float w = ImageWidth_ / 100;       //画像幅(1%)
-	float wid = ImageWidth_ / 200;   //画像幅(0.5%)
+	//画像の幅(%)を計算
+	float ImageWidth_ = 512;              //画像の幅
+	float PicWid = ImageWidth_ / 200;     //画像幅(0.5%)
 
-	//現在のHP(%)
-	float hp_    = Global::HP;          //現在のHP
-	float Nowhp  = hp_ / Global::MAXHP * 100;   //現在のHP(%)
+
+	//現在のHP(%)を計算
+	float hp = val;                             //現在のHP(int)
+	float Nowhp  = hp / Global::MAXHP * 100;    //現在のHP(%)
 
 
 	//使用している画像が右半分なので減少量も半分にする
-	float SubHP = 256 - wid * Nowhp;       //  減少したHP量   =  
-	float X = SubHP;                       //切り取り開始位置 = 減少したHP 
-	float width = ImageWidth_ - SubHP * 2; //切り取り終了位置 = 画像幅 -
-
-
-
-
-
-
-
-
-
+	float SubHP = ( ImageWidth_ / 2 ) - ( PicWid * Nowhp );  //  減少したHP量   = 画像幅/2 - 画像幅(0.5%)*現在HP(%)
+	float X = SubHP;                                         //切り取り開始位置 = 減少したHP量 
+	float width = ImageWidth_ - SubHP * 2;                   //切り取り終了位置 = 画像幅 - 減少したHP量 * 2
 
 
 	//各行列の計算
 	trans.Calclation();
 
-	//ゲージを減らす
+	//切り取ってゲージを減らす
 	Image::SetRect(hPict, X, 0, width, 130);
 
 	//描画
