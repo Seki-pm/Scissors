@@ -1,10 +1,12 @@
 #include "GoalStaging.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Global.h"
 
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
-    :GameObject(parent, "GoalStaging"), hModel_(-1), BackImage_(-1), CircleImage_(-1), size_(10),flg(false)
+    :GameObject(parent, "GoalStaging"), hModel_(-1), BackImage_(-1),
+    CircleImage_(-1), size_(10),flg(false)
 {
 }
 
@@ -16,10 +18,14 @@ GoalStaging::~GoalStaging()
 //初期化
 void GoalStaging::Initialize()
 {
+    Global gl;
+
     //モデルデータのロード
     hModel_ = Model::Load("d.fbx");
     assert(hModel_ >= 0);
     auto BalloonTrans = Transform();
+    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal(), 4.f, 0.f);
+    BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
     Model::SetTransform(hModel_, BalloonTrans);
 
 
@@ -31,10 +37,6 @@ void GoalStaging::Initialize()
     CircleImage_ = Image::Load("Image/GetCoinFrame.png");
     assert(CircleImage_ >= 0);
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
-
-
-    //transform_.position_ = XMFLOAT3(2.0f,0.f,0.f);
-    //transform_.scale_ = XMFLOAT3(0.4f,0.4f,0.4f);
 }
 
 //更新
@@ -57,18 +59,18 @@ void GoalStaging::Draw()
 {
     if (flg)
     {
-        if (size_ > 0)
-        {
-            size_ -= 0.2f;
-        }
+        Image::Draw(BackImage_);
         CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
         Image::SetTransform(CircleImage_, CircleTrans);
 
-        Image::Draw(BackImage_);
-        Image::Draw(CircleImage_);
+        //サークルの収縮
+        if (size_ > -0.2f)
+        {
+            size_ -= 0.2f;
+            Image::Draw(CircleImage_);
+        }
+
     }
-
-
 
     Model::Draw(hModel_);
 }

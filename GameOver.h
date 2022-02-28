@@ -10,9 +10,7 @@ class GameOver : public GameObject
 {
     int GameOverBackImage_;    //GameOverの背景(不透明)
     int BackMenuImage_;     //ステージ選択シーンに戻るボタン
-    int BackMenuUpImage_;   //ステージ選択シーンに戻るボタン(選択)
     int RetryImage_;        //リトライボタン
-    int RetryUpImage_;      //リトライボタン(選択)
 
     //メンバ変数
     int select_;    //選択
@@ -23,7 +21,8 @@ class GameOver : public GameObject
     float Balpha_; //背景用alpha
     float alpha_;
 
-
+    float size_;
+    float siz_;
 
 public:
     //コンストラクタ
