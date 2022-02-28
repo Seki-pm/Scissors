@@ -5,6 +5,7 @@
 #include "Sign.h"
 #include "HP.h"
 #include "GameOver.h"
+#include "GoalStaging.h"
 
 
 
@@ -34,6 +35,7 @@ void Stage1Scene::Initialize()
     //ハサミのHP
     Instantiate<HP>(this);
 
+    Instantiate<GoalStaging>(this);
 }
 
 //更新

@@ -281,46 +281,53 @@ void Scissors::Release()
 void Scissors::Reflection()
 {
     int cnt = 0;
+    transform_.position_.x -= move_.x;
+    transform_.position_.y -= move_.y;
 
-    while (true)
-    {
-        if (cnt >= 50) break;
+    move_.x *= 0.3f;
+    move_.y *= 0.3f;
 
-        // ① xを1フレーム前の位置に戻す
-        transform_.position_.x -= move_.x;
+    move_.x = 0;
+    move_.y = 0;
 
-        // ② 再度当たり判定を行う Yのチェック
-        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
-        {
-            // ③ xを移動後の状態に戻して
-            //    yを1フレーム前の位置にする 
-            transform_.position_.x += move_.x;
-            transform_.position_.y -= move_.y;
-        }
-        // ぶつかっていないなら終わり
-        else {
-            move_.x = 0;
-            break;
-        }
+    //while (true)
+    //{
 
-        // ④ 再度当たり判定を行う
-        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
-        {
-            // ⑤ XもYも1フレーム前に戻す
-            transform_.position_.x -= move_.x;
 
-            move_.x = 0;
-            move_.y = 0;
-        }
-        // ぶつかっていないなら終わり
-        else{
-            move_.y = 0;
-            break;
-        }
-        cnt++;
-    }
+
+    //    // ① xを1フレーム前の位置に戻す
+    //    transform_.position_.x -= move_.x;
+
+    //    // ② 再度当たり判定を行う Y軸が当たっているかのチェック
+    //    if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+    //        pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+    //    {
+    //        // ③ xを移動後の状態に戻して
+    //        //    yを1フレーム前の位置にする 
+    //        transform_.position_.x += move_.x;
+    //        transform_.position_.y -= move_.y;
+
+    //    }
+    //    // ぶつかっていないなら終わり
+    //    else {
+    //        break;
+    //    }
+
+    //    // ④ 再度当たり判定を行う  X軸が当たっているかのチェック
+    //    if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+    //        pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+    //    {
+    //        // ⑤ XもYも1フレーム前に戻す
+    //        transform_.position_.x -= move_.x;
+
+    //    }
+    //    // ぶつかっていないなら終わり
+    //    else{
+    //        break;
+    //    }
+
+    //    cnt++;
+    //}
 }
 
 //現在位置を送る

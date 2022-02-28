@@ -6,6 +6,15 @@
 class GoalStaging : public GameObject
 {
     int hModel_;    //モデル番号
+
+    int BackImage_;
+    int CircleImage_;
+
+    Transform CircleTrans;
+
+    float size_;
+    bool flg;
+
 public:
     //コンストラクタ
     GoalStaging(GameObject* parent);
