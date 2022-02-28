@@ -8,6 +8,7 @@
 
 
 
+
 //コンストラクタ
 Stage1Scene::Stage1Scene(GameObject* parent)
     : GameObject(parent, "Stage1Scene")
@@ -18,6 +19,7 @@ Stage1Scene::Stage1Scene(GameObject* parent)
 void Stage1Scene::Initialize()
 {
     Global::MAXHP = 300;
+    Global::HP = Global::MAXHP;
     Global::GameOver = false;
 
     //ステージ

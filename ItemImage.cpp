@@ -2,7 +2,7 @@
 
 //コンストラクタ
 ItemImage::ItemImage(GameObject* parent)
-    :GameObject(parent, "ItemImage"), ImageHandle_(-1)
+    :GameObject(parent, "ItemImage"), FrameHandle_(-1), CoinHandle_(-1)
 {
 }
 
@@ -14,9 +14,21 @@ ItemImage::~ItemImage()
 //初期化
 void ItemImage::Initialize()
 {
-    ImageHandle_ = Image::Load("ファイル名");
-    assert(ImageHandle_);
+    FrameHandle_ = Image::Load("Image/GetCoinFrame.png");
+    assert(FrameHandle_);
+    auto FrameTrans = Transform();
+    FrameTrans.position_ = XMFLOAT3(0.9f,0.8f,0.f);
+    FrameTrans.scale_ = XMFLOAT3(0.3f,0.3f,0.3f);
+    Image::SetTransform(FrameHandle_, FrameTrans);
 
+
+
+    CoinHandle_ = Image::Load("SuccessModel/Coin.png");
+    assert(CoinHandle_);
+    auto CoinTrans = Transform();
+    CoinTrans.position_ = XMFLOAT3(0.9f,0.8f,0.f);
+    CoinTrans.scale_ = XMFLOAT3(0.5f,0.5f,0.5f);
+    Image::SetTransform(CoinHandle_, CoinTrans);
 
 }
 
@@ -28,11 +40,21 @@ void ItemImage::Update()
 //描画
 void ItemImage::Draw()
 {
-    Image::SetTransform(ImageHandle_, transform_);
-    Image::Draw(ImageHandle_);
+
+
+    if (Global::GetCoin)
+    {
+        Image::Draw(CoinHandle_);
+    }
+    else
+    {
+        Image::Draw(FrameHandle_);
+    }
 }
 
 //開放
 void ItemImage::Release()
 {
+    FrameHandle_ = -1;
+    CoinHandle_ = -1;
 }

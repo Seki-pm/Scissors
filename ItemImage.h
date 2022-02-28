@@ -1,12 +1,14 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/Image.h"
+#include "Global.h"
 
 
 //アイテムの取得の有無の画像を管理するクラス
 class ItemImage : public GameObject
 {
-    int ImageHandle_;
+    int FrameHandle_;
+    int CoinHandle_;
 public:
     //コンストラクタ
     ItemImage(GameObject* parent);

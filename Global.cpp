@@ -22,9 +22,9 @@ bool Global::Unlock3 = false;
 bool Global::GetCoin  = false;
 bool Global::GameOver = false;
 
-
+int   Global::MAXHP = 100;
 int   Global::HP = Global::MAXHP;
-int   Global::MAXHP = 300;
+
 int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;

@@ -10,6 +10,7 @@ Stage2Scene::Stage2Scene(GameObject* parent)
 void Stage2Scene::Initialize()
 {
     Global::MAXHP = 500;
+    Global::HP = Global::MAXHP;
     Global::GameOver = false;
 
     //ステージ
@@ -23,6 +24,9 @@ void Stage2Scene::Initialize()
 
     //アイテムの表示
     Instantiate<ItemModel>(this);
+
+    //コインのゲット判定
+    Instantiate<ItemImage>(this);
 }
 
 //更新

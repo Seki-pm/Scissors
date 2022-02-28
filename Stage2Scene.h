@@ -11,6 +11,8 @@
 #include "HP.h"
 #include "ItemModel.h"
 #include "GameOver.h"
+#include "ItemImage.h"
+
 
 //ステージ2シーンを管理するクラス
 class Stage2Scene : public GameObject
