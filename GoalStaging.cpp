@@ -52,6 +52,12 @@ void GoalStaging::Update()
         flg = true;
 
     }
+
+    //EnterÉLÅ[ÇâüÇµÇΩÇÁ
+    if (Input::IsKeyDown(DIK_RETURN))
+    {
+        
+    }
 }
 
 //ï`âÊ
@@ -71,6 +77,10 @@ void GoalStaging::Draw()
         }
 
     }
+
+
+
+
 
     Model::Draw(hModel_);
 }

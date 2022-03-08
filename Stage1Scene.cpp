@@ -12,7 +12,7 @@
 
 //コンストラクタ
 Stage1Scene::Stage1Scene(GameObject* parent)
-    : GameObject(parent, "Stage1Scene")
+    : GameObject(parent, "Stage1Scene"),select_(0)
 {
 }
 
@@ -41,6 +41,13 @@ void Stage1Scene::Initialize()
 //更新
 void Stage1Scene::Update()
 {
+    if (Input::IsKeyDown(DIK_5))
+    {
+        Global::GameOver = true;
+        Global::IsGameOver = true;
+    }
+
+
     Global gl;
 
     X = gl.GetTransPos_X();
@@ -49,10 +56,7 @@ void Stage1Scene::Update()
 
     CameraMove(gl.GetCameraStart(), gl.GetCameraGoal());
 
-    //ゲームオーバー
-    if (Global::GameOver) {
-        Instantiate<GameOver>(this);
-    }
+    GameOverSEL();
 }
 
 //描画
@@ -63,6 +67,55 @@ void Stage1Scene::Draw()
 //開放
 void Stage1Scene::Release()
 {
+}
+
+void Stage1Scene::GameOverSEL()
+{
+    GameOver* pGameOver = (GameOver*)FindObject("GameOver");
+
+    if (Global::IsGameOver)
+    {
+        //GameOver表示
+        Instantiate<GameOver>(this);
+        Global::IsGameOver = false;
+    }
+
+    //GameOverになったら
+    if (Global::GameOver)
+    {
+        //ボタンを選択
+        //選択
+        if (Global::GameOver && Input::IsKeyDown(DIK_LEFT))
+        {
+            select_--;
+
+            if (select_ < 0)
+            {
+                select_ = 0;
+            }
+
+            //GameOverクラスに渡す
+            pGameOver->SetSelect(select_);
+        }
+        if (Global::GameOver && Input::IsKeyDown(DIK_RIGHT))
+        {
+            select_++;
+
+            if (select_ > 1)
+            {
+                select_ = 1;
+            }
+
+            //GameOverクラスに渡す
+            pGameOver->SetSelect(select_);
+        }
+
+        if (Input::IsKeyDown(DIK_SPACE) && select_ == 1)
+        {
+            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+            pSceneManager->ChangeScene(SCENE_ID_SELECT);
+        }
+    }
 }
 
 void Stage1Scene::CameraMove(float start, float goal)

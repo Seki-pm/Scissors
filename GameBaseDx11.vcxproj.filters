@@ -133,8 +133,10 @@
     <ClCompile Include="Sign.cpp">
       <Filter>InGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Stage.cpp">
+      <Filter>InGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
       <Filter>InGameObject</Filter>
     </ClCompile>
   </ItemGroup>
@@ -237,8 +239,10 @@
     <ClInclude Include="Sign.h">
       <Filter>InGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Stage.h">
+      <Filter>InGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
       <Filter>InGameObject</Filter>
     </ClInclude>
   </ItemGroup>

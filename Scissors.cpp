@@ -40,7 +40,6 @@ void Scissors::Initialize()
 //更新
 void Scissors::Update()
 {
- 
 
     //ハサミの開閉
     OpenClose();
@@ -58,12 +57,16 @@ void Scissors::Update()
     SetPosition();
 
     //スタートからやり直し（リトライ）
-    if (Input::IsKeyDown(DIK_R))  Restart();
+    if (Input::IsKeyDown(DIK_R))
+    {
+        Restart();
+    }
 
     if (transform_.position_.y <= -5)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
+        Global::IsGameOver = true;
     }
 
 }

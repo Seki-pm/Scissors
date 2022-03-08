@@ -21,6 +21,8 @@ bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
 bool Global::GameOver = false;
+bool Global::IsGameOver = false;
+
 
 int   Global::MAXHP = 100;
 int   Global::HP = Global::MAXHP;

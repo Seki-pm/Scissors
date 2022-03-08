@@ -5,6 +5,7 @@
 #include "DrawGauge.h"
 #include "Scissors.h"
 #include "Global.h"
+#include "GameOver.h"
 
 
 //STAGE1シーンを管理するクラス
@@ -19,6 +20,8 @@ class Stage1Scene : public GameObject
 	int GaugeHandle_;
 
 	int MaxHp;
+	int select_;
+
 
 public:
 	//コンストラクタ
@@ -37,6 +40,8 @@ public:
 	//開放
 	void Release() override;
 
+	//GAMEOVER
+	void GameOverSEL();
 
 	//カメラ移動
 	void CameraMove(float start, float goal);
