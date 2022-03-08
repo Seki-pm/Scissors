@@ -11,9 +11,9 @@
 //STAGE1シーンを管理するクラス
 class Stage1Scene : public GameObject
 {
-	Scissors* pScissors;
-	DrawNumber* pNumber_;
-	DrawGauge*  pGauge_;
+	Scissors* pScissors;  //Scissorsのポインタ
+	DrawNumber* pNumber_; //デバック用
+	DrawGauge*  pGauge_;  //HPゲージ用
 	float X, Y, Z;
 
 	int ImageHandle_;
@@ -21,7 +21,6 @@ class Stage1Scene : public GameObject
 
 	int MaxHp;
 	int select_;
-
 
 public:
 	//コンストラクタ

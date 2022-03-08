@@ -4,7 +4,6 @@
 #include "Engine/Image.h"
 #include "Engine/Input.h"
 #include "Global.h"
-#include "Scissors.h"
 
 //ゲームオーバーを管理するクラス
 class GameOver : public GameObject
@@ -13,8 +12,6 @@ class GameOver : public GameObject
     int BackMenuImage_;     //ステージ選択シーンに戻るボタン
     int RetryImage_;        //リトライボタン
     int SelectFrameImage_;
-
-    Scissors* pScissors;
 
     //メンバ変数
     int select_;    //選択
@@ -44,5 +41,6 @@ public:
 
     //メニューシーンに戻るかどうか
     void SetSelect(int select);
+    int GetSelect();
 };
 

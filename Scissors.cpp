@@ -40,6 +40,7 @@ void Scissors::Initialize()
 //更新
 void Scissors::Update()
 {
+    GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
     //ハサミの開閉
     OpenClose();
@@ -57,10 +58,11 @@ void Scissors::Update()
     SetPosition();
 
     //スタートからやり直し（リトライ）
-    if (Input::IsKeyDown(DIK_R))
+    if (Input::IsKeyDown(DIK_R) || Global::GameOver && pGameOver->GetSelect() == 0 && Input::IsKeyDown(DIK_SPACE))
     {
         Restart();
     }
+
 
     if (transform_.position_.y <= -5)
     {
@@ -372,6 +374,8 @@ void Scissors::Restart()
     Global::HP = Global::MAXHP;
     pBlade_L->SetRotateZ(0);
     pBlade_R->SetRotateZ(90);
+    Global::GameOver = false;
+    Global::IsGameOver = false;
 }
 
 

@@ -5,7 +5,7 @@ GameOver::GameOver(GameObject* parent)
     :GameObject(parent, "GameOver"),
     GameOverBackImage_(-1), BackMenuImage_(-1),
     RetryImage_(-1),SelectFrameImage_(-1),
-    alpha_(150)
+    alpha_(150), select_(0)
 {
     Retry.position_ = XMFLOAT3(-0.3f, 0, 0);
     BackMenu.position_ = XMFLOAT3(0.3f, 0, 0);
@@ -40,16 +40,6 @@ void GameOver::Initialize()
 //XV
 void GameOver::Update()
 {
-    if (Global::GameOver && select_ == 0)
-    {
-        if (Input::IsKeyDown(DIK_SPACE))
-        {
-            KillMe();
-            Global::GameOver = false;
-            pScissors->Restart();
-        }
-    }
-
 }
 
 //•`‰æ
@@ -93,4 +83,9 @@ void GameOver::Release()
 void GameOver::SetSelect(int select)
 {
     select_ = select;
+}
+
+int GameOver::GetSelect()
+{
+    return select_;
 }
