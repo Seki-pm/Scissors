@@ -15,6 +15,14 @@ enum STAGE_NUMBER
 	STAGE_NUMBER_MAX
 };
 
+enum STAGE_LOCK
+{
+	STAGE_LOCK_MIN = 1,
+	STAGE_LOCK_2 = 2,
+	STAGE_LOCK_3 = 3,
+	STAGE_LOCK_MAX
+};
+
 enum STAGE_LEVEL
 {
 	STAGE_LEVEL_EASY = 0,
@@ -29,11 +37,13 @@ class StageSelectScene : public GameObject
 {
 private:
 	int StageHandle_[STAGE_NUMBER_MAX];
+	int StageLockHandle_[STAGE_LOCK_MAX];
 	int LevelImageHandle_[STAGE_LEVEL_MAX];
 	int FrameImageHandle_;
 
 
 	Transform Stage[STAGE_NUMBER_MAX];
+	Transform Lock[STAGE_LOCK_MAX];
 	Transform Level[STAGE_LEVEL_MAX];
 	Transform FrameTransform;
 
@@ -56,4 +66,6 @@ public:
 
 	//ŠJ•ú
 	void Release() override;
+
+	void StageUnlock();
 };

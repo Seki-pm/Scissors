@@ -13,6 +13,11 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 	{
 		LevelImageHandle_[i] = -1;
 	}
+
+	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
+	{
+		StageLockHandle_[i] = -1;
+	}
 }
 
 //‰Šú‰»
@@ -25,11 +30,11 @@ void StageSelectScene::Initialize()
 	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
 	Stage[STAGE_NUMBER_1].position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 
-	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/Rock_Stage2.png");
+	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/STAGE2.png");
 	assert(StageHandle_[STAGE_NUMBER_2] >= 0);
 	Stage[STAGE_NUMBER_2].position_ = XMFLOAT3(0, 0.2f, 0);
 
-	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/Rock_Stage3.png");
+	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/STAGE3.png");
 	assert(StageHandle_[STAGE_NUMBER_3] >= 0);
 	Stage[STAGE_NUMBER_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
 
@@ -39,6 +44,21 @@ void StageSelectScene::Initialize()
 	Image::SetTransform(StageHandle_[STAGE_NUMBER_3], Stage[STAGE_NUMBER_3]);
 
 	//---------------------------------------------------
+
+	//------------ STAGE_ROCK --------------------------
+
+	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/Lock_Stage2.png");
+	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
+	Lock[STAGE_LOCK_2].position_ = XMFLOAT3(0, 0.2f, 0);
+
+	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/Lock_Stage3.png");
+	assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
+	Lock[STAGE_LOCK_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
+
+	Image::SetTransform(StageLockHandle_[STAGE_LOCK_2], Lock[STAGE_LOCK_2]);
+	Image::SetTransform(StageLockHandle_[STAGE_LOCK_3], Lock[STAGE_LOCK_3]);
+
+	//--------------------------------------------------
 
 	//-------------- Level ---------------------------
 	LevelImageHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/Easy.png");
@@ -92,14 +112,11 @@ void StageSelectScene::Update()
 		}
 	}
 
-	if (Input::IsKeyDown(DIK_P))
-	{
-
-		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-		pSceneManager->ChangeScene(SCENE_ID_PLAY);
-
-	}
-
+	//if (Input::IsKeyDown(DIK_P))
+	//{
+	//	SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+	//	pSceneManager->ChangeScene(SCENE_ID_PLAY);
+	//}
 
 
 	//‘I‘ð
@@ -151,13 +168,7 @@ void StageSelectScene::Select()
 //•`‰æ
 void StageSelectScene::Draw()
 {
-
-
-	//STAGE–¼‚Ì•`‰æ
-	for (int i = 1; i < STAGE_NUMBER_MAX; i++)
-	{
-		Image::Draw(StageHandle_[i]);
-	}
+	StageUnlock();
 
 	//STAGE“ïˆÕ“x‚Ì•`‰æ
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
@@ -181,5 +192,34 @@ void StageSelectScene::Release()
 		LevelImageHandle_[i] = -1;
 	}
 
+	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
+	{
+		StageLockHandle_[i] = -1;
+	}
+
 	FrameImageHandle_ = -1;
+}
+
+void StageSelectScene::StageUnlock()
+{
+
+	Image::Draw(StageHandle_[STAGE_NUMBER_1]);
+
+	if (Global::Unlock2)
+	{
+		Image::Draw(StageHandle_[STAGE_NUMBER_2]);
+	}
+	else
+	{
+		Image::Draw(StageLockHandle_[STAGE_LOCK_2]);
+	}
+
+	if (Global::Unlock3)
+	{
+		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
+	}
+	else
+	{
+		Image::Draw(StageLockHandle_[STAGE_LOCK_3]);
+	}
 }

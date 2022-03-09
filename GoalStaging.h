@@ -14,16 +14,17 @@ class GoalStaging : public GameObject
 
     int BackImage_;
     int CircleImage_;
-
     int EnterImage_;
 
     Transform CircleTrans;
     Transform EnterTrans;
+    Transform BalloonTrans;
 
     float size_;
     bool flg;
     bool Sflg;
-    bool Aflg;
+
+    int timer;
 
 public:
     //コンストラクタ
@@ -43,4 +44,6 @@ public:
 
     //開放
     void Release() override;
+
+    void Timer();
 };

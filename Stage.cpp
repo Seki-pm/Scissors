@@ -358,17 +358,17 @@ void Stage::Stage2()
     colliders_.push_back(pc23);
 
     //ìoÇËè∞3
-    pc24.AddPoint(104.28f, 5.92f);
-    pc24.AddPoint(106.64f, 5.48f);
-    pc24.AddPoint(106.52f, 4.89f);
-    pc24.AddPoint(104.17f, 5.33f);
+    pc24.AddPoint(103.46f, 6.09f);
+    pc24.AddPoint(105.81f, 5.67f);
+    pc24.AddPoint(105.7f,  5.07f);
+    pc24.AddPoint(103.34f, 5.51f);
     colliders_.push_back(pc24);
 
     //ìoÇËè∞4
-    pc25.AddPoint(105.77f, 10);
-    pc25.AddPoint(106.41f, 10);
-    pc25.AddPoint(106.41f, 7.60f);
-    pc25.AddPoint(105.77f, 7.60f);
+    pc25.AddPoint(105.78f, 10.39f);
+    pc25.AddPoint(106.41f, 10.39f);
+    pc25.AddPoint(106.42f, 8.f);
+    pc25.AddPoint(105.78f, 8.f);
     colliders_.push_back(pc25);
 
     //ï«1

@@ -7,13 +7,13 @@
 #include "Global.h"
 #include "GameOver.h"
 
-
 //STAGE1シーンを管理するクラス
 class Stage1Scene : public GameObject
 {
 	Scissors* pScissors;  //Scissorsのポインタ
 	DrawNumber* pNumber_; //デバック用
 	DrawGauge*  pGauge_;  //HPゲージ用
+
 	float X, Y, Z;
 
 	int ImageHandle_;

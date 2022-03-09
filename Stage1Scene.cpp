@@ -77,13 +77,14 @@ void Stage1Scene::GameOverSEL()
     if (Global::IsGameOver)
     {
         //GameOver表示
-        Instantiate<GameOver>(this);
         Global::IsGameOver = false;
     }
 
     //GameOverになったら
     if (Global::GameOver)
     {
+        Instantiate<GameOver>(this);
+
         //ボタンを選択
         //選択
         if (Global::GameOver && Input::IsKeyDown(DIK_LEFT))
@@ -116,6 +117,8 @@ void Stage1Scene::GameOverSEL()
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);
         }
+
+        Global::GameOver = false;
     }
 }
 
@@ -138,7 +141,7 @@ void Stage1Scene::CameraMove(float start, float goal)
         Camera::SetPosition(XMFLOAT3(56, Y, -10));
         Camera::SetTarget(XMFLOAT3(56, Y, Z));
         Global::Unlock2 = true;
-        if (Input::IsKeyDown(DIK_LSHIFT))
+        if (Global::Timer)
         {
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);

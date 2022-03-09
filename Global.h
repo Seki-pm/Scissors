@@ -36,6 +36,7 @@ public:
 	static int NowHP;
 	static int prevHP;
 
+	static bool Timer;
 	static bool GetCoin;
 	static bool GameOver;
 	static bool IsGameOver;
