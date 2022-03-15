@@ -128,5 +128,6 @@ void GoalStaging::Timer()
     if (timer >= 60)
     {
         Global::Timer = true;
+        timer = 0;
     }
 }

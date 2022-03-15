@@ -19,7 +19,7 @@ Stage1Scene::Stage1Scene(GameObject* parent)
 //初期化
 void Stage1Scene::Initialize()
 {
-    Global::MAXHP = 300;
+    Global::MAXHP = 500;
     Global::HP = Global::MAXHP;
     Global::GameOver = false;
     Global::IsGameOver = false;
@@ -36,18 +36,20 @@ void Stage1Scene::Initialize()
     //ハサミのHP
     Instantiate<HP>(this);
 
+    //ゴール演出
     Instantiate<GoalStaging>(this);
 }
 
 //更新
 void Stage1Scene::Update()
 {
-    if (Input::IsKeyDown(DIK_5))
+    if (Global::Timer)
     {
-        Global::GameOver = true;
-        Global::IsGameOver = true;
+        Global::Unlock2 = true;
+        Global::Timer = false;
+        SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+        pSceneManager->ChangeScene(SCENE_ID_SELECT);
     }
-
 
     Global gl;
 
@@ -77,14 +79,13 @@ void Stage1Scene::GameOverSEL()
     if (Global::IsGameOver)
     {
         //GameOver表示
+        Instantiate<GameOver>(this);
         Global::IsGameOver = false;
     }
 
     //GameOverになったら
     if (Global::GameOver)
     {
-        Instantiate<GameOver>(this);
-
         //ボタンを選択
         //選択
         if (Global::GameOver && Input::IsKeyDown(DIK_LEFT))
@@ -117,8 +118,6 @@ void Stage1Scene::GameOverSEL()
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);
         }
-
-        Global::GameOver = false;
     }
 }
 
@@ -137,15 +136,8 @@ void Stage1Scene::CameraMove(float start, float goal)
     {
         XMFLOAT3 CamPos = XMFLOAT3(56, Y, -10);
 
-
         Camera::SetPosition(XMFLOAT3(56, Y, -10));
         Camera::SetTarget(XMFLOAT3(56, Y, Z));
-        Global::Unlock2 = true;
-        if (Global::Timer)
-        {
-            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-            pSceneManager->ChangeScene(SCENE_ID_SELECT);
-        }
     }
     //そうでない場合Playerに追従する
     else

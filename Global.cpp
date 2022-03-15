@@ -16,7 +16,7 @@ XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
 int Global::Select = 0;
 
-bool Global::Unlock2 = true;
+bool Global::Unlock2 = false;
 bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
@@ -24,7 +24,7 @@ bool Global::GameOver = false;
 bool Global::IsGameOver = false;
 
 
-int   Global::MAXHP = 100;
+int   Global::MAXHP = 500;
 int   Global::HP = Global::MAXHP;
 
 int   Global::NORMAL_DAMAGE = 1;

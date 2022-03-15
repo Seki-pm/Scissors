@@ -27,6 +27,7 @@ class Scissors : public GameObject
     float AnglePass_;  //角度を送る
 
     bool Calc; //計算のフラグ
+    bool flg;
 
     float GLAVITY;
 

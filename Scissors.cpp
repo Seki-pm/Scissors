@@ -6,7 +6,7 @@ Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f), Calc(false),
-    GLAVITY(0.03f)
+    GLAVITY(0.03f),flg(true)
 {
 }
 
@@ -42,20 +42,24 @@ void Scissors::Update()
 {
     GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
-    //ハサミの開閉
-    OpenClose();
+    if (!Global::GameOver)
+    {
+        //ハサミの開閉
+        OpenClose();
 
-    //ハサミの回転
-    Rotation();
+        //ハサミの回転
+        Rotation();
 
-    //左右移動
-    Move();
+        //左右移動
+        Move();
 
-    //ジャンプと落下
-    JumpAndFall();
+        //ジャンプと落下
+        JumpAndFall();
 
-    //座標を送る
-    SetPosition();
+        //座標を送る
+        SetPosition();
+    }
+ 
 
     //スタートからやり直し（リトライ）
     if (Input::IsKeyDown(DIK_R) || Global::GameOver && pGameOver->GetSelect() == 0 && Input::IsKeyDown(DIK_SPACE))
@@ -64,11 +68,12 @@ void Scissors::Update()
     }
 
 
-    if (transform_.position_.y <= -5)
+    if (transform_.position_.y <= -5 && flg )
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
         Global::IsGameOver = true;
+        flg = false;
     }
 
 }
@@ -376,6 +381,7 @@ void Scissors::Restart()
     pBlade_R->SetRotateZ(90);
     Global::GameOver = false;
     Global::IsGameOver = false;
+    flg = true;
 }
 
 

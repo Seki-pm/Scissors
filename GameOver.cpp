@@ -61,6 +61,11 @@ void GameOver::Draw()
     if (select_ == 0)
     {
         Image::SetTransform(SelectFrameImage_, Retry);
+        
+        if (Input::IsKeyDown(DIK_SPACE))
+        {
+            KillMe();
+        }
     }
     //ステージ選択が選択されている時
     else if(select_ == 1)
