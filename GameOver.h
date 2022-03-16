@@ -15,7 +15,7 @@ class GameOver : public GameObject
 
     //メンバ変数
     int select_;    //選択
-    int alpha_;
+    int alpha_;     //透明度
 
     Transform Retry;     //リトライ用
     Transform BackMenu;  //ステージ選択シーンに戻る用
@@ -39,7 +39,7 @@ public:
     //開放
     void Release() override;
 
-    //メニューシーンに戻るかどうか
+    //引数をセット
     void SetSelect(int select);
     int GetSelect();
 };

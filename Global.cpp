@@ -2,8 +2,6 @@
 
 
 //ƒOƒ[ƒoƒ‹•Ï”‰Šú‰»
-
-
 float Global::Trans_Pos_X = 0.f;
 float Global::Trans_Pos_Y = 0.f;
 float Global::Trans_Pos_Z = 0.f;
@@ -22,16 +20,15 @@ bool Global::Unlock3 = false;
 bool Global::GetCoin  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;
+bool Global::Timer = false;
 
 
 int   Global::MAXHP = 500;
 int   Global::HP = Global::MAXHP;
-
 int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
 
-bool Global::Timer = false;
 
 int Global::SCENE_ID = 0;
 

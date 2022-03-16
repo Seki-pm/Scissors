@@ -11,7 +11,7 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
 	{
-		LevelImageHandle_[i] = -1;
+		LevelHandle_[i] = -1;
 	}
 
 	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
@@ -24,7 +24,7 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 void StageSelectScene::Initialize()
 {
 	//画像データのロード
-	//-------------- STAGE ------------------------------
+	//---------------------- STAGE ------------------------------
 
 	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/STAGE1.png");
 	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
@@ -45,7 +45,7 @@ void StageSelectScene::Initialize()
 
 	//---------------------------------------------------
 
-	//------------ STAGE_ROCK --------------------------
+	//------------------- STAGE_ROCK --------------------------
 
 	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/Lock_Stage2.png");
 	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
@@ -60,30 +60,31 @@ void StageSelectScene::Initialize()
 
 	//--------------------------------------------------
 
-	//-------------- Level ---------------------------
-	LevelImageHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/Easy.png");
-	assert(LevelImageHandle_[STAGE_LEVEL_EASY] >= 0);
+	//-------------------- Level ---------------------------
+	LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/Easy.png");
+	assert(LevelHandle_[STAGE_LEVEL_EASY] >= 0);
 	Level[STAGE_LEVEL_EASY].position_ = XMFLOAT3(-0.6f, 0.5f, 0);
 
-	LevelImageHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/Normal.png");
-	assert(LevelImageHandle_[STAGE_LEVEL_NORMAL] >= 0);
+	LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/Normal.png");
+	assert(LevelHandle_[STAGE_LEVEL_NORMAL] >= 0);
 	Level[STAGE_LEVEL_NORMAL].position_ = XMFLOAT3(0, 0.5f, 0);
 
-	LevelImageHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/Hard.png");
-	assert(LevelImageHandle_[STAGE_LEVEL_HARD] >= 0);
+	LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/Hard.png");
+	assert(LevelHandle_[STAGE_LEVEL_HARD] >= 0);
 	Level[STAGE_LEVEL_HARD].position_ = XMFLOAT3(0.6f, 0.5f, 0);
 
-	Image::SetTransform(LevelImageHandle_[STAGE_LEVEL_EASY], Level[STAGE_LEVEL_EASY]);
-	Image::SetTransform(LevelImageHandle_[STAGE_LEVEL_NORMAL], Level[STAGE_LEVEL_NORMAL]);
-	Image::SetTransform(LevelImageHandle_[STAGE_LEVEL_HARD], Level[STAGE_LEVEL_HARD]);
+	Image::SetTransform(LevelHandle_[STAGE_LEVEL_EASY], Level[STAGE_LEVEL_EASY]);
+	Image::SetTransform(LevelHandle_[STAGE_LEVEL_NORMAL], Level[STAGE_LEVEL_NORMAL]);
+	Image::SetTransform(LevelHandle_[STAGE_LEVEL_HARD], Level[STAGE_LEVEL_HARD]);
 
-	//------------------------------------------------
+	//---------------------------------------------------
 
+
+	//--------------- 選択用フレーム ------------
 	FrameImageHandle_ = Image::Load("Image/Frame.png");
 	assert(FrameImageHandle_ >= 0);
 	FrameTransform.position_ = XMFLOAT3(-0.6f, -0.2f, 0);
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
-
 
 }
 
@@ -99,16 +100,17 @@ void StageSelectScene::Update()
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE1);
 		}
-		//1かつSTAGE2がアンロックされているなら
+		//1かつSTAGE2がアンロックされているならSTAGE2へ
 		else if (Global::Select == 1 && Global::Unlock2)
 		{
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE2);
 		}
+		//2をクリアしてるなら
 		else if (Global::Select == 2 && Global::Unlock3)
 		{
-			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			pSceneManager->ChangeScene(SCENE_ID_STAGE2);
+			//SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+			//pSceneManager->ChangeScene(SCENE_ID_STAGE2);
 		}
 	}
 
@@ -126,6 +128,7 @@ void StageSelectScene::Update()
 //選択
 void StageSelectScene::Select()
 {
+	//←→で選ぶ
 	if (Input::IsKeyDown(DIK_RIGHT))
 	{
 		switch (Global::Select)
@@ -168,12 +171,13 @@ void StageSelectScene::Select()
 //描画
 void StageSelectScene::Draw()
 {
+	//ステージのロック解除
 	StageUnlock();
 
 	//STAGE難易度の描画
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
 	{
-		Image::Draw(LevelImageHandle_[i]);
+		Image::Draw(LevelHandle_[i]);
 	}
 
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
@@ -189,7 +193,7 @@ void StageSelectScene::Release()
 
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
 	{
-		LevelImageHandle_[i] = -1;
+		LevelHandle_[i] = -1;
 	}
 
 	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
@@ -200,9 +204,9 @@ void StageSelectScene::Release()
 	FrameImageHandle_ = -1;
 }
 
+//ステージのロック解除管理
 void StageSelectScene::StageUnlock()
 {
-
 	Image::Draw(StageHandle_[STAGE_NUMBER_1]);
 
 	if (Global::Unlock2)

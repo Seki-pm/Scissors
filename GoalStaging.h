@@ -8,22 +8,28 @@
 //ゴール演出を管理するクラス
 class GoalStaging : public GameObject
 {
-    Global gl;
+    Global gl; //globalを使う
 
-    int hModel_;    //モデル番号
+    int BalloonModel_;    //モデル番号
 
+    //画像ロード用
     int BackImage_;
     int CircleImage_;
     int EnterImage_;
 
+    //各Transform
     Transform CircleTrans;
     Transform EnterTrans;
     Transform BalloonTrans;
 
+    //サイズ
     float size_;
-    bool flg;
-    bool Sflg;
 
+    //フラグ
+    bool StagingFlg;
+    bool StringFlg;
+
+    //時間管理
     int timer;
 
 public:
@@ -45,5 +51,6 @@ public:
     //開放
     void Release() override;
 
+    //タイマー
     void Timer();
 };

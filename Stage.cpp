@@ -18,6 +18,7 @@ void Stage::Initialize()
     //左右反転
     transform_.rotate_.y = 180;
 
+    //表示するステージ
     switch (Global::Select)
     {
     case 0: Stage1(); break;
@@ -90,6 +91,7 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
     }
 }
 
+//Stage1の設定
 void Stage::Stage1()
 {
     StageModel_ = Model::Load("SuccessModel/stage1.fbx");
@@ -180,6 +182,7 @@ void Stage::Stage1()
     gl.SetCameraGoal(56);
 }
 
+//Stage2の設定
 void Stage::Stage2()
 {
     StageModel_ = Model::Load("SuccessModel/stage2.fbx");

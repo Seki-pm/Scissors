@@ -7,14 +7,13 @@
 //HPを管理するクラス
 class HP : public GameObject
 {
-    DrawNumber* pNumber_;
-    DrawGauge*  pGauge_;
+    DrawNumber* pNumber_; //数字描画用
+    DrawGauge*  pGauge_;  //ゲージ描画用
 
-    int NumberHandle_;
-    int GaugeHandle_;
+    //ロード用変数
+    int NumberHandle_;   
+    int GaugeHandle_;    
     int GaugeFrame_;
-
-    int MaxHp;
 
     Transform FrameTrans;
 
@@ -37,5 +36,6 @@ public:
     //開放
     void Release() override;
 
+    //HPを計算
     void HPCalc();
 };

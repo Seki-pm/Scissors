@@ -3,8 +3,10 @@
 
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
-    :GameObject(parent, "GoalStaging"), hModel_(-1), BackImage_(-1), EnterImage_(-1),
-    CircleImage_(-1), size_(10), flg(false), Sflg(false),timer(0)
+    :GameObject(parent, "GoalStaging"), 
+    BalloonModel_(-1), BackImage_(-1), EnterImage_(-1),
+    CircleImage_(-1), size_(10), timer(0),
+    StagingFlg(false), StringFlg(false)
 {
 }
 
@@ -19,11 +21,11 @@ void GoalStaging::Initialize()
     Global gl;
 
     //モデルデータのロード
-    hModel_ = Model::Load("d.fbx");
-    assert(hModel_ >= 0);
+    BalloonModel_ = Model::Load("d.fbx");
+    assert(BalloonModel_ >= 0);
     BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal(), 4.f, 0.f);
     BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
-    Model::SetTransform(hModel_, BalloonTrans);
+    Model::SetTransform(BalloonModel_, BalloonTrans);
 
 
     //画像データの読み込み
@@ -34,11 +36,10 @@ void GoalStaging::Initialize()
     BlackTrans.scale_ = XMFLOAT3(1.4f, 1.4f, 1.4f);
     Image::SetTransform(BackImage_, BlackTrans);
 
+    //収縮用
     CircleImage_ = Image::Load("Image/Clear_Effect.png");
     assert(CircleImage_ >= 0);
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
-
-
 
     //Enter
     EnterImage_ = Image::Load("Image/Enter.png");
@@ -48,8 +49,6 @@ void GoalStaging::Initialize()
     Image::SetTransform(EnterImage_, EnterTrans);
 
  
-
-
 }
 
 //更新
@@ -58,30 +57,31 @@ void GoalStaging::Update()
 
     if (Input::IsKeyDown(DIK_I))
     {
-        Model::SetAnimFrame(hModel_, 1, 300, 1.0f);
+        Model::SetAnimFrame(BalloonModel_, 1, 300, 1.0f);
     }
 
-
+    //ゴールについたら文字表示
     if (gl.GetTransPos_X() >= gl.GetCameraGoal() - 1.5f)
     {
         //文字表示
-        Sflg = true;
+        StringFlg = true;
     }
     else
     {
-        Sflg = false;
+        StringFlg = false;
     }
 
-    if (flg) Timer();
+    //Enterが押されたらタイマー開始
+    if (StagingFlg) Timer();
 }
 
 //描画
 void GoalStaging::Draw()
 {
-    Model::Draw(hModel_);
+    Model::Draw(BalloonModel_);
 
     //ゴール演出
-    if(Sflg)
+    if(StringFlg)
     {
         //文字表示
         Image::Draw(EnterImage_);
@@ -89,14 +89,14 @@ void GoalStaging::Draw()
         //Enterキーを押したら
         if (Input::IsKeyDown(DIK_RETURN))
         {
-            Sflg = false;
+            StringFlg = false;
             //ゴール演出スタート
-            flg = true;
+            StagingFlg = true;
         }
     }
 
     //暗転処理
-    if (flg)
+    if (StagingFlg)
     {
         CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
         Image::SetTransform(CircleImage_, CircleTrans);

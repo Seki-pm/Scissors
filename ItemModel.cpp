@@ -2,7 +2,7 @@
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
-    :GameObject(parent, "ItemModel"), hModel_(-1),rotate(8)
+    :GameObject(parent, "ItemModel"), Coin_(-1),rotate(8)
 {
 }
 
@@ -15,8 +15,8 @@ ItemModel::~ItemModel()
 void ItemModel::Initialize()
 {
 
-    hModel_ = Model::Load("SuccessModel/Coin.fbx");
-    assert(hModel_ >= 0);
+    Coin_ = Model::Load("SuccessModel/Coin.fbx");
+    assert(Coin_ >= 0);
 
     transform_.position_ = XMFLOAT3(-1.5f, 17, 0);
     transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
@@ -46,13 +46,14 @@ void ItemModel::Update()
 //描画
 void ItemModel::Draw()
 {
-    Model::SetTransform(hModel_, transform_);
-    Model::Draw(hModel_);
+    Model::SetTransform(Coin_, transform_);
+    Model::Draw(Coin_);
 }
 
 //開放
 void ItemModel::Release()
 {
+    Coin_ = -1;
 }
 
 //何かに当たった

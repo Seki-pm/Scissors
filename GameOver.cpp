@@ -85,11 +85,13 @@ void GameOver::Release()
     SelectFrameImage_  = -1;
 }
 
+//セット
 void GameOver::SetSelect(int select)
 {
     select_ = select;
 }
 
+//ゲット
 int GameOver::GetSelect()
 {
     return select_;

@@ -2,7 +2,8 @@
 
 //コンストラクタ
 ItemImage::ItemImage(GameObject* parent)
-    :GameObject(parent, "ItemImage"), FrameHandle_(-1), CoinHandle_(-1)
+    :GameObject(parent, "ItemImage"),
+    FrameHandle_(-1), CoinHandle_(-1)
 {
 }
 
@@ -14,6 +15,8 @@ ItemImage::~ItemImage()
 //初期化
 void ItemImage::Initialize()
 {
+
+    //取得していない
     FrameHandle_ = Image::Load("Image/GetCoinFrame.png");
     assert(FrameHandle_);
     auto FrameTrans = Transform();
@@ -21,8 +24,7 @@ void ItemImage::Initialize()
     FrameTrans.scale_ = XMFLOAT3(0.3f,0.3f,0.3f);
     Image::SetTransform(FrameHandle_, FrameTrans);
 
-
-
+    //取得した
     CoinHandle_ = Image::Load("SuccessModel/Coin.png");
     assert(CoinHandle_);
     auto CoinTrans = Transform();
@@ -40,12 +42,12 @@ void ItemImage::Update()
 //描画
 void ItemImage::Draw()
 {
-
-
+    //コインをゲットした
     if (Global::GetCoin)
     {
         Image::Draw(CoinHandle_);
     }
+    //ゲットしていない
     else
     {
         Image::Draw(FrameHandle_);

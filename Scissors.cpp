@@ -1,12 +1,11 @@
 #include "Scissors.h"
-#include "Stage.h"
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f), Calc(false),
-    GLAVITY(0.03f),flg(true),SoundFlg(false), Land_Glass(-1)
+    GLAVITY(0.03f), FallFlg(true),SoundFlg(false), Land_Glass(-1)
 {
 }
 
@@ -32,13 +31,12 @@ void Scissors::Initialize()
     //初期位置
     transform_.position_ = Global::InitPos;
 
-    SphereCollider* collision =
-    new SphereCollider(XMFLOAT3(transform_.position_.x, transform_.position_.y - 2, transform_.position_.z), 0.3f);
-    AddCollider(collision);
-
-
+    //サウンドのロード
     InitSound();
 
+    SphereCollider* collision =
+        new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
+    AddCollider(collision);
 }
 
 //更新
@@ -63,21 +61,30 @@ void Scissors::Update()
         //座標を送る
         SetPosition();
     }
- 
+   
 
     //スタートからやり直し（リトライ）
-    if (Input::IsKeyDown(DIK_R) || Global::GameOver && pGameOver->GetSelect() == 0 && Input::IsKeyDown(DIK_SPACE))
+    if (Input::IsKeyDown(DIK_R))
     {
         Restart();
     }
 
+    //GameOverの時リトライを選択しているとリスタート
+    if (Global::GameOver && Input::IsKeyDown(DIK_SPACE))
+    {
+        if (pGameOver->GetSelect() == 0)
+        {
+            Restart();
+        }
+    }
 
-    if (transform_.position_.y <= -5 && flg )
+    //
+    if (transform_.position_.y <= -5 && FallFlg)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
         Global::IsGameOver = true;
-        flg = false;
+        FallFlg = false;
     }
 }
 
@@ -113,7 +120,8 @@ void Scissors::OpenClose()
      //最終的な角度(内積から求める)
     float ang = acos(XMVectorGetX(XMVector3Dot(LMax, RMax)));
 
-    if (XMConvertToDegrees(ang) > 170 || XMConvertToDegrees(ang) < 2)    //170度以上または2度未満ならもどす
+    //170度以上または2度未満ならもどす
+    if (XMConvertToDegrees(ang) > 170 || XMConvertToDegrees(ang) < 2)   
     {
         pBlade_L->Open(angle);
         pBlade_R->Open(-angle);
@@ -228,6 +236,7 @@ void Scissors::JumpAndFall()
 
         if (SoundFlg)
         {
+            //音を出す
             Landing();
             SoundFlg = false;
         }
@@ -300,7 +309,7 @@ void Scissors::Release()
 //反射
 void Scissors::Reflection()
 {
-    int cnt = 0, count = 0;
+    //int cnt = 0, count = 0;
     transform_.position_.x -= move_.x;
     //transform_.position_.y -= move_.y;
 
@@ -391,15 +400,17 @@ void Scissors::Restart()
     pBlade_R->SetRotateZ(90);
     Global::GameOver = false;
     Global::IsGameOver = false;
-    flg = true;
+    FallFlg = true;
 }
 
 //音楽の初期化
 void Scissors::InitSound()
 {
-    //サウンドデータのロード
+    //--------- STAGE1 ----------------
     Land_Glass = Audio::Load("Sound/FootStep1.wav");
     assert(Land_Glass >= 0);
+
+    //-------------------------------
 }
 
 //音を流す
@@ -408,17 +419,20 @@ void Scissors::Landing()
     switch(Global::SCENE_ID)
     {
     case SCENE_ID_STAGE1:
+        //壁
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
         {
 
         }
+        //それ以外
         else
         {
             Audio::Play(Land_Glass);
         }
         break;
+
+    case SCENE_ID_STAGE2:
+        break;
     }
-
-
 }
 

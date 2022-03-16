@@ -28,22 +28,23 @@ public:
 	static bool Unlock2;
 	static bool Unlock3;
 
+	//Player関連
 	static int HP;
 	static int MAXHP;
 	static int NORMAL_DAMAGE;
 	static float JumpStart;
 	static float JumpEnd;
-	static int NowHP;
-	static int prevHP;
 
+	//Globalのフラグ
 	static bool Timer;
 	static bool GetCoin;
 	static bool GameOver;
 	static bool IsGameOver;
 
+	//Scene管理用
 	static int SCENE_ID;
 
-
+	//ハサミの現在ポジションをGlobalを通じて送る
 	void SetTransPos_X(float x);
 	float GetTransPos_X();
 
@@ -53,6 +54,7 @@ public:
 	void SetTransPos_Z(float z);
 	float GetTransPos_Z();
 
+	//カメラのスタートとゴール位置を設定
 	void SetCameraStart(float start);
 	float GetCameraStart();
 

@@ -1,11 +1,20 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/SceneManager.h"
-#include "DrawNumber.h"
+#include "Engine/Camera.h"
+#include "Engine/Input.h"
 #include "DrawGauge.h"
-#include "Scissors.h"
-#include "Global.h"
+#include "DrawNumber.h"
 #include "GameOver.h"
+#include "Global.h"
+#include "GoalStaging.h"
+#include "HP.h"
+#include "Scissors.h"
+#include "Sign.h"
+#include "Stage.h"
+
+
+
 
 //STAGE1シーンを管理するクラス
 class Stage1Scene : public GameObject
@@ -14,13 +23,9 @@ class Stage1Scene : public GameObject
 	DrawNumber* pNumber_; //デバック用
 	DrawGauge*  pGauge_;  //HPゲージ用
 
-	float X, Y, Z;
+	float X, Y, Z;   //受け取る各座標系
 
-	int ImageHandle_;
-	int GaugeHandle_;
-
-	int MaxHp;
-	int select_;
+	int select_; //選択用変数
 
 public:
 	//コンストラクタ

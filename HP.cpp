@@ -3,7 +3,8 @@
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pNumber_(nullptr), pGauge_(nullptr)
+    pNumber_(nullptr), pGauge_(nullptr),
+    NumberHandle_(-1), GaugeHandle_(-1), GaugeFrame_(-1)
 {
 }
 
@@ -15,12 +16,15 @@ HP::~HP()
 //初期化
 void HP::Initialize()
 {
+    //数字
     NumberHandle_ = Image::Load("Number.png");
     assert(NumberHandle_ >= 0);
 
+    //ゲージ
     GaugeHandle_ = Image::Load("Image/HP2.png");
     assert(GaugeHandle_ >= 0);
 
+    //ゲージフレーム
     GaugeFrame_ = Image::Load("Image/GaugeFrame.png");
     assert(GaugeFrame_ >= 0);
     FrameTrans.position_ = XMFLOAT3(-0.58f, 0.8f, 0);
@@ -36,7 +40,6 @@ void HP::Update()
 //描画
 void HP::Draw()
 {
-
     //pNumber_->Draw(Global::HP, 0, 0, NumberHandle_);
     pGauge_->Draw(Global::HP, -0.978f, 0.77f, GaugeHandle_);
     Image::Draw(GaugeFrame_);
@@ -47,6 +50,7 @@ void HP::Release()
 {
 }
 
+//HP計算
 void HP::HPCalc()
 {
     float JS = Global::JumpStart;
@@ -68,6 +72,7 @@ void HP::HPCalc()
     //ゲームオーバー判定
     if (Global::HP <= 0)
     {
+        Global::IsGameOver = true;
         Global::GameOver = true;
     }
 }

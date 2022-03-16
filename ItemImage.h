@@ -7,8 +7,10 @@
 //アイテムの取得の有無の画像を管理するクラス
 class ItemImage : public GameObject
 {
+    //画像ロード用
     int FrameHandle_;
     int CoinHandle_;
+
 public:
     //コンストラクタ
     ItemImage(GameObject* parent);

@@ -1,14 +1,15 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include "Engine/SphereCollider.h"
 #include "Engine/Input.h"
 #include "Engine/Camera.h"
 #include "Engine/Fbx.h"
-#include "Engine/SphereCollider.h"
 #include "Engine/Audio.h"
 #include "Blade.h"
 #include "Global.h"
 #include "HP.h"
 #include "GameOver.h"
+#include "Stage.h"
 #include <vector>
 
 
@@ -18,20 +19,18 @@ class Scissors : public GameObject
     //ブレードが２つ
     Blade* pBlade_L , *pBlade_R;
 
-    vector<XMFLOAT3> vec_;
-
-    //float deltaY;   //Y方向の移動量
     XMFLOAT3 move_;         //移動
     XMFLOAT3 jumpDirection_; //ジャンプ方向（刺さってる地面の法線）
     XMFLOAT3 nowPivotPoint_; //現在の刺さっている場所
 
     float AnglePass_;  //角度を送る
+    float GLAVITY; //重力
 
     bool Calc; //計算のフラグ
-    bool flg;
-    bool SoundFlg;
+    bool FallFlg; //落下フラグ
+    bool SoundFlg; //音フラグ
 
-    float GLAVITY;
+
 
     int Land_Glass;
 
@@ -75,11 +74,13 @@ public:
     //反射
     void Reflection();
 
+    //位置をセットする
     void SetPosition();
 
     //回転限度
     void RotateMax();
 
+    //始めに戻る
     void Restart();
 
 

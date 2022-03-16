@@ -6,10 +6,10 @@
 #include "Global.h"
 
 
-//◆◆◆を管理するクラス
+//コインを管理するクラス
 class ItemModel : public GameObject
 {
-    int hModel_;
+    int Coin_;
     int rotate; //回転数
 
  

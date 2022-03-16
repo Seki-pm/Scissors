@@ -6,6 +6,7 @@
 #include "Engine/Transform.h"
 #include "Global.h"
 
+//ステージ番号
 enum STAGE_NUMBER
 {
 	STAGE_NUMBER_MIN = 0,
@@ -15,6 +16,7 @@ enum STAGE_NUMBER
 	STAGE_NUMBER_MAX
 };
 
+//ステージロック
 enum STAGE_LOCK
 {
 	STAGE_LOCK_MIN = 1,
@@ -23,6 +25,7 @@ enum STAGE_LOCK
 	STAGE_LOCK_MAX
 };
 
+//ステージレベル
 enum STAGE_LEVEL
 {
 	STAGE_LEVEL_EASY = 0,
@@ -36,12 +39,15 @@ enum STAGE_LEVEL
 class StageSelectScene : public GameObject
 {
 private:
-	int StageHandle_[STAGE_NUMBER_MAX];
+
+	//enumのものを配列にあてる
+	int StageHandle_[STAGE_NUMBER_MAX];       
 	int StageLockHandle_[STAGE_LOCK_MAX];
-	int LevelImageHandle_[STAGE_LEVEL_MAX];
-	int FrameImageHandle_;
+	int LevelHandle_[STAGE_LEVEL_MAX];
 
+	int FrameImageHandle_; //フレーム
 
+	//各transform
 	Transform Stage[STAGE_NUMBER_MAX];
 	Transform Lock[STAGE_LOCK_MAX];
 	Transform Level[STAGE_LEVEL_MAX];
@@ -67,5 +73,6 @@ public:
 	//開放
 	void Release() override;
 
+	//ステージアンロック
 	void StageUnlock();
 };
