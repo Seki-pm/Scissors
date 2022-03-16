@@ -41,6 +41,8 @@ public:
 	static bool GameOver;
 	static bool IsGameOver;
 
+	static int SCENE_ID;
+
 
 	void SetTransPos_X(float x);
 	float GetTransPos_X();

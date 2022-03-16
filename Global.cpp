@@ -33,6 +33,7 @@ float Global::JumpEnd = 0.f;
 
 bool Global::Timer = false;
 
+int Global::SCENE_ID = 0;
 
 //xç¿ïW
 void Global::SetTransPos_X(float x)

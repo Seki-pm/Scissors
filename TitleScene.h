@@ -2,10 +2,20 @@
 #include "Engine/GameObject.h"
 #include "Engine/SceneManager.h"
 #include "Engine/Input.h"
+#include "Engine/Image.h"
 
 //タイトルシーンを管理するクラス
 class TitleScene : public GameObject
 {
+	int BackImageHandle_;
+	int TitleImageHandle_;
+	int SpaceKeyImageHandle_;
+
+	float size_;
+
+	Transform TitleTrans;
+	Transform SpaceTrans;
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

@@ -1,6 +1,7 @@
 #pragma once
 #include "global.h"
 #include "Global.h"
+#include "../Global.h"
 #include "GameObject.h"
 
 //ƒQ[ƒ€‚É“oê‚·‚éƒV[ƒ“

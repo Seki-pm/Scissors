@@ -6,7 +6,7 @@ Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f), Calc(false),
-    GLAVITY(0.03f),flg(true)
+    GLAVITY(0.03f),flg(true),SoundFlg(false), Land_Glass(-1)
 {
 }
 
@@ -35,6 +35,10 @@ void Scissors::Initialize()
     SphereCollider* collision =
     new SphereCollider(XMFLOAT3(transform_.position_.x, transform_.position_.y - 2, transform_.position_.z), 0.3f);
     AddCollider(collision);
+
+
+    InitSound();
+
 }
 
 //更新
@@ -75,7 +79,6 @@ void Scissors::Update()
         Global::IsGameOver = true;
         flg = false;
     }
-
 }
 
 
@@ -203,6 +206,9 @@ void Scissors::JumpAndFall()
 
         //着地地点の高さ
         Global::JumpEnd = transform_.position_.y;
+
+        //着地音
+        SoundFlg = true;
     }
 
     //どっちか刺さってたら
@@ -220,6 +226,11 @@ void Scissors::JumpAndFall()
             Calc = false;
         }
 
+        if (SoundFlg)
+        {
+            Landing();
+            SoundFlg = false;
+        }
 
         //壁かどうかでSPACEの入力を変える
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
@@ -269,7 +280,6 @@ void Scissors::JumpAndFall()
             Calc = true;
 
         }
-       
 
 
         //回転限度を設定
@@ -384,5 +394,31 @@ void Scissors::Restart()
     flg = true;
 }
 
+//音楽の初期化
+void Scissors::InitSound()
+{
+    //サウンドデータのロード
+    Land_Glass = Audio::Load("Sound/FootStep1.wav");
+    assert(Land_Glass >= 0);
+}
 
+//音を流す
+void Scissors::Landing()
+{
+    switch(Global::SCENE_ID)
+    {
+    case SCENE_ID_STAGE1:
+        if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
+        {
+
+        }
+        else
+        {
+            Audio::Play(Land_Glass);
+        }
+        break;
+    }
+
+
+}
 

@@ -9,7 +9,7 @@ Stage2Scene::Stage2Scene(GameObject* parent)
 //èâä˙âª
 void Stage2Scene::Initialize()
 {
-    Global::MAXHP = 400;
+    Global::MAXHP = 500;
     Global::HP = Global::MAXHP;
     Global::GameOver = false;
 

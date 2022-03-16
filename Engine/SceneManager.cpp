@@ -36,7 +36,7 @@ void SceneManager::Update()
 		KillAllChildren();
 
 		//ロードしたデータを全削除
-		Audio::Release();
+		Audio::AllRelease();
 		Model::AllRelease();
 		Image::AllRelease();
 
@@ -50,8 +50,9 @@ void SceneManager::Update()
 		case SCENE_ID_STAGE2: Instantiate<Stage2Scene>(this); break;
 
 		}
-		Audio::Initialize();
+		//Audio::Initialize();
 		currentSceneID_ = nextSceneID_;
+		Global::SCENE_ID = currentSceneID_;
 	}
 }
 

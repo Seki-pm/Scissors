@@ -139,6 +139,10 @@
     <ClCompile Include="GameOver.cpp">
       <Filter>InGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Sound.cpp">
+      <Filter>01Engine\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -245,6 +249,10 @@
     <ClInclude Include="GameOver.h">
       <Filter>InGameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Sound.h">
+      <Filter>01Engine\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSound.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

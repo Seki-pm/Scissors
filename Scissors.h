@@ -4,6 +4,7 @@
 #include "Engine/Camera.h"
 #include "Engine/Fbx.h"
 #include "Engine/SphereCollider.h"
+#include "Engine/Audio.h"
 #include "Blade.h"
 #include "Global.h"
 #include "HP.h"
@@ -28,8 +29,11 @@ class Scissors : public GameObject
 
     bool Calc; //計算のフラグ
     bool flg;
+    bool SoundFlg;
 
     float GLAVITY;
+
+    int Land_Glass;
 
     ///////////////private関数//////////////////////////////////////
     //開閉
@@ -77,4 +81,8 @@ public:
     void RotateMax();
 
     void Restart();
+
+
+    void InitSound();
+    void Landing();
 };
