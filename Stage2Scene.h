@@ -3,22 +3,23 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
-#include "Engine/Model.h"
-#include "PolygonCollider.h"
-#include "Stage.h"
-#include "Scissors.h"
-#include "Global.h"
-#include "HP.h"
-#include "ItemModel.h"
 #include "GameOver.h"
+#include "Global.h"
+#include "GoalStaging.h"
+#include "HP.h"
 #include "ItemImage.h"
+#include "ItemModel.h"
+#include "Scissors.h"
+#include "Stage.h"
 
 
-//ステージ2シーンを管理するクラス
+//STAGE2シーンを管理するクラス
 class Stage2Scene : public GameObject
 {
 	Scissors* pScissors;
 	float X, Y, Z;
+
+	int select_;  //選択用変数
 
 public:
 	//コンストラクタ
@@ -37,9 +38,10 @@ public:
 	//開放
 	void Release() override;
 
+	//GAMEOVER
+	void GameOverSEL();
+
 	//カメラ移動
 	void CameraMove(float start, float goal);
-
-	void Collider();
 
 };

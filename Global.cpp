@@ -6,15 +6,17 @@ float Global::Trans_Pos_X = 0.f;
 float Global::Trans_Pos_Y = 0.f;
 float Global::Trans_Pos_Z = 0.f;
 
-float Global::Camera_Start = 0.f;
-float Global::Camera_Goal = 0.f;
+float Global::Camera_StartX = 0.f;
+float Global::Camera_StartY = 0.f;
+float Global::Camera_GoalX = 0.f;
+float Global::Camera_GoalY = 0.f;
 
 XMFLOAT3 Global::InitPos = XMFLOAT3(0, 2.0f, 0);
 XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
 int Global::Select = 0;
 
-bool Global::Unlock2 = false;
+bool Global::Unlock2 = true;
 bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
@@ -65,23 +67,42 @@ float Global::GetTransPos_Z()
 	return Trans_Pos_Z;
 }
 
-
-void Global::SetCameraStart(float start)
+void Global::SetCameraStartX(float start)
 {
-	Camera_Start = start;
+	Camera_StartX = start;
 }
 
-float Global::GetCameraStart()
+void Global::SetCameraStartY(float start)
 {
-	return Camera_Start;
+	Camera_StartY = start;
 }
 
-void Global::SetCameraGoal(float goal)
+float Global::GetCameraStartX()
 {
-	Camera_Goal = goal;
+	return Camera_StartX;
 }
 
-float Global::GetCameraGoal()
+float Global::GetCameraStartY()
 {
-	return Camera_Goal;
+	return Camera_StartY;
+}
+
+void Global::SetCameraGoalX(float goal)
+{
+	Camera_GoalX = goal;
+}
+
+void Global::SetCameraGoalY(float goal)
+{
+	Camera_GoalY = goal;
+}
+
+float Global::GetCameraGoalX()
+{
+	return Camera_GoalX;
+}
+
+float Global::GetCameraGoalY()
+{
+	return Camera_GoalY;
 }

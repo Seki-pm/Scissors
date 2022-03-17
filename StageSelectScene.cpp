@@ -28,15 +28,15 @@ void StageSelectScene::Initialize()
 
 	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/STAGE1.png");
 	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
-	Stage[STAGE_NUMBER_1].position_ = XMFLOAT3(-0.6f, -0.2f, 0);
+	Stage[STAGE_NUMBER_1].position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 
 	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/STAGE2.png");
 	assert(StageHandle_[STAGE_NUMBER_2] >= 0);
-	Stage[STAGE_NUMBER_2].position_ = XMFLOAT3(0, -0.2f, 0);
+	Stage[STAGE_NUMBER_2].position_ = XMFLOAT3(0, 0.2f, 0);
 
 	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/STAGE3.png");
 	assert(StageHandle_[STAGE_NUMBER_3] >= 0);
-	Stage[STAGE_NUMBER_3].position_ = XMFLOAT3(0.6f, -0.2f, 0);
+	Stage[STAGE_NUMBER_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
 
 
 	Image::SetTransform(StageHandle_[STAGE_NUMBER_1], Stage[STAGE_NUMBER_1]);
@@ -49,11 +49,11 @@ void StageSelectScene::Initialize()
 
 	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/Lock_Stage2.png");
 	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
-	Lock[STAGE_LOCK_2].position_ = XMFLOAT3(0, -0.2f, 0);
+	Lock[STAGE_LOCK_2].position_ = XMFLOAT3(0, 0.2f, 0);
 
 	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/Lock_Stage3.png");
 	assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
-	Lock[STAGE_LOCK_3].position_ = XMFLOAT3(0.6f, -0.2f, 0);
+	Lock[STAGE_LOCK_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
 
 	Image::SetTransform(StageLockHandle_[STAGE_LOCK_2], Lock[STAGE_LOCK_2]);
 	Image::SetTransform(StageLockHandle_[STAGE_LOCK_3], Lock[STAGE_LOCK_3]);
@@ -83,7 +83,7 @@ void StageSelectScene::Initialize()
 	//--------------- 選択用フレーム ------------
 	FrameImageHandle_ = Image::Load("Image/Frame.png");
 	assert(FrameImageHandle_ >= 0);
-	FrameTransform.position_ = XMFLOAT3(-0.6f, -0.2f, 0);
+	FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
 
 }

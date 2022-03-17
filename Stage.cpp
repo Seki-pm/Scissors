@@ -94,6 +94,11 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
 //Stage1の設定
 void Stage::Stage1()
 {
+    float startX = 2;
+    float startY = 0;
+    float goalX  = 56;
+    float goalY  = 4;
+
     StageModel_ = Model::Load("SuccessModel/stage1.fbx");
 
     //コライダー
@@ -178,13 +183,20 @@ void Stage::Stage1()
 
 
     //スタートとゴールの設定
-    gl.SetCameraStart(2);
-    gl.SetCameraGoal(56);
+    gl.SetCameraStartX(startX);
+    gl.SetCameraStartY(startY);
+    gl.SetCameraGoalX(goalX);
+    gl.SetCameraGoalY(goalY);
 }
 
 //Stage2の設定
 void Stage::Stage2()
 {
+    float startX = 2;
+    float startY = 0;
+    float goalX = 125;
+    float goalY = 0.36f;
+
     StageModel_ = Model::Load("SuccessModel/stage2.fbx");
     assert(StageModel_ >= 0);
 
@@ -411,7 +423,9 @@ void Stage::Stage2()
 
 
     //スタートとゴールの設定
-    gl.SetCameraStart(2);
-    gl.SetCameraGoal(150);
+    gl.SetCameraStartX(startX);
+    gl.SetCameraStartY(startY);
+    gl.SetCameraGoalX(goalX);
+    gl.SetCameraGoalY(goalY);
 }
 

@@ -23,12 +23,17 @@ void GoalStaging::Initialize()
     //モデルデータのロード
     BalloonModel_ = Model::Load("d.fbx");
     assert(BalloonModel_ >= 0);
-    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal(), 4.f, 0.f);
+    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoalX(), gl.GetCameraGoalY(), 0.f);
     BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
     Model::SetTransform(BalloonModel_, BalloonTrans);
 
+    //Enter
+    EnterImage_ = Image::Load("Image/Enter.png");
+    assert(EnterImage_ >= 0);
+    EnterTrans.position_ = XMFLOAT3(0.1f, 0.1f, 0);
+    EnterTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
+    Image::SetTransform(EnterImage_, EnterTrans);
 
-    //画像データの読み込み
     //暗転
     BackImage_ = Image::Load("Image/Clear_Black.png");
     assert(BackImage_ >= 0);
@@ -40,15 +45,6 @@ void GoalStaging::Initialize()
     CircleImage_ = Image::Load("Image/Clear_Effect.png");
     assert(CircleImage_ >= 0);
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
-
-    //Enter
-    EnterImage_ = Image::Load("Image/Enter.png");
-    assert(EnterImage_ >= 0);
-    EnterTrans.position_ = XMFLOAT3(0.1f, 0.1f, 0);
-    EnterTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
-    Image::SetTransform(EnterImage_, EnterTrans);
-
- 
 }
 
 //更新
@@ -61,7 +57,7 @@ void GoalStaging::Update()
     }
 
     //ゴールについたら文字表示
-    if (gl.GetTransPos_X() >= gl.GetCameraGoal() - 1.5f)
+    if (gl.GetTransPos_X() >= gl.GetCameraGoalX() - 1.5f)
     {
         //文字表示
         StringFlg = true;

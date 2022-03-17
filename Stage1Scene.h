@@ -3,7 +3,6 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
-#include "DrawGauge.h"
 #include "DrawNumber.h"
 #include "GameOver.h"
 #include "Global.h"
@@ -14,14 +13,11 @@
 #include "Stage.h"
 
 
-
-
 //STAGE1シーンを管理するクラス
 class Stage1Scene : public GameObject
 {
 	Scissors* pScissors;  //Scissorsのポインタ
 	DrawNumber* pNumber_; //デバック用
-	DrawGauge*  pGauge_;  //HPゲージ用
 
 	float X, Y, Z;   //受け取る各座標系
 

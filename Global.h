@@ -12,8 +12,10 @@ private:
 	static float Trans_Pos_Z;	
 
 	//カメラのStart & Goal
-	static float Camera_Start;
-	static float Camera_Goal;
+	static float Camera_StartX;
+	static float Camera_StartY;
+	static float Camera_GoalX;
+	static float Camera_GoalY;
 
 public:
 
@@ -55,9 +57,13 @@ public:
 	float GetTransPos_Z();
 
 	//カメラのスタートとゴール位置を設定
-	void SetCameraStart(float start);
-	float GetCameraStart();
+	void SetCameraStartX(float start);
+	void SetCameraStartY(float start);
+	float GetCameraStartX();
+	float GetCameraStartY();
 
-	void SetCameraGoal(float goal);
-	float GetCameraGoal();
+	void SetCameraGoalX(float goal);
+	void SetCameraGoalY(float goal);
+	float GetCameraGoalX();
+	float GetCameraGoalY();
 };

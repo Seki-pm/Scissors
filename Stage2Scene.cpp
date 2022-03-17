@@ -2,16 +2,16 @@
 
 //コンストラクタ
 Stage2Scene::Stage2Scene(GameObject* parent)
-	: GameObject(parent, "Stage2Scene")
+	: GameObject(parent, "Stage2Scene"), select_(0)
 {
 }
 
 //初期化
 void Stage2Scene::Initialize()
 {
-    Global::MAXHP = 500;
     Global::HP = Global::MAXHP;
     Global::GameOver = false;
+    Global::IsGameOver = false;
 
     //ステージ
     Instantiate<Stage>(this);
@@ -21,6 +21,9 @@ void Stage2Scene::Initialize()
 
     //ハサミのHP
     Instantiate<HP>(this);
+
+    //ゴール演出
+    Instantiate<GoalStaging>(this);
 
     //アイテムの表示
     Instantiate<ItemModel>(this);
@@ -32,18 +35,27 @@ void Stage2Scene::Initialize()
 //更新
 void Stage2Scene::Update()
 {
+    //trueの時アンロックをし、ステージ選択へ遷移
+    if (Global::Timer)
+    {
+        Global::Unlock3 = true;
+        Global::Timer = false;
+        SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+        pSceneManager->ChangeScene(SCENE_ID_SELECT);
+    }
+
+    //ハサミ位置を取得
     Global gl;
 
     X = gl.GetTransPos_X();
     Y = gl.GetTransPos_Y();
     Z = gl.GetTransPos_Z();
 
-    CameraMove(gl.GetCameraStart(), gl.GetCameraGoal());
+    //ステージのスタート&ゴール位置を入れる
+    CameraMove(gl.GetCameraStartX(), gl.GetCameraGoalX());
 
     //ゲームオーバー
-    if (Global::GameOver) {
-        Instantiate<GameOver>(this);
-    }
+    GameOverSEL();
 
 }
 
@@ -57,6 +69,57 @@ void Stage2Scene::Release()
 {
 }
 
+//GameOver Select
+void Stage2Scene::GameOverSEL()
+{
+    GameOver* pGameOver = (GameOver*)FindObject("GameOver");
+
+    if (Global::IsGameOver)
+    {
+        //GameOver表示
+        Instantiate<GameOver>(this);
+        Global::IsGameOver = false;
+    }
+
+    //GameOverになったら
+    if (Global::GameOver)
+    {
+        //ボタンを選択
+        //選択
+        if (Input::IsKeyDown(DIK_LEFT))
+        {
+            select_--;
+
+            if (select_ < 0)
+            {
+                select_ = 0;
+            }
+
+            //GameOverクラスに渡す
+            pGameOver->SetSelect(select_);
+        }
+        if (Input::IsKeyDown(DIK_RIGHT))
+        {
+            select_++;
+
+            if (select_ > 1)
+            {
+                select_ = 1;
+            }
+
+            //GameOverクラスに渡す
+            pGameOver->SetSelect(select_);
+        }
+
+        if (Input::IsKeyDown(DIK_SPACE) && select_ == 1)
+        {
+            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+            pSceneManager->ChangeScene(SCENE_ID_SELECT);
+        }
+    }
+}
+
+//カメラ移動
 void Stage2Scene::CameraMove(float start, float goal)
 {
 
@@ -70,14 +133,8 @@ void Stage2Scene::CameraMove(float start, float goal)
     //ゴール付近
     else if (X >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(56, Y, -10));
-        Camera::SetTarget(XMFLOAT3(56, Y, Z));
-        Global::Unlock3 = true;
-        if (Input::IsKeyDown(DIK_LSHIFT))
-        {
-            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-            pSceneManager->ChangeScene(SCENE_ID_SELECT);
-        }
+        Camera::SetPosition(XMFLOAT3(125, Y, -10));
+        Camera::SetTarget(XMFLOAT3(125, Y, Z));
     }
     //そうでない場合Playerに追従する
     else

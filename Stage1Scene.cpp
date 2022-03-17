@@ -3,7 +3,8 @@
 
 //コンストラクタ
 Stage1Scene::Stage1Scene(GameObject* parent)
-    : GameObject(parent, "Stage1Scene"),select_(0)
+    : GameObject(parent, "Stage1Scene"),select_(0),
+    X(0),Y(0),Z(0)
 {
 }
 
@@ -17,9 +18,6 @@ void Stage1Scene::Initialize()
     //ステージ
     Instantiate<Stage>(this);
 
-    //看板
-    Instantiate<Sign>(this);
-
     //ハサミ本体
     Instantiate<Scissors>(this);
 
@@ -28,6 +26,10 @@ void Stage1Scene::Initialize()
 
     //ゴール演出
     Instantiate<GoalStaging>(this);
+
+    //看板
+    Instantiate<Sign>(this);
+
 }
 
 //更新
@@ -50,7 +52,7 @@ void Stage1Scene::Update()
     Z = gl.GetTransPos_Z();
 
     //ステージのスタート&ゴール位置を入れる
-    CameraMove(gl.GetCameraStart(), gl.GetCameraGoal());
+    CameraMove(gl.GetCameraStartX(), gl.GetCameraGoalX());
 
     //GameOverSelect
     GameOverSEL();
@@ -130,8 +132,6 @@ void Stage1Scene::CameraMove(float start, float goal)
     //ゴール付近
     else if (X >= goal)
     {
-        XMFLOAT3 CamPos = XMFLOAT3(56, Y, -10);
-
         Camera::SetPosition(XMFLOAT3(56, Y, -10));
         Camera::SetTarget(XMFLOAT3(56, Y, Z));
     }
