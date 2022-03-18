@@ -15,7 +15,7 @@ void TitleScene::Initialize()
 	TitleImageHandle_ = Image::Load("Image/Scissors.png");
 	assert(TitleImageHandle_ >= 0);
 	TitleTrans.position_ = XMFLOAT3(0, 0.3f, 0);
-	TitleTrans.scale_ = XMFLOAT3(1.5f, 1.5f, 0);
+	TitleTrans.scale_ = XMFLOAT3(3.f, 3.f, 0);
 	Image::SetTransform(TitleImageHandle_, TitleTrans);
 	//------------------------------------------------------------
 

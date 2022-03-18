@@ -16,7 +16,7 @@ XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
 int Global::Select = 0;
 
-bool Global::Unlock2 = true;
+bool Global::Unlock2 = false;
 bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
