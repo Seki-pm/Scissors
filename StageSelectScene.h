@@ -46,6 +46,7 @@ private:
 	int LevelHandle_[STAGE_LEVEL_MAX];
 
 	int FrameImageHandle_; //ƒtƒŒ[ƒ€
+	int BackImage_;
 
 	//Šetransform
 	Transform Stage[STAGE_NUMBER_MAX];

@@ -4,7 +4,7 @@
 //コンストラクタ
 Stage1Scene::Stage1Scene(GameObject* parent)
     : GameObject(parent, "Stage1Scene"),select_(0),
-    X(0),Y(0),Z(0)
+    X(0),Y(0),Z(0), BackImage_(-1)
 {
 }
 
@@ -30,6 +30,9 @@ void Stage1Scene::Initialize()
     //看板
     Instantiate<Sign>(this);
 
+
+    BackImage_ = Image::Load("Image/Stage1_Back.png");
+    assert(BackImage_ >= 0);
 }
 
 //更新
@@ -61,6 +64,7 @@ void Stage1Scene::Update()
 //描画
 void Stage1Scene::Draw()
 {
+    Image::Draw(BackImage_);
 }
 
 //開放

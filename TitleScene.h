@@ -12,6 +12,8 @@ class TitleScene : public GameObject
 	int SpaceKeyImageHandle_;
 
 	float size_;
+	float alpha_;
+	float theta_;
 
 	Transform TitleTrans;
 	Transform SpaceTrans;
@@ -32,4 +34,6 @@ public:
 
 	//ŠJ•ú
 	void Release() override;
+
+	void Blinking();
 };

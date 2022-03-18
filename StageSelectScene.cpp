@@ -3,7 +3,7 @@
 //コンストラクタ
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
-	FrameImageHandle_(-1)
+	FrameImageHandle_(-1), BackImage_(-1)
 {
 	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
@@ -86,6 +86,9 @@ void StageSelectScene::Initialize()
 	FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
 
+
+	BackImage_ = Image::Load("Image/Title_Back.png");
+	assert(BackImage_ >= 0);
 }
 
 //更新
@@ -171,6 +174,8 @@ void StageSelectScene::Select()
 //描画
 void StageSelectScene::Draw()
 {
+	Image::Draw(BackImage_);
+
 	//ステージのロック解除
 	StageUnlock();
 
@@ -182,6 +187,7 @@ void StageSelectScene::Draw()
 
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
 	Image::Draw(FrameImageHandle_);
+
 }
 
 //開放

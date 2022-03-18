@@ -2,7 +2,7 @@
 
 //コンストラクタ
 Stage2Scene::Stage2Scene(GameObject* parent)
-	: GameObject(parent, "Stage2Scene"), select_(0)
+	: GameObject(parent, "Stage2Scene"), select_(0), BackImage_(-1)
 {
 }
 
@@ -30,6 +30,9 @@ void Stage2Scene::Initialize()
 
     //コインのゲット判定
     Instantiate<ItemImage>(this);
+
+    BackImage_ = Image::Load("Image/Stage2_Back.png");
+    assert(BackImage_ >= 0);
 }
 
 //更新
@@ -62,6 +65,7 @@ void Stage2Scene::Update()
 //描画
 void Stage2Scene::Draw()
 {
+    Image::Draw(BackImage_);
 }
 
 //開放

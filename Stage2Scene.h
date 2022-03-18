@@ -3,6 +3,7 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
+#include "Engine/Image.h"
 #include "GameOver.h"
 #include "Global.h"
 #include "GoalStaging.h"
@@ -20,6 +21,8 @@ class Stage2Scene : public GameObject
 	float X, Y, Z;
 
 	int select_;  //選択用変数
+
+	int BackImage_;
 
 public:
 	//コンストラクタ
