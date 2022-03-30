@@ -4,7 +4,8 @@
 TitleScene::TitleScene(GameObject* parent)
 	: GameObject(parent, "TitleScene"),
 	BackImageHandle_(-1), TitleImageHandle_(-1),
-	SpaceKeyImageHandle_(-1), size_(1), alpha_(255.f),theta_(0)
+	SpaceKeyImageHandle_(-1), SoundHandle_(-1),
+	size_(1), alpha_(255.f),theta_(0), TimerCnt(0), Timer_(false)
 {
 }
 
@@ -32,16 +33,27 @@ void TitleScene::Initialize()
 	SpaceTrans.position_ = XMFLOAT3(0, -0.6f, 0);
 	//------------------------------------------------------------
 
+
+	//--------- Sound ----------------
+	SoundHandle_ = Audio::Load("Sound/Cut.wav");
+	assert(SoundHandle_ >= 0);
+	//-------------------------------
 }
 
 //更新
 void TitleScene::Update()
 {
+
+
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
-		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-		pSceneManager->ChangeScene(SCENE_ID_SELECT);
+		Audio::Play(SoundHandle_);
+
+		Timer_ = true;
 	}
+
+	//タイマー
+	Timer();
 
 	//点滅
 	Blinking();
@@ -76,4 +88,24 @@ void TitleScene::Blinking()
 	theta_ += 2;
 	if (theta_ == 360) { theta_ = 0; }
 
+}
+
+void TitleScene::Timer()
+{
+	//Timerフラグがtrueなら
+	if (Timer_){
+		TimerCnt++;
+	}
+	else{
+		TimerCnt = 0;
+	}
+
+	//約1.3秒後...
+	if (TimerCnt >= 80)
+	{
+		Timer_ = false;
+
+		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+		pSceneManager->ChangeScene(SCENE_ID_SELECT);
+	}
 }

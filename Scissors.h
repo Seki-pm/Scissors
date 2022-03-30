@@ -31,8 +31,10 @@ class Scissors : public GameObject
     bool SoundFlg; //‰¹ƒtƒ‰ƒO
 
 
-
     int Land_Glass;
+    int Land_Wood;
+    int Land_Gravel;
+    int Land_Stone;
 
     ///////////////privateŠÖ”//////////////////////////////////////
     //ŠJ•Â

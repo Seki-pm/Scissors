@@ -116,7 +116,6 @@
     <ClCompile Include="Blade.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="GoalStaging.cpp" />
     <ClCompile Include="DrawNumber.cpp" />
     <ClCompile Include="HP.cpp">
       <Filter>Player</Filter>
@@ -143,6 +142,9 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="GameSound.cpp" />
+    <ClCompile Include="GoalStaging.cpp">
+      <Filter>InGameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -226,7 +228,6 @@
     <ClInclude Include="Blade.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="GoalStaging.h" />
     <ClInclude Include="DrawNumber.h" />
     <ClInclude Include="HP.h">
       <Filter>Player</Filter>
@@ -253,6 +254,9 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="GameSound.h" />
+    <ClInclude Include="GoalStaging.h">
+      <Filter>InGameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

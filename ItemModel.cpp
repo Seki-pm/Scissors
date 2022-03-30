@@ -2,7 +2,7 @@
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
-    :GameObject(parent, "ItemModel"), Coin_(-1),rotate(8)
+    :GameObject(parent, "ItemModel"), Coin_(-1),rotate(8), Coin_Sound(-1)
 {
 }
 
@@ -18,6 +18,11 @@ void ItemModel::Initialize()
     Coin_ = Model::Load("SuccessModel/Coin.fbx");
     assert(Coin_ >= 0);
 
+    Coin_Sound = Audio::Load("Sound/Get_Coin.wav");
+    assert(Coin_Sound >= 0);
+
+
+
     transform_.position_ = XMFLOAT3(-1.5f, 17, 0);
     transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
 
@@ -32,6 +37,8 @@ void ItemModel::Update()
 
     if (Global::GetCoin)
     {
+        Audio::Play(Coin_Sound);
+
         if (transform_.rotate_.y < rotate * 180)
         {
             Animation();

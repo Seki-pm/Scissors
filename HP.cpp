@@ -17,7 +17,7 @@ HP::~HP()
 void HP::Initialize()
 {
     //êîéö
-    NumberHandle_ = Image::Load("Number.png");
+    NumberHandle_ = Image::Load("Image/Number.png");
     assert(NumberHandle_ >= 0);
 
     //ÉQÅ[ÉW

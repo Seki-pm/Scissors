@@ -4,8 +4,9 @@
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
-    pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f), Calc(false),
-    GLAVITY(0.03f), FallFlg(true),SoundFlg(false), Land_Glass(-1)
+    pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f),
+    Calc(false),GLAVITY(0.03f), FallFlg(true),SoundFlg(false),
+    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1)
 {
 }
 
@@ -406,11 +407,30 @@ void Scissors::Restart()
 //音楽の初期化
 void Scissors::InitSound()
 {
-    //--------- STAGE1 ----------------
-    Land_Glass = Audio::Load("Sound/FootStep1.wav");
+    //--------- STAGE1 ----------------------------------
+     
+       //----------- 草 --------------------
+    Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
     assert(Land_Glass >= 0);
 
-    //-------------------------------
+      //------------ 木 --------------------
+    Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
+    assert(Land_Wood >= 0);
+
+    //---------------------------------------------------
+
+
+    //-------------- STAGE2 ---------------------------
+
+      //-------------- 砂利 ----------------
+    Land_Gravel = Audio::Load("Sound/FootStep_Gravel.wav");
+    assert(Land_Gravel >= 0);
+
+      //-------------- 石 ---------------------
+    Land_Stone = Audio::Load("Sound/FootStep_Stone.wav");
+    assert(Land_Stone >= 0);
+
+    //-------------------------------------------------
 }
 
 //音を流す
@@ -419,19 +439,35 @@ void Scissors::Landing()
     switch(Global::SCENE_ID)
     {
     case SCENE_ID_STAGE1:
-        //壁
-        if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
+        //草の地面
+        if (jumpDirection_.x == 0 && transform_.position_.y <= 7)
         {
-
+            Audio::Play(Land_Glass);
+        }
+        //壁の時
+        else if(jumpDirection_.x == 1 || jumpDirection_.x == -1)
+        {
+            break;
         }
         //それ以外
         else
         {
-            Audio::Play(Land_Glass);
+            Audio::Play(Land_Wood);
         }
         break;
 
     case SCENE_ID_STAGE2:
+        //砂利の地面
+        if (jumpDirection_.x == 0 && transform_.position_.y <= 5)
+        {
+            Audio::Play(Land_Gravel);
+        }
+        //壁の時
+        else //if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
+        {
+            Audio::Play(Land_Stone);
+        }
+
         break;
     }
 }

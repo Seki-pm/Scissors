@@ -3,6 +3,7 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Engine/Audio.h"
 
 //タイトルシーンを管理するクラス
 class TitleScene : public GameObject
@@ -10,6 +11,12 @@ class TitleScene : public GameObject
 	int BackImageHandle_;
 	int TitleImageHandle_;
 	int SpaceKeyImageHandle_;
+	int SoundHandle_;
+	
+	int TimerCnt;
+
+
+	bool Timer_;
 
 	float size_;
 	float alpha_;
@@ -36,4 +43,6 @@ public:
 	void Release() override;
 
 	void Blinking();
+
+	void Timer();
 };

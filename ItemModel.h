@@ -3,6 +3,7 @@
 #include "Engine/SphereCollider.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
+#include "Engine/Audio.h"
 #include "Global.h"
 
 
@@ -12,7 +13,7 @@ class ItemModel : public GameObject
     int Coin_;
     int rotate; //回転数
 
- 
+    int Coin_Sound;
 public:
     //コンストラクタ
     ItemModel(GameObject* parent);

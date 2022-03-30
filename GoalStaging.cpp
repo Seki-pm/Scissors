@@ -21,7 +21,7 @@ void GoalStaging::Initialize()
     Global gl;
 
     //モデルデータのロード
-    BalloonModel_ = Model::Load("d.fbx");
+    BalloonModel_ = Model::Load("SuccessModel/Balloon.fbx");
     assert(BalloonModel_ >= 0);
     BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoalX(), gl.GetCameraGoalY(), 0.f);
     BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
