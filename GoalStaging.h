@@ -3,6 +3,7 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Engine/Audio.h"
 #include "Global.h"
 
 //ゴール演出を管理するクラス
@@ -11,6 +12,8 @@ class GoalStaging : public GameObject
     Global gl; //globalを使う
 
     int BalloonModel_;    //モデル番号
+
+    int SoundHandle_;
 
     //画像ロード用
     int BackImage_;

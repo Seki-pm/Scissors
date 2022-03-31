@@ -5,7 +5,7 @@
 GoalStaging::GoalStaging(GameObject* parent)
     :GameObject(parent, "GoalStaging"), 
     BalloonModel_(-1), BackImage_(-1), EnterImage_(-1),
-    CircleImage_(-1), size_(10), timer(0),
+    CircleImage_(-1), SoundHandle_(-1), size_(10), timer(0),
     StagingFlg(false), StringFlg(false)
 {
 }
@@ -45,6 +45,10 @@ void GoalStaging::Initialize()
     CircleImage_ = Image::Load("Image/Clear_Effect.png");
     assert(CircleImage_ >= 0);
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
+
+    //サウンド
+    SoundHandle_ = Audio::Load("Sound/Staging.wav");
+    assert(SoundHandle_ >= 0);
 }
 
 //更新
@@ -85,6 +89,8 @@ void GoalStaging::Draw()
         //Enterキーを押したら
         if (Input::IsKeyDown(DIK_RETURN))
         {
+            Audio::Play(SoundHandle_);
+
             StringFlg = false;
             //ゴール演出スタート
             StagingFlg = true;
@@ -99,7 +105,7 @@ void GoalStaging::Draw()
 
         if (size_ > 1.4f)
         {
-            size_ -= 0.2f;
+            size_ -= 0.15f;
             Image::Draw(CircleImage_);
         }
         else
@@ -121,7 +127,7 @@ void GoalStaging::Timer()
 {
     timer++;
 
-    if (timer >= 60)
+    if (timer >= 90)
     {
         Global::Timer = true;
         timer = 0;

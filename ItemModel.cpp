@@ -37,8 +37,6 @@ void ItemModel::Update()
 
     if (Global::GetCoin)
     {
-        Audio::Play(Coin_Sound);
-
         if (transform_.rotate_.y < rotate * 180)
         {
             Animation();
@@ -71,6 +69,7 @@ void ItemModel::OnCollision(GameObject* pTarget)
     if (pTarget->GetObjectName() == "Scissors")
     {
         Global::GetCoin = true;
+        Audio::Play(Coin_Sound);
     }
 }
 

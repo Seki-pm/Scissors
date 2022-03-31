@@ -4,6 +4,7 @@
 #include "Engine/Input.h"
 #include "Engine/Image.h"
 #include "Engine/Transform.h"
+#include "Engine/Audio.h"
 #include "Global.h"
 
 //ステージ番号
@@ -46,7 +47,9 @@ private:
 	int LevelHandle_[STAGE_LEVEL_MAX];
 
 	int FrameImageHandle_; //フレーム
-	int BackImage_;
+	int BackImage_;        //背景
+	int SelectSound_;      //選択音
+	int DeterSound_;       //決定音
 
 	//各transform
 	Transform Stage[STAGE_NUMBER_MAX];

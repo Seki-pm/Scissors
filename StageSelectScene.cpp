@@ -3,7 +3,7 @@
 //コンストラクタ
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
-	FrameImageHandle_(-1), BackImage_(-1)
+	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),DeterSound_(-1)
 {
 	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
@@ -89,6 +89,21 @@ void StageSelectScene::Initialize()
 
 	BackImage_ = Image::Load("Image/Title_Back.png");
 	assert(BackImage_ >= 0);
+	//---------------------------------------------
+
+
+	//------------- 音 ----------------------------------
+
+	//------ Select --------------
+	SelectSound_ = Audio::Load("Sound/Select.wav");
+	assert(SelectSound_ >= 0);
+
+	//------ Determination -------------
+
+	DeterSound_ = Audio::Load("Sound/Determination.wav");
+	assert(DeterSound_ >= 0);
+
+	//----------------------------------------------------
 }
 
 //更新
@@ -97,6 +112,8 @@ void StageSelectScene::Update()
 	//スペースを押したときに
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
+		Audio::Play(DeterSound_);
+
 		//0ならSTAGE1へ
 		if (Global::Select == 0)
 		{
@@ -134,6 +151,8 @@ void StageSelectScene::Select()
 	//←→で選ぶ
 	if (Input::IsKeyDown(DIK_RIGHT))
 	{
+		Audio::Play(SelectSound_);
+
 		switch (Global::Select)
 		{
 		case 0:
@@ -153,6 +172,8 @@ void StageSelectScene::Select()
 
 	if (Input::IsKeyDown(DIK_LEFT))
 	{
+		Audio::Play(SelectSound_);
+
 		switch (Global::Select)
 		{
 		case 0:

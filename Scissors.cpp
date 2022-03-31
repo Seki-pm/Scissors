@@ -458,12 +458,13 @@ void Scissors::Landing()
 
     case SCENE_ID_STAGE2:
         //çªóòÇÃínñ 
-        if (jumpDirection_.x == 0 && transform_.position_.y <= 5)
+        if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
+            || transform_.position_.x > 94.5f)
         {
             Audio::Play(Land_Gravel);
         }
-        //ï«ÇÃéû
-        else //if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
+        //ÇªÇÍà»äO
+        else
         {
             Audio::Play(Land_Stone);
         }
