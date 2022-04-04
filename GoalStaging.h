@@ -13,7 +13,7 @@ class GoalStaging : public GameObject
 
     int BalloonModel_;    //モデル番号
 
-    int SoundHandle_;
+    int SoundHandle_;  //サウンド用
 
     //画像ロード用
     int BackImage_;

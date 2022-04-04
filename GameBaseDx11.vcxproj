@@ -150,7 +150,6 @@
     <ClCompile Include="Engine\Texture.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />
     <ClCompile Include="GameOver.cpp" />
-    <ClCompile Include="GameSound.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="GoalStaging.cpp" />
     <ClCompile Include="HP.cpp" />
@@ -192,7 +191,6 @@
     <ClInclude Include="Engine\Texture.h" />
     <ClInclude Include="Engine\Transform.h" />
     <ClInclude Include="GameOver.h" />
-    <ClInclude Include="GameSound.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="GoalStaging.h" />
     <ClInclude Include="HP.h" />

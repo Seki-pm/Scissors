@@ -48,6 +48,9 @@ void HP::Draw()
 //ŠJ•ú
 void HP::Release()
 {
+    NumberHandle_ = -1;
+    GaugeHandle_ = -1;
+    GaugeFrame_ = -1;
 }
 
 //HPŒvŽZ

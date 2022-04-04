@@ -141,7 +141,6 @@
     <ClCompile Include="Engine\Sound.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="GameSound.cpp" />
     <ClCompile Include="GoalStaging.cpp">
       <Filter>InGameObject</Filter>
     </ClCompile>
@@ -253,7 +252,6 @@
     <ClInclude Include="Engine\Sound.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="GameSound.h" />
     <ClInclude Include="GoalStaging.h">
       <Filter>InGameObject</Filter>
     </ClInclude>

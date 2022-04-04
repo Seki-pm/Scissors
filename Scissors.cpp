@@ -305,6 +305,10 @@ void Scissors::Draw()
 //ŠJ•ú
 void Scissors::Release()
 {
+    Land_Glass = -1;
+    Land_Wood = -1;
+    Land_Gravel = -1;
+    Land_Stone = -1;
 }
 
 //”½ŽË

@@ -68,4 +68,8 @@ void Sign::Draw()
 //ŠJ•ú
 void Sign::Release()
 {
+    TipsHandle_ = -1;
+    TipsHandle2_ = -1;
+    TipsHandle3_ = -1;
+    TipsHandle4_ = -1;
 }

@@ -78,6 +78,10 @@ void TitleScene::Draw()
 //ŠJ•ú
 void TitleScene::Release()
 {
+	BackImageHandle_ = -1;
+	TitleImageHandle_ = -1;
+	SpaceKeyImageHandle_ = -1;
+	SoundHandle_ = -1;
 }
 
 void TitleScene::Blinking()

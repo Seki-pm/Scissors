@@ -229,6 +229,9 @@ void StageSelectScene::Release()
 	}
 
 	FrameImageHandle_ = -1;
+	BackImage_ = -1;
+	SelectSound_ = -1;
+	DeterSound_ = -1;
 }
 
 //ステージのロック解除管理

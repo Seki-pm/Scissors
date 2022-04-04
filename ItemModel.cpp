@@ -2,7 +2,8 @@
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
-    :GameObject(parent, "ItemModel"), Coin_(-1),rotate(8), Coin_Sound(-1)
+    :GameObject(parent, "ItemModel"),
+     Coin_(-1),rotate(8), Coin_Sound(-1)
 {
 }
 
@@ -59,6 +60,7 @@ void ItemModel::Draw()
 void ItemModel::Release()
 {
     Coin_ = -1;
+    Coin_Sound = -1;
 }
 
 //何かに当たった

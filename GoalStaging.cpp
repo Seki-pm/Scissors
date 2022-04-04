@@ -120,6 +120,10 @@ void GoalStaging::Draw()
 void GoalStaging::Release()
 {
     EnterImage_ = -1;
+    BalloonModel_ = -1;
+    SoundHandle_ = -1;
+    BackImage_ = -1;
+    CircleImage_ = -1;
 }
 
 //éûä‘ä«óù

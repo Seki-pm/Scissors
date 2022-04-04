@@ -70,6 +70,7 @@ void Stage1Scene::Draw()
 //ŠJ•ú
 void Stage1Scene::Release()
 {
+    BackImage_ = -1;
 }
 
 //GameOver Select
