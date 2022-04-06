@@ -26,6 +26,8 @@ public:
 	//StageSelectScene‚Ì‘I‘ğ‚³‚ê‚Ä‚¢‚é”Ô†
 	static int Select;
 
+	static XMFLOAT3 ItemPos;
+
 	//StageUnlock•Ï”
 	static bool Unlock2;
 	static bool Unlock3;

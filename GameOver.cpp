@@ -35,6 +35,8 @@ void GameOver::Initialize()
     //–ß‚é
     BackMenuImage_ = Image::Load("Image/BackButton.png");
     assert(BackMenuImage_ >= 0);
+
+    Global::GetCoin = false;
 }
 
 //XV

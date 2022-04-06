@@ -8,6 +8,8 @@
 #include "GameOver.h"
 #include "Global.h"
 #include "GoalStaging.h"
+#include "ItemImage.h"
+#include "ItemModel.h"
 #include "HP.h"
 #include "Scissors.h"
 #include "Sign.h"
@@ -17,7 +19,8 @@
 //STAGE1シーンを管理するクラス
 class Stage1Scene : public GameObject
 {
-	Scissors* pScissors;  //Scissorsのポインタ
+	Global gl;
+
 	DrawNumber* pNumber_; //デバック用
 
 	float X, Y, Z;   //受け取る各座標系
@@ -25,6 +28,9 @@ class Stage1Scene : public GameObject
 	int select_; //選択用変数
 
 	int BackImage_;
+
+	bool Itemflg;
+	int cnt;
 
 public:
 	//コンストラクタ

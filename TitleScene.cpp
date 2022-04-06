@@ -5,7 +5,7 @@ TitleScene::TitleScene(GameObject* parent)
 	: GameObject(parent, "TitleScene"),
 	BackImageHandle_(-1), TitleImageHandle_(-1),
 	SpaceKeyImageHandle_(-1), SoundHandle_(-1),
-	size_(1), alpha_(255.f),theta_(0), TimerCnt(0), Timer_(false)
+	size_(1), alpha_(255.f), theta_(0), TimerCnt(0), Timer_(false)
 {
 }
 
@@ -97,10 +97,10 @@ void TitleScene::Blinking()
 void TitleScene::Timer()
 {
 	//Timerƒtƒ‰ƒO‚ªtrue‚È‚ç
-	if (Timer_){
+	if (Timer_) {
 		TimerCnt++;
 	}
-	else{
+	else {
 		TimerCnt = 0;
 	}
 

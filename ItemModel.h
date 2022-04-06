@@ -14,6 +14,7 @@ class ItemModel : public GameObject
     int rotate; //回転数
 
     int Coin_Sound;
+
 public:
     //コンストラクタ
     ItemModel(GameObject* parent);
@@ -39,5 +40,4 @@ public:
 
     //アニメーション
     void Animation();
-
 };

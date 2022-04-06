@@ -96,7 +96,7 @@ void Stage::Stage1()
 {
     float startX = 2;
     float startY = 0;
-    float goalX  = 56;
+    float goalX  = 55;
     float goalY  = 4;
 
     StageModel_ = Model::Load("SuccessModel/stage1.fbx");

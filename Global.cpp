@@ -11,12 +11,14 @@ float Global::Camera_StartY = 0.f;
 float Global::Camera_GoalX = 0.f;
 float Global::Camera_GoalY = 0.f;
 
+XMFLOAT3 Global::ItemPos = XMFLOAT3(0, 0, 0);
+
 XMFLOAT3 Global::InitPos = XMFLOAT3(0, 2.0f, 0);
 XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
 int Global::Select = 0;
 
-bool Global::Unlock2 = true;
+bool Global::Unlock2 = false;
 bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;

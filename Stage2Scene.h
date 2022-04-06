@@ -17,7 +17,8 @@
 //STAGE2シーンを管理するクラス
 class Stage2Scene : public GameObject
 {
-	Scissors* pScissors;
+	ItemModel* pItemModel_;
+
 	float X, Y, Z;
 
 	int select_;  //選択用変数

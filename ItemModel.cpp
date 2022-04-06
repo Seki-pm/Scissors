@@ -23,8 +23,7 @@ void ItemModel::Initialize()
     assert(Coin_Sound >= 0);
 
 
-
-    transform_.position_ = XMFLOAT3(-1.5f, 17, 0);
+    transform_.position_ = Global::ItemPos;
     transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
 
     SphereCollider* collision = 

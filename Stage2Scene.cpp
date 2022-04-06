@@ -2,7 +2,8 @@
 
 //コンストラクタ
 Stage2Scene::Stage2Scene(GameObject* parent)
-	: GameObject(parent, "Stage2Scene"), select_(0), BackImage_(-1)
+	: GameObject(parent, "Stage2Scene"), select_(0), BackImage_(-1),
+    X(0),Y(0),Z(0)
 {
 }
 
@@ -12,6 +13,7 @@ void Stage2Scene::Initialize()
     Global::HP = Global::MAXHP;
     Global::GameOver = false;
     Global::IsGameOver = false;
+    Global::GetCoin = false;
 
     //ステージ
     Instantiate<Stage>(this);
@@ -26,6 +28,7 @@ void Stage2Scene::Initialize()
     Instantiate<GoalStaging>(this);
 
     //アイテムの表示
+    Global::ItemPos = XMFLOAT3(-1.5, 17, 0);
     Instantiate<ItemModel>(this);
 
     //コインのゲット判定
@@ -41,7 +44,7 @@ void Stage2Scene::Update()
     //trueの時アンロックをし、ステージ選択へ遷移
     if (Global::Timer)
     {
-        Global::Unlock3 = true;
+        //Global::Unlock3 = true;
         Global::Timer = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);

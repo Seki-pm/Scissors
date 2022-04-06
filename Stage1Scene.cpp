@@ -4,7 +4,7 @@
 //コンストラクタ
 Stage1Scene::Stage1Scene(GameObject* parent)
     : GameObject(parent, "Stage1Scene"),select_(0),
-    X(0),Y(0),Z(0), BackImage_(-1)
+    X(0),Y(0),Z(0), BackImage_(-1), pNumber_(nullptr),Itemflg(false),cnt(0)
 {
 }
 
@@ -14,6 +14,7 @@ void Stage1Scene::Initialize()
     Global::HP = Global::MAXHP;
     Global::GameOver = false;
     Global::IsGameOver = false;
+    Global::GetCoin = false;
 
     //ステージ
     Instantiate<Stage>(this);
@@ -29,6 +30,12 @@ void Stage1Scene::Initialize()
 
     //看板
     Instantiate<Sign>(this);
+
+    //コインのゲット判定
+    Instantiate<ItemImage>(this);
+
+    //コインの表示位置
+    Global::ItemPos = XMFLOAT3(46, 9, 0);
 
 
     BackImage_ = Image::Load("Image/Stage1_Back.png");
@@ -48,8 +55,6 @@ void Stage1Scene::Update()
     }
 
     //ハサミ位置を取得
-    Global gl;
-
     X = gl.GetTransPos_X();
     Y = gl.GetTransPos_Y();
     Z = gl.GetTransPos_Z();
@@ -59,6 +64,13 @@ void Stage1Scene::Update()
 
     //GameOverSelect
     GameOverSEL();
+
+    //Coinを表示
+    if (Itemflg  && cnt == 0)
+    {
+        Instantiate<ItemModel>(this);
+        cnt++;
+    }
 }
 
 //描画
@@ -137,8 +149,9 @@ void Stage1Scene::CameraMove(float start, float goal)
     //ゴール付近
     else if (X >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(56, Y, -10));
-        Camera::SetTarget(XMFLOAT3(56, Y, Z));
+        Camera::SetPosition(XMFLOAT3(55, Y, -10));
+        Camera::SetTarget(XMFLOAT3(55, Y, Z));
+        Itemflg = true;
     }
     //そうでない場合Playerに追従する
     else
