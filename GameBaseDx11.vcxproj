@@ -155,6 +155,7 @@
     <ClCompile Include="HP.cpp" />
     <ClCompile Include="ItemImage.cpp" />
     <ClCompile Include="ItemModel.cpp" />
+    <ClCompile Include="Pause.cpp" />
     <ClCompile Include="Sign.cpp" />
     <ClCompile Include="PolygonCollider.cpp" />
     <ClCompile Include="Scissors.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="HP.h" />
     <ClInclude Include="ItemImage.h" />
     <ClInclude Include="ItemModel.h" />
+    <ClInclude Include="Pause.h" />
     <ClInclude Include="Sign.h" />
     <ClInclude Include="PolygonCollider.h" />
     <ClInclude Include="Scissors.h" />

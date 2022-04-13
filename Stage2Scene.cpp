@@ -2,8 +2,8 @@
 
 //コンストラクタ
 Stage2Scene::Stage2Scene(GameObject* parent)
-	: GameObject(parent, "Stage2Scene"), select_(0), BackImage_(-1),
-    X(0),Y(0),Z(0)
+	: GameObject(parent, "Stage2Scene"), BackImage_(-1),
+    X(0),Y(0),Z(0), Gselect_(0), Pselect_(0)
 {
 }
 
@@ -63,6 +63,8 @@ void Stage2Scene::Update()
     //ゲームオーバー
     GameOverSEL();
 
+    //一時停止
+    PauseSEL();
 }
 
 //描画
@@ -96,31 +98,85 @@ void Stage2Scene::GameOverSEL()
         //選択
         if (Input::IsKeyDown(DIK_LEFT))
         {
-            select_--;
+            Gselect_--;
 
-            if (select_ < 0)
+            if (Gselect_ < 0)
             {
-                select_ = 0;
+                Gselect_ = 0;
             }
 
             //GameOverクラスに渡す
-            pGameOver->SetSelect(select_);
+            pGameOver->SetSelect(Gselect_);
         }
         if (Input::IsKeyDown(DIK_RIGHT))
         {
-            select_++;
+            Gselect_++;
 
-            if (select_ > 1)
+            if (Gselect_ > 1)
             {
-                select_ = 1;
+                Gselect_ = 1;
             }
 
             //GameOverクラスに渡す
-            pGameOver->SetSelect(select_);
+            pGameOver->SetSelect(Gselect_);
         }
 
-        if (Input::IsKeyDown(DIK_SPACE) && select_ == 1)
+        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
         {
+            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+            pSceneManager->ChangeScene(SCENE_ID_SELECT);
+        }
+    }
+}
+
+//一時停止
+void Stage2Scene::PauseSEL()
+{
+    Pause* pPause = (Pause*)FindObject("Pause");
+
+    //一時停止する(falseの時のみ)
+    if (!Global::Pause) {
+        if (Input::IsKeyDown(DIK_ESCAPE))
+        {
+            Instantiate<Pause>(this);			//一時停止
+            Global::Pause = true;
+        }
+    }
+    //一時停止されたとき
+    if (Global::Pause)
+    {
+        //ボタンを選択
+        if (Input::IsKeyDown(DIK_LEFT))
+        {
+            Pselect_--;
+            if (Pselect_ < 0)
+            {
+                Pselect_ = 0;
+            }
+
+            //Pauseクラスに渡す
+            pPause->SetSelect(Pselect_);
+        }
+        if (Input::IsKeyDown(DIK_RIGHT))
+        {
+            Pselect_++;
+            if (Pselect_ > 1)
+            {
+                Pselect_ = 1;
+            }
+
+            //Pauseクラスに渡す
+            pPause->SetSelect(Pselect_);
+        }
+
+
+        //メニューシーンに移動する
+        if (Input::IsKeyDown(DIK_SPACE) && Pselect_ == 1)
+        {
+            Global::GetCoin = false;
+            Global::Pause = false;
+
+            //メニューシーンに移動
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);
         }

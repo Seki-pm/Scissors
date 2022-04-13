@@ -144,6 +144,7 @@
     <ClCompile Include="GoalStaging.cpp">
       <Filter>InGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Pause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -255,6 +256,7 @@
     <ClInclude Include="GoalStaging.h">
       <Filter>InGameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Pause.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

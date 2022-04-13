@@ -10,6 +10,7 @@
 #include "HP.h"
 #include "ItemImage.h"
 #include "ItemModel.h"
+#include "Pause.h"
 #include "Scissors.h"
 #include "Stage.h"
 
@@ -21,7 +22,8 @@ class Stage2Scene : public GameObject
 
 	float X, Y, Z;
 
-	int select_;  //選択用変数
+	int Gselect_; //GameOver選択用変数
+	int Pselect_; //Pause選択用変数
 
 	int BackImage_;
 
@@ -44,6 +46,9 @@ public:
 
 	//GAMEOVER
 	void GameOverSEL();
+
+	//一時停止
+	void PauseSEL();
 
 	//カメラ移動
 	void CameraMove(float start, float goal);

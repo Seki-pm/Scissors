@@ -43,6 +43,7 @@ public:
 	static bool Timer;
 	static bool GetCoin;
 	static bool GameOver;
+	static bool Pause;
 	static bool IsGameOver;
 
 	//SceneŠÇ——p

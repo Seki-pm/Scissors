@@ -11,7 +11,7 @@ class GameOver : public GameObject
     int GameOverBackImage_;    //GameOverの背景(不透明)
     int BackMenuImage_;     //ステージ選択シーンに戻るボタン
     int RetryImage_;        //リトライボタン
-    int SelectFrameImage_;
+    int SelectFrameImage_;  //選択用フレーム
 
     //メンバ変数
     int select_;    //選択

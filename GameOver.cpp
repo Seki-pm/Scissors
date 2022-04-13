@@ -21,7 +21,7 @@ void GameOver::Initialize()
 {
     //画像データのロード
     //ゲームオーバー
-    GameOverBackImage_ = Image::Load("Image/GameOverBack.png");
+    GameOverBackImage_ = Image::Load("Image/BlackBack.png");
     assert(GameOverBackImage_ >= 0);
 
     //リトライ
@@ -32,11 +32,10 @@ void GameOver::Initialize()
     SelectFrameImage_ = Image::Load("Image/SelectFrame.png");
     assert(SelectFrameImage_ >= 0);
 
-    //戻る
+    //ステージ選択に戻る
     BackMenuImage_ = Image::Load("Image/BackButton.png");
     assert(BackMenuImage_ >= 0);
 
-    Global::GetCoin = false;
 }
 
 //更新

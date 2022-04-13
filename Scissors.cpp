@@ -4,9 +4,9 @@
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
-    pBlade_L(nullptr), pBlade_R(nullptr),AnglePass_(0.0f),
-    Calc(false),GLAVITY(0.03f), FallFlg(true),SoundFlg(false),
-    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1)
+    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
+    AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
+    Calc(false), FallFlg(true),SoundFlg(false)
 {
 }
 
@@ -45,7 +45,7 @@ void Scissors::Update()
 {
     GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
-    if (!Global::GameOver)
+    if (!Global::GameOver && !Global::Pause)
     {
         //ハサミの開閉
         OpenClose();
@@ -372,6 +372,14 @@ void Scissors::Reflection()
 
             move_.x *= -0.3f;
             move_.y *= -0.3f;
+        }
+
+        if (transform_.position_.x < 0 ||
+            transform_.position_.y < 0)
+        {
+            Global gl;
+            transform_.position_.x = gl.GetCameraStartX();
+            transform_.position_.y = gl.GetCameraStartY();
         }
 
         Global::HP--;
