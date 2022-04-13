@@ -9,6 +9,7 @@ class Sign : public GameObject
     int TipsHandle2_;
     int TipsHandle3_;
     int TipsHandle4_;
+    int TipsHandle5_;
 
     float size_;
 

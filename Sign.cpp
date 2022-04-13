@@ -3,8 +3,8 @@
 //コンストラクタ
 Sign::Sign(GameObject* parent)
     :GameObject(parent, "Sign"),
-    TipsHandle_(-1), TipsHandle2_(-1), TipsHandle3_(-1), TipsHandle4_(-1),
-    size_(1.7f)
+    TipsHandle_(-1), TipsHandle2_(-1), TipsHandle3_(-1), 
+    TipsHandle4_(-1), TipsHandle5_(-1),size_(1.7f)
 {
 }
 
@@ -49,6 +49,13 @@ void Sign::Initialize()
     SignTrans4.scale_ = XMFLOAT3(size_, size_, size_);
     Model::SetTransform(TipsHandle4_, SignTrans4);
 
+    //[Esc]を押すと...
+    TipsHandle5_ = Model::Load("SuccessModel/Sign5.fbx");
+    assert(TipsHandle5_ >= 0);
+    auto SignTrans5 = Transform();
+    SignTrans5.position_ = XMFLOAT3(11, 0, 0);
+    SignTrans5.scale_ = XMFLOAT3(size_, size_, size_);
+    Model::SetTransform(TipsHandle5_, SignTrans5);
 }
 
 //更新
@@ -63,6 +70,7 @@ void Sign::Draw()
     Model::Draw(TipsHandle2_);
     Model::Draw(TipsHandle3_);
     Model::Draw(TipsHandle4_);
+    Model::Draw(TipsHandle5_);
 }
 
 //開放
@@ -72,4 +80,5 @@ void Sign::Release()
     TipsHandle2_ = -1;
     TipsHandle3_ = -1;
     TipsHandle4_ = -1;
+    TipsHandle5_ = -1;
 }
