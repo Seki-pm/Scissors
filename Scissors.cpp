@@ -314,46 +314,68 @@ void Scissors::Release()
 //反射
 void Scissors::Reflection()
 {
-    //int cnt = 0, count = 0;
-    transform_.position_.x -= move_.x;
+    int cnt = 0, count = 0;
+    //transform_.position_.x -= move_.x;
     //transform_.position_.y -= move_.y;
 
-    move_.x *= -0.3f;
-    move_.y *= -0.3f;
+    //move_.x *= -0.3f;
+    //move_.y *= -0.3f;
 
-    move_.x = 0;
-    move_.y = 0;
+    //move_.x = 0;
+    //move_.y = 0;
 
-    //while (true)
-    //{
-    //    // ① xを1フレーム前の位置に戻す
-    //    transform_.position_.x -= move_.x;
-    //    // ② 再度当たり判定を行う Y軸が当たっているかのチェック
-    //    if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-    //        pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
-    //    {
-    //        // ③ xを移動後の状態に戻して
-    //        //    yを1フレーム前の位置にする 
-    //        transform_.position_.x += move_.x;
-    //        transform_.position_.y -= move_.y;
-    //    }
-    //    // ぶつかっていないなら終わり
-    //    else {
-    //        break;
-    //   }
-    //    // ④ 再度当たり判定を行う  X軸が当たっているかのチェック
-    //    if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-    //        pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
-    //    {
-    //        // ⑤ XもYも1フレーム前に戻す
-    //        transform_.position_.x -= move_.x;
-    //    }
-    //    // ぶつかっていないなら終わり
-    //    else{
-    //        break;
-    //    }
-    //    cnt++;
-    //}
+    while (true)
+    {
+        // ① xを1フレーム前の位置に戻す
+        transform_.position_.x -= move_.x;
+
+        // ② 再度当たり判定を行う Y軸が当たっているかのチェック
+        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+        {
+            // ③ xを移動後の状態に戻して
+            //    yを1フレーム前の位置にする 
+            transform_.position_.x += move_.x;
+            transform_.position_.y -= move_.y;
+        }
+        // ぶつかっていないなら終わり
+        else {
+            move_.x = 0;
+            move_.y = 0;
+            break;
+       }
+        // ④ 再度当たり判定を行う  X軸が当たっているかのチェック
+        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+        {
+            // ⑤ XもYも1フレーム前に戻す
+            transform_.position_.x -= move_.x;
+        }
+        // ぶつかっていないなら終わり
+        else{
+            move_.x = 0;
+            move_.y = 0;
+            break;
+        }
+        cnt++;
+
+        if (cnt >= 10)
+        {
+            if (move_.x <= 0)
+            {
+                move_.x = 0.1f;
+            }
+            if (move_.y <= 0)
+            {
+                move_.y = 0.1f;
+            }
+
+            move_.x *= -0.3f;
+            move_.y *= -0.3f;
+        }
+
+        Global::HP--;
+    }
 }
 
 //現在位置を送る

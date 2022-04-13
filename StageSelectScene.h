@@ -48,6 +48,7 @@ private:
 
 	int FrameImageHandle_; //ƒtƒŒ[ƒ€
 	int BackImage_;        //”wŒi
+	int DescriptionImage_; //à–¾
 	int SelectSound_;      //‘I‘ğ‰¹
 	int DeterSound_;       //Œˆ’è‰¹
 

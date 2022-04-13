@@ -29,7 +29,8 @@ void Blade::Load(const int lr)
     if (lr == 0)
     {
         //左を読み込む
-        BladeModel_ = Model::Load("SuccessModel/Lblade.fbx");
+        //BladeModel_ = Model::Load("SuccessModel/Lblade.fbx");
+        BladeModel_ = Model::Load("SuccessModel/L.fbx");
 
         //コライダーを手動でつける
         collider.AddPoint(-0.4f, 0.7f);
@@ -39,7 +40,8 @@ void Blade::Load(const int lr)
     else  
     {
         // 右を読み込む
-        BladeModel_ = Model::Load("SuccessModel/Rblade.fbx");
+        //BladeModel_ = Model::Load("SuccessModel/Rblade.fbx");
+        BladeModel_ = Model::Load("SuccessModel/R.fbx");
 
         //コライダーを手動でつける
         collider.AddPoint(-0.2f, 0.8f);
