@@ -26,25 +26,30 @@ public:
 	//StageSelectSceneの選択されている番号
 	static int Select;
 
-	static XMFLOAT3 ItemPos;
+	//コインの表示位置
+	static XMFLOAT3 ItemModelPos;  //モデル
+	static XMFLOAT3 ItemImagePos;  //画像
+	static XMFLOAT3 ItemImagePos_Stage;   //画像(StageScene)
 
 	//StageUnlock変数
 	static bool Unlock2;
 	static bool Unlock3;
 
 	//Player関連
-	static int HP;
-	static int MAXHP;
-	static int NORMAL_DAMAGE;
-	static float JumpStart;
-	static float JumpEnd;
+	static int HP;              //現在HP
+	static int MAXHP;           //最大HP
+	static int NORMAL_DAMAGE;   //通常のダメージ
+	static float JumpStart;     //ジャンプの開始位置
+	static float JumpEnd;       //ジャンプの終了位置
 
 	//Globalのフラグ
-	static bool Timer;
-	static bool GetCoin;
-	static bool GameOver;
-	static bool Pause;
-	static bool IsGameOver;
+	static bool Timer;          //GoalStaging用のタイマー
+	static bool GetCoin;        //コインのGetしたか
+	static bool GetCoin_1;      //Stage1のコインをGet
+	static bool GetCoin_2;      //Stage2のコインをGet
+	static bool GameOver;       //GameOverの処理
+	static bool IsGameOver;     //GameOverを一回だけ表示
+	static bool Pause;          //Pause用
 
 	//Scene管理用
 	static int SCENE_ID;

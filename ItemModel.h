@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/SphereCollider.h"
+#include "Engine/SceneManager.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Audio.h"

@@ -14,6 +14,7 @@ Stage1Scene::Stage1Scene(GameObject* parent)
 void Stage1Scene::Initialize()
 {
     Global::HP = Global::MAXHP;
+    Global::ItemImagePos = Global::ItemImagePos_Stage;
     Global::GameOver = false;
     Global::IsGameOver = false;
     Global::GetCoin = false;
@@ -37,7 +38,7 @@ void Stage1Scene::Initialize()
     Instantiate<ItemImage>(this);
 
     //コインの表示位置
-    Global::ItemPos = XMFLOAT3(46, 9, 0);
+    Global::ItemModelPos = XMFLOAT3(47, 9, 0);
 
 
     BackImage_ = Image::Load("Image/Stage1_Back.png");

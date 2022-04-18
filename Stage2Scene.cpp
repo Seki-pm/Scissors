@@ -11,6 +11,7 @@ Stage2Scene::Stage2Scene(GameObject* parent)
 void Stage2Scene::Initialize()
 {
     Global::HP = Global::MAXHP;
+    Global::ItemImagePos = Global::ItemImagePos_Stage;
     Global::GameOver = false;
     Global::IsGameOver = false;
     Global::GetCoin = false;
@@ -28,7 +29,7 @@ void Stage2Scene::Initialize()
     Instantiate<GoalStaging>(this);
 
     //アイテムの表示
-    Global::ItemPos = XMFLOAT3(-1.5, 17, 0);
+    Global::ItemModelPos = XMFLOAT3(-1.5, 17, 0);
     Instantiate<ItemModel>(this);
 
     //コインのゲット判定

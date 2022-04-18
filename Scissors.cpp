@@ -374,6 +374,7 @@ void Scissors::Reflection()
             move_.y *= -0.3f;
         }
 
+        //ステージ外に出た場合スタート位置に戻る
         if (transform_.position_.x < 0 ||
             transform_.position_.y < 0)
         {

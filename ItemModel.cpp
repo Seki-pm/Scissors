@@ -23,7 +23,7 @@ void ItemModel::Initialize()
     assert(Coin_Sound >= 0);
 
 
-    transform_.position_ = Global::ItemPos;
+    transform_.position_ = Global::ItemModelPos;
     transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
 
     SphereCollider* collision = 
@@ -69,6 +69,15 @@ void ItemModel::OnCollision(GameObject* pTarget)
     //’e‚É“–‚½‚Á‚½‚Æ‚«
     if (pTarget->GetObjectName() == "Scissors")
     {
+        //‚Ç‚±‚ÌƒRƒCƒ“‚ðŽæ“¾‚µ‚½‚©
+        switch (Global::SCENE_ID)
+        {
+        case SCENE_ID_STAGE1:
+            Global::GetCoin_1 = true;
+        case SCENE_ID_STAGE2:
+            Global::GetCoin_2 = true;
+        }
+
         Global::GetCoin = true;
         Audio::Play(Coin_Sound);
     }

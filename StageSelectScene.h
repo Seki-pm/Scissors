@@ -6,6 +6,7 @@
 #include "Engine/Transform.h"
 #include "Engine/Audio.h"
 #include "Global.h"
+#include "ItemImage.h"
 
 //ステージ番号
 enum STAGE_NUMBER
@@ -52,6 +53,8 @@ private:
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
 
+	bool Drawflg; //表示させるか否か
+
 	//各transform
 	Transform Stage[STAGE_NUMBER_MAX];
 	Transform Lock[STAGE_LOCK_MAX];
@@ -80,4 +83,7 @@ public:
 
 	//ステージアンロック
 	void StageUnlock();
+
+	//コインの取得状況
+	void GetCoin();
 };

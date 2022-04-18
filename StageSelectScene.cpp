@@ -4,7 +4,7 @@
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
 	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
-	DeterSound_(-1), DescriptionImage_(-1)
+	DeterSound_(-1), DescriptionImage_(-1), Drawflg(true)
 {
 	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
@@ -24,6 +24,8 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 //初期化
 void StageSelectScene::Initialize()
 {
+
+
 	//画像データのロード
 	//---------------------- STAGE ------------------------------
 
@@ -200,18 +202,20 @@ void StageSelectScene::Draw()
 	Image::Draw(BackImage_);
 	Image::Draw(DescriptionImage_);
 
-	//ステージのロック解除
-	StageUnlock();
-
 	//STAGE難易度の描画
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
 	{
 		Image::Draw(LevelHandle_[i]);
 	}
 
+	//ステージのロック解除
+	StageUnlock();
+
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
 	Image::Draw(FrameImageHandle_);
 
+	//コインの取得状況
+	GetCoin();
 }
 
 //開放
@@ -259,4 +263,27 @@ void StageSelectScene::StageUnlock()
 	{
 		Image::Draw(StageLockHandle_[STAGE_LOCK_3]);
 	}
+}
+
+//コインの取得状況
+void StageSelectScene::GetCoin()
+{
+	if (Drawflg)
+	{
+		//Stage1のコイン
+		if (Global::GetCoin_1)
+		{
+			Global::ItemImagePos = XMFLOAT3(-0.6f, 0, 0); //表示位置
+			Instantiate<ItemImage>(this);          //表示
+		}
+
+		//Stage2のコイン
+		if (Global::GetCoin_2)
+		{
+			Global::ItemImagePos = XMFLOAT3(0.2f, 0, 0); //表示位置
+			Instantiate<ItemImage>(this);           //表示
+		}
+	}
+
+	Drawflg = false;
 }
