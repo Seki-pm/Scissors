@@ -15,6 +15,7 @@ void Stage1Scene::Initialize()
 {
     Global::HP = Global::MAXHP;
     Global::ItemImagePos = Global::ItemImagePos_Stage;
+    Global::ItemImageSca = Global::ItemImageSca_Stage;
     Global::GameOver = false;
     Global::IsGameOver = false;
     Global::GetCoin = false;

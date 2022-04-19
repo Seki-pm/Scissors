@@ -74,8 +74,10 @@ void ItemModel::OnCollision(GameObject* pTarget)
         {
         case SCENE_ID_STAGE1:
             Global::GetCoin_1 = true;
+            break;
         case SCENE_ID_STAGE2:
             Global::GetCoin_2 = true;
+            break;
         }
 
         Global::GetCoin = true;

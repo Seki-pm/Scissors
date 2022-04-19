@@ -50,8 +50,10 @@ private:
 	int FrameImageHandle_; //フレーム
 	int BackImage_;        //背景
 	int DescriptionImage_; //説明
+
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
+	int LockSound_;        //ロック音
 
 	bool Drawflg; //表示させるか否か
 

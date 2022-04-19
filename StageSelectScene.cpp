@@ -4,7 +4,8 @@
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
 	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
-	DeterSound_(-1), DescriptionImage_(-1), Drawflg(true)
+	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
+	Drawflg(true)
 {
 	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
@@ -113,6 +114,11 @@ void StageSelectScene::Initialize()
 	DeterSound_ = Audio::Load("Sound/Determination.wav");
 	assert(DeterSound_ >= 0);
 
+	//------------ ロック中 -----------
+	LockSound_ = Audio::Load("Sound/KeyLock.wav");
+	assert(LockSound_ >= 0);
+
+
 	//----------------------------------------------------
 }
 
@@ -122,25 +128,40 @@ void StageSelectScene::Update()
 	//スペースを押したときに
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
-		Audio::Play(DeterSound_);
+
 
 		//0ならSTAGE1へ
 		if (Global::Select == 0)
 		{
+			Audio::Play(DeterSound_); //○
+
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE1);
 		}
 		//1かつSTAGE2がアンロックされているならSTAGE2へ
 		else if (Global::Select == 1 && Global::Unlock2)
 		{
+			Audio::Play(DeterSound_); //○
+
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE2);
 		}
+		//1かつSTAGE2がアンロックされていないとき
+		else if (Global::Select == 1 && !Global::Unlock2)
+		{
+			Audio::Play(LockSound_); //×
+		}
+
 		//2をクリアしてるなら
 		else if (Global::Select == 2 && Global::Unlock3)
 		{
 			//SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			//pSceneManager->ChangeScene(SCENE_ID_STAGE2);
+			//pSceneManager->ChangeScene(SCENE_ID_STAGE3);
+		}
+		//2をクリアしていないなら
+		else if (Global::Select == 2 && !Global::Unlock3)
+		{
+			Audio::Play(LockSound_); //×
 		}
 	}
 
@@ -239,6 +260,7 @@ void StageSelectScene::Release()
 	BackImage_ = -1;
 	SelectSound_ = -1;
 	DeterSound_ = -1;
+	LockSound_ = -1;
 }
 
 //ステージのロック解除管理
@@ -270,10 +292,12 @@ void StageSelectScene::GetCoin()
 {
 	if (Drawflg)
 	{
+		Global::ItemImageSca = Global::ItemImageSca_Select; //表示サイズ
+
 		//Stage1のコイン
 		if (Global::GetCoin_1)
 		{
-			Global::ItemImagePos = XMFLOAT3(-0.6f, 0, 0); //表示位置
+			Global::ItemImagePos = XMFLOAT3(-0.4f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
 
@@ -283,7 +307,7 @@ void StageSelectScene::GetCoin()
 			Global::ItemImagePos = XMFLOAT3(0.2f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);           //表示
 		}
-	}
 
-	Drawflg = false;
+		Drawflg = false;
+	}
 }

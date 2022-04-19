@@ -63,7 +63,7 @@ void HP::HPCalc()
     //çÇÇ¢Ç∆Ç±ÇÎÇ©ÇÁç~ÇËÇΩÇÁ
     if (JS - JE > 0.5f)
     {
-        Global::HP -= JS - JE + ND;
+        Global::HP -= (JS - JE + ND) * 2;
     }
 
     //ïΩñ à⁄ìÆorè„Ç¡ÇΩ

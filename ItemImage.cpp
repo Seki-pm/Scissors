@@ -28,8 +28,8 @@ void ItemImage::Initialize()
     CoinHandle_ = Image::Load("SuccessModel/Coin.png");
     assert(CoinHandle_);
     auto CoinTrans = Transform();
-    CoinTrans.position_ = Global::ItemImagePos_Stage;
-    CoinTrans.scale_ = XMFLOAT3(0.5f,0.5f,0.5f);
+    CoinTrans.position_ = Global::ItemImagePos;
+    CoinTrans.scale_ = Global::ItemImageSca;
     Image::SetTransform(CoinHandle_, CoinTrans);
 
 }
