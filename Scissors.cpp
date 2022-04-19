@@ -63,6 +63,10 @@ void Scissors::Update()
         SetPosition();
     }
    
+    if (Input::IsKeyDown(DIK_C))
+    {
+        int a = 0;
+    }
 
     //スタートからやり直し（リトライ）
     if (Input::IsKeyDown(DIK_R))
@@ -314,13 +318,11 @@ void Scissors::Release()
 //反射
 void Scissors::Reflection()
 {
-    int cnt = 0, count = 0;
+    int cnt = 0;
     //transform_.position_.x -= move_.x;
     //transform_.position_.y -= move_.y;
-
     //move_.x *= -0.3f;
     //move_.y *= -0.3f;
-
     //move_.x = 0;
     //move_.y = 0;
 
@@ -359,6 +361,7 @@ void Scissors::Reflection()
         }
         cnt++;
 
+        //判定を10回行ったら強制的にはじく
         if (cnt >= 10)
         {
             if (move_.x <= 0)
@@ -372,11 +375,13 @@ void Scissors::Reflection()
 
             move_.x *= -0.3f;
             move_.y *= -0.3f;
+           
         }
 
         //ステージ外に出た場合スタート位置に戻る
         if (transform_.position_.x < 0 ||
-            transform_.position_.y < 0)
+            transform_.position_.y < 0 ||
+            cnt >= 100)
         {
             Global gl;
             transform_.position_.x = gl.GetCameraStartX();

@@ -28,8 +28,8 @@ public:
 
 	//コインの表示位置
 	static XMFLOAT3 ItemModelPos;  //モデル
-	static XMFLOAT3 ItemImagePos;  //画像
-	static XMFLOAT3 ItemImageSca;  //画像
+	static XMFLOAT3 ItemImagePos;  //画像位置
+	static XMFLOAT3 ItemImageSca;  //画像サイズ
 	static XMFLOAT3 ItemImagePos_Stage;   //画像(StageScene)
 	static XMFLOAT3 ItemImageSca_Stage;   //画像(StageScene)
 	static XMFLOAT3 ItemImageSca_Select;   //画像(SelectScene)
