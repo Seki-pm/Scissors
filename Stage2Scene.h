@@ -4,6 +4,7 @@
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Engine/Audio.h"
 #include "GameOver.h"
 #include "Global.h"
 #include "GoalStaging.h"
@@ -20,12 +21,15 @@ class Stage2Scene : public GameObject
 {
 	ItemModel* pItemModel_;
 
-	float X, Y, Z;
+	float X, Y, Z;  //受け取る各座標系
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-	int BackImage_;
+	int BackImage_; //背景
+
+	int SelectSound_;      //選択音
+	int DeterSound_;       //決定音
 
 public:
 	//コンストラクタ

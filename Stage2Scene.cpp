@@ -2,7 +2,8 @@
 
 //コンストラクタ
 Stage2Scene::Stage2Scene(GameObject* parent)
-	: GameObject(parent, "Stage2Scene"), BackImage_(-1),
+	: GameObject(parent, "Stage2Scene"),
+    BackImage_(-1), SelectSound_(-1), DeterSound_(-1),
     X(0),Y(0),Z(0), Gselect_(0), Pselect_(0)
 {
 }
@@ -36,8 +37,18 @@ void Stage2Scene::Initialize()
     //コインのゲット判定
     Instantiate<ItemImage>(this);
 
+
+    //------ 背景 ---------
     BackImage_ = Image::Load("Image/Stage2_Back.png");
     assert(BackImage_ >= 0);
+
+    //------ Select --------------
+    SelectSound_ = Audio::Load("Sound/Select.wav");
+    assert(SelectSound_ >= 0);
+
+    //------ Determination -------------
+    DeterSound_ = Audio::Load("Sound/Determination.wav");
+    assert(DeterSound_ >= 0);
 }
 
 //更新
@@ -79,6 +90,8 @@ void Stage2Scene::Draw()
 void Stage2Scene::Release()
 {
     BackImage_ = -1;
+    SelectSound_ = -1;
+    DeterSound_ = -1;
 }
 
 //GameOver Select
@@ -101,6 +114,7 @@ void Stage2Scene::GameOverSEL()
         if (Input::IsKeyDown(DIK_LEFT))
         {
             Gselect_--;
+            Audio::Play(SelectSound_);
 
             if (Gselect_ < 0)
             {
@@ -113,6 +127,7 @@ void Stage2Scene::GameOverSEL()
         if (Input::IsKeyDown(DIK_RIGHT))
         {
             Gselect_++;
+            Audio::Play(SelectSound_);
 
             if (Gselect_ > 1)
             {
@@ -125,6 +140,8 @@ void Stage2Scene::GameOverSEL()
 
         if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
         {
+            Audio::Play(DeterSound_);
+
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);
         }
@@ -151,6 +168,8 @@ void Stage2Scene::PauseSEL()
         if (Input::IsKeyDown(DIK_LEFT))
         {
             Pselect_--;
+            Audio::Play(SelectSound_);
+
             if (Pselect_ < 0)
             {
                 Pselect_ = 0;
@@ -162,6 +181,8 @@ void Stage2Scene::PauseSEL()
         if (Input::IsKeyDown(DIK_RIGHT))
         {
             Pselect_++;
+            Audio::Play(SelectSound_);
+
             if (Pselect_ > 1)
             {
                 Pselect_ = 1;
@@ -177,6 +198,8 @@ void Stage2Scene::PauseSEL()
         {
             Global::GetCoin = false;
             Global::Pause = false;
+
+            Audio::Play(DeterSound_);
 
             //メニューシーンに移動
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");

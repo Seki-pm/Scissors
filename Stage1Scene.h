@@ -4,6 +4,7 @@
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Engine/Audio.h"
 #include "DrawNumber.h"
 #include "GameOver.h"
 #include "Global.h"
@@ -29,10 +30,13 @@ class Stage1Scene : public GameObject
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-	int BackImage_;
+	int BackImage_;   //背景画像
 
-	bool Itemflg;
-	int cnt;
+	bool Itemflg;          //アイテムの出現フラグ
+	int cnt;               //カウント用
+
+	int SelectSound_;      //選択音
+	int DeterSound_;       //決定音
 
 public:
 	//コンストラクタ
