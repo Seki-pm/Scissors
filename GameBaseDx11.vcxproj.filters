@@ -27,11 +27,11 @@
     <Filter Include="03Scene">
       <UniqueIdentifier>{b2ee06db-ad4c-4ac2-8ae7-a6acdc6ef161}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{10fbe95f-1164-45dc-aec7-54c8b0b8c6cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="InGameObject">
+    <Filter Include="04InGameObject">
       <UniqueIdentifier>{2361106b-b0f9-4bf2-bb39-25270c7a8783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05Player">
+      <UniqueIdentifier>{10fbe95f-1164-45dc-aec7-54c8b0b8c6cb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,7 +89,6 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Engine\Audio.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
@@ -111,41 +110,41 @@
       <Filter>03Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scissors.cpp">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClCompile>
     <ClCompile Include="Blade.cpp">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClCompile>
     <ClCompile Include="DrawNumber.cpp" />
     <ClCompile Include="HP.cpp">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClCompile>
     <ClCompile Include="DrawGauge.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="ItemImage.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="ItemModel.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Sign.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Sound.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="GoalStaging.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Pause.cpp">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,7 +202,6 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Engine\Audio.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
@@ -225,41 +223,41 @@
       <Filter>03Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scissors.h">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClInclude>
     <ClInclude Include="Blade.h">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClInclude>
     <ClInclude Include="DrawNumber.h" />
     <ClInclude Include="HP.h">
-      <Filter>Player</Filter>
+      <Filter>05Player</Filter>
     </ClInclude>
     <ClInclude Include="DrawGauge.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="ItemImage.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="ItemModel.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Sign.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameOver.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sound.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="GoalStaging.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Pause.h">
-      <Filter>InGameObject</Filter>
+      <Filter>04InGameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
