@@ -5,7 +5,7 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
 	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
 	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
-	Drawflg(true)
+	ComingSoonImage_(-1),Drawflg(true)
 {
 	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
@@ -102,6 +102,14 @@ void StageSelectScene::Initialize()
 	DescTrans.position_ = XMFLOAT3(0.0f, -0.5f, 0);
 	Image::SetTransform(DescriptionImage_, DescTrans);
 	//--------------------------------------------
+
+	//--------------- comingsoon --------------
+	ComingSoonImage_ = Image::Load("Image/Comingsoon.png");
+	assert(ComingSoonImage_ >= 0);
+	Image::SetTransform(ComingSoonImage_, Lock[STAGE_LOCK_3]);
+	//-----------------------------------------
+
+
 
 	//------------- 音 ----------------------------------
 
@@ -261,6 +269,7 @@ void StageSelectScene::Release()
 	SelectSound_ = -1;
 	DeterSound_ = -1;
 	LockSound_ = -1;
+	ComingSoonImage_ = -1;
 }
 
 //ステージのロック解除管理
@@ -280,6 +289,7 @@ void StageSelectScene::StageUnlock()
 	if (Global::Unlock3)
 	{
 		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
+		Image::Draw(ComingSoonImage_);
 	}
 	else
 	{

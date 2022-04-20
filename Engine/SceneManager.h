@@ -9,9 +9,8 @@ enum SCENE_ID
 {
 	SCENE_ID_TITLE = 0,
 	SCENE_ID_SELECT = 1,
-	SCENE_ID_PLAY = 2,
-	SCENE_ID_STAGE1 = 3,
-	SCENE_ID_STAGE2 = 4
+	SCENE_ID_STAGE1 = 2,
+	SCENE_ID_STAGE2 = 3
 };
 
 //-----------------------------------------------------------

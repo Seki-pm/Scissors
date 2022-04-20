@@ -57,7 +57,7 @@ void Stage2Scene::Update()
     //trueの時アンロックをし、ステージ選択へ遷移
     if (Global::Timer)
     {
-        //Global::Unlock3 = true;
+        Global::Unlock3 = true;
         Global::Timer = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);

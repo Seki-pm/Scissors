@@ -54,11 +54,11 @@ void GoalStaging::Initialize()
 //更新
 void GoalStaging::Update()
 {
-
-    if (Input::IsKeyDown(DIK_I))
-    {
-        Model::SetAnimFrame(BalloonModel_, 1, 300, 1.0f);
-    }
+    //風船のアニメーション開始
+    //if (Input::IsKeyDown(DIK_I))
+    //{
+    //    Model::SetAnimFrame(BalloonModel_, 1, 300, 1.0f);
+    //}
 
     //ゴールについたら文字表示
     if (gl.GetTransPos_X() >= gl.GetCameraGoalX() - 1.5f)

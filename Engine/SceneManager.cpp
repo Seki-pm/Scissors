@@ -1,6 +1,5 @@
 #include "sceneManager.h"
 
-#include "../PlayScene.h"
 #include "../TitleScene.h"
 #include "../StageSelectScene.h"
 #include "../Stage1Scene.h"
@@ -45,7 +44,6 @@ void SceneManager::Update()
 		{
 		case SCENE_ID_TITLE: Instantiate<TitleScene>(this); break;
 		case SCENE_ID_SELECT: Instantiate<StageSelectScene>(this); break;
-		case SCENE_ID_PLAY: Instantiate<PlayScene>(this); break;
 		case SCENE_ID_STAGE1: Instantiate<Stage1Scene>(this); break;
 		case SCENE_ID_STAGE2: Instantiate<Stage2Scene>(this); break;
 

@@ -125,10 +125,10 @@ bool PolygonCollider::GetNormal(XMFLOAT3 point1, XMFLOAT3 point2, XMFLOAT3* norm
 	return false;
 }
 
-//
+//ステージとの当たり判定
 bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 {
-	//点の数（＝辺の数）ループ
+	//targetの頂点の数（＝辺の数）ループ
 	for (int i = 0; i < target->points_.size(); i++)
 	{
 		XMVECTOR vP = XMVector3TransformCoord(target->points_[i], worldMatrix);
@@ -140,6 +140,7 @@ bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 		}
 	}
 
+	//頂点の数ループ
 	for (int i = 0; i < points_.size(); i++)
 	{
 		XMFLOAT3 fP;

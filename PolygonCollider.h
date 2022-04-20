@@ -36,7 +36,9 @@ public:
 	//戻値：そもそも交差してるかどうか
 	bool GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitPoint);
 
-
+	//ステージと刃先との当たり判定
+	//引数：target  当たっている面の三角形
+	//戻値：ぶつかっていたらtrue
 	bool Hit(PolygonCollider* target, XMMATRIX worldMatrix);
 };
 

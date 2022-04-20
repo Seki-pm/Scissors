@@ -160,7 +160,6 @@
     <ClCompile Include="PolygonCollider.cpp" />
     <ClCompile Include="Scissors.cpp" />
     <ClCompile Include="Stage.cpp" />
-    <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Stage1Scene.cpp" />
     <ClCompile Include="Stage2Scene.cpp" />
     <ClCompile Include="StageSelectScene.cpp" />
@@ -202,7 +201,6 @@
     <ClInclude Include="PolygonCollider.h" />
     <ClInclude Include="Scissors.h" />
     <ClInclude Include="Stage.h" />
-    <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Stage1Scene.h" />
     <ClInclude Include="Stage2Scene.h" />
     <ClInclude Include="StageSelectScene.h" />

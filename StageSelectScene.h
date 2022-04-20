@@ -50,6 +50,7 @@ private:
 	int FrameImageHandle_; //ƒtƒŒ[ƒ€
 	int BackImage_;        //”wŒi
 	int DescriptionImage_; //à–¾
+	int ComingSoonImage_;  //‘Ò‚Á‚Ä‚Ä‰æ‘œ
 
 	int SelectSound_;      //‘I‘ğ‰¹
 	int DeterSound_;       //Œˆ’è‰¹
