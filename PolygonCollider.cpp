@@ -1,4 +1,5 @@
 #include "PolygonCollider.h"
+#include "Global.h"
 
 
 //多角形の頂点の位置を追加
@@ -7,8 +8,6 @@ void PolygonCollider::AddPoint(float x, float y)
 {
 	points_.push_back(XMVectorSet(x, y, 0, 0));
 }
-
-
 
 
 //多角形と点の当たり判定
@@ -153,4 +152,28 @@ bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 	}
 
 	return false;
+}
+
+//はじく床を追加
+void PolygonCollider::AddRepel(int num)
+{
+	Global::Repel_.push_back(num -1);
+}
+
+//はじく床との判定を行う
+void PolygonCollider::SetRepelCheck(int search)
+{
+	for (int i = 0; i < Global::Repel_.size(); i++)
+	{
+		if (Global::Repel_[i] == search)
+		{
+			number = search;
+		}	
+	}
+}
+
+//はじく床の番号を送る
+int PolygonCollider::GetRepelCheck()
+{
+	return number;
 }

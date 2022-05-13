@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/Direct3D.h"
+#include <vector>
 using namespace std;
 
 //グローバル変数（シーンをまたいで有効）
@@ -56,6 +57,9 @@ public:
 
 	//Scene管理用
 	static int SCENE_ID;
+
+	//地面ギミック用動的配列
+	static vector<int> Repel_;
 
 	//ハサミの現在ポジションをGlobalを通じて送る
 	void SetTransPos_X(float x);

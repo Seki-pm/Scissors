@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <DirectXMath.h>
+#include "Global.h"
 
 using namespace DirectX;
 using namespace std;
@@ -11,6 +12,8 @@ class PolygonCollider
 	//多角形の各頂点を入れる配列
 	//何角形でもいいが、凸多角形じゃないとダメ
 	vector<XMVECTOR> points_;
+
+	int number = -1;
 
 public:
 
@@ -40,5 +43,13 @@ public:
 	//引数：target  当たっている面の三角形
 	//戻値：ぶつかっていたらtrue
 	bool Hit(PolygonCollider* target, XMMATRIX worldMatrix);
+
+	//ジャンプする床を配列に入れる
+	//引数：地面番号を入れる
+	void AddRepel(int num);
+
+	//はじく床との判定＆送る
+	void SetRepelCheck(int search);
+	int GetRepelCheck();
 };
 

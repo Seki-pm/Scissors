@@ -101,6 +101,7 @@ void Stage1Scene::Release()
     BackImage_ = -1;
     SelectSound_ = -1;
     DeterSound_ = -1;
+    Global::Repel_.clear();
 }
 
 //GameOver Select

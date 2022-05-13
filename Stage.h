@@ -16,6 +16,12 @@ class Stage : public GameObject
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
 
+    // 一つ一つの地形の面の頂点を入れる
+    PolygonCollider pc1,  pc2,  pc3,  pc4,  pc5,  pc6,
+                    pc7,  pc8,  pc9,  pc10, pc11, pc12,
+                    pc13, pc14, pc15, pc16, pc17, pc18,
+                    pc19, pc20, pc21, pc22, pc23, pc24,
+                    pc25, pc26, pc27, pc28, pc29, pc30;
 
 public:
     //コンストラクタ
@@ -47,6 +53,7 @@ public:
     //衝突した辺の法線と衝突点を調べる
     void GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitPoint);
 
+    //Stage
     void Stage1();
     void Stage2();
 

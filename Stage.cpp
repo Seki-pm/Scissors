@@ -54,6 +54,15 @@ bool Stage::IsHit(XMFLOAT3 position)
         //多角形と点の当たり判定がtrueなら
         if (colliders_[i].Hit(position))
         {
+            PolygonCollider pc;
+            pc.SetRepelCheck(i);
+            int jp = pc.GetRepelCheck();
+
+            if (i == jp)
+            {
+                Global::HP = 100;
+            }
+
             //ステージに当たってる
             return true;
         }
@@ -101,10 +110,6 @@ void Stage::Stage1()
 
     StageModel_ = Model::Load("SuccessModel/stage1.fbx");
 
-    //コライダー
-    // 一つ一つの地形の面の頂点を入れる
-    PolygonCollider pc1, pc2, pc3, pc4, pc5, pc6,
-                    pc7, pc8, pc9, pc10, pc11, pc12;
 
     pc1.AddPoint(-5, 7);
     pc1.AddPoint(-4, 7);
@@ -200,14 +205,6 @@ void Stage::Stage2()
     StageModel_ = Model::Load("SuccessModel/stage2.fbx");
     assert(StageModel_ >= 0);
 
-
-    //コライダー
-    // 一つ一つの地形の面の頂点を入れる
-    PolygonCollider pc1,  pc2,  pc3,  pc4,  pc5,  pc6,
-                    pc7,  pc8,  pc9,  pc10, pc11, pc12,
-                    pc13, pc14, pc15, pc16, pc17, pc18,
-                    pc19, pc20, pc21, pc22, pc23, pc24,
-                    pc25, pc26, pc27, pc28, pc29, pc30;
 
     //左の壁
     pc1.AddPoint(-10  ,   28);

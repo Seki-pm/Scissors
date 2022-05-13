@@ -62,11 +62,7 @@ void Scissors::Update()
         //座標を送る
         SetPosition();
     }
-   
-    if (Input::IsKeyDown(DIK_C))
-    {
-        int a = 0;
-    }
+ 
 
     //スタートからやり直し（リトライ）
     if (Input::IsKeyDown(DIK_R))
