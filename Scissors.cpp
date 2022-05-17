@@ -6,7 +6,7 @@ Scissors::Scissors(GameObject* parent)
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
-    Calc(false), FallFlg(true),SoundFlg(false)
+    Calc(false), FallFlg(true),SoundFlg(false),RepelFlg(true)
 {
 }
 
@@ -79,7 +79,7 @@ void Scissors::Update()
         }
     }
 
-    //
+    //落下したら
     if (transform_.position_.y <= -5 && FallFlg)
     {
         move_ = XMFLOAT3(0, 0, 0);
@@ -87,6 +87,7 @@ void Scissors::Update()
         Global::IsGameOver = true;
         FallFlg = false;
     }
+
 }
 
 
@@ -182,7 +183,7 @@ void Scissors::Rotation()
 //左右移動
 void Scissors::Move()
 {
-    if (!pBlade_L->IsPrick() && !pBlade_R->IsPrick())     //どっちも刺さってなければ
+    if (!pBlade_L->IsPrick() && !pBlade_R->IsPrick() && Global::IsJump)     //どっちも刺さってなければ
     {
         if (Input::IsKey(DIK_D))
         {
@@ -223,6 +224,8 @@ void Scissors::JumpAndFall()
     //どっちか刺さってたら
     else
     {
+        RepelMove(move_.x);
+
         //動きを止める
         move_.x = 0;
         move_.y = 0;
@@ -246,7 +249,7 @@ void Scissors::JumpAndFall()
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
         {
             //壁なら長押しで反応なし
-            if (Input::IsKeyDown(DIK_SPACE))
+            if (Input::IsKeyDown(DIK_SPACE) && Global::IsJump)
             {
                 //地面の法線よりちょっと上向きにジャンプ
                 move_.x = jumpDirection_.x * 0.2f;
@@ -269,7 +272,7 @@ void Scissors::JumpAndFall()
             }
         }
         //壁ではないなら長押しで進める
-        else if (Input::IsKey(DIK_SPACE))
+        else if (Input::IsKey(DIK_SPACE) && Global::IsJump)
         {
             //地面の法線よりちょっと上向きにジャンプ
             move_.x = jumpDirection_.x * 0.2f;
@@ -438,6 +441,47 @@ void Scissors::Restart()
     Global::GameOver = false;
     Global::IsGameOver = false;
     FallFlg = true;
+}
+
+//弾かれた時の動き
+void Scissors::RepelMove(float moveX)
+{
+    //フラグがたったら
+    if (Global::RepelFlg)
+    {
+        if (IsRepel)
+        {
+            //弾く値を入れる
+            powerY = pStage_->Repel().y;         
+            powerX = pStage_->Repel().x;
+
+            //現在の高さを入れる
+            TransPos_Y = transform_.position_.y; 
+
+            //どちらも離れていることにする(落下させるため)
+            pBlade_L->isPrick = false;
+            pBlade_R->isPrick = false;
+
+            //弾かれる方向
+            if (move_.x < 0) Key = -1;  //右に動いている時は左へ
+            else             Key =  1;  //左に動いている時は右へ　弾く
+
+            IsRepel = false;
+        }
+        else
+        {
+            transform_.position_.x += powerX * Key; //Keyの方向へ弾く
+            transform_.position_.y += powerY;       //powerY分上へ
+            powerY -= GLAVITY;                      //GLAVITY分下へ
+
+            //最初の高さより現在位置が低くなったら
+            if (TransPos_Y > transform_.position_.y)
+            {
+                IsRepel = true;
+            }
+
+        }
+    }
 }
 
 //音楽の初期化

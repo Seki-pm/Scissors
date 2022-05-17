@@ -137,7 +137,6 @@ void StageSelectScene::Update()
 	if (Input::IsKeyDown(DIK_SPACE))
 	{
 
-
 		//0‚È‚çSTAGE1‚Ö
 		if (Global::Select == 0)
 		{
@@ -223,6 +222,12 @@ void StageSelectScene::Select()
 			break;
 		}
 	}
+
+	//XMFLOAT3 mousePos = Input::GetMousePosition();
+	//if ()
+	//{
+
+	//}
 }
 
 //•`‰æ

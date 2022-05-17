@@ -157,7 +157,7 @@ bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 //‚Í‚¶‚­°‚ğ’Ç‰Á
 void PolygonCollider::AddRepel(int num)
 {
-	Global::Repel_.push_back(num -1);
+	Global::Repel_.push_back(num - 1);
 }
 
 //‚Í‚¶‚­°‚Æ‚Ì”»’è‚ğs‚¤

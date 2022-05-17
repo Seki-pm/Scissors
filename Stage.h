@@ -57,4 +57,6 @@ public:
     void Stage1();
     void Stage2();
 
+    //’e‚­‚ÌŠÇ—
+    XMFLOAT3 Repel();
 };

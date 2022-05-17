@@ -54,6 +54,8 @@ public:
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
+	static bool RepelFlg;          //弾かれる時用
+	static bool IsJump;
 
 	//Scene管理用
 	static int SCENE_ID;

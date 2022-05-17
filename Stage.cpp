@@ -60,7 +60,16 @@ bool Stage::IsHit(XMFLOAT3 position)
 
             if (i == jp)
             {
-                Global::HP = 100;
+                //はじくフラグtrue
+                Global::RepelFlg = true;
+                Global::IsJump = false;
+                Global::HP -= 2;
+
+            }
+            else
+            {
+                Global::RepelFlg = false;
+                Global::IsJump = true;
             }
 
             //ステージに当たってる
@@ -139,6 +148,7 @@ void Stage::Stage1()
     pc5.AddPoint(38, 0);
     pc5.AddPoint(38, -1);
     pc5.AddPoint(23.75f, -1);
+    pc5.AddRepel(5);
     colliders_.push_back(pc5);
 
     pc6.AddPoint(38, 8);
@@ -251,6 +261,7 @@ void Stage::Stage2()
     //空中飛び石1
     pc7.AddPoint(1.93f, 15.2f);
     pc7.AddPoint(2.38f, 15.2f);
+    pc7.AddRepel(7);
     pc7.AddPoint(2.38f, 14.75f);
     pc7.AddPoint(1.93f, 14.75f);
     colliders_.push_back(pc7);
@@ -424,5 +435,12 @@ void Stage::Stage2()
     gl.SetCameraStartY(startY);
     gl.SetCameraGoalX(goalX);
     gl.SetCameraGoalY(goalY);
+}
+
+XMFLOAT3 Stage::Repel()
+{
+    XMFLOAT3 repel = { 0.1f,0.3f,0 };
+
+    return repel;
 }
 

@@ -18,6 +18,7 @@ class Scissors : public GameObject
 {
     //ブレードが２つ
     Blade* pBlade_L , *pBlade_R;
+    Stage* pStage_;
 
     XMFLOAT3 move_;         //移動
     XMFLOAT3 jumpDirection_; //ジャンプ方向（刺さってる地面の法線）
@@ -30,6 +31,14 @@ class Scissors : public GameObject
     bool FallFlg; //落下フラグ
     bool SoundFlg; //音フラグ
 
+
+
+    //弾かれた時用
+    int Key = 0;
+    float TransPos_Y;
+    float powerY;
+    float powerX;
+    bool IsRepel;
 
     //SE
     int Land_Glass;
@@ -86,6 +95,8 @@ public:
     //始めに戻る
     void Restart();
 
+    //弾かれた時の動き
+    void RepelMove(float moveX);
 
     void InitSound();
     void Landing();

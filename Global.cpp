@@ -35,7 +35,8 @@ bool Global::Pause  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;
 bool Global::Timer = false;
-
+bool Global::RepelFlg = false;
+bool Global::IsJump = true;
 
 int   Global::MAXHP = 500;
 int   Global::HP = Global::MAXHP;
