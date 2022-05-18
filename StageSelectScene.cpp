@@ -134,7 +134,7 @@ void StageSelectScene::Initialize()
 void StageSelectScene::Update()
 {
 	//スペースを押したときに
-	if (Input::IsKeyDown(DIK_SPACE))
+	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
 
 		//0ならSTAGE1へ
@@ -175,12 +175,13 @@ void StageSelectScene::Update()
 
 	//選択
 	Select();
+	MouseSelect();
 }
 
 //選択
 void StageSelectScene::Select()
 {
-	//←→で選ぶ
+	//方向キーで選択
 	if (Input::IsKeyDown(DIK_RIGHT))
 	{
 		Audio::Play(SelectSound_);
@@ -188,17 +189,11 @@ void StageSelectScene::Select()
 		switch (Global::Select)
 		{
 		case 0:
-			Global::Select = 1;
-			FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
-			break;
+			Global::Select = 1; break;
 		case 1:
-			Global::Select = 2;
-			FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
-			break;
+			Global::Select = 2; break;
 		case 2:
-			Global::Select = 0;
-			FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
-			break;
+			Global::Select = 0; break;
 		}
 	}
 
@@ -209,25 +204,51 @@ void StageSelectScene::Select()
 		switch (Global::Select)
 		{
 		case 0:
-			Global::Select = 2;
-			FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
-			break;
+			Global::Select = 2; break;
 		case 1:
-			Global::Select = 0;
-			FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
-			break;
+			Global::Select = 0; break;
 		case 2:
-			Global::Select = 1;
-			FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
-			break;
+			Global::Select = 1; break;
 		}
 	}
 
-	//XMFLOAT3 mousePos = Input::GetMousePosition();
-	//if ()
-	//{
+	switch (Global::Select)
+	{
+	case 0:
+		FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
+		break;
+	case 1:
+		FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
+		break;
+	case 2:
+		FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
+		break;
+	}
+}
 
-	//}
+//マウスで選択
+void StageSelectScene::MouseSelect()
+{
+	XMFLOAT3 mousePos = Input::GetMousePosition();
+
+	if ( 132 < mousePos.x && mousePos.x < 380 && 
+		 346 < mousePos.y && mousePos.y < 228 )
+	{
+		Global::Select = 0;
+	}
+	else if (513 < mousePos.x && mousePos.x < 765 &&
+		     226 < mousePos.y && mousePos.y < 351)
+	{
+		Global::Select = 1;
+	}
+
+	if (897 < mousePos.x && mousePos.x < 1148 &&
+		347 < mousePos.y && mousePos.y < 224)
+	{
+		Global::Select = 2;
+	}
+
+
 }
 
 //描画

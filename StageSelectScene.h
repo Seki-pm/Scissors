@@ -75,8 +75,11 @@ public:
 	//更新
 	void Update() override;
 
-	//選択
+	//キー選択
 	void Select();
+
+	//マウス選択
+	void MouseSelect();
 
 	//描画
 	void Draw() override;
