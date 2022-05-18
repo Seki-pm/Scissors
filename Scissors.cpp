@@ -6,7 +6,7 @@ Scissors::Scissors(GameObject* parent)
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
-    Calc(false), FallFlg(true),SoundFlg(false),RepelFlg(true)
+    Calc(false), FallFlg(true),SoundFlg(false),IsRepel(false), JumpPower(0.1f)
 {
 }
 
@@ -38,6 +38,7 @@ void Scissors::Initialize()
     SphereCollider* collision =
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
+
 }
 
 //更新
@@ -88,6 +89,9 @@ void Scissors::Update()
         FallFlg = false;
     }
 
+    RepelMove();
+
+    SinkMove();
 }
 
 
@@ -224,7 +228,9 @@ void Scissors::JumpAndFall()
     //どっちか刺さってたら
     else
     {
-        RepelMove(move_.x);
+        //ジャンプ方向を入れる
+        if (move_.x < 0) Key = -1;  //右に動いている時は左へ
+        else             Key = 1;  //左に動いている時は右へ　弾く
 
         //動きを止める
         move_.x = 0;
@@ -276,7 +282,7 @@ void Scissors::JumpAndFall()
         {
             //地面の法線よりちょっと上向きにジャンプ
             move_.x = jumpDirection_.x * 0.2f;
-            move_.y = jumpDirection_.y * 0.2f + 0.1f;
+            move_.y = jumpDirection_.y * 0.2f + JumpPower;
             move_.z = jumpDirection_.z * 0.2f;
 
             //ここで１回動かしておかないと、次のフレームでも刺さったままで飛べない
@@ -444,43 +450,59 @@ void Scissors::Restart()
 }
 
 //弾かれた時の動き
-void Scissors::RepelMove(float moveX)
+void Scissors::RepelMove()
 {
     //フラグがたったら
     if (Global::RepelFlg)
     {
-        if (IsRepel)
-        {
+        if (!IsRepel)
+        { 
             //弾く値を入れる
-            powerY = pStage_->Repel().y;         
             powerX = pStage_->Repel().x;
+            powerY = pStage_->Repel().y;
 
-            //現在の高さを入れる
-            TransPos_Y = transform_.position_.y; 
-
+            IsRepel = true;
+        }
+        else
+        {
             //どちらも離れていることにする(落下させるため)
             pBlade_L->isPrick = false;
             pBlade_R->isPrick = false;
 
-            //弾かれる方向
-            if (move_.x < 0) Key = -1;  //右に動いている時は左へ
-            else             Key =  1;  //左に動いている時は右へ　弾く
+            transform_.position_.x -= powerX * Key;       //Keyの方向へ弾く
+            transform_.position_.y += powerY;             //powerY分上へ
+        }
+    }
+    else
+    {
+        IsRepel = false;
+    }
+}
 
-            IsRepel = false;
+//沈む動き
+void Scissors::SinkMove()
+{
+    //フラグが立ったら
+    if (Global::SinkFlg)
+    {
+        if (!IsSink)
+        {
+            //沈む値を入れる
+            MoveY = pStage_->Sink().y;
+            IsSink = true;
         }
         else
         {
-            transform_.position_.x += powerX * Key; //Keyの方向へ弾く
-            transform_.position_.y += powerY;       //powerY分上へ
-            powerY -= GLAVITY;                      //GLAVITY分下へ
-
-            //最初の高さより現在位置が低くなったら
-            if (TransPos_Y > transform_.position_.y)
-            {
-                IsRepel = true;
-            }
-
+            //MoveYの値分沈んでいく
+            transform_.position_.y += MoveY;
+            JumpPower = 0.05f;
         }
+    }
+    else
+    {
+        //最初に戻す
+        JumpPower = 0.1f;
+        IsSink = false;
     }
 }
 

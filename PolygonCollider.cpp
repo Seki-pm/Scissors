@@ -160,20 +160,44 @@ void PolygonCollider::AddRepel(int num)
 	Global::Repel_.push_back(num - 1);
 }
 
+//’¾‚Ş°‚ğ’Ç‰Á
+void PolygonCollider::AddSink(int num)
+{
+	Global::Sink_.push_back(num - 1);
+}
+
 //‚Í‚¶‚­°‚Æ‚Ì”»’è‚ğs‚¤
-void PolygonCollider::SetRepelCheck(int search)
+void PolygonCollider::SetRepel(int search)
 {
 	for (int i = 0; i < Global::Repel_.size(); i++)
 	{
 		if (Global::Repel_[i] == search)
 		{
-			number = search;
+			RepelNumber = search;
 		}	
 	}
 }
 
 //‚Í‚¶‚­°‚Ì”Ô†‚ğ‘—‚é
-int PolygonCollider::GetRepelCheck()
+int PolygonCollider::GetRepel()
 {
-	return number;
+	return RepelNumber;
+}
+
+//’¾‚Ş°‚Æ‚Ì”»’è‚ğs‚¤
+void PolygonCollider::SetSink(int search)
+{
+	for (int i = 0; i < Global::Sink_.size(); i++)
+	{
+		if (Global::Sink_[i] == search)
+		{
+			SinkNumber = search;
+		}
+	}
+}
+
+//’¾‚Ş°‚Æ‚Ì”»’è‚ğ‘—‚é
+int PolygonCollider::GetSink()
+{
+	return SinkNumber;
 }

@@ -54,23 +54,11 @@ bool Stage::IsHit(XMFLOAT3 position)
         //多角形と点の当たり判定がtrueなら
         if (colliders_[i].Hit(position))
         {
-            PolygonCollider pc;
-            pc.SetRepelCheck(i);
-            int jp = pc.GetRepelCheck();
+            //はじく判定
+            RepelCheck(i);
 
-            if (i == jp)
-            {
-                //はじくフラグtrue
-                Global::RepelFlg = true;
-                Global::IsJump = false;
-                Global::HP -= 2;
-
-            }
-            else
-            {
-                Global::RepelFlg = false;
-                Global::IsJump = true;
-            }
+            //沈む判定
+            SinkCheck(i);
 
             //ステージに当たってる
             return true;
@@ -148,7 +136,8 @@ void Stage::Stage1()
     pc5.AddPoint(38, 0);
     pc5.AddPoint(38, -1);
     pc5.AddPoint(23.75f, -1);
-    pc5.AddRepel(5);
+
+    pc5.AddSink(5);
     colliders_.push_back(pc5);
 
     pc6.AddPoint(38, 8);
@@ -188,6 +177,7 @@ void Stage::Stage1()
     pc11.AddPoint(60, 5.3f);
     pc11.AddPoint(60, 4);
     pc11.AddPoint(49, 4);
+    pc11.AddRepel(11);
     colliders_.push_back(pc11);
 
     pc12.AddPoint(60, 14);
@@ -261,9 +251,9 @@ void Stage::Stage2()
     //空中飛び石1
     pc7.AddPoint(1.93f, 15.2f);
     pc7.AddPoint(2.38f, 15.2f);
-    pc7.AddRepel(7);
     pc7.AddPoint(2.38f, 14.75f);
     pc7.AddPoint(1.93f, 14.75f);
+    pc7.AddRepel(7);
     colliders_.push_back(pc7);
 
     //空中飛び石2
@@ -271,6 +261,7 @@ void Stage::Stage2()
     pc8.AddPoint(0.74f, 16.1f);
     pc8.AddPoint(0.74f,15.65f);
     pc8.AddPoint(0.3f, 15.65f);
+    pc8.AddSink(8);
     colliders_.push_back(pc8);
 
     //凹凸1
@@ -437,10 +428,57 @@ void Stage::Stage2()
     gl.SetCameraGoalY(goalY);
 }
 
+
+
 XMFLOAT3 Stage::Repel()
 {
     XMFLOAT3 repel = { 0.1f,0.3f,0 };
 
     return repel;
 }
+
+void Stage::RepelCheck(int i)
+{
+    PolygonCollider pc;
+    pc.SetRepel(i);
+
+    if (i == pc.GetRepel())
+    {
+        //はじくフラグtrue
+        Global::RepelFlg = true;
+        Global::IsJump = false;
+        Global::HP -= 2;
+
+    }
+    else
+    {
+        Global::RepelFlg = false;
+        Global::IsJump = true;
+    }
+}
+
+
+XMFLOAT3 Stage::Sink()
+{
+    XMFLOAT3 Sink = { 0,-0.01f,0 };
+    return Sink;
+}
+
+void Stage::SinkCheck(int i)
+{
+    PolygonCollider pc;
+    pc.SetSink(i);
+
+    if (i == pc.GetSink())
+    {
+        //沈むフラグtrue
+        Global::SinkFlg = true;
+
+    }
+    else
+    {
+        Global::SinkFlg = false;
+    }
+}
+
 

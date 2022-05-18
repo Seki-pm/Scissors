@@ -13,7 +13,8 @@ class PolygonCollider
 	//何角形でもいいが、凸多角形じゃないとダメ
 	vector<XMVECTOR> points_;
 
-	int number = -1;
+	int RepelNumber = -1;
+	int SinkNumber = -1;
 
 public:
 
@@ -44,12 +45,17 @@ public:
 	//戻値：ぶつかっていたらtrue
 	bool Hit(PolygonCollider* target, XMMATRIX worldMatrix);
 
-	//ジャンプする床を配列に入れる
+	//ギミック床を配列に入れる
 	//引数：地面番号を入れる
 	void AddRepel(int num);
+	void AddSink(int num);
 
 	//はじく床との判定＆送る
-	void SetRepelCheck(int search);
-	int GetRepelCheck();
+	void SetRepel(int search);
+	int GetRepel();
+
+	//沈む床との判定＆送る
+	void SetSink(int search);
+	int GetSink();
 };
 

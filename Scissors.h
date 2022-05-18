@@ -31,7 +31,7 @@ class Scissors : public GameObject
     bool FallFlg; //落下フラグ
     bool SoundFlg; //音フラグ
 
-
+    float JumpPower;
 
     //弾かれた時用
     int Key = 0;
@@ -39,6 +39,9 @@ class Scissors : public GameObject
     float powerY;
     float powerX;
     bool IsRepel;
+
+    bool IsSink = false;
+    float MoveY;
 
     //SE
     int Land_Glass;
@@ -96,7 +99,10 @@ public:
     void Restart();
 
     //弾かれた時の動き
-    void RepelMove(float moveX);
+    void RepelMove();
+
+    //沈んだ時の動き
+    void SinkMove();
 
     void InitSound();
     void Landing();

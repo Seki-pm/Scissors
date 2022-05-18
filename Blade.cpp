@@ -61,7 +61,7 @@ void Blade::Update()
         isPrick = pStage->IsHit(GetTipPoint());
 
         //刺さってる場合、ハサミと地面の交点を求め、刃先がそこに来るよう移動させる（めり込んでる分もどす）
-        if (isPrick)
+        if (isPrick && !Global::SinkFlg)
         {
             XMFLOAT3 hitPoint;  //交点を入れる変数
             XMFLOAT3 normal;    //法線を入れる変数
@@ -75,7 +75,7 @@ void Blade::Update()
     }
 
     //先端以外が地面に当たってる
-    if (pStage->IsHit(collider, GetWorldMatrix()))
+    if (pStage->IsHit(collider, GetWorldMatrix()) && !Global::SinkFlg)
     {
         // 反射させる
         ((Scissors*)GetParent())->Reflection();

@@ -24,6 +24,7 @@ XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 int Global::Select = 0;
 
 vector<int>Global::Repel_;
+vector<int>Global::Sink_;
 
 bool Global::Unlock2 = true;
 bool Global::Unlock3 = false;
@@ -36,6 +37,7 @@ bool Global::GameOver = false;
 bool Global::IsGameOver = false;
 bool Global::Timer = false;
 bool Global::RepelFlg = false;
+bool Global::SinkFlg = false;
 bool Global::IsJump = true;
 
 int   Global::MAXHP = 500;

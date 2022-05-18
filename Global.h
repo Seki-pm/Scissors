@@ -54,7 +54,8 @@ public:
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
-	static bool RepelFlg;          //弾かれる時用
+	static bool RepelFlg;       //弾かれる時用
+	static bool SinkFlg;       //沈む時用
 	static bool IsJump;
 
 	//Scene管理用
@@ -62,6 +63,7 @@ public:
 
 	//地面ギミック用動的配列
 	static vector<int> Repel_;
+	static vector<int> Sink_;
 
 	//ハサミの現在ポジションをGlobalを通じて送る
 	void SetTransPos_X(float x);

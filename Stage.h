@@ -59,4 +59,10 @@ public:
 
     //’e‚­‚ÌŠÇ—
     XMFLOAT3 Repel();
+
+    void RepelCheck(int i);
+    void SinkCheck(int i);
+
+    //’¾‚Ş‚ÌŠÇ—
+    XMFLOAT3 Sink();
 };
