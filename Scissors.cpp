@@ -300,7 +300,6 @@ void Scissors::JumpAndFall()
 
         }
 
-
         //‰ñ“]ŒÀ“x‚ğİ’è
         RotateMax();
     }

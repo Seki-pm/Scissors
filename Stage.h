@@ -56,6 +56,7 @@ public:
     //Stage
     void Stage1();
     void Stage2();
+    void Stage3();
 
     //’e‚­‚ÌŠÇ—
     XMFLOAT3 Repel();

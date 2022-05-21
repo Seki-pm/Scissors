@@ -45,7 +45,7 @@ void TitleScene::Update()
 {
 
 
-	if (Input::IsKeyDown(DIK_SPACE))
+	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
 		Audio::Play(SoundHandle_);
 

@@ -148,7 +148,8 @@ void Stage1Scene::GameOverSEL()
             pGameOver->SetSelect(Gselect_);
         }
 
-        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
+        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1 ||
+            Input::IsMouseButtonDown(0) && Gselect_ == 1)
         {
             Audio::Play(DeterSound_);
 
@@ -174,7 +175,7 @@ void Stage1Scene::PauseSEL()
     //一時停止されたとき
     if (Global::Pause)
     {
-        //ボタンを選択
+        //ボタンで選択
         if (Input::IsKeyDown(DIK_LEFT))
         {
             Pselect_--;
@@ -185,10 +186,10 @@ void Stage1Scene::PauseSEL()
                 Pselect_ = 0;
             }
 
-            //Pauseクラスに渡す
+            //Pauseクラスに送る
             pPause->SetSelect(Pselect_);
         }
-        if (Input::IsKeyDown(DIK_RIGHT))
+        else if (Input::IsKeyDown(DIK_RIGHT))
         {
             Pselect_++;
             Audio::Play(SelectSound_);
@@ -198,7 +199,7 @@ void Stage1Scene::PauseSEL()
                 Pselect_ = 1;
             }
 
-            //Pauseクラスに渡す
+            //Pauseクラスに送る
             pPause->SetSelect(Pselect_);
         }
 

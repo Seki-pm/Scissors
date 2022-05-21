@@ -55,6 +55,8 @@ void Pause::Update()
             Global::Pause = false;
         }
     }
+
+
 }
 
 //描画
@@ -87,7 +89,7 @@ void Pause::Draw()
         }
     }
     //メニューシーンに戻るが選択されているとき
-    if (select_ == 1)
+    else if (select_ == 1)
     {
         Image::SetTransform(SelectFrameImage_, BackMenu);
     }

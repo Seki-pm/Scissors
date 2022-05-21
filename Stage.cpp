@@ -1,93 +1,94 @@
-#include "Stage.h"
+ï»¿#include "Stage.h"
 #include "Engine/Model.h"
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),StageModel_(-1)
 {
 }
 
-//ƒfƒXƒgƒ‰ƒNƒ^
+//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 Stage::~Stage()
 {
 }
 
-//‰Šú‰»
+//åˆæœŸåŒ–
 void Stage::Initialize()
 {
-    //¶‰E”½“]
+    //å·¦å³åè»¢
     transform_.rotate_.y = 180;
 
-    //•\¦‚·‚éƒXƒe[ƒW
+    //è¡¨ç¤ºã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸
     switch (Global::Select)
     {
     case 0: Stage1(); break;
     case 1: Stage2(); break;
+    case 2: Stage3(); break;
     }
 
 }
 
-//XV
+//æ›´æ–°
 void Stage::Update()
 {
 }
 
-//•`‰æ
+//æç”»
 void Stage::Draw()
 {
     Model::SetTransform(StageModel_, transform_);
     Model::Draw(StageModel_);
 }
 
-//ŠJ•ú
+//é–‹æ”¾
 void Stage::Release()
 {
     StageModel_ = -1;
 }
 
-// ˆø”‚Ì“_‚ÌˆÊ’u‚ªƒXƒe[ƒW‚É“–‚½‚Á‚Ä‚é‚©ƒ`ƒFƒbƒN
+// å¼•æ•°ã®ç‚¹ã®ä½ç½®ãŒã‚¹ãƒ†ãƒ¼ã‚¸ã«å½“ãŸã£ã¦ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 bool Stage::IsHit(XMFLOAT3 position)
 {
-    //‘S‚Ä‚ÌƒRƒ‰ƒCƒ_[‚Æƒ`ƒFƒbƒN‚·‚é
+    //å…¨ã¦ã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹
     for (int i = 0; i < colliders_.size(); i++)
     {
-        //‘½ŠpŒ`‚Æ“_‚Ì“–‚½‚è”»’è‚ªtrue‚È‚ç
+        //å¤šè§’å½¢ã¨ç‚¹ã®å½“ãŸã‚Šåˆ¤å®šãŒtrueãªã‚‰
         if (colliders_[i].Hit(position))
         {
-            //‚Í‚¶‚­”»’è
+            //ã¯ã˜ãåˆ¤å®š
             RepelCheck(i);
 
-            //’¾‚Ş”»’è
+            //æ²ˆã‚€åˆ¤å®š
             SinkCheck(i);
 
-            //ƒXƒe[ƒW‚É“–‚½‚Á‚Ä‚é
+            //ã‚¹ãƒ†ãƒ¼ã‚¸ã«å½“ãŸã£ã¦ã‚‹
             return true;
         }
     }
 
-    //“–‚½‚Á‚Ä‚È‚¢
+    //å½“ãŸã£ã¦ãªã„
     return false;
 }
 
 bool Stage::IsHit(PolygonCollider target, XMMATRIX world)
 {
-    //‘S‚Ä‚ÌƒRƒ‰ƒCƒ_[‚Æƒ`ƒFƒbƒN‚·‚é
+    //å…¨ã¦ã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹
     for (int i = 0; i < colliders_.size(); i++)
     {
         if (colliders_[i].Hit(&target, world))
         {
-            //“–‚½‚Á‚Ä‚é
+            //å½“ãŸã£ã¦ã‚‹
             return true;
         }
     }
 
-    //“–‚½‚Á‚Ä‚È‚¢
+    //å½“ãŸã£ã¦ãªã„
     return false;
 }
 
 void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitPoint)
 {
-    //‘S‚Ä‚ÌƒRƒ‰ƒCƒ_[‚Æƒ`ƒFƒbƒN‚·‚é
+    //å…¨ã¦ã®ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã¨ãƒã‚§ãƒƒã‚¯ã™ã‚‹
     for (int i = 0; i < colliders_.size(); i++)
     {
         if (colliders_[i].GetNormal(p1, p2, normal, hitPoint))
@@ -97,7 +98,7 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
     }
 }
 
-//Stage1‚Ìİ’è
+//Stage1ã®è¨­å®š
 void Stage::Stage1()
 {
     float startX = 2;
@@ -172,7 +173,7 @@ void Stage::Stage1()
     colliders_.push_back(pc10);
 
 
-    //ƒS[ƒ‹‘O
+    //ã‚´ãƒ¼ãƒ«å‰
     pc11.AddPoint(49, 5.3f);
     pc11.AddPoint(60, 5.3f);
     pc11.AddPoint(60, 4);
@@ -187,14 +188,14 @@ void Stage::Stage1()
     colliders_.push_back(pc12);
 
 
-    //ƒXƒ^[ƒg‚ÆƒS[ƒ‹‚Ìİ’è
+    //ã‚¹ã‚¿ãƒ¼ãƒˆã¨ã‚´ãƒ¼ãƒ«ã®è¨­å®š
     gl.SetCameraStartX(startX);
     gl.SetCameraStartY(startY);
     gl.SetCameraGoalX(goalX);
     gl.SetCameraGoalY(goalY);
 }
 
-//Stage2‚Ìİ’è
+//Stage2ã®è¨­å®š
 void Stage::Stage2()
 {
     float startX = 2;
@@ -206,49 +207,49 @@ void Stage::Stage2()
     assert(StageModel_ >= 0);
 
 
-    //¶‚Ì•Ç
+    //å·¦ã®å£
     pc1.AddPoint(-10  ,   28);
     pc1.AddPoint(-3.7f  ,   28);
     pc1.AddPoint(-3.7f  , -2);
     pc1.AddPoint(-10  , -2);
     colliders_.push_back(pc1);
 
-    //Å‰‚Ì°
+    //æœ€åˆã®åºŠ
     pc2.AddPoint(-5 ,  0);
     pc2.AddPoint(42.5f, 0);
     pc2.AddPoint(42.5f,  -2);
     pc2.AddPoint(-5,  -2);
     colliders_.push_back(pc2);
 
-    //­‚µ‚‚¢°
+    //å°‘ã—é«˜ã„åºŠ
     pc3.AddPoint(4.4f , 1.5f);
     pc3.AddPoint(16, 1.5f);
     pc3.AddPoint(16, 0);
     pc3.AddPoint(4.4f , 0);
     colliders_.push_back(pc3);
 
-    //•Ç(‰º)
+    //å£(ä¸‹)
     pc4.AddPoint(15.5f,4.8f);
     pc4.AddPoint(18.8f,4.8f);
     pc4.AddPoint(18.8f,0);
     pc4.AddPoint(15.5f,0);
     colliders_.push_back(pc4);
 
-    //“Vˆä(’n–Ê)
+    //å¤©äº•(åœ°é¢)
     pc5.AddPoint(4.3f, 13.8f);
     pc5.AddPoint(12,13.8f);
     pc5.AddPoint(12,4.4f);
     pc5.AddPoint(4.3f, 4.4f);
     colliders_.push_back(pc5);
 
-    //•Çiãj
+    //å£ï¼ˆä¸Šï¼‰
     pc6.AddPoint(15.5f, 15.7f);
     pc6.AddPoint(18.8f, 15.7f);
     pc6.AddPoint(18.8f, 8.3f);
     pc6.AddPoint(15.5f, 8.3f);
     colliders_.push_back(pc6);
 
-    //‹ó’†”ò‚ÑÎ1
+    //ç©ºä¸­é£›ã³çŸ³1
     pc7.AddPoint(1.93f, 15.2f);
     pc7.AddPoint(2.38f, 15.2f);
     pc7.AddPoint(2.38f, 14.75f);
@@ -256,7 +257,7 @@ void Stage::Stage2()
     pc7.AddRepel(7);
     colliders_.push_back(pc7);
 
-    //‹ó’†”ò‚ÑÎ2
+    //ç©ºä¸­é£›ã³çŸ³2
     pc8.AddPoint(0.3f,16.1f);
     pc8.AddPoint(0.74f, 16.1f);
     pc8.AddPoint(0.74f,15.65f);
@@ -264,84 +265,84 @@ void Stage::Stage2()
     pc8.AddSink(8);
     colliders_.push_back(pc8);
 
-    //‰š“Ê1
+    //å‡¹å‡¸1
     pc9.AddPoint(24.0f, 2.0f);
     pc9.AddPoint(27.45f, 2.0f);
     pc9.AddPoint(27.45f, -1.5f);
     pc9.AddPoint(24.0f, -1.5f);
     colliders_.push_back(pc9);
 
-    //‰š“Ê2
+    //å‡¹å‡¸2
     pc10.AddPoint(30.0f, 3.0f);
     pc10.AddPoint(33.45f,3.0f);
     pc10.AddPoint(33.45f, -1.5f);
     pc10.AddPoint(30.0f, -1.5f);
     colliders_.push_back(pc10);
 
-    //°2
+    //åºŠ2
     pc11.AddPoint(45.5f, 0);
     pc11.AddPoint(66.5f, 0);
     pc11.AddPoint(66.5f, -2);
     pc11.AddPoint(45.5f,  -2);
     colliders_.push_back(pc11);
 
-    //•‚‚«°1
+    //æµ®ãåºŠ1
     pc12.AddPoint(51.52f, 1.65f);
     pc12.AddPoint(54.22f, 1.65f);
     pc12.AddPoint(54.22f, 1.05f);
     pc12.AddPoint(51.52f, 1.05f);
     colliders_.push_back(pc12);
 
-    //•‚‚«°2
+    //æµ®ãåºŠ2
     pc13.AddPoint(56.3f, 3);
     pc13.AddPoint(59.23f, 3);
     pc13.AddPoint(59.23f, 2.4f);
     pc13.AddPoint(56.3f, 2.4f);
     colliders_.push_back(pc13);
 
-    //•‚‚«°3
+    //æµ®ãåºŠ3
     pc14.AddPoint(61.32f, 3.75f);
     pc14.AddPoint(63.96f, 3.75f);
     pc14.AddPoint(63.96f, 3.31f);
     pc14.AddPoint(61.32f, 3.31f);
     colliders_.push_back(pc14);
     
-    //•‚‚«°4
+    //æµ®ãåºŠ4
     pc15.AddPoint(65.41f, 4.61f);
     pc15.AddPoint(68.05f, 4.61f);
     pc15.AddPoint(68.05f, 4.18f);
     pc15.AddPoint(65.41f, 4.61f);
     colliders_.push_back(pc15);
 
-    //•‚‚«°5(’·)
+    //æµ®ãåºŠ5(é•·)
     pc16.AddPoint(70, 5.65f);
     pc16.AddPoint(84.58f, 5.65f);
     pc16.AddPoint(84.58f, 5.11f);
     pc16.AddPoint(70, 5.11f);
     colliders_.push_back(pc16);
 
-    //•‚‚«°6
+    //æµ®ãåºŠ6
     pc17.AddPoint(86.64f, 4.56f);
     pc17.AddPoint(89.34f, 4.56f);
     pc17.AddPoint(89.34f, 3.97f);
     pc17.AddPoint(86.64f, 3.97f);
     colliders_.push_back(pc17);
 
-    //’µ‚Ñ°1
+    //è·³ã³åºŠ1
     pc18.AddPoint(68.13f,  0.29f);
     pc18.AddPoint(71.43f,  0.29f);
     pc18.AddPoint(71.43f, -1.96f);
     pc18.AddPoint(68.13f, -1.96f);
     colliders_.push_back(pc18);
 
-    //’µ‚Ñ°2
+    //è·³ã³åºŠ2
     pc19.AddPoint(73.83f,  0.29f);
     pc19.AddPoint(77.13f,  0.29f);
     pc19.AddPoint(77.13f, -1.96f);
     pc19.AddPoint(73.83f, -1.96f);
     colliders_.push_back(pc19);
 
-    //°3
+    //åºŠ3
     pc20.AddPoint(80.78f,  0.14f);
     pc20.AddPoint(91.88f,  0.14f);
     pc20.AddPoint(91.88f, -2.11f);
@@ -350,70 +351,70 @@ void Stage::Stage2()
 
 
 
-    //°4
+    //åºŠ4
     pc21.AddPoint(94.6f,    0.36f);
     pc21.AddPoint(109.46f,  0.36f);
     pc21.AddPoint(109.46f, -2.31f);
     pc21.AddPoint(94.6f,   -2.31f);
     colliders_.push_back(pc21);
 
-    //“o‚è°1
+    //ç™»ã‚ŠåºŠ1
     pc22.AddPoint(101,  2);
     pc22.AddPoint(103.4f,  2);
     pc22.AddPoint(103.4f, 1.4f);
     pc22.AddPoint(101, 1.4f);
     colliders_.push_back(pc22);
 
-    //“o‚è°2
+    //ç™»ã‚ŠåºŠ2
     pc23.AddPoint(105.55f, 3);
     pc23.AddPoint(107.96f, 3);
     pc23.AddPoint(107.96f, 2.42f);
     pc23.AddPoint(105.55f, 2.42f);
     colliders_.push_back(pc23);
 
-    //“o‚è°3
+    //ç™»ã‚ŠåºŠ3
     pc24.AddPoint(103.46f, 6.09f);
     pc24.AddPoint(105.81f, 5.67f);
     pc24.AddPoint(105.7f,  5.07f);
     pc24.AddPoint(103.34f, 5.51f);
     colliders_.push_back(pc24);
 
-    //“o‚è°4
+    //ç™»ã‚ŠåºŠ4
     pc25.AddPoint(105.78f, 10.39f);
     pc25.AddPoint(106.41f, 10.39f);
     pc25.AddPoint(106.42f, 8.f);
     pc25.AddPoint(105.78f, 8.f);
     colliders_.push_back(pc25);
 
-    //•Ç1
+    //å£1
     pc26.AddPoint(109.38f, 8.1f);
     pc26.AddPoint(111.48f, 8.1f);
     pc26.AddPoint(111.48f, -2.3f);
     pc26.AddPoint(109.38f, -2.3f);
     colliders_.push_back(pc26);
 
-    //•Ç2
+    //å£2
     pc27.AddPoint(115.48f, 7);
     pc27.AddPoint(119.23f, 7);
     pc27.AddPoint(119.23f, -2.33f);
     pc27.AddPoint(115.48f, -2.33f);
     colliders_.push_back(pc27);
 
-    //•Ç“à°
+    //å£å†…åºŠ
     pc28.AddPoint(111, -1.43f);
     pc28.AddPoint(116, -1.43f);
     pc28.AddPoint(116, -2.36f);
     pc28.AddPoint(111, -2.36f);
     colliders_.push_back(pc28);
 
-    //°5
+    //åºŠ5
     pc29.AddPoint(119, 0.36f);
     pc29.AddPoint(133, 0.36f);
     pc29.AddPoint(133, -2.32f);
     pc29.AddPoint(119, -2.32f);
     colliders_.push_back(pc29);
 
-    //ƒS[ƒ‹•Ç
+    //ã‚´ãƒ¼ãƒ«å£
     pc30.AddPoint(132.25f, 17.5f);
     pc30.AddPoint(135.8f, 17.5f);
     pc30.AddPoint(135.8f, -2.32f);
@@ -421,7 +422,43 @@ void Stage::Stage2()
     colliders_.push_back(pc30);
 
 
-    //ƒXƒ^[ƒg‚ÆƒS[ƒ‹‚Ìİ’è
+    //ã‚¹ã‚¿ãƒ¼ãƒˆã¨ã‚´ãƒ¼ãƒ«ã®è¨­å®š
+    gl.SetCameraStartX(startX);
+    gl.SetCameraStartY(startY);
+    gl.SetCameraGoalX(goalX);
+    gl.SetCameraGoalY(goalY);
+}
+
+//Stage3ã®è¨­å®š
+void Stage::Stage3()
+{
+    float startX = 2;
+    float startY = 0;
+    float goalX = 100;
+    float goalY = 0.f;
+
+    StageModel_ = Model::Load("SuccessModel/stage2.fbx");
+    assert(StageModel_ >= 0);
+
+
+    pc1.AddPoint(-5,20);
+    pc1.AddPoint(-1,20);
+    pc1.AddPoint(-1,-5);
+    pc1.AddPoint(-5,-5);
+    colliders_.push_back(pc1);
+
+    pc2.AddPoint(-5, 20);
+
+
+
+
+
+
+
+
+
+
+    //ã‚¹ã‚¿ãƒ¼ãƒˆã¨ã‚´ãƒ¼ãƒ«ã®è¨­å®š
     gl.SetCameraStartX(startX);
     gl.SetCameraStartY(startY);
     gl.SetCameraGoalX(goalX);
@@ -429,7 +466,7 @@ void Stage::Stage2()
 }
 
 
-
+//ã¯ã˜ã
 XMFLOAT3 Stage::Repel()
 {
     XMFLOAT3 repel = { 0.1f,0.3f,0 };
@@ -437,6 +474,7 @@ XMFLOAT3 Stage::Repel()
     return repel;
 }
 
+//ã¯ã˜ãåºŠã‚’ãƒã‚§ãƒƒã‚¯
 void Stage::RepelCheck(int i)
 {
     PolygonCollider pc;
@@ -444,7 +482,7 @@ void Stage::RepelCheck(int i)
 
     if (i == pc.GetRepel())
     {
-        //‚Í‚¶‚­ƒtƒ‰ƒOtrue
+        //ã¯ã˜ããƒ•ãƒ©ã‚°true
         Global::RepelFlg = true;
         Global::IsJump = false;
         Global::HP -= 2;
@@ -457,13 +495,14 @@ void Stage::RepelCheck(int i)
     }
 }
 
-
+//æ²ˆã‚€
 XMFLOAT3 Stage::Sink()
 {
     XMFLOAT3 Sink = { 0,-0.01f,0 };
     return Sink;
 }
 
+//æ²ˆã‚€åºŠã‚’ãƒã‚§ãƒƒã‚¯
 void Stage::SinkCheck(int i)
 {
     PolygonCollider pc;
@@ -471,9 +510,9 @@ void Stage::SinkCheck(int i)
 
     if (i == pc.GetSink())
     {
-        //’¾‚Şƒtƒ‰ƒOtrue
+        //æ²ˆã‚€ãƒ•ãƒ©ã‚°true
         Global::SinkFlg = true;
-
+        Global::HP++;
     }
     else
     {

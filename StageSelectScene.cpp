@@ -174,8 +174,8 @@ void StageSelectScene::Update()
 
 
 	//選択
-	Select();
 	MouseSelect();
+	Select();
 }
 
 //選択
@@ -212,16 +212,17 @@ void StageSelectScene::Select()
 		}
 	}
 
+	//フレームの位置変更
 	switch (Global::Select)
 	{
 	case 0:
-		FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
+		FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 		break;
 	case 1:
-		FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
+		FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
 		break;
 	case 2:
-		FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
+		FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
 		break;
 	}
 }
@@ -229,26 +230,27 @@ void StageSelectScene::Select()
 //マウスで選択
 void StageSelectScene::MouseSelect()
 {
+	//マウスカーソルの位置を取得
 	XMFLOAT3 mousePos = Input::GetMousePosition();
 
+	//Stage1上
 	if ( 132 < mousePos.x && mousePos.x < 380 && 
-		 346 < mousePos.y && mousePos.y < 228 )
+		 228 < mousePos.y && mousePos.y < 346)
 	{
 		Global::Select = 0;
 	}
+	//Stage2上
 	else if (513 < mousePos.x && mousePos.x < 765 &&
 		     226 < mousePos.y && mousePos.y < 351)
 	{
 		Global::Select = 1;
 	}
-
-	if (897 < mousePos.x && mousePos.x < 1148 &&
-		347 < mousePos.y && mousePos.y < 224)
+	//Stage3上
+	else if (897 < mousePos.x && mousePos.x < 1148 &&
+		     224 < mousePos.y && mousePos.y < 347)
 	{
 		Global::Select = 2;
 	}
-
-
 }
 
 //描画
