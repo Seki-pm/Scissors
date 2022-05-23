@@ -162,8 +162,8 @@ void StageSelectScene::Update()
 		//2をクリアしてるなら
 		else if (Global::Select == 2 && Global::Unlock3)
 		{
-			//SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			//pSceneManager->ChangeScene(SCENE_ID_STAGE3);
+			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+			pSceneManager->ChangeScene(SCENE_ID_STAGE3);
 		}
 		//2をクリアしていないなら
 		else if (Global::Select == 2 && !Global::Unlock3)
@@ -317,7 +317,7 @@ void StageSelectScene::StageUnlock()
 	if (Global::Unlock3)
 	{
 		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
-		Image::Draw(ComingSoonImage_);
+		//Image::Draw(ComingSoonImage_);
 	}
 	else
 	{

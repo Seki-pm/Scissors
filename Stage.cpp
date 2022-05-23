@@ -512,6 +512,8 @@ void Stage::SinkCheck(int i)
     {
         //沈むフラグtrue
         Global::SinkFlg = true;
+        Global::JumpStart = 0;
+        Global::JumpEnd = 0;
         Global::HP++;
     }
     else

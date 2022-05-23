@@ -31,7 +31,7 @@ void DrawGauge::Draw(int val, float x, float y, int hPict)
 
 
 	//åªç›ÇÃHP(%)ÇåvéZ
-	float hp = val;                             //åªç›ÇÃHP(int)
+	float hp = (float)val;                             //åªç›ÇÃHP(int)
 	float Nowhp  = hp / Global::MAXHP * 100;    //åªç›ÇÃHP(%)
 
 
