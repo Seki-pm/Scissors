@@ -146,7 +146,9 @@
     <ClCompile Include="Pause.cpp">
       <Filter>04InGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Stage3Scene.cpp" />
+    <ClCompile Include="Stage3Scene.cpp">
+      <Filter>03Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -260,7 +262,9 @@
     <ClInclude Include="Pause.h">
       <Filter>04InGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Stage3Scene.h" />
+    <ClInclude Include="Stage3Scene.h">
+      <Filter>03Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

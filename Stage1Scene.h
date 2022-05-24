@@ -27,8 +27,9 @@ class Stage1Scene : public GameObject
 
 	float X, Y, Z;   //受け取る各座標系
 
-	int Gselect_; //GameOver選択用変数
-	int Pselect_; //Pause選択用変数
+	int  Pselect_;
+	int Gselect_ ;
+
 
 	int BackImage_;   //背景画像
 

@@ -66,7 +66,7 @@ void ItemModel::Release()
 void ItemModel::OnCollision(GameObject* pTarget)
 {
     //“–‚½‚Á‚½‚Æ‚«‚Ìˆ—
-    //’e‚É“–‚½‚Á‚½‚Æ‚«
+    //Player‚É“–‚½‚Á‚½‚Æ‚«
     if (pTarget->GetObjectName() == "Scissors")
     {
         //‚Ç‚±‚ÌƒRƒCƒ“‚ðŽæ“¾‚µ‚½‚©
@@ -77,6 +77,9 @@ void ItemModel::OnCollision(GameObject* pTarget)
             break;
         case SCENE_ID_STAGE2:
             Global::GetCoin_2 = true;
+            break;
+        case SCENE_ID_STAGE3:
+            Global::GetCoin_3 = true;
             break;
         }
 

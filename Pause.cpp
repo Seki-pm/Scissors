@@ -55,8 +55,6 @@ void Pause::Update()
             Global::Pause = false;
         }
     }
-
-
 }
 
 //•`‰æ

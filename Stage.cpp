@@ -137,8 +137,6 @@ void Stage::Stage1()
     pc5.AddPoint(38, 0);
     pc5.AddPoint(38, -1);
     pc5.AddPoint(23.75f, -1);
-
-    pc5.AddSink(5);
     colliders_.push_back(pc5);
 
     pc6.AddPoint(38, 8);
@@ -178,7 +176,6 @@ void Stage::Stage1()
     pc11.AddPoint(60, 5.3f);
     pc11.AddPoint(60, 4);
     pc11.AddPoint(49, 4);
-    pc11.AddRepel(11);
     colliders_.push_back(pc11);
 
     pc12.AddPoint(60, 14);
@@ -254,7 +251,6 @@ void Stage::Stage2()
     pc7.AddPoint(2.38f, 15.2f);
     pc7.AddPoint(2.38f, 14.75f);
     pc7.AddPoint(1.93f, 14.75f);
-    pc7.AddRepel(7);
     colliders_.push_back(pc7);
 
     //空中飛び石2
@@ -262,7 +258,6 @@ void Stage::Stage2()
     pc8.AddPoint(0.74f, 16.1f);
     pc8.AddPoint(0.74f,15.65f);
     pc8.AddPoint(0.3f, 15.65f);
-    pc8.AddSink(8);
     colliders_.push_back(pc8);
 
     //凹凸1
@@ -437,20 +432,138 @@ void Stage::Stage3()
     float goalX = 100;
     float goalY = 0.f;
 
-    StageModel_ = Model::Load("SuccessModel/stage2.fbx");
+    StageModel_ = Model::Load("SuccessModel/stage3.fbx");
     assert(StageModel_ >= 0);
 
-
-    pc1.AddPoint(-5,20);
-    pc1.AddPoint(-1,20);
+    //最初の左の壁
+    pc1.AddPoint(-6,10);
+    pc1.AddPoint(-1,10);
     pc1.AddPoint(-1,-5);
-    pc1.AddPoint(-5,-5);
+    pc1.AddPoint(-6,-5);
     colliders_.push_back(pc1);
 
-    pc2.AddPoint(-5, 20);
+    //最初の地面
+    pc2.AddPoint(-5,  0);
+    pc2.AddPoint(10, 0);
+    pc2.AddPoint(10, -5);
+    pc2.AddPoint(-5, -5);
+    colliders_.push_back(pc2);
 
+    pc3.AddPoint(9, 9);
+    pc3.AddPoint(10,9);
+    pc3.AddPoint(10,3);
+    pc3.AddPoint(9 ,3);
+    colliders_.push_back(pc3);
+/*
+    pc4.AddPoint(, );
+    pc4.AddPoint(, );
+    pc4.AddPoint(, );
+    pc4.AddPoint(, );
+    colliders_.push_back(pc4);
 
+    pc5.AddPoint(, );
+    pc5.AddPoint(, );
+    pc5.AddPoint(, );
+    pc5.AddPoint(, );
+    colliders_.push_back(pc5);
 
+    pc6.AddPoint(, );
+    pc6.AddPoint(, );
+    pc6.AddPoint(, );
+    pc6.AddPoint(, );
+    pc6.AddRepel(6);
+    colliders_.push_back(pc6);
+
+    pc7.AddPoint(, );
+    pc7.AddPoint(, );
+    pc7.AddPoint(, );
+    pc7.AddPoint(, );
+    colliders_.push_back(pc7);
+
+    pc8.AddPoint(, );
+    pc8.AddPoint(, );
+    pc8.AddPoint(, );
+    pc8.AddPoint(, );
+    colliders_.push_back(pc8);
+
+    pc9.AddPoint(, );
+    pc9.AddPoint(, );
+    pc9.AddPoint(, );
+    pc9.AddPoint(, );
+    colliders_.push_back(pc9);
+
+    pc10.AddPoint(, );
+    pc10.AddPoint(, );
+    pc10.AddPoint(, );
+    pc10.AddPoint(, );
+    colliders_.push_back(pc10);
+
+    pc11.AddPoint(, );
+    pc11.AddPoint(, );
+    pc11.AddPoint(, );
+    pc11.AddPoint(, );
+    colliders_.push_back(pc11);
+
+    pc12.AddPoint(, );
+    pc12.AddPoint(, );
+    pc12.AddPoint(, );
+    pc12.AddPoint(, );
+    colliders_.push_back(pc12);
+
+    pc13.AddPoint(, );
+    pc13.AddPoint(, );
+    pc13.AddPoint(, );
+    pc13.AddPoint(, );
+    colliders_.push_back(pc13);
+
+    pc14.AddPoint(, );
+    pc14.AddPoint(, );
+    pc14.AddPoint(, );
+    pc14.AddPoint(, );
+    colliders_.push_back(pc14);
+
+    pc15.AddPoint(, );
+    pc15.AddPoint(, );
+    pc15.AddPoint(, );
+    pc15.AddPoint(, );
+    colliders_.push_back(pc15);
+
+    pc16.AddPoint(, );
+    pc16.AddPoint(, );
+    pc16.AddPoint(, );
+    pc16.AddPoint(, );
+    colliders_.push_back(pc16);
+
+    pc17.AddPoint(, );
+    pc17.AddPoint(, );
+    pc17.AddPoint(, );
+    pc17.AddPoint(, );
+    colliders_.push_back(pc17);
+
+    pc18.AddPoint(, );
+    pc18.AddPoint(, );
+    pc18.AddPoint(, );
+    pc18.AddPoint(, );
+    colliders_.push_back(pc18);
+
+    pc19.AddPoint(, );
+    pc19.AddPoint(, );
+    pc19.AddPoint(, );
+    pc19.AddPoint(, );
+    colliders_.push_back(pc19);
+
+    pc20.AddPoint(, );
+    pc20.AddPoint(, );
+    pc20.AddPoint(, );
+    pc20.AddPoint(, );
+    colliders_.push_back(pc20);
+
+    pc.AddPoint(, );
+    pc.AddPoint(, );
+    pc.AddPoint(, );
+    pc.AddPoint(, );
+    colliders_.push_back(pc);
+*/
 
 
 

@@ -93,6 +93,7 @@ void Stage2Scene::Release()
     SelectSound_ = -1;
     DeterSound_ = -1;
     Global::Repel_.clear();
+    Global::Sink_.clear();
 }
 
 //GameOver Select

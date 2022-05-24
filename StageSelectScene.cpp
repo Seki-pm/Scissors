@@ -162,6 +162,8 @@ void StageSelectScene::Update()
 		//2をクリアしてるなら
 		else if (Global::Select == 2 && Global::Unlock3)
 		{
+			Audio::Play(DeterSound_); //○
+
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE3);
 		}
@@ -343,6 +345,13 @@ void StageSelectScene::GetCoin()
 		if (Global::GetCoin_2)
 		{
 			Global::ItemImagePos = XMFLOAT3(0.2f, 0, 0); //表示位置
+			Instantiate<ItemImage>(this);           //表示
+		}
+
+		//Stage3のコイン
+		if (Global::GetCoin_3)
+		{
+			Global::ItemImagePos = XMFLOAT3(0.8f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);           //表示
 		}
 

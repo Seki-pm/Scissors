@@ -32,9 +32,6 @@ void Stage3Scene::Initialize()
     //ゴール演出
     Instantiate<GoalStaging>(this);
 
-    //看板
-    Instantiate<Sign>(this);
-
     //コインのゲット判定
     Instantiate<ItemImage>(this);
 
@@ -58,10 +55,9 @@ void Stage3Scene::Initialize()
 //更新
 void Stage3Scene::Update()
 {
-    //trueの時アンロックをし、ステージ選択へ遷移
+    //trueの時ステージ選択へ遷移
     if (Global::Timer)
     {
-        Global::Unlock2 = true;
         Global::Timer = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);
@@ -102,6 +98,7 @@ void Stage3Scene::Release()
     SelectSound_ = -1;
     DeterSound_ = -1;
     Global::Repel_.clear();
+    Global::Sink_.clear();
 }
 
 //GameOver Select
@@ -222,38 +219,31 @@ void Stage3Scene::PauseSEL()
 //カメラ移動
 void Stage3Scene::CameraMove(float start, float goal)
 {
-
     //transform.x に応じてカメラ移動を止める
-    //スタート付近
+     //スタート付近
     if (X < start)
     {
-        Camera::SetPosition(XMFLOAT3(2, 3, -10));
-        Camera::SetTarget(XMFLOAT3(2, 3, Z));
+        Camera::SetPosition(XMFLOAT3(2, Y, -10));
+        Camera::SetTarget(XMFLOAT3(2, Y, Z));
     }
     //ゴール付近
     else if (X >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(55, Y, -10));
-        Camera::SetTarget(XMFLOAT3(55, Y, Z));
-        Itemflg = true;
+        Camera::SetPosition(XMFLOAT3(125, Y, -10));
+        Camera::SetTarget(XMFLOAT3(125, Y, Z));
     }
     //そうでない場合Playerに追従する
     else
     {
-        Camera::SetPosition(XMFLOAT3(X, 3, -10));
-        Camera::SetTarget(XMFLOAT3(X, 3, Z));
+        Camera::SetPosition(XMFLOAT3(X, Y, -10));
+        Camera::SetTarget(XMFLOAT3(X, Y, Z));
     }
 
 
-    //transform.y が0より小さい（穴に落ちた）場合カメラを止める
+    //transform.y が0より小さい場合カメラを止める
     if (Y < -5)
     {
         Camera::SetPosition(XMFLOAT3(X, 3, -10));
         Camera::SetTarget(XMFLOAT3(X, 3, Z));
-    }
-    else if (Y > 5)
-    {
-        Camera::SetPosition(XMFLOAT3(X, 6, -10));
-        Camera::SetTarget(XMFLOAT3(X, 6, Z));
     }
 }

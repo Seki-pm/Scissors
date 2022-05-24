@@ -5,7 +5,7 @@
 Stage1Scene::Stage1Scene(GameObject* parent)
     : GameObject(parent, "Stage1Scene"),
     BackImage_(-1), SelectSound_(-1), DeterSound_(-1),
-    cnt(0), Gselect_(0), Pselect_(0),X(0), Y(0), Z(0),
+    cnt(0),X(0), Y(0), Z(0),Gselect_(0),Pselect_(0),
     pNumber_(nullptr), Itemflg(false)
 {
 }
@@ -102,6 +102,7 @@ void Stage1Scene::Release()
     SelectSound_ = -1;
     DeterSound_ = -1;
     Global::Repel_.clear();
+    Global::Sink_.clear();
 }
 
 //GameOver Select
@@ -148,8 +149,8 @@ void Stage1Scene::GameOverSEL()
             pGameOver->SetSelect(Gselect_);
         }
 
-        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1 ||
-            Input::IsMouseButtonDown(0) && Gselect_ == 1)
+
+        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
         {
             Audio::Play(DeterSound_);
 
@@ -178,26 +179,16 @@ void Stage1Scene::PauseSEL()
         //ボタンで選択
         if (Input::IsKeyDown(DIK_LEFT))
         {
-            Pselect_--;
+            Pselect_ = 0;
             Audio::Play(SelectSound_);
-
-            if (Pselect_ < 0)
-            {
-                Pselect_ = 0;
-            }
 
             //Pauseクラスに送る
             pPause->SetSelect(Pselect_);
         }
         else if (Input::IsKeyDown(DIK_RIGHT))
         {
-            Pselect_++;
+            Pselect_ = 1;
             Audio::Play(SelectSound_);
-
-            if (Pselect_ > 1)
-            {
-                Pselect_ = 1;
-            }
 
             //Pauseクラスに送る
             pPause->SetSelect(Pselect_);

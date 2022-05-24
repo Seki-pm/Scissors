@@ -32,6 +32,7 @@ bool Global::Unlock3 = true;
 bool Global::GetCoin  = false;
 bool Global::GetCoin_1 = false;
 bool Global::GetCoin_2 = false;
+bool Global::GetCoin_3 = false;
 bool Global::Pause  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;

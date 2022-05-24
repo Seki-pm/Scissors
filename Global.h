@@ -51,6 +51,7 @@ public:
 	static bool GetCoin;        //コインのGetしたか
 	static bool GetCoin_1;      //Stage1のコインをGet
 	static bool GetCoin_2;      //Stage2のコインをGet
+	static bool GetCoin_3;      //Stage3のコインをGet
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
