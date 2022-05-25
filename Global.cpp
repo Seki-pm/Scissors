@@ -83,6 +83,9 @@ float Global::GetTransPos_Z()
 	return Trans_Pos_Z;
 }
 
+
+
+
 void Global::SetCameraStartX(float start)
 {
 	Camera_StartX = start;

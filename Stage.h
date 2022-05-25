@@ -3,6 +3,9 @@
 #include "Global.h"
 #include "PolygonCollider.h"
 #include "Scissors.h"
+#include "Sign.h"
+#include "Engine/Model.h"
+#include "Engine/Image.h"
 #include <vector>
 
 using namespace std;
@@ -10,7 +13,10 @@ using namespace std;
 //ハサミの刃を管理するクラス
 class Stage : public GameObject
 {
+
     int StageModel_;
+    int BackImage_;
+
     Global gl;
 
     //コライダー（凸多角形を複数個組み合わせる）
@@ -35,6 +41,9 @@ public:
 
     //更新
     void Update() override;
+
+    //読み込み
+    void Load(const int st);
 
     //描画
     void Draw() override;

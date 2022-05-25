@@ -1,9 +1,8 @@
 ﻿#include "Stage.h"
-#include "Engine/Model.h"
 
 //コンストラクタ
 Stage::Stage(GameObject* parent)
-    :GameObject(parent, "Stage"),StageModel_(-1)
+    :GameObject(parent, "Stage"),StageModel_(-1), BackImage_(-1)
 {
 }
 
@@ -31,6 +30,29 @@ void Stage::Initialize()
 //更新
 void Stage::Update()
 {
+}
+
+//読み込み
+void Stage::Load(const int st)
+{
+    switch (st)
+    {
+    case 0: StageModel_ = Model::Load("SuccessModel/stage1.fbx");
+            assert(StageModel_ >= 0);
+            BackImage_ = Image::Load("Image/Stage1_Back.png");
+            assert(BackImage_ >= 0);
+            Global::ItemModelPos = XMFLOAT3(47, 9, 0);
+            //看板
+            Instantiate<Sign>(this);
+            break;
+
+    case 1: StageModel_ = Model::Load("SuccessModel/stage2.fbx");
+            BackImage_ = Image::Load("Image/Stage2_Back.png");
+            assert(BackImage_ >= 0);
+            Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
+            break;
+    }
+
 }
 
 //描画
@@ -106,7 +128,7 @@ void Stage::Stage1()
     float goalX  = 55;
     float goalY  = 4;
 
-    StageModel_ = Model::Load("SuccessModel/stage1.fbx");
+    //StageModel_ = Model::Load("SuccessModel/stage1.fbx");
 
 
     pc1.AddPoint(-5, 7);
@@ -200,8 +222,6 @@ void Stage::Stage2()
     float goalX = 125;
     float goalY = 0.36f;
 
-    StageModel_ = Model::Load("SuccessModel/stage2.fbx");
-    assert(StageModel_ >= 0);
 
 
     //左の壁
@@ -354,10 +374,10 @@ void Stage::Stage2()
     colliders_.push_back(pc21);
 
     //登り床1
-    pc22.AddPoint(101,  2);
-    pc22.AddPoint(103.4f,  2);
-    pc22.AddPoint(103.4f, 1.4f);
-    pc22.AddPoint(101, 1.4f);
+    pc22.AddPoint(103.35f,  4);
+    pc22.AddPoint(106.34f,  4);
+    pc22.AddPoint(106.34f, 3.5f);
+    pc22.AddPoint(103.35f, 3.5f);
     colliders_.push_back(pc22);
 
     //登り床2
@@ -429,51 +449,53 @@ void Stage::Stage3()
 {
     float startX = 2;
     float startY = 0;
-    float goalX = 100;
+    float goalX = 3;
     float goalY = 0.f;
 
     StageModel_ = Model::Load("SuccessModel/stage3.fbx");
     assert(StageModel_ >= 0);
 
     //最初の左の壁
-    pc1.AddPoint(-6,10);
-    pc1.AddPoint(-1,10);
-    pc1.AddPoint(-1,-5);
-    pc1.AddPoint(-6,-5);
+    pc1.AddPoint(-9,22);
+    pc1.AddPoint(-4,22);
+    pc1.AddPoint(-4, 0);
+    pc1.AddPoint(-9, 0);
     colliders_.push_back(pc1);
 
     //最初の地面
-    pc2.AddPoint(-5,  0);
-    pc2.AddPoint(10, 0);
-    pc2.AddPoint(10, -5);
-    pc2.AddPoint(-5, -5);
+    pc2.AddPoint(-9,  0);
+    pc2.AddPoint(20,  0);
+    pc2.AddPoint(20, -7);
+    pc2.AddPoint(-9, -7);
     colliders_.push_back(pc2);
 
-    pc3.AddPoint(9, 9);
-    pc3.AddPoint(10,9);
-    pc3.AddPoint(10,3);
-    pc3.AddPoint(9 ,3);
+    //登り壁(左)
+    pc3.AddPoint(17,19);
+    pc3.AddPoint(19,19);
+    pc3.AddPoint(19, 4);
+    pc3.AddPoint(17, 4);
     colliders_.push_back(pc3);
-/*
-    pc4.AddPoint(, );
-    pc4.AddPoint(, );
-    pc4.AddPoint(, );
-    pc4.AddPoint(, );
+
+    //登り壁(右)
+    pc4.AddPoint(23, 19);
+    pc4.AddPoint(25, 19);
+    pc4.AddPoint(25,  5);
+    pc4.AddPoint(23,  5);
     colliders_.push_back(pc4);
-
-    pc5.AddPoint(, );
-    pc5.AddPoint(, );
-    pc5.AddPoint(, );
-    pc5.AddPoint(, );
+ 
+    pc5.AddPoint(25,19);
+    pc5.AddPoint(28,19);
+    pc5.AddPoint(28,15);
+    pc5.AddPoint(25,15);
     colliders_.push_back(pc5);
-
-    pc6.AddPoint(, );
-    pc6.AddPoint(, );
-    pc6.AddPoint(, );
-    pc6.AddPoint(, );
+    
+    pc6.AddPoint(28,19);
+    pc6.AddPoint(30,19);
+    pc6.AddPoint(30,15);
+    pc6.AddPoint(28,15);
     pc6.AddRepel(6);
     colliders_.push_back(pc6);
-
+    /*
     pc7.AddPoint(, );
     pc7.AddPoint(, );
     pc7.AddPoint(, );

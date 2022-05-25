@@ -11,7 +11,8 @@ enum SCENE_ID
 	SCENE_ID_SELECT = 1,
 	SCENE_ID_STAGE1 = 2,
 	SCENE_ID_STAGE2 = 3,
-	SCENE_ID_STAGE3 = 4
+	SCENE_ID_STAGE3 = 4,
+	SCENE_ID_STAGE = 5
 };
 
 //-----------------------------------------------------------

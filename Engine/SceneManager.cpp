@@ -2,6 +2,7 @@
 
 #include "../TitleScene.h"
 #include "../StageSelectScene.h"
+#include "../StageScene.h"
 #include "../Stage1Scene.h"
 #include "../Stage2Scene.h"
 #include "../Stage3Scene.h"
@@ -48,7 +49,7 @@ void SceneManager::Update()
 		case SCENE_ID_STAGE1: Instantiate<Stage1Scene>(this); break;
 		case SCENE_ID_STAGE2: Instantiate<Stage2Scene>(this); break;
 		case SCENE_ID_STAGE3: Instantiate<Stage3Scene>(this); break;
-
+		case SCENE_ID_STAGE: Instantiate<StageScene>(this); break;
 		}
 		//Audio::Initialize();
 		currentSceneID_ = nextSceneID_;

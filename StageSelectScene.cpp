@@ -143,7 +143,7 @@ void StageSelectScene::Update()
 			Audio::Play(DeterSound_); //○
 
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			pSceneManager->ChangeScene(SCENE_ID_STAGE1);
+			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
 		//1かつSTAGE2がアンロックされているならSTAGE2へ
 		else if (Global::Select == 1 && Global::Unlock2)
@@ -151,7 +151,7 @@ void StageSelectScene::Update()
 			Audio::Play(DeterSound_); //○
 
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			pSceneManager->ChangeScene(SCENE_ID_STAGE2);
+			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
 		//1かつSTAGE2がアンロックされていないとき
 		else if (Global::Select == 1 && !Global::Unlock2)

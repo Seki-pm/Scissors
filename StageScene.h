@@ -7,25 +7,29 @@
 #include "Engine/Audio.h"
 #include "GameOver.h"
 #include "Global.h"
-#include "GoalStaging.h"
 #include "HP.h"
-#include "ItemImage.h"
 #include "ItemModel.h"
+#include "ItemImage.h"
 #include "Pause.h"
 #include "Scissors.h"
 #include "Stage.h"
+#include "GoalStaging.h"
+#include "Sign.h"
 
 
-//STAGE2シーンを管理するクラス
-class Stage2Scene : public GameObject
+//■■シーンを管理するクラス
+class StageScene : public GameObject
 {
+	Stage* pStage_;
+	Global global;
 
-	float X, Y, Z;  //受け取る各座標系
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-	int BackImage_; //背景
+	int BackImage_;
+
+	float Pos_X, Pos_Y, Pos_Z;
 
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
@@ -33,7 +37,7 @@ class Stage2Scene : public GameObject
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	Stage2Scene(GameObject* parent);
+	StageScene(GameObject* parent);
 
 	//初期化
 	void Initialize() override;
@@ -55,5 +59,4 @@ public:
 
 	//カメラ移動
 	void CameraMove(float start, float goal);
-
 };
