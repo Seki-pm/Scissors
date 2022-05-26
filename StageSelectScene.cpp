@@ -7,16 +7,16 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
 	ComingSoonImage_(-1),Drawflg(true)
 {
-	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
+	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
 	}
 
-	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
+	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
 		LevelHandle_[i] = -1;
 	}
 
-	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
+	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
 		StageLockHandle_[i] = -1;
 	}
@@ -138,7 +138,7 @@ void StageSelectScene::Update()
 	{
 
 		//0ならSTAGE1へ
-		if (Global::Select == 0)
+		if (Global::SelectStage == 1)
 		{
 			Audio::Play(DeterSound_); //○
 
@@ -146,7 +146,7 @@ void StageSelectScene::Update()
 			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
 		//1かつSTAGE2がアンロックされているならSTAGE2へ
-		else if (Global::Select == 1 && Global::Unlock2)
+		else if (Global::SelectStage == 2 && Global::Unlock2)
 		{
 			Audio::Play(DeterSound_); //○
 
@@ -154,21 +154,19 @@ void StageSelectScene::Update()
 			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
 		//1かつSTAGE2がアンロックされていないとき
-		else if (Global::Select == 1 && !Global::Unlock2)
+		else if (Global::SelectStage == 2 && !Global::Unlock2)
 		{
 			Audio::Play(LockSound_); //×
 		}
 
 		//2をクリアしてるなら
-		else if (Global::Select == 2 && Global::Unlock3)
+		else if (Global::SelectStage == 3 && Global::Unlock3)
 		{
 			Audio::Play(DeterSound_); //○
 
-			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			pSceneManager->ChangeScene(SCENE_ID_STAGE3);
 		}
 		//2をクリアしていないなら
-		else if (Global::Select == 2 && !Global::Unlock3)
+		else if (Global::SelectStage == 3 && !Global::Unlock3)
 		{
 			Audio::Play(LockSound_); //×
 		}
@@ -188,14 +186,14 @@ void StageSelectScene::Select()
 	{
 		Audio::Play(SelectSound_);
 
-		switch (Global::Select)
+		switch (Global::SelectStage)
 		{
-		case 0:
-			Global::Select = 1; break;
 		case 1:
-			Global::Select = 2; break;
+			Global::SelectStage = 2; break;
 		case 2:
-			Global::Select = 0; break;
+			Global::SelectStage = 3; break;
+		case 3:
+			Global::SelectStage = 1; break;
 		}
 	}
 
@@ -203,27 +201,27 @@ void StageSelectScene::Select()
 	{
 		Audio::Play(SelectSound_);
 
-		switch (Global::Select)
+		switch (Global::SelectStage)
 		{
-		case 0:
-			Global::Select = 2; break;
-		case 1:
-			Global::Select = 0; break;
-		case 2:
-			Global::Select = 1; break;
+		case STAGE_NUMBER_1:
+			Global::SelectStage = 3; break;
+		case STAGE_NUMBER_2:
+			Global::SelectStage = 1; break;
+		case STAGE_NUMBER_3:
+			Global::SelectStage = 2; break;
 		}
 	}
 
 	//フレームの位置変更
-	switch (Global::Select)
+	switch (Global::SelectStage)
 	{
-	case 0:
+	case STAGE_NUMBER_1:
 		FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 		break;
-	case 1:
+	case STAGE_NUMBER_2:
 		FrameTransform.position_ = XMFLOAT3(0, 0.2f, 0);
 		break;
-	case 2:
+	case STAGE_NUMBER_3:
 		FrameTransform.position_ = XMFLOAT3(0.6f, 0.2f, 0);
 		break;
 	}
@@ -239,19 +237,19 @@ void StageSelectScene::MouseSelect()
 	if ( 132 < mousePos.x && mousePos.x < 380 && 
 		 228 < mousePos.y && mousePos.y < 346)
 	{
-		Global::Select = 0;
+		Global::SelectStage = 1;
 	}
 	//Stage2上
 	else if (513 < mousePos.x && mousePos.x < 765 &&
 		     226 < mousePos.y && mousePos.y < 351)
 	{
-		Global::Select = 1;
+		Global::SelectStage = 2;
 	}
 	//Stage3上
 	else if (897 < mousePos.x && mousePos.x < 1148 &&
 		     224 < mousePos.y && mousePos.y < 347)
 	{
-		Global::Select = 2;
+		Global::SelectStage = 3;
 	}
 }
 
@@ -280,16 +278,16 @@ void StageSelectScene::Draw()
 //開放
 void StageSelectScene::Release()
 {
-	for (int i = 1; i < STAGE_NUMBER_MAX; i++) {
+	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
 	}
 
-	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
+	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
 		LevelHandle_[i] = -1;
 	}
 
-	for (int i = STAGE_LOCK_MIN; i < STAGE_LOCK_MAX; i++)
+	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
 		StageLockHandle_[i] = -1;
 	}
@@ -340,19 +338,17 @@ void StageSelectScene::GetCoin()
 			Global::ItemImagePos = XMFLOAT3(-0.4f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
-
 		//Stage2のコイン
-		if (Global::GetCoin_2)
+		else if (Global::GetCoin_2)
 		{
 			Global::ItemImagePos = XMFLOAT3(0.2f, 0, 0); //表示位置
-			Instantiate<ItemImage>(this);           //表示
+			Instantiate<ItemImage>(this);          //表示
 		}
-
 		//Stage3のコイン
-		if (Global::GetCoin_3)
+		else if (Global::GetCoin_3)
 		{
 			Global::ItemImagePos = XMFLOAT3(0.8f, 0, 0); //表示位置
-			Instantiate<ItemImage>(this);           //表示
+			Instantiate<ItemImage>(this);          //表示
 		}
 
 		Drawflg = false;

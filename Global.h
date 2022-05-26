@@ -25,7 +25,7 @@ public:
 	static XMFLOAT3 InitRot;
 
 	//StageSelectSceneの選択されている番号
-	static int Select;
+	static int SelectStage;
 
 	//コインの表示位置
 	static XMFLOAT3 ItemModelPos;  //モデル
@@ -56,8 +56,8 @@ public:
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
 	static bool RepelFlg;       //弾かれる時用
-	static bool SinkFlg;       //沈む時用
-	static bool IsJump;
+	static bool SinkFlg;        //沈む時用
+	static bool IsJump;         //ジャンプができるか否か
 
 	//Scene管理用
 	static int SCENE_ID;

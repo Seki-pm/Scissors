@@ -18,16 +18,16 @@ XMFLOAT3 Global::ItemImagePos_Stage = XMFLOAT3(0.9f, 0.8f, 0.f);
 XMFLOAT3 Global::ItemImageSca_Stage = XMFLOAT3(0.5f, 0.5f, 0.5f);
 XMFLOAT3 Global::ItemImageSca_Select = XMFLOAT3(0.4f, 0.4f, 0.4f);
 
-XMFLOAT3 Global::InitPos = XMFLOAT3(0, 2.0f, 0);
+XMFLOAT3 Global::InitPos = XMFLOAT3(0, 1.0f, 0);
 XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
-int Global::Select = 0;
+int Global::SelectStage = 1;
 
 vector<int>Global::Repel_;
 vector<int>Global::Sink_;
 
-bool Global::Unlock2 = true;
-bool Global::Unlock3 = true;
+bool Global::Unlock2 = false;
+bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
 bool Global::GetCoin_1 = false;

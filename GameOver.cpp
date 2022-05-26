@@ -20,12 +20,12 @@ GameOver::~GameOver()
 void GameOver::Initialize()
 {
     //Žæ“¾‚µ‚½ƒRƒCƒ“‚ð–³‚­‚·
-    switch (Global::SCENE_ID)
+    switch (Global::SelectStage)
     {
-    case SCENE_ID_STAGE1:
+    case STAGE_NUMBER_1:
         Global::GetCoin_1 = false;
         break;
-    case SCENE_ID_STAGE2:
+    case STAGE_NUMBER_2:
         Global::GetCoin_2 = false;
         break;
     }

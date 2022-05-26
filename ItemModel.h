@@ -5,6 +5,7 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Audio.h"
+#include "StageSelectScene.h"
 #include "Global.h"
 
 

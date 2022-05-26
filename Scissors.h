@@ -10,6 +10,7 @@
 #include "HP.h"
 #include "GameOver.h"
 #include "Stage.h"
+#include "StageSelectScene.h"
 #include <vector>
 
 

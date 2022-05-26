@@ -537,9 +537,9 @@ void Scissors::InitSound()
 //âπÇó¨Ç∑
 void Scissors::Landing()
 {
-    switch(Global::SCENE_ID)
+    switch(Global::SelectStage)
     {
-    case SCENE_ID_STAGE1:
+    case STAGE_NUMBER_1:
         //ëêÇÃínñ 
         if (jumpDirection_.x == 0 && transform_.position_.y <= 7)
         {
@@ -557,7 +557,7 @@ void Scissors::Landing()
         }
         break;
 
-    case SCENE_ID_STAGE2:
+    case STAGE_NUMBER_2:
         //çªóòÇÃínñ 
         if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
             || transform_.position_.x > 94.5f)
@@ -569,7 +569,8 @@ void Scissors::Landing()
         {
             Audio::Play(Land_Stone);
         }
-
+        break;
+    case STAGE_NUMBER_3:
         break;
     }
 }

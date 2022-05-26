@@ -13,11 +13,12 @@
 #include "Pause.h"
 #include "Scissors.h"
 #include "Stage.h"
+#include "StageSelectScene.h"
 #include "GoalStaging.h"
 #include "Sign.h"
 
 
-//■■シーンを管理するクラス
+//ステージシーンを管理するクラス
 class StageScene : public GameObject
 {
 	Stage* pStage_;
@@ -29,6 +30,7 @@ class StageScene : public GameObject
 
 	int BackImage_;
 
+	//Scissorsの位置を取得
 	float Pos_X, Pos_Y, Pos_Z;
 
 	int SelectSound_;      //選択音
@@ -59,4 +61,7 @@ public:
 
 	//カメラ移動
 	void CameraMove(float start, float goal);
+
+	//次のステージをアンロック
+	void NextStageUnlock(int SelectStage);
 };

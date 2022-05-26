@@ -11,7 +11,6 @@
 //ステージ番号
 enum STAGE_NUMBER
 {
-	STAGE_NUMBER_MIN = 0,
 	STAGE_NUMBER_1 = 1,
 	STAGE_NUMBER_2 = 2,
 	STAGE_NUMBER_3 = 3,
@@ -21,7 +20,6 @@ enum STAGE_NUMBER
 //ステージロック
 enum STAGE_LOCK
 {
-	STAGE_LOCK_MIN = 1,
 	STAGE_LOCK_2 = 2,
 	STAGE_LOCK_3 = 3,
 	STAGE_LOCK_MAX
@@ -30,7 +28,7 @@ enum STAGE_LOCK
 //ステージレベル
 enum STAGE_LEVEL
 {
-	STAGE_LEVEL_EASY = 0,
+	STAGE_LEVEL_EASY = 1,
 	STAGE_LEVEL_NORMAL,
 	STAGE_LEVEL_HARD,
 	STAGE_LEVEL_MAX
@@ -92,4 +90,5 @@ public:
 
 	//コインの取得状況
 	void GetCoin();
+
 };

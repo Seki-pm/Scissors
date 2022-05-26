@@ -6,9 +6,10 @@
 #include "Sign.h"
 #include "Engine/Model.h"
 #include "Engine/Image.h"
+#include "StageSelectScene.h"
 #include <vector>
-
 using namespace std;
+
 
 //ハサミの刃を管理するクラス
 class Stage : public GameObject
@@ -66,6 +67,10 @@ public:
     void Stage1();
     void Stage2();
     void Stage3();
+
+    void Stage1Load();
+    void Stage2Load();
+    void Stage3Load();
 
     //弾く時の管理
     XMFLOAT3 Repel();

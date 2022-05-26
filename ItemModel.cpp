@@ -34,9 +34,9 @@ void ItemModel::Initialize()
 //更新
 void ItemModel::Update()
 {
-
     if (Global::GetCoin)
     {
+        //rotateの回転数に満たない間Animation
         if (transform_.rotate_.y < rotate * 180)
         {
             Animation();
@@ -70,15 +70,15 @@ void ItemModel::OnCollision(GameObject* pTarget)
     if (pTarget->GetObjectName() == "Scissors")
     {
         //どこのコインを取得したか
-        switch (Global::SCENE_ID)
+        switch (Global::SelectStage)
         {
-        case SCENE_ID_STAGE1:
+        case STAGE_NUMBER_1:
             Global::GetCoin_1 = true;
             break;
-        case SCENE_ID_STAGE2:
+        case STAGE_NUMBER_2:
             Global::GetCoin_2 = true;
             break;
-        case SCENE_ID_STAGE3:
+        case STAGE_NUMBER_3:
             Global::GetCoin_3 = true;
             break;
         }

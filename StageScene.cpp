@@ -3,23 +3,24 @@
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),pStage_(nullptr),
-    Pos_X(0),Pos_Y(0),Pos_Z(0)
+    Pos_X(0),Pos_Y(0),Pos_Z(0), Gselect_(-1), Pselect_(-1),
+    BackImage_(-1), SelectSound_(-1), DeterSound_(-1)
 {
 }
 
 //初期化
 void StageScene::Initialize()
 {
-    Global::HP = Global::MAXHP;
-    Global::ItemImagePos = Global::ItemImagePos_Stage;
-    Global::ItemImageSca = Global::ItemImageSca_Stage;
-    Global::GameOver = false;
-    Global::IsGameOver = false;
-    Global::GetCoin = false;
+    Global::HP = Global::MAXHP;                             //最大体力を設定
+    Global::ItemImagePos = Global::ItemImagePos_Stage;      //コインの位置をステージ用に設定
+    Global::ItemImageSca = Global::ItemImageSca_Stage;      //コインの大きさをステージ用に設定
+    Global::GameOver = false;                               //GameOverではない
+    Global::IsGameOver = false;                             //GameOverではない
+    Global::GetCoin = false;                                //コインを取得していない
 
     //ステージ
     pStage_ = Instantiate<Stage>(this); 
-    pStage_->Load(Global::Select);
+    pStage_->Load(Global::SelectStage);
 
     //ハサミ本体
     Instantiate<Scissors>(this);
@@ -27,14 +28,14 @@ void StageScene::Initialize()
     //ハサミのHP
     Instantiate<HP>(this);
 
-    //ゴール演出
-    Instantiate<GoalStaging>(this);
-
     //アイテムの表示
     Instantiate<ItemModel>(this);
 
     //コインのゲット判定
     Instantiate<ItemImage>(this);
+
+    //ゴール演出
+    Instantiate<GoalStaging>(this);
 }
 
 //更新
@@ -43,7 +44,7 @@ void StageScene::Update()
     //trueの時アンロックをし、ステージ選択へ遷移
     if (Global::Timer)
     {
-        //Global::Unlock3 = true;
+        NextStageUnlock(Global::SelectStage);
         Global::Timer = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);
@@ -81,6 +82,7 @@ void StageScene::Release()
     Global::Sink_.clear();
 }
 
+//GameOver
 void StageScene::GameOverSEL()
 {
     GameOver* pGameOver = (GameOver*)FindObject("GameOver");
@@ -134,6 +136,7 @@ void StageScene::GameOverSEL()
     }
 }
 
+//Pause
 void StageScene::PauseSEL()
 {
     Pause* pPause = (Pause*)FindObject("Pause");
@@ -223,5 +226,21 @@ void StageScene::CameraMove(float start, float goal)
     {
         Camera::SetPosition(XMFLOAT3(Pos_X, 3, -10));
         Camera::SetTarget(XMFLOAT3(Pos_X, 3, Pos_Z));
+    }
+}
+
+//次のステージをアンロック
+void StageScene::NextStageUnlock( int SelectStage )
+{
+    switch (SelectStage)
+    {
+    case STAGE_NUMBER_1:
+        Global::Unlock2 = true;
+        break;
+    case STAGE_NUMBER_2:
+        Global::Unlock3 = true;
+        break;
+    case STAGE_NUMBER_3:
+        break;
     }
 }

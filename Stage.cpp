@@ -18,11 +18,11 @@ void Stage::Initialize()
     transform_.rotate_.y = 180;
 
     //表示するステージ
-    switch (Global::Select)
+    switch (Global::SelectStage)
     {
-    case 0: Stage1(); break;
-    case 1: Stage2(); break;
-    case 2: Stage3(); break;
+    case STAGE_NUMBER_1: Stage1(); break;
+    case STAGE_NUMBER_2: Stage2(); break;
+    case STAGE_NUMBER_3: Stage3(); break;
     }
 
 }
@@ -37,20 +37,8 @@ void Stage::Load(const int st)
 {
     switch (st)
     {
-    case 0: StageModel_ = Model::Load("SuccessModel/stage1.fbx");
-            assert(StageModel_ >= 0);
-            BackImage_ = Image::Load("Image/Stage1_Back.png");
-            assert(BackImage_ >= 0);
-            Global::ItemModelPos = XMFLOAT3(47, 9, 0);
-            //看板
-            Instantiate<Sign>(this);
-            break;
-
-    case 1: StageModel_ = Model::Load("SuccessModel/stage2.fbx");
-            BackImage_ = Image::Load("Image/Stage2_Back.png");
-            assert(BackImage_ >= 0);
-            Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
-            break;
+    case STAGE_NUMBER_1: Stage1Load();break;
+    case STAGE_NUMBER_2: Stage2Load(); break;
     }
 
 }
@@ -65,6 +53,7 @@ void Stage::Draw()
 //開放
 void Stage::Release()
 {
+    BackImage_ = -1;
     StageModel_ = -1;
 }
 
@@ -120,16 +109,14 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
     }
 }
 
-//Stage1の設定
+//Stage1のコライダ設定
 void Stage::Stage1()
 {
+    //スタートとゴールを設定
     float startX = 2;
     float startY = 0;
     float goalX  = 55;
     float goalY  = 4;
-
-    //StageModel_ = Model::Load("SuccessModel/stage1.fbx");
-
 
     pc1.AddPoint(-5, 7);
     pc1.AddPoint(-4, 7);
@@ -207,21 +194,35 @@ void Stage::Stage1()
     colliders_.push_back(pc12);
 
 
-    //スタートとゴールの設定
+    //スタートとゴールのカメラ位置の設定
     gl.SetCameraStartX(startX);
     gl.SetCameraStartY(startY);
     gl.SetCameraGoalX(goalX);
     gl.SetCameraGoalY(goalY);
 }
 
-//Stage2の設定
+//Stage1の読み込み
+void Stage::Stage1Load()
+{
+    //StageModel BackImage を読み込み
+    StageModel_ = Model::Load("SuccessModel/stage1.fbx");
+    assert(StageModel_ >= 0);
+    BackImage_ = Image::Load("Image/Stage1_Back.png");
+    assert(BackImage_ >= 0);
+
+    //コインの位置
+    Global::ItemModelPos = XMFLOAT3(51, 10, 0);
+    //看板
+    Instantiate<Sign>(this);
+}
+
+//Stage2のコライダ設定
 void Stage::Stage2()
 {
     float startX = 2;
     float startY = 0;
     float goalX = 125;
     float goalY = 0.36f;
-
 
 
     //左の壁
@@ -444,7 +445,20 @@ void Stage::Stage2()
     gl.SetCameraGoalY(goalY);
 }
 
-//Stage3の設定
+//Stage2の読み込み
+void Stage::Stage2Load()
+{
+    //StageModel BackImage を読み込み
+    StageModel_ = Model::Load("SuccessModel/stage2.fbx");
+    assert(StageModel_ >= 0);
+    BackImage_ = Image::Load("Image/Stage2_Back.png");
+    assert(BackImage_ >= 0);
+
+    //コインの位置
+    Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
+}
+
+//Stage3のコライダ設定
 void Stage::Stage3()
 {
     float startX = 2;
@@ -598,6 +612,14 @@ void Stage::Stage3()
     gl.SetCameraStartY(startY);
     gl.SetCameraGoalX(goalX);
     gl.SetCameraGoalY(goalY);
+}
+
+//Stage3の読み込み
+void Stage::Stage3Load()
+{
+    //StageModel BackImage を読み込み
+
+    //コインの位置
 }
 
 

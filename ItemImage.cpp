@@ -3,7 +3,7 @@
 //コンストラクタ
 ItemImage::ItemImage(GameObject* parent)
     :GameObject(parent, "ItemImage"),
-    FrameHandle_(-1), CoinHandle_(-1)
+    FrameImage_(-1), CoinImage_(-1)
 {
 }
 
@@ -17,20 +17,20 @@ void ItemImage::Initialize()
 {
 
     //取得していない
-    FrameHandle_ = Image::Load("Image/GetCoinFrame.png");
-    assert(FrameHandle_);
+    FrameImage_ = Image::Load("Image/GetCoinFrame.png");
+    assert(FrameImage_);
     auto FrameTrans = Transform();
     FrameTrans.position_ = Global::ItemImagePos;
     FrameTrans.scale_ = XMFLOAT3(0.3f,0.3f,0.3f);
-    Image::SetTransform(FrameHandle_, FrameTrans);
+    Image::SetTransform(FrameImage_, FrameTrans);
 
     //取得した
-    CoinHandle_ = Image::Load("SuccessModel/Coin.png");
-    assert(CoinHandle_);
+    CoinImage_ = Image::Load("SuccessModel/Coin.png");
+    assert(CoinImage_);
     auto CoinTrans = Transform();
     CoinTrans.position_ = Global::ItemImagePos;
     CoinTrans.scale_ = Global::ItemImageSca;
-    Image::SetTransform(CoinHandle_, CoinTrans);
+    Image::SetTransform(CoinImage_, CoinTrans);
 
 }
 
@@ -46,7 +46,7 @@ void ItemImage::Draw()
     if (Global::SCENE_ID == SCENE_ID_SELECT)
     {
         //コインを表示
-        Image::Draw(CoinHandle_);
+        Image::Draw(CoinImage_);
     }
     //それ以外（ステージシーンの場合）
     else
@@ -54,12 +54,12 @@ void ItemImage::Draw()
         //コインを取得したら
         if (Global::GetCoin)
         {
-            Image::Draw(CoinHandle_); //コイン画像
+            Image::Draw(CoinImage_); //コイン画像
         }
         //コインを取得していない
         else
         {
-            Image::Draw(FrameHandle_); //フレーム画像
+            Image::Draw(FrameImage_); //フレーム画像
         }
     }
 }
@@ -67,6 +67,6 @@ void ItemImage::Draw()
 //開放
 void ItemImage::Release()
 {
-    FrameHandle_ = -1;
-    CoinHandle_ = -1;
+    FrameImage_ = -1;
+    CoinImage_ = -1;
 }

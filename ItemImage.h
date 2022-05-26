@@ -9,8 +9,8 @@
 class ItemImage : public GameObject
 {
     //画像ロード用
-    int FrameHandle_;
-    int CoinHandle_;
+    int FrameImage_;
+    int CoinImage_;
 
 public:
     //コンストラクタ

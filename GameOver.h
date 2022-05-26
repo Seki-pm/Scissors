@@ -3,6 +3,7 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
+#include "StageSelectScene.h"
 #include "Global.h"
 
 //ゲームオーバーを管理するクラス
