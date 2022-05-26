@@ -137,36 +137,16 @@ void StageSelectScene::Update()
 	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
 
-		//0ならSTAGE1へ
-		if (Global::SelectStage == 1)
+		//1ならSTAGE1へ
+		if (Global::SelectStage == STAGE_NUMBER_1 ||
+			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 || 
+			Global::SelectStage == STAGE_NUMBER_3 && Global::Unlock3)
 		{
 			Audio::Play(DeterSound_); //○
-
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
-		//1かつSTAGE2がアンロックされているならSTAGE2へ
-		else if (Global::SelectStage == 2 && Global::Unlock2)
-		{
-			Audio::Play(DeterSound_); //○
-
-			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-			pSceneManager->ChangeScene(SCENE_ID_STAGE);
-		}
-		//1かつSTAGE2がアンロックされていないとき
-		else if (Global::SelectStage == 2 && !Global::Unlock2)
-		{
-			Audio::Play(LockSound_); //×
-		}
-
-		//2をクリアしてるなら
-		else if (Global::SelectStage == 3 && Global::Unlock3)
-		{
-			Audio::Play(DeterSound_); //○
-
-		}
-		//2をクリアしていないなら
-		else if (Global::SelectStage == 3 && !Global::Unlock3)
+		else
 		{
 			Audio::Play(LockSound_); //×
 		}
@@ -188,11 +168,11 @@ void StageSelectScene::Select()
 
 		switch (Global::SelectStage)
 		{
-		case 1:
+		case STAGE_NUMBER_1:
 			Global::SelectStage = 2; break;
-		case 2:
+		case STAGE_NUMBER_2:
 			Global::SelectStage = 3; break;
-		case 3:
+		case STAGE_NUMBER_3:
 			Global::SelectStage = 1; break;
 		}
 	}
@@ -339,13 +319,13 @@ void StageSelectScene::GetCoin()
 			Instantiate<ItemImage>(this);          //表示
 		}
 		//Stage2のコイン
-		else if (Global::GetCoin_2)
+		if (Global::GetCoin_2)
 		{
 			Global::ItemImagePos = XMFLOAT3(0.2f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
 		//Stage3のコイン
-		else if (Global::GetCoin_3)
+		if (Global::GetCoin_3)
 		{
 			Global::ItemImagePos = XMFLOAT3(0.8f, 0, 0); //表示位置
 			Instantiate<ItemImage>(this);          //表示

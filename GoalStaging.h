@@ -12,7 +12,6 @@ class GoalStaging : public GameObject
     Global gl; //globalを使う
 
     int BalloonModel_;    //モデル番号
-
     int SoundHandle_;  //サウンド用
 
     //画像ロード用

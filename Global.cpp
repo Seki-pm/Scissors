@@ -12,6 +12,7 @@ float Global::Camera_GoalX = 0.f;
 float Global::Camera_GoalY = 0.f;
 
 XMFLOAT3 Global::ItemModelPos = XMFLOAT3(0, 0, 0);
+
 XMFLOAT3 Global::ItemImagePos = XMFLOAT3(0,0,0);
 XMFLOAT3 Global::ItemImageSca = XMFLOAT3(0,0,0);
 XMFLOAT3 Global::ItemImagePos_Stage = XMFLOAT3(0.9f, 0.8f, 0.f);
@@ -26,17 +27,19 @@ int Global::SelectStage = 1;
 vector<int>Global::Repel_;
 vector<int>Global::Sink_;
 
-bool Global::Unlock2 = false;
+bool Global::Unlock2 = true;
 bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
 bool Global::GetCoin_1 = false;
 bool Global::GetCoin_2 = false;
 bool Global::GetCoin_3 = false;
+
 bool Global::Pause  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;
 bool Global::Timer = false;
+
 bool Global::RepelFlg = false;
 bool Global::SinkFlg = false;
 bool Global::IsJump = true;

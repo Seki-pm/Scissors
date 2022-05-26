@@ -365,34 +365,34 @@ void Scissors::Reflection()
         }
         cnt++;
 
-        ////判定を10回行ったら強制的にはじく
-        //if (cnt >= 10)
-        //{
-        //    if (move_.x <= 0)
-        //    {
-        //        move_.x = 0.1f;
-        //    }
-        //    if (move_.y <= 0)
-        //    {
-        //        move_.y = 0.1f;
-        //    }
+        //判定を10回行ったら強制的にはじく
+        if (cnt >= 10)
+        {
+            if (move_.x <= 0)
+            {
+                move_.x = 0.1f;
+            }
+            if (move_.y <= 0)
+            {
+                move_.y = 0.1f;
+            }
 
-        //    move_.x *= -0.3f;
-        //    move_.y *= -0.3f;
-        //   
-        //}
+            move_.x *= -0.3f;
+            move_.y *= -0.3f;
+           
+        }
 
-        ////ステージ外に出た場合スタート位置に戻る
-        //if (transform_.position_.x < 0 ||
-        //    transform_.position_.y < 0 ||
-        //    cnt >= 100)
-        //{
-        //    Global gl;
-        //    transform_.position_.x = gl.GetCameraStartX();
-        //    transform_.position_.y = gl.GetCameraStartY();
-        //}
+        //ステージ外に出た場合スタート位置に戻る
+        if (transform_.position_.x < 0 ||
+            transform_.position_.y < 0 ||
+            cnt >= 100)
+        {
+            Global gl;
+            transform_.position_.x = gl.GetCameraStartX();
+            transform_.position_.y = gl.GetCameraStartY();
+        }
 
-        //Global::HP--;
+        Global::HP--;
     }
 }
 

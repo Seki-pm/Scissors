@@ -19,8 +19,9 @@ void StageScene::Initialize()
     Global::GetCoin = false;                                //コインを取得していない
 
     //ステージ
-    pStage_ = Instantiate<Stage>(this); 
+    pStage_ = Instantiate<Stage>(this);
     pStage_->Load(Global::SelectStage);
+
 
     //ハサミ本体
     Instantiate<Scissors>(this);
@@ -41,15 +42,6 @@ void StageScene::Initialize()
 //更新
 void StageScene::Update()
 {
-    //trueの時アンロックをし、ステージ選択へ遷移
-    if (Global::Timer)
-    {
-        NextStageUnlock(Global::SelectStage);
-        Global::Timer = false;
-        SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-        pSceneManager->ChangeScene(SCENE_ID_SELECT);
-    }
-
     //ハサミの位置を取得
     Pos_X = global.GetTransPos_X();
     Pos_Y = global.GetTransPos_Y();
@@ -64,12 +56,13 @@ void StageScene::Update()
     //一時停止
     PauseSEL();
 
+    //ゴール演出用
+    Timer();
 }
 
 //描画
 void StageScene::Draw()
 {
-    Image::Draw(BackImage_);
 }
 
 //開放
@@ -210,8 +203,8 @@ void StageScene::CameraMove(float start, float goal)
     //ゴール付近
     else if (Pos_X >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(global.GetCameraGoalX()-2, Pos_Y, -10));
-        Camera::SetTarget(XMFLOAT3(global.GetCameraGoalX()-2, Pos_Y, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(global.GetCameraGoalX(), Pos_Y, -10));
+        Camera::SetTarget(XMFLOAT3(global.GetCameraGoalX(), Pos_Y, Pos_Z));
     }
     //そうでない場合Playerに追従する
     else
@@ -242,5 +235,18 @@ void StageScene::NextStageUnlock( int SelectStage )
         break;
     case STAGE_NUMBER_3:
         break;
+    }
+}
+
+//ゴール演出用
+void StageScene::Timer()
+{
+    //trueの時アンロックをし、ステージ選択へ遷移
+    if (Global::Timer)
+    {
+        NextStageUnlock(Global::SelectStage);
+        Global::Timer = false;
+        SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+        pSceneManager->ChangeScene(SCENE_ID_SELECT);
     }
 }

@@ -37,7 +37,7 @@ void Stage::Load(const int st)
 {
     switch (st)
     {
-    case STAGE_NUMBER_1: Stage1Load();break;
+    case STAGE_NUMBER_1: Stage1Load(); break;
     case STAGE_NUMBER_2: Stage2Load(); break;
     }
 
@@ -46,6 +46,7 @@ void Stage::Load(const int st)
 //描画
 void Stage::Draw()
 {
+    Image::Draw(BackImage_);
     Model::SetTransform(StageModel_, transform_);
     Model::Draw(StageModel_);
 }
@@ -207,6 +208,7 @@ void Stage::Stage1Load()
     //StageModel BackImage を読み込み
     StageModel_ = Model::Load("SuccessModel/stage1.fbx");
     assert(StageModel_ >= 0);
+
     BackImage_ = Image::Load("Image/Stage1_Back.png");
     assert(BackImage_ >= 0);
 
@@ -375,32 +377,32 @@ void Stage::Stage2()
     colliders_.push_back(pc21);
 
     //登り床1
-    pc22.AddPoint(103.35f,  4);
-    pc22.AddPoint(106.34f,  4);
-    pc22.AddPoint(106.34f, 3.5f);
-    pc22.AddPoint(103.35f, 3.5f);
+    pc22.AddPoint(103, 3.5f);
+    pc22.AddPoint(107, 3.5f);
+    pc22.AddPoint(107, 3);
+    pc22.AddPoint(103, 3);
     colliders_.push_back(pc22);
 
     //登り床2
-    pc23.AddPoint(105.55f, 3);
-    pc23.AddPoint(107.96f, 3);
-    pc23.AddPoint(107.96f, 2.42f);
-    pc23.AddPoint(105.55f, 2.42f);
+    pc23.AddPoint(103, 6.5f);
+    pc23.AddPoint(107, 6.5f);
+    pc23.AddPoint(107, 6);
+    pc23.AddPoint(103, 6);
     colliders_.push_back(pc23);
 
     //登り床3
-    pc24.AddPoint(103.46f, 6.09f);
-    pc24.AddPoint(105.81f, 5.67f);
-    pc24.AddPoint(105.7f,  5.07f);
-    pc24.AddPoint(103.34f, 5.51f);
-    colliders_.push_back(pc24);
+    //pc24.AddPoint(102.5f, 8);
+    //pc24.AddPoint(106.5f, 8);
+    //pc24.AddPoint(106.5f, 7.5f);
+    //pc24.AddPoint(102.5f, 7.5f);
+    //colliders_.push_back(pc24);
 
-    //登り床4
-    pc25.AddPoint(105.78f, 10.39f);
-    pc25.AddPoint(106.41f, 10.39f);
-    pc25.AddPoint(106.42f, 8.f);
-    pc25.AddPoint(105.78f, 8.f);
-    colliders_.push_back(pc25);
+    ////登り床4
+    //pc25.AddPoint(105.78f, 10.39f);
+    //pc25.AddPoint(106.41f, 10.39f);
+    //pc25.AddPoint(106.42f, 8.f);
+    //pc25.AddPoint(105.78f, 8.f);
+    //colliders_.push_back(pc25);
 
     //壁1
     pc26.AddPoint(109.38f, 8.1f);
@@ -618,8 +620,13 @@ void Stage::Stage3()
 void Stage::Stage3Load()
 {
     //StageModel BackImage を読み込み
+    StageModel_ = Model::Load("SuccessModel/stage3.fbx");
+    assert(StageModel_ >= 0);
+    //BackImage_ = Image::Load("Image/Stage3_Back.png");
+    //assert(BackImage_ >= 0);
 
     //コインの位置
+    //Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
 }
 
 
