@@ -35,7 +35,7 @@ class Scissors : public GameObject
     float JumpPower;
 
     //’e‚©‚ê‚½Žž—p
-    int Key = 0;
+    int Key;
     float TransPos_Y;
     float powerY;
     float powerX;

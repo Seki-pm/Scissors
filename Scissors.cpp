@@ -6,7 +6,8 @@ Scissors::Scissors(GameObject* parent)
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
-    Calc(false), FallFlg(true),SoundFlg(false),IsRepel(false), JumpPower(0.1f)
+    Calc(false), FallFlg(true),SoundFlg(false),IsRepel(false), JumpPower(0.1f),
+    Key(0)
 {
 }
 
@@ -81,7 +82,7 @@ void Scissors::Update()
     }
 
     //落下したら
-    if (transform_.position_.y <= -5 && FallFlg)
+    if (transform_.position_.y <= -8 && FallFlg)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
@@ -89,8 +90,8 @@ void Scissors::Update()
         FallFlg = false;
     }
 
+    //床ギミック
     RepelMove();
-
     SinkMove();
 }
 
@@ -191,11 +192,13 @@ void Scissors::Move()
     {
         if (Input::IsKey(DIK_D))
         {
+            Key = 1;
             transform_.position_.x += 0.01f;
             move_.x += 0.01f;
         }
         if (Input::IsKey(DIK_A))
         {
+            Key = -1;
             transform_.position_.x -= 0.01f;
             move_.x -= 0.01f;
         }
@@ -228,9 +231,9 @@ void Scissors::JumpAndFall()
     //どっちか刺さってたら
     else
     {
-        //ジャンプ方向を入れる
-        if (move_.x < 0) Key = -1;  //右に動いている時は左へ
-        else             Key = 1;  //左に動いている時は右へ　弾く
+        //ジャンプ方向を入れる(はじく処理の方向)
+        if (move_.x < 0) Key = 1;        //右に動いている時は左へ
+        else if(move_.x > 0)  Key = -1;  //左に動いている時は右へ　弾く
 
         //動きを止める
         move_.x = 0;
@@ -379,7 +382,7 @@ void Scissors::Reflection()
 
             move_.x *= -0.3f;
             move_.y *= -0.3f;
-           
+
         }
 
         //ステージ外に出た場合スタート位置に戻る
@@ -468,8 +471,19 @@ void Scissors::RepelMove()
             pBlade_L->isPrick = false;
             pBlade_R->isPrick = false;
 
-            transform_.position_.x -= powerX * Key;       //Keyの方向へ弾く
-            transform_.position_.y += powerY;             //powerY分上へ
+            if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
+            {
+                transform_.position_.x += powerX * jumpDirection_.x;       //弾く
+                transform_.position_.y -= powerY;             //powerY分下へ
+            }
+            else
+            {
+                transform_.position_.x += powerX * Key;       //Keyの方向へ弾く
+                transform_.position_.y += powerY;             //powerY分上へ
+            }
+
+
+
         }
     }
     else
@@ -494,7 +508,7 @@ void Scissors::SinkMove()
         {
             //MoveYの値分沈んでいく
             transform_.position_.y += MoveY;
-            JumpPower = 0.05f;
+            JumpPower = 0.001f;
         }
     }
     else
