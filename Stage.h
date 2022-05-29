@@ -25,12 +25,14 @@ class Stage : public GameObject
 
     // 一つ一つの地形の面の頂点を入れる
     PolygonCollider pc1, pc2, pc3, pc4, pc5, pc6,
-        pc7, pc8, pc9, pc10, pc11, pc12,
-        pc13, pc14, pc15, pc16, pc17, pc18,
-        pc19, pc20, pc21, pc22, pc23, pc24,
-        pc25, pc26, pc27, pc28, pc29, pc30,
-        pc31, pc32, pc33, pc34, pc35, pc36,
-        pc37, pc38, pc39, pc40, pc41, pc42;
+                    pc7, pc8, pc9, pc10, pc11, pc12,
+                    pc13, pc14, pc15, pc16, pc17, pc18,
+                    pc19, pc20, pc21, pc22, pc23, pc24,
+                    pc25, pc26, pc27, pc28, pc29, pc30,
+                    pc31, pc32, pc33, pc34, pc35, pc36,
+                    pc37, pc38, pc39, pc40, pc41, pc42,
+                    pc43, pc44, pc45, pc46, pc47, pc48,
+                    pc49, pc50;
 
 public:
     //コンストラクタ
