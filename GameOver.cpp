@@ -30,6 +30,8 @@ void GameOver::Initialize()
         break;
     }
 
+    Global::GetCoin = false;
+
     //画像データのロード
     //ゲームオーバー
     GameOverBackImage_ = Image::Load("Image/BlackBack.png");

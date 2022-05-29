@@ -3,9 +3,6 @@
 #include "../TitleScene.h"
 #include "../StageSelectScene.h"
 #include "../StageScene.h"
-#include "../Stage1Scene.h"
-#include "../Stage2Scene.h"
-#include "../Stage3Scene.h"
 
 #include "Model.h"
 #include "Image.h"

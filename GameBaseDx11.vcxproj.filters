@@ -97,12 +97,6 @@
     </ClCompile>
     <ClCompile Include="PolygonCollider.cpp" />
     <ClCompile Include="Global.cpp" />
-    <ClCompile Include="Stage1Scene.cpp">
-      <Filter>03Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Stage2Scene.cpp">
-      <Filter>03Scene</Filter>
-    </ClCompile>
     <ClCompile Include="StageSelectScene.cpp">
       <Filter>03Scene</Filter>
     </ClCompile>
@@ -146,10 +140,9 @@
     <ClCompile Include="Pause.cpp">
       <Filter>04InGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Stage3Scene.cpp">
+    <ClCompile Include="StageScene.cpp">
       <Filter>03Scene</Filter>
     </ClCompile>
-    <ClCompile Include="StageScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -214,12 +207,6 @@
     </ClInclude>
     <ClInclude Include="PolygonCollider.h" />
     <ClInclude Include="Global.h" />
-    <ClInclude Include="Stage1Scene.h">
-      <Filter>03Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Stage2Scene.h">
-      <Filter>03Scene</Filter>
-    </ClInclude>
     <ClInclude Include="StageSelectScene.h">
       <Filter>03Scene</Filter>
     </ClInclude>
@@ -263,10 +250,9 @@
     <ClInclude Include="Pause.h">
       <Filter>04InGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Stage3Scene.h">
+    <ClInclude Include="StageScene.h">
       <Filter>03Scene</Filter>
     </ClInclude>
-    <ClInclude Include="StageScene.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">
