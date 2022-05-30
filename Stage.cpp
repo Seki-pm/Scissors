@@ -452,7 +452,7 @@ void Stage::Stage3()
 {
     float startX = 3;
     float startY = 0;
-    float goalX = 139;
+    float goalX = 138;
     float goalY = 16;
 
     StageModel_ = Model::Load("SuccessModel/stage3.fbx");
@@ -846,8 +846,8 @@ void Stage::Stage3Load()
     //StageModel BackImage を読み込み
     StageModel_ = Model::Load("SuccessModel/stage3.fbx");
     assert(StageModel_ >= 0);
-    //BackImage_ = Image::Load("Image/Stage3_Back.png");
-    //assert(BackImage_ >= 0);
+    BackImage_ = Image::Load("Image/Stage3_Back.png");
+    assert(BackImage_ >= 0);
 
     //コインの位置
     Global::ItemModelPos = XMFLOAT3(142, 20, 0);

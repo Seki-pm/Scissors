@@ -386,14 +386,14 @@ void Scissors::Reflection()
         }
 
         //ステージ外に出た場合スタート位置に戻る
-        if (transform_.position_.x < 0 ||
-            transform_.position_.y < 0 ||
-            cnt >= 100)
-        {
-            Global gl;
-            transform_.position_.x = gl.GetCameraStartX();
-            transform_.position_.y = gl.GetCameraStartY();
-        }
+        //if (transform_.position_.x < 0 ||
+        //    transform_.position_.y < 0 ||
+        //    cnt >= 100)
+        //{
+        //    Global gl;
+        //    transform_.position_.x = gl.GetCameraStartX();
+        //    transform_.position_.y = gl.GetCameraStartY();
+        //}
 
         Global::HP--;
     }
@@ -444,6 +444,8 @@ void Scissors::Restart()
     transform_.position_ = Global::InitPos;
     transform_.rotate_ = Global::InitRot;
     Global::HP = Global::MAXHP;
+    Global::JumpStart = 0;
+    Global::JumpEnd = 0;
     pBlade_L->SetRotateZ(0);
     pBlade_R->SetRotateZ(90);
     Global::GameOver = false;

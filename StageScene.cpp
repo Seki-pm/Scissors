@@ -94,26 +94,16 @@ void StageScene::GameOverSEL()
         //選択
         if (Input::IsKeyDown(DIK_LEFT))
         {
-            Gselect_--;
+            Gselect_ = 0;
             Audio::Play(SelectSound_);
-
-            if (Gselect_ < 0)
-            {
-                Gselect_ = 0;
-            }
 
             //GameOverクラスに渡す
             pGameOver->SetSelect(Gselect_);
         }
         if (Input::IsKeyDown(DIK_RIGHT))
         {
-            Gselect_++;
+            Gselect_ = 1;
             Audio::Play(SelectSound_);
-
-            if (Gselect_ > 1)
-            {
-                Gselect_ = 1;
-            }
 
             //GameOverクラスに渡す
             pGameOver->SetSelect(Gselect_);
@@ -148,26 +138,16 @@ void StageScene::PauseSEL()
         //ボタンを選択
         if (Input::IsKeyDown(DIK_LEFT))
         {
-            Pselect_--;
+            Pselect_ = 0;
             Audio::Play(SelectSound_);
-
-            if (Pselect_ < 0)
-            {
-                Pselect_ = 0;
-            }
 
             //Pauseクラスに渡す
             pPause->SetSelect(Pselect_);
         }
         if (Input::IsKeyDown(DIK_RIGHT))
         {
-            Pselect_++;
+            Pselect_ = 1;
             Audio::Play(SelectSound_);
-
-            if (Pselect_ > 1)
-            {
-                Pselect_ = 1;
-            }
 
             //Pauseクラスに渡す
             pPause->SetSelect(Pselect_);
