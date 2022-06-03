@@ -113,7 +113,7 @@
     <ClCompile Include="HP.cpp">
       <Filter>05Player</Filter>
     </ClCompile>
-    <ClCompile Include="DrawGauge.cpp">
+    <ClCompile Include="Gauge.cpp">
       <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="ItemImage.cpp">
@@ -223,7 +223,7 @@
     <ClInclude Include="HP.h">
       <Filter>05Player</Filter>
     </ClInclude>
-    <ClInclude Include="DrawGauge.h">
+    <ClInclude Include="Gauge.h">
       <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="ItemImage.h">
