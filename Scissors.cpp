@@ -4,7 +4,7 @@
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
-    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1), Land_Iron(-1),
+    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
     Calc(false), FallFlg(true),SoundFlg(false),IsRepel(false), JumpPower(0.1f),
     Key(0)
@@ -320,7 +320,6 @@ void Scissors::Release()
     Land_Wood = -1;
     Land_Gravel = -1;
     Land_Stone = -1;
-    Land_Iron = -1;
 }
 
 //”½ŽË
@@ -549,16 +548,6 @@ void Scissors::InitSound()
     assert(Land_Stone >= 0);
 
     //-------------------------------------------------
-
-
-    //------------- STAGE3 --------------------------
-
-      //------------- “S ---------------------
-    Land_Iron = Audio::Load("Sound/FootStep_Iron.wav");
-    assert(Land_Iron >= 0);
-
-
-    //-----------------------------------------------
 }
 
 //‰¹‚ð—¬‚·
@@ -598,12 +587,6 @@ void Scissors::Landing()
         }
         break;
     case STAGE_NUMBER_3:
-        if (Global::RepelFlg)
-        {
-            Audio::Play(Land_Iron);
-        }
-
-        //if()
         break;
     }
 }

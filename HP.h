@@ -2,13 +2,13 @@
 #include "Engine/GameObject.h"
 #include "Engine/Input.h"
 #include "DrawNumber.h"
-#include "Gauge.h"
+#include "DrawGauge.h"
 
 //HPを管理するクラス
 class HP : public GameObject
 {
     DrawNumber* pNumber_; //数字描画用
-    Gauge*  pGauge_;  //ゲージ描画用
+    DrawGauge*  pGauge_;  //ゲージ描画用
 
     //ロード用変数
     int NumberHandle_;   

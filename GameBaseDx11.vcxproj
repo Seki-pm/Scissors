@@ -126,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Blade.cpp" />
-    <ClCompile Include="Gauge.cpp" />
+    <ClCompile Include="DrawGauge.cpp" />
     <ClCompile Include="DrawNumber.cpp" />
     <ClCompile Include="Engine\Audio.cpp" />
     <ClCompile Include="Engine\BoxCollider.cpp" />
@@ -166,7 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Blade.h" />
-    <ClInclude Include="Gauge.h" />
+    <ClInclude Include="DrawGauge.h" />
     <ClInclude Include="DrawNumber.h" />
     <ClInclude Include="Engine\Audio.h" />
     <ClInclude Include="Engine\BoxCollider.h" />

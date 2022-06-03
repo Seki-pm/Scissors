@@ -49,7 +49,6 @@ class Scissors : public GameObject
     int Land_Wood;
     int Land_Gravel;
     int Land_Stone;
-    int Land_Iron;
 
     ///////////////privateŠÖ”//////////////////////////////////////
     //ŠJ•Â
