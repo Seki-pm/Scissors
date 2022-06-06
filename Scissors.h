@@ -12,11 +12,15 @@
 #include "Stage.h"
 #include "StageSelectScene.h"
 #include <vector>
+#include "Number.h"
 
 
 //ハサミを管理するクラス
 class Scissors : public GameObject
 {
+    int NumberHandle_;
+    Number* pNumber_;
+
     //ブレードが２つ
     Blade* pBlade_L , *pBlade_R;
     Stage* pStage_;
@@ -28,7 +32,7 @@ class Scissors : public GameObject
     float AnglePass_;  //角度を送る
     float GLAVITY; //重力
 
-    bool Calc; //計算のフラグ
+    bool CalcFlg; //計算のフラグ
     bool FallFlg; //落下フラグ
     bool SoundFlg; //音フラグ
 
@@ -41,14 +45,33 @@ class Scissors : public GameObject
     float powerX;
     bool IsRepel;
 
-    bool IsSink = false;
+    //沈んだ時用
+    bool IsSink;
     float MoveY;
+    int Timer_;
+    int CountDown;
 
     //SE
-    int Land_Glass;
-    int Land_Wood;
-    int Land_Gravel;
-    int Land_Stone;
+    struct STAGE1
+    {
+        int Land_Glass;
+        int Land_Wood;
+    };
+
+    struct STAGE2
+    {
+        int Land_Gravel;
+        int Land_Stone;
+    };
+
+    struct STAGE3
+    {
+        int Land_Iron;
+        int Land_Sand;
+        int Land_Volcano_Sand;
+        int Land_Volcano;
+    };
+
 
     ///////////////private関数//////////////////////////////////////
     //開閉

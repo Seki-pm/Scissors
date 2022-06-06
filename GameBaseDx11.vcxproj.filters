@@ -109,11 +109,11 @@
     <ClCompile Include="Blade.cpp">
       <Filter>05Player</Filter>
     </ClCompile>
-    <ClCompile Include="DrawNumber.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="HP.cpp">
       <Filter>05Player</Filter>
     </ClCompile>
-    <ClCompile Include="DrawGauge.cpp">
+    <ClCompile Include="Gauge.cpp">
       <Filter>04InGameObject</Filter>
     </ClCompile>
     <ClCompile Include="ItemImage.cpp">
@@ -219,11 +219,11 @@
     <ClInclude Include="Blade.h">
       <Filter>05Player</Filter>
     </ClInclude>
-    <ClInclude Include="DrawNumber.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="HP.h">
       <Filter>05Player</Filter>
     </ClInclude>
-    <ClInclude Include="DrawGauge.h">
+    <ClInclude Include="Gauge.h">
       <Filter>04InGameObject</Filter>
     </ClInclude>
     <ClInclude Include="ItemImage.h">

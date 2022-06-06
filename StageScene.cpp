@@ -195,10 +195,10 @@ void StageScene::CameraMove(float start, float goal)
 
 
     //transform.y ‚ª0‚æ‚è¬‚³‚¢ê‡ƒJƒƒ‰‚ğ~‚ß‚é
-    if (Pos_Y < -5)
+    if (Pos_Y < -6)
     {
-        Camera::SetPosition(XMFLOAT3(Pos_X, 3, -10));
-        Camera::SetTarget(XMFLOAT3(Pos_X, 3, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(Pos_X, -3, -10));
+        Camera::SetTarget(XMFLOAT3(Pos_X, -3, Pos_Z));
     }
 }
 

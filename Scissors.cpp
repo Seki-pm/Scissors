@@ -1,13 +1,17 @@
 #include "Scissors.h"
 
+#define NormalJumpPower 0.1f;
+#define SinkJumpPower 0.001f;
+#define SinkTimer 360;
+
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
     Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
-    Calc(false), FallFlg(true),SoundFlg(false),IsRepel(false), JumpPower(0.1f),
-    Key(0)
+    CalcFlg(false), FallFlg(true),SoundFlg(false),IsRepel(false),IsSink(false),
+    Timer_(360),JumpPower(0.1f),Key(0), NumberHandle_(-1), CountDown(0)
 {
 }
 
@@ -40,6 +44,9 @@ void Scissors::Initialize()
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
 
+    //数字
+    NumberHandle_ = Image::Load("Image/Number.png");
+    assert(NumberHandle_ >= 0);
 }
 
 //更新
@@ -82,12 +89,14 @@ void Scissors::Update()
     }
 
     //落下したら
-    if (transform_.position_.y <= -8 && FallFlg)
+    if (transform_.position_.y <= -8 && FallFlg
+        || 60 >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
         Global::IsGameOver = true;
         FallFlg = false;
+        Global::SinkFlg = false;
     }
 
     //床ギミック
@@ -240,11 +249,11 @@ void Scissors::JumpAndFall()
         move_.y = 0;
         move_.z = 0;
 
-        if (Calc)
+        if (CalcFlg)
         {
             //現在のHPを計算
             pHP->HPCalc();
-            Calc = false;
+            CalcFlg = false;
         }
 
         if (SoundFlg)
@@ -276,7 +285,7 @@ void Scissors::JumpAndFall()
 
                 //ジャンプの初めの高さ
                 Global::JumpStart = transform_.position_.y;
-                Calc = true;
+                CalcFlg = true;
 
             }
         }
@@ -299,7 +308,7 @@ void Scissors::JumpAndFall()
 
             //ジャンプの初めの高さ
             Global::JumpStart = transform_.position_.y;
-            Calc = true;
+            CalcFlg = true;
 
         }
 
@@ -311,6 +320,10 @@ void Scissors::JumpAndFall()
 //描画
 void Scissors::Draw()
 {
+    if (IsSink)
+    {
+        pNumber_->Draw(CountDown, 0, 0.8f, NumberHandle_);
+    }
 }
 
 //開放
@@ -500,6 +513,9 @@ void Scissors::SinkMove()
     //フラグが立ったら
     if (Global::SinkFlg)
     {
+        Timer_--;
+        CountDown = Timer_ / 60;
+
         if (!IsSink)
         {
             //沈む値を入れる
@@ -510,29 +526,36 @@ void Scissors::SinkMove()
         {
             //MoveYの値分沈んでいく
             transform_.position_.y += MoveY;
-            JumpPower = 0.001f;
+            JumpPower = SinkJumpPower;
         }
+
     }
     else
     {
         //最初に戻す
-        JumpPower = 0.1f;
+        JumpPower = NormalJumpPower;
         IsSink = false;
+        Timer_ = SinkTimer;
     }
 }
 
 //音楽の初期化
 void Scissors::InitSound()
 {
+    STAGE1 s1;
+    STAGE2 s2;
+    STAGE3 s3;
+
+
     //--------- STAGE1 ----------------------------------
      
        //----------- 草 --------------------
-    Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
-    assert(Land_Glass >= 0);
+    s1.Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
+    assert(s1.Land_Glass >= 0);
 
       //------------ 木 --------------------
-    Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
-    assert(Land_Wood >= 0);
+    s1.Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
+    assert(s1.Land_Wood >= 0);
 
     //---------------------------------------------------
 
@@ -548,6 +571,22 @@ void Scissors::InitSound()
     assert(Land_Stone >= 0);
 
     //-------------------------------------------------
+
+    //-------------- STAGE3 ---------------------------
+
+      //------------- 弾く -----------------
+
+
+      //------------- 沈む -----------------
+
+
+      //------------- 火山砂地帯(前半) ---------------------
+
+
+      //------------- 火山地帯（後半）-------------------
+
+
+    //-------------- STAGE3 ---------------------------
 }
 
 //音を流す
@@ -587,6 +626,27 @@ void Scissors::Landing()
         }
         break;
     case STAGE_NUMBER_3:
+        //弾く地面
+        if (Global::RepelFlg)
+        {
+
+        }
+        //沈む地面
+        else if (Global::SinkFlg)
+        {
+
+        }
+        //普通の地面(前半)
+        else if (transform_.position_.x <= 73)
+        {
+
+        }
+        //普通の地面(後半)
+        else
+        {
+
+        }
+
         break;
     }
 }

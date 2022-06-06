@@ -3,8 +3,7 @@
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pNumber_(nullptr), pGauge_(nullptr),
-    NumberHandle_(-1), GaugeHandle_(-1), GaugeFrame_(-1)
+    pGauge_(nullptr),GaugeHandle_(-1), GaugeFrame_(-1)
 {
 }
 
@@ -16,10 +15,6 @@ HP::~HP()
 //初期化
 void HP::Initialize()
 {
-    //数字
-    NumberHandle_ = Image::Load("Image/Number.png");
-    assert(NumberHandle_ >= 0);
-
     //ゲージ
     GaugeHandle_ = Image::Load("Image/HP2.png");
     assert(GaugeHandle_ >= 0);
@@ -40,7 +35,6 @@ void HP::Update()
 //描画
 void HP::Draw()
 {
-    //pNumber_->Draw(Global::HP, 0, 0, NumberHandle_);
     pGauge_->Draw(Global::HP, -0.978f, 0.77f, GaugeHandle_);
     Image::Draw(GaugeFrame_);
 }
@@ -48,7 +42,6 @@ void HP::Draw()
 //開放
 void HP::Release()
 {
-    NumberHandle_ = -1;
     GaugeHandle_ = -1;
     GaugeFrame_ = -1;
 }
