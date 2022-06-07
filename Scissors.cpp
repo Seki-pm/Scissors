@@ -542,20 +542,16 @@ void Scissors::SinkMove()
 //音楽の初期化
 void Scissors::InitSound()
 {
-    STAGE1 s1;
-    STAGE2 s2;
-    STAGE3 s3;
-
 
     //--------- STAGE1 ----------------------------------
      
        //----------- 草 --------------------
-    s1.Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
-    assert(s1.Land_Glass >= 0);
+    Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
+    assert(Land_Glass >= 0);
 
       //------------ 木 --------------------
-    s1.Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
-    assert(s1.Land_Wood >= 0);
+    Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
+    assert(Land_Wood >= 0);
 
     //---------------------------------------------------
 
@@ -575,16 +571,20 @@ void Scissors::InitSound()
     //-------------- STAGE3 ---------------------------
 
       //------------- 弾く -----------------
-
+    Land_Iron = Audio::Load("Sound/FootStep_Iron.wav");
+    assert(Land_Iron >= 0);
 
       //------------- 沈む -----------------
-
+    Land_Sand = Audio::Load("Sound/FootStep_Sand.wav");
+    assert(Land_Sand >= 0);
 
       //------------- 火山砂地帯(前半) ---------------------
-
+    Land_Volcano_Sand = Audio::Load("Sound/FootStep_Volcano_Sand.wav");
+    assert(Land_Volcano_Sand >= 0);
 
       //------------- 火山地帯（後半）-------------------
-
+    Land_Volcano = Audio::Load("Sound/FootStep_Volcano.wav");
+    assert(Land_Volcano >= 0);
 
     //-------------- STAGE3 ---------------------------
 }
@@ -629,22 +629,24 @@ void Scissors::Landing()
         //弾く地面
         if (Global::RepelFlg)
         {
-
+            Audio::Play(Land_Iron);
         }
         //沈む地面
         else if (Global::SinkFlg)
         {
-
+            Audio::Play(Land_Sand);
         }
         //普通の地面(前半)
         else if (transform_.position_.x <= 73)
         {
-
+            Audio::Play(Land_Volcano_Sand);
+            Audio::Stop(Land_Sand);
         }
         //普通の地面(後半)
         else
         {
-
+            Audio::Play(Land_Volcano);
+            Audio::Stop(Land_Sand);
         }
 
         break;

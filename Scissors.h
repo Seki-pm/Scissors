@@ -52,25 +52,16 @@ class Scissors : public GameObject
     int CountDown;
 
     //SE
-    struct STAGE1
-    {
-        int Land_Glass;
-        int Land_Wood;
-    };
+    int Land_Glass;     
+    int Land_Wood;
+      
+    int Land_Gravel;   
+    int Land_Stone;
 
-    struct STAGE2
-    {
-        int Land_Gravel;
-        int Land_Stone;
-    };
-
-    struct STAGE3
-    {
-        int Land_Iron;
-        int Land_Sand;
-        int Land_Volcano_Sand;
-        int Land_Volcano;
-    };
+    int Land_Iron;      
+    int Land_Sand; 
+    int Land_Volcano_Sand;
+    int Land_Volcano;
 
 
     ///////////////privateä÷êî//////////////////////////////////////
@@ -130,4 +121,6 @@ public:
 
     void InitSound();
     void Landing();
+
+    void Input();
 };

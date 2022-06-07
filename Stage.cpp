@@ -515,54 +515,54 @@ void Stage::Stage3()
 
         //交互①
         pc8.AddPoint(38, 19);
-        pc8.AddPoint(39.5f, 19);
-        pc8.AddPoint(39.5f, 15);
+        pc8.AddPoint(40, 19);
+        pc8.AddPoint(40, 15);
         pc8.AddPoint(38, 15);
         colliders_.push_back(pc8);
 
         //交互②
-        pc9.AddPoint(39.5f, 19);
-        pc9.AddPoint(41, 19);
-        pc9.AddPoint(41, 15);
-        pc9.AddPoint(39.5f, 15);
+        pc9.AddPoint(40, 19);
+        pc9.AddPoint(41.5f, 19);
+        pc9.AddPoint(41.5f, 15);
+        pc9.AddPoint(40, 15);
         pc9.AddRepel(9);
         colliders_.push_back(pc9);
 
         //交互③
-        pc10.AddPoint(41, 19);
-        pc10.AddPoint(42.5f, 19);
-        pc10.AddPoint(42.5f, 15);
-        pc10.AddPoint(41, 15);
+        pc10.AddPoint(41.5f, 19);
+        pc10.AddPoint(43, 19);
+        pc10.AddPoint(43, 15);
+        pc10.AddPoint(41.5f, 15);
         colliders_.push_back(pc10);
 
         //交互④
-        pc11.AddPoint(42.5f, 19);
-        pc11.AddPoint(44, 19);
-        pc11.AddPoint(44, 15);
-        pc11.AddPoint(42.5f, 15);
+        pc11.AddPoint(43, 19);
+        pc11.AddPoint(44.5f, 19);
+        pc11.AddPoint(44.5f, 15);
+        pc11.AddPoint(43, 15);
         pc11.AddRepel(11);
         colliders_.push_back(pc11);
 
         //交互⑤
-        pc12.AddPoint(44, 19);
-        pc12.AddPoint(45.5f, 19);
-        pc12.AddPoint(45.5f, 15);
-        pc12.AddPoint(44, 15);
+        pc12.AddPoint(44.5f, 19);
+        pc12.AddPoint(46, 19);
+        pc12.AddPoint(46, 15);
+        pc12.AddPoint(44.5f, 15);
         colliders_.push_back(pc12);
 
         //交互⑥
-        pc13.AddPoint(45.5f, 19);
-        pc13.AddPoint(47, 19);
-        pc13.AddPoint(47, 15);
-        pc13.AddPoint(45.5f, 15);
+        pc13.AddPoint(46, 19);
+        pc13.AddPoint(47.5f, 19);
+        pc13.AddPoint(47.5f, 15);
+        pc13.AddPoint(46, 15);
         pc13.AddRepel(13);
         colliders_.push_back(pc13);
 
         //交互⑦
-        pc14.AddPoint(47, 19);
-        pc14.AddPoint(48.5f, 19);
-        pc14.AddPoint(48.5f, 15);
-        pc14.AddPoint(47, 15);
+        pc14.AddPoint(47.5f, 19);
+        pc14.AddPoint(49, 19);
+        pc14.AddPoint(49, 15);
+        pc14.AddPoint(47.5f, 15);
         colliders_.push_back(pc14);
 
         //飛び床
