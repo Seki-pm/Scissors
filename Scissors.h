@@ -18,12 +18,13 @@
 //ハサミを管理するクラス
 class Scissors : public GameObject
 {
-    int NumberHandle_;
-    Number* pNumber_;
+    int NumberImage_;
+    int DengerImage_;
 
     //ブレードが２つ
     Blade* pBlade_L , *pBlade_R;
     Stage* pStage_;
+    Number* pNumber_;
 
     XMFLOAT3 move_;         //移動
     XMFLOAT3 jumpDirection_; //ジャンプ方向（刺さってる地面の法線）
@@ -48,8 +49,8 @@ class Scissors : public GameObject
     //沈んだ時用
     bool IsSink;
     float MoveY;
-    int Timer_;
     int CountDown;
+    int Timer_;
 
     //SE
     int Land_Glass;     
@@ -123,4 +124,7 @@ public:
     void Landing();
 
     void Input();
+
+    //画像の初期化
+    void InitImage();
 };

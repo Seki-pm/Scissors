@@ -21,13 +21,14 @@
 //ステージシーンを管理するクラス
 class StageScene : public GameObject
 {
+
 	Stage* pStage_;
 	Global global;
+	Scissors* pScissors_;
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-	int BackImage_;
 
 	//Scissorsの位置を取得
 	float Pos_X, Pos_Y, Pos_Z;

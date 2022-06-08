@@ -1,10 +1,12 @@
 #include "StageScene.h"
 
+
+
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),pStage_(nullptr),
     Pos_X(0),Pos_Y(0),Pos_Z(0), Gselect_(-1), Pselect_(-1),
-    BackImage_(-1), SelectSound_(-1), DeterSound_(-1)
+    SelectSound_(-1), DeterSound_(-1)
 {
 }
 
@@ -68,7 +70,6 @@ void StageScene::Draw()
 //開放
 void StageScene::Release()
 {
-    BackImage_ = -1;
     SelectSound_ = -1;
     DeterSound_ = -1;
     Global::Repel_.clear();

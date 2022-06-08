@@ -28,7 +28,7 @@ vector<int>Global::Repel_;
 vector<int>Global::Sink_;
 
 bool Global::Unlock2 = false;
-bool Global::Unlock3 = true;
+bool Global::Unlock3 = false;
 
 bool Global::GetCoin  = false;
 bool Global::GetCoin_1 = false;

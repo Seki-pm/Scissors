@@ -11,7 +11,7 @@ Scissors::Scissors(GameObject* parent)
     Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
     CalcFlg(false), FallFlg(true),SoundFlg(false),IsRepel(false),IsSink(false),
-    Timer_(360),JumpPower(0.1f),Key(0), NumberHandle_(-1), CountDown(0)
+    JumpPower(0.1f),Key(0), NumberImage_(-1), Timer_(360), CountDown(0)
 {
 }
 
@@ -40,13 +40,13 @@ void Scissors::Initialize()
     //サウンドのロード
     InitSound();
 
+    //画像の初期化
+    InitImage();
+
     SphereCollider* collision =
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
 
-    //数字
-    NumberHandle_ = Image::Load("Image/Number.png");
-    assert(NumberHandle_ >= 0);
 }
 
 //更新
@@ -320,9 +320,14 @@ void Scissors::JumpAndFall()
 //描画
 void Scissors::Draw()
 {
-    if (IsSink)
+    if (Global::SinkFlg)
     {
-        pNumber_->Draw(CountDown, 0, 0.8f, NumberHandle_);
+        auto DengerTrans = Transform();
+        DengerTrans.position_ = XMFLOAT3(0,0.8f,0);
+        Image::SetTransform(DengerImage_, DengerTrans);
+        Image::Draw(DengerImage_);
+
+        pNumber_->Draw(CountDown, 0.06f, 0.8f, NumberImage_);
     }
 }
 
@@ -516,6 +521,7 @@ void Scissors::SinkMove()
         Timer_--;
         CountDown = Timer_ / 60;
 
+
         if (!IsSink)
         {
             //沈む値を入れる
@@ -651,5 +657,17 @@ void Scissors::Landing()
 
         break;
     }
+}
+
+//画像の初期化
+void Scissors::InitImage()
+{
+    //数字   
+    NumberImage_ = Image::Load("Image/Number.png");
+    assert(NumberImage_ >= 0);
+    
+    //数字の背景
+    DengerImage_ = Image::Load("Image/Denger.png");
+    assert(DengerImage_ >= 0);
 }
 
