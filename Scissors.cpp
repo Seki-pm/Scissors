@@ -8,10 +8,13 @@
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
-    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),
+    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),Land_Iron(-1),
+    Land_Sand(-1),Land_Volcano(-1),Land_Volcano_Sand(-1),
     AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
+    pNumber_(nullptr),pStage_(nullptr),
     CalcFlg(false), FallFlg(true),SoundFlg(false),IsRepel(false),IsSink(false),
-    JumpPower(0.1f),Key(0), NumberImage_(-1), Timer_(360), CountDown(0)
+    JumpPower(0.1f),Key(0), NumberImage_(-1),DengerImage_(-1), Timer_(360), CountDown(0),
+    MoveY(0),powerX(0),powerY(0),TransPos_Y(0)
 {
 }
 
@@ -334,10 +337,18 @@ void Scissors::Draw()
 //開放
 void Scissors::Release()
 {
+    NumberImage_ = -1;
+    DengerImage_ = -1;
+
+
     Land_Glass = -1;
     Land_Wood = -1;
     Land_Gravel = -1;
     Land_Stone = -1;
+    Land_Iron = -1;
+    Land_Sand = -1;
+    Land_Volcano = -1;
+    Land_Volcano_Sand = -1;
 }
 
 //反射
@@ -404,14 +415,14 @@ void Scissors::Reflection()
         }
 
         //ステージ外に出た場合スタート位置に戻る
-        //if (transform_.position_.x < 0 ||
-        //    transform_.position_.y < 0 ||
-        //    cnt >= 100)
-        //{
-        //    Global gl;
-        //    transform_.position_.x = gl.GetCameraStartX();
-        //    transform_.position_.y = gl.GetCameraStartY();
-        //}
+        if (transform_.position_.x < 0 ||
+            transform_.position_.y < 0 ||
+            cnt >= 100)
+        {
+            Global gl;
+            transform_.position_.x = gl.GetCameraStartX();
+            transform_.position_.y = gl.GetCameraStartY();
+        }
 
         Global::HP--;
     }
@@ -503,8 +514,6 @@ void Scissors::RepelMove()
                 transform_.position_.y += powerY;             //powerY分上へ
             }
 
-
-
         }
     }
     else
@@ -551,7 +560,6 @@ void Scissors::InitSound()
 {
 
     //--------- STAGE1 ----------------------------------
-     
        //----------- 草 --------------------
     Land_Glass = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav");
     assert(Land_Glass >= 0);

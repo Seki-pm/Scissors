@@ -33,7 +33,7 @@ public:
 	static XMFLOAT3 ItemImageSca;  //‰æ‘œƒTƒCƒY
 	static XMFLOAT3 ItemImagePos_Stage;   //‰æ‘œ(StageScene)
 	static XMFLOAT3 ItemImageSca_Stage;   //‰æ‘œ(StageScene)
-	static XMFLOAT3 ItemImageSca_Select;   //‰æ‘œ(SelectScene)
+	static XMFLOAT3 ItemImageSca_Select;  //‰æ‘œ(SelectScene)
 
 	//StageUnlock•Ï”
 	static bool Unlock2;

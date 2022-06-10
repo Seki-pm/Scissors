@@ -27,7 +27,7 @@ int Global::SelectStage = 1;
 vector<int>Global::Repel_;
 vector<int>Global::Sink_;
 
-bool Global::Unlock2 = false;
+bool Global::Unlock2 = true;
 bool Global::Unlock3 = true;
 
 bool Global::GetCoin  = false;

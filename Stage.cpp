@@ -847,7 +847,7 @@ void Stage::Stage3Load()
     assert(BackImage_ >= 0);
 
     //コインの位置
-    Global::ItemModelPos = XMFLOAT3(142, 20, 0);
+    Global::ItemModelPos = XMFLOAT3(50.5f, 15.5f, 0);
 }
 
 
@@ -870,7 +870,7 @@ void Stage::RepelCheck(int i)
         //はじくフラグtrue
         Global::RepelFlg = true;
         Global::IsJump = false;
-        Global::HP -= 2;
+        Global::HP -= 5;
 
     }
     else
