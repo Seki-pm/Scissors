@@ -58,6 +58,7 @@ public:
 	static bool RepelFlg;       //弾かれる時用
 	static bool SinkFlg;        //沈む時用
 	static bool IsJump;         //ジャンプができるか否か
+	static bool ItemReDraw;     //アイテムの再表示
 
 	//Scene管理用
 	static int SCENE_ID;

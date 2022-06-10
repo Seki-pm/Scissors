@@ -103,13 +103,6 @@ void StageSelectScene::Initialize()
 	Image::SetTransform(DescriptionImage_, DescTrans);
 	//--------------------------------------------
 
-	//--------------- comingsoon --------------
-	ComingSoonImage_ = Image::Load("Image/Comingsoon.png");
-	assert(ComingSoonImage_ >= 0);
-	Image::SetTransform(ComingSoonImage_, Lock[STAGE_LOCK_3]);
-	//-----------------------------------------
-
-
 
 	//------------- ‰¹ ----------------------------------
 

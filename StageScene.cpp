@@ -60,6 +60,18 @@ void StageScene::Update()
 
     //ゴール演出用
     Timer();
+
+    //取得してからGameOverの場合コインを再表示する
+    //取得しているものは取得してないこととする
+    if (Global::GetCoin && Global::ItemReDraw)
+    {
+        Instantiate<ItemModel>(this);
+        Global::ItemReDraw = false;
+        Global::GetCoin = false;
+        Global::GetCoin_1 = false;
+        Global::GetCoin_2 = false;
+        Global::GetCoin_3 = false;
+    }
 }
 
 //描画
@@ -86,6 +98,7 @@ void StageScene::GameOverSEL()
         //GameOver表示
         Instantiate<GameOver>(this);
         Global::IsGameOver = false;
+        Global::ItemReDraw = true;
     }
 
     //GameOverになったら

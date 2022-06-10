@@ -43,6 +43,7 @@ bool Global::Timer = false;
 bool Global::RepelFlg = false;
 bool Global::SinkFlg = false;
 bool Global::IsJump = true;
+bool Global::ItemReDraw = false;
 
 int   Global::MAXHP = 500;
 int   Global::HP = Global::MAXHP;

@@ -469,6 +469,7 @@ void Scissors::Restart()
     Global::GameOver = false;
     Global::IsGameOver = false;
     FallFlg = true;
+    Global::ItemReDraw = true;
 }
 
 //’e‚©‚ê‚½Žž‚Ì“®‚«
