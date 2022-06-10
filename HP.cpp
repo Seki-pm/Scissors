@@ -16,11 +16,11 @@ HP::~HP()
 void HP::Initialize()
 {
     //ゲージ
-    GaugeHandle_ = Image::Load("Image/HP2.png");
+    GaugeHandle_ = Image::Load("Image/StageScene/HP.png");
     assert(GaugeHandle_ >= 0);
 
     //ゲージフレーム
-    GaugeFrame_ = Image::Load("Image/GaugeFrame.png");
+    GaugeFrame_ = Image::Load("Image/StageScene/GaugeFrame.png");
     assert(GaugeFrame_ >= 0);
     FrameTrans.position_ = XMFLOAT3(-0.58f, 0.8f, 0);
     Image::SetTransform(GaugeFrame_, FrameTrans);

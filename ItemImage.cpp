@@ -17,7 +17,7 @@ void ItemImage::Initialize()
 {
 
     //Žæ“¾‚µ‚Ä‚¢‚È‚¢
-    FrameImage_ = Image::Load("Image/GetCoinFrame.png");
+    FrameImage_ = Image::Load("Image/StageScene/GetCoinFrame.png");
     assert(FrameImage_);
     auto FrameTrans = Transform();
     FrameTrans.position_ = Global::ItemImagePos;
@@ -25,7 +25,7 @@ void ItemImage::Initialize()
     Image::SetTransform(FrameImage_, FrameTrans);
 
     //Žæ“¾‚µ‚½
-    CoinImage_ = Image::Load("SuccessModel/Coin.png");
+    CoinImage_ = Image::Load("Model/InGameObject/Coin.png");
     assert(CoinImage_);
     auto CoinTrans = Transform();
     CoinTrans.position_ = Global::ItemImagePos;

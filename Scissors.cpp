@@ -664,11 +664,11 @@ void Scissors::Landing()
 void Scissors::InitImage()
 {
     //”Žš   
-    NumberImage_ = Image::Load("Image/Number.png");
+    NumberImage_ = Image::Load("Image/StageScene/Number.png");
     assert(NumberImage_ >= 0);
     
     //”Žš‚Ì”wŒi
-    DengerImage_ = Image::Load("Image/Denger.png");
+    DengerImage_ = Image::Load("Image/StageScene/Denger.png");
     assert(DengerImage_ >= 0);
 }
 

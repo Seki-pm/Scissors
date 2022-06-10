@@ -29,7 +29,7 @@ void Blade::Load(const int lr)
     if (lr == 0)
     {
         //左を読み込む
-        BladeModel_ = Model::Load("SuccessModel/LBlade.fbx");
+        BladeModel_ = Model::Load("Model/Scissors/LBlade.fbx");
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける
@@ -44,7 +44,7 @@ void Blade::Load(const int lr)
     else  
     {
         // 右を読み込む
-        BladeModel_ = Model::Load("SuccessModel/RBlade.fbx");
+        BladeModel_ = Model::Load("Model/Scissors/RBlade.fbx");
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける

@@ -16,7 +16,7 @@ ItemModel::~ItemModel()
 void ItemModel::Initialize()
 {
 
-    Coin_ = Model::Load("SuccessModel/Coin.fbx");
+    Coin_ = Model::Load("Model/InGameObject/Coin.fbx");
     assert(Coin_ >= 0);
 
     Coin_Sound = Audio::Load("Sound/Get_Coin.wav");

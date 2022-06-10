@@ -207,10 +207,10 @@ void Stage::Stage1()
 void Stage::Stage1Load()
 {
     //StageModel BackImage を読み込み
-    StageModel_ = Model::Load("SuccessModel/stage1.fbx");
+    StageModel_ = Model::Load("Model/Stage/Stage1/stage1.fbx");
     assert(StageModel_ >= 0);
 
-    BackImage_ = Image::Load("Image/Stage1_Back.png");
+    BackImage_ = Image::Load("Image/StageScene/Stage1_Back.png");
     assert(BackImage_ >= 0);
 
     //コインの位置
@@ -438,9 +438,9 @@ void Stage::Stage2()
 void Stage::Stage2Load()
 {
     //StageModel BackImage を読み込み
-    StageModel_ = Model::Load("SuccessModel/stage2.fbx");
+    StageModel_ = Model::Load("Model/Stage/Stage2/stage2.fbx");
     assert(StageModel_ >= 0);
-    BackImage_ = Image::Load("Image/Stage2_Back.png");
+    BackImage_ = Image::Load("Image/StageScene/Stage2_Back.png");
     assert(BackImage_ >= 0);
 
     //コインの位置
@@ -454,9 +454,6 @@ void Stage::Stage3()
     float startY = 0;
     float goalX = 138;
     float goalY = 16;
-
-    StageModel_ = Model::Load("SuccessModel/stage3.fbx");
-    assert(StageModel_ >= 0);
 
     //最初
     {
@@ -844,9 +841,9 @@ void Stage::Stage3()
 void Stage::Stage3Load()
 {
     //StageModel BackImage を読み込み
-    StageModel_ = Model::Load("SuccessModel/stage3.fbx");
+    StageModel_ = Model::Load("Model/Stage/Stage3/stage3.fbx");
     assert(StageModel_ >= 0);
-    BackImage_ = Image::Load("Image/Stage3_Back.png");
+    BackImage_ = Image::Load("Image/StageScene/Stage3_Back.png");
     assert(BackImage_ >= 0);
 
     //コインの位置

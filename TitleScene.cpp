@@ -13,7 +13,7 @@ TitleScene::TitleScene(GameObject* parent)
 void TitleScene::Initialize()
 {
 	//-----------------------ƒ^ƒCƒgƒ‹-----------------------------
-	TitleImageHandle_ = Image::Load("Image/Scissors.png");
+	TitleImageHandle_ = Image::Load("Image/TitleScene/Scissors.png");
 	assert(TitleImageHandle_ >= 0);
 	TitleTrans.position_ = XMFLOAT3(0, 0.3f, 0);
 	TitleTrans.scale_ = XMFLOAT3(3.f, 3.f, 0);
@@ -21,13 +21,13 @@ void TitleScene::Initialize()
 	//------------------------------------------------------------
 
 	//-----------------------”wŒi--------------------------------
-	BackImageHandle_ = Image::Load("Image/Title_Back.png");
+	BackImageHandle_ = Image::Load("Image/TitleScene/Title_Back.png");
 	assert(BackImageHandle_ >= 0);
 	Image::SetTransform(BackImageHandle_, transform_);
 	//------------------------------------------------------------
 
 	//------------------ Space -------------------------
-	SpaceKeyImageHandle_ = Image::Load("Image/Space.png");
+	SpaceKeyImageHandle_ = Image::Load("Image/TitleScene/Space.png");
 	assert(SpaceKeyImageHandle_ >= 0);
 	SpaceTrans.scale_ = XMFLOAT3(size_, size_, size_);
 	SpaceTrans.position_ = XMFLOAT3(0, -0.6f, 0);

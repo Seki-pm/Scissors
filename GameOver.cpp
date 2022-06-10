@@ -32,19 +32,19 @@ void GameOver::Initialize()
 
     //画像データのロード
     //ゲームオーバー
-    GameOverBackImage_ = Image::Load("Image/BlackBack.png");
+    GameOverBackImage_ = Image::Load("Image/InGameMenu/BlackBack.png");
     assert(GameOverBackImage_ >= 0);
 
     //リトライ
-    RetryImage_ = Image::Load("Image/Retry.png");
+    RetryImage_ = Image::Load("Image/InGameMenu/Retry.png");
     assert(RetryImage_ >= 0);
 
     //セレクトフレーム
-    SelectFrameImage_ = Image::Load("Image/SelectFrame.png");
+    SelectFrameImage_ = Image::Load("Image/InGameMenu/SelectFrame.png");
     assert(SelectFrameImage_ >= 0);
 
     //ステージ選択に戻る
-    BackMenuImage_ = Image::Load("Image/BackButton.png");
+    BackMenuImage_ = Image::Load("Image/InGameMenu/BackButton.png");
     assert(BackMenuImage_ >= 0);
 
 }

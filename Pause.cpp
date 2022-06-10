@@ -25,19 +25,19 @@ void Pause::Initialize()
 {
     //画像データのロード
     //不透明背景
-    PauseBackImage_ = Image::Load("Image/BlackBack.png");
+    PauseBackImage_ = Image::Load("Image/InGameMenu/BlackBack.png");
     assert(PauseBackImage_ >= 0);
 
     //続ける
-    ContinueImage_ = Image::Load("Image/Continue.png");
+    ContinueImage_ = Image::Load("Image/InGameMenu/Continue.png");
     assert(ContinueImage_ >= 0);
 
     //ステージ選択に戻る
-    BackMenuImage_ = Image::Load("Image/BackButton.png");
+    BackMenuImage_ = Image::Load("Image/InGameMenu/BackButton.png");
     assert(BackMenuImage_ >= 0);
 
     //セレクトフレーム
-    SelectFrameImage_ = Image::Load("Image/SelectFrame.png");
+    SelectFrameImage_ = Image::Load("Image/InGameMenu/SelectFrame.png");
     assert(SelectFrameImage_ >= 0);
 
 }

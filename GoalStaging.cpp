@@ -21,28 +21,28 @@ void GoalStaging::Initialize()
     Global gl;
 
     //モデルデータのロード
-    BalloonModel_ = Model::Load("SuccessModel/Balloon.fbx");
+    BalloonModel_ = Model::Load("Model/InGameObject/Balloon.fbx");
     assert(BalloonModel_ >= 0);
     BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoalX(), gl.GetCameraGoalY(), 0.f);
     BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
     Model::SetTransform(BalloonModel_, BalloonTrans);
 
     //Enter
-    EnterImage_ = Image::Load("Image/Enter.png");
+    EnterImage_ = Image::Load("Image/InGameMenu/Enter.png");
     assert(EnterImage_ >= 0);
     EnterTrans.position_ = XMFLOAT3(0.1f, 0.1f, 0);
     EnterTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
     Image::SetTransform(EnterImage_, EnterTrans);
 
     //暗転
-    BackImage_ = Image::Load("Image/Clear_Black.png");
+    BackImage_ = Image::Load("Image/InGameMenu/Clear_Black.png");
     assert(BackImage_ >= 0);
     auto BlackTrans = Transform();
     BlackTrans.scale_ = XMFLOAT3(1.4f, 1.4f, 1.4f);
     Image::SetTransform(BackImage_, BlackTrans);
 
     //収縮用
-    CircleImage_ = Image::Load("Image/Clear_Effect.png");
+    CircleImage_ = Image::Load("Image/InGameMenu/Clear_Effect.png");
     assert(CircleImage_ >= 0);
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
 

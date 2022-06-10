@@ -18,7 +18,7 @@ void Sign::Initialize()
 {
     //モデルデータのロード
     //方向を決める...ジャンプ...
-    TipsHandle_ = Model::Load("SuccessModel/Sign1.fbx");
+    TipsHandle_ = Model::Load("Model/InGameObject/Sign1.fbx");
     assert(TipsHandle_ >= 0);
     auto SignTrans = Transform();
     SignTrans.position_ = XMFLOAT3(2, 0, 0);
@@ -26,7 +26,7 @@ void Sign::Initialize()
     Model::SetTransform(TipsHandle_, SignTrans);
 
     //刃が地面に刺さってる時は,,,
-    TipsHandle2_ = Model::Load("SuccessModel/Sign2.fbx");
+    TipsHandle2_ = Model::Load("Model/InGameObject/Sign2.fbx");
     assert(TipsHandle2_ >= 0);
     auto SignTrans2 = Transform();
     SignTrans2.position_ = XMFLOAT3(5, 0, 0);
@@ -34,7 +34,7 @@ void Sign::Initialize()
     Model::SetTransform(TipsHandle2_, SignTrans2);
 
     //刃が地面に着くたびに...
-    TipsHandle3_ = Model::Load("SuccessModel/Sign3.fbx");
+    TipsHandle3_ = Model::Load("Model/InGameObject/Sign3.fbx");
     assert(TipsHandle3_ >= 0);
     auto SignTrans3 = Transform();
     SignTrans3.position_ = XMFLOAT3(8, 0, 0);
@@ -42,7 +42,7 @@ void Sign::Initialize()
     Model::SetTransform(TipsHandle3_, SignTrans3);
 
     //壁に刃を向けてジャンプすると...
-    TipsHandle4_ = Model::Load("SuccessModel/Sign4.fbx");
+    TipsHandle4_ = Model::Load("Model/InGameObject/Sign4.fbx");
     assert(TipsHandle4_ >= 0);
     auto SignTrans4 = Transform();
     SignTrans4.position_ = XMFLOAT3(30, 0, 0);
@@ -50,7 +50,7 @@ void Sign::Initialize()
     Model::SetTransform(TipsHandle4_, SignTrans4);
 
     //[Esc]を押すと...
-    TipsHandle5_ = Model::Load("SuccessModel/Sign5.fbx");
+    TipsHandle5_ = Model::Load("Model/InGameObject/Sign5.fbx");
     assert(TipsHandle5_ >= 0);
     auto SignTrans5 = Transform();
     SignTrans5.position_ = XMFLOAT3(11, 0, 0);
