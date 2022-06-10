@@ -107,16 +107,16 @@ void StageSelectScene::Initialize()
 	//------------- ‰¹ ----------------------------------
 
 	//------ Select --------------
-	SelectSound_ = Audio::Load("Sound/Select.wav");
+	SelectSound_ = Audio::Load("Sound/Title&Menu/Select.wav");
 	assert(SelectSound_ >= 0);
 
 	//------ Determination -------------
 
-	DeterSound_ = Audio::Load("Sound/Determination.wav");
+	DeterSound_ = Audio::Load("Sound/Title&Menu/Determination.wav");
 	assert(DeterSound_ >= 0);
 
 	//------------ ƒƒbƒN’† -----------
-	LockSound_ = Audio::Load("Sound/KeyLock.wav");
+	LockSound_ = Audio::Load("Sound/Title&Menu/KeyLock.wav");
 	assert(LockSound_ >= 0);
 
 

@@ -553,11 +553,11 @@ void Scissors::InitSound()
     //--------- STAGE1 ----------------------------------
      
        //----------- 草 --------------------
-    Land_Glass = Audio::Load("Sound/FootStep_Glass.wav");
+    Land_Glass = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav");
     assert(Land_Glass >= 0);
 
       //------------ 木 --------------------
-    Land_Wood = Audio::Load("Sound/FootStep_Wood.wav");
+    Land_Wood = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav");
     assert(Land_Wood >= 0);
 
     //---------------------------------------------------
@@ -566,11 +566,11 @@ void Scissors::InitSound()
     //-------------- STAGE2 ---------------------------
 
       //-------------- 砂利 ----------------
-    Land_Gravel = Audio::Load("Sound/FootStep_Gravel.wav");
+    Land_Gravel = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav");
     assert(Land_Gravel >= 0);
 
       //-------------- 石 ---------------------
-    Land_Stone = Audio::Load("Sound/FootStep_Stone.wav");
+    Land_Stone = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav");
     assert(Land_Stone >= 0);
 
     //-------------------------------------------------
@@ -578,22 +578,22 @@ void Scissors::InitSound()
     //-------------- STAGE3 ---------------------------
 
       //------------- 弾く -----------------
-    Land_Iron = Audio::Load("Sound/FootStep_Iron.wav");
+    Land_Iron = Audio::Load("Sound/InStage/Stage3/FootStep_Iron.wav");
     assert(Land_Iron >= 0);
 
       //------------- 沈む -----------------
-    Land_Sand = Audio::Load("Sound/FootStep_Sand.wav");
+    Land_Sand = Audio::Load("Sound/InStage/Stage3/FootStep_Sand.wav");
     assert(Land_Sand >= 0);
 
       //------------- 火山砂地帯(前半) ---------------------
-    Land_Volcano_Sand = Audio::Load("Sound/FootStep_Volcano_Sand.wav");
+    Land_Volcano_Sand = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano_Sand.wav");
     assert(Land_Volcano_Sand >= 0);
 
       //------------- 火山地帯（後半）-------------------
-    Land_Volcano = Audio::Load("Sound/FootStep_Volcano.wav");
+    Land_Volcano = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano.wav");
     assert(Land_Volcano >= 0);
 
-    //-------------- STAGE3 ---------------------------
+    //---------------------------------------------------
 }
 
 //音を流す

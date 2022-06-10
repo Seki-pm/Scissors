@@ -47,7 +47,7 @@ void GoalStaging::Initialize()
     CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
 
     //ƒTƒEƒ“ƒh
-    SoundHandle_ = Audio::Load("Sound/Staging.wav");
+    SoundHandle_ = Audio::Load("Sound/InStage/Staging.wav");
     assert(SoundHandle_ >= 0);
 }
 

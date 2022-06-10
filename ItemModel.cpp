@@ -19,7 +19,7 @@ void ItemModel::Initialize()
     Coin_ = Model::Load("Model/InGameObject/Coin.fbx");
     assert(Coin_ >= 0);
 
-    Coin_Sound = Audio::Load("Sound/Get_Coin.wav");
+    Coin_Sound = Audio::Load("Sound/InStage/Get_Coin.wav");
     assert(Coin_Sound >= 0);
 
 

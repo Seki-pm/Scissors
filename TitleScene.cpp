@@ -35,7 +35,7 @@ void TitleScene::Initialize()
 
 
 	//--------- Sound ----------------
-	SoundHandle_ = Audio::Load("Sound/Cut.wav");
+	SoundHandle_ = Audio::Load("Sound/Title&Menu/Cut.wav");
 	assert(SoundHandle_ >= 0);
 	//-------------------------------
 }
