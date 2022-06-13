@@ -6,15 +6,15 @@
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
-    :GameObject(parent, "Scissors"), move_(XMFLOAT3(0,0,0)),
-    jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)),
-    Land_Glass(-1), Land_Wood(-1), Land_Gravel(-1), Land_Stone(-1),Land_Iron(-1),
-    Land_Sand(-1),Land_Volcano(-1),Land_Volcano_Sand(-1),
-    AnglePass_(0.0f), GLAVITY(0.03f), pBlade_L(nullptr), pBlade_R(nullptr),
-    pNumber_(nullptr),pStage_(nullptr),
-    CalcFlg(false), FallFlg(true),SoundFlg(false),IsRepel(false),IsSink(false),
-    JumpPower(0.1f),Key(0), NumberImage_(-1),DengerImage_(-1), Timer_(360), CountDown(0),
-    MoveY(0),powerX(0),powerY(0),TransPos_Y(0)
+    :GameObject(parent, "Scissors"), 
+    jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
+    pBlade_L(nullptr), pBlade_R(nullptr),pNumber_(nullptr),pStage_(nullptr),
+    FallFlg(true), CalcFlg(false), SoundFlg(false),IsRepel(false),IsSink(false),
+    CountDown(0), MoveY(0),powerX(0),powerY(0),TransPos_Y(0),
+    AnglePass_(0.0f),  NumberImage_(-1), DengerImage_(-1),   Key(0),
+    Land_Glass(-1), Land_Wood(-1),    Land_Gravel(-1),       Land_Stone(-1), 
+    Land_Sand(-1),  Land_Volcano(-1), Land_Volcano_Sand(-1), Land_Iron(-1),
+    Timer_(360), JumpPower(0.1f), GLAVITY(0.03f)
 {
 }
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include "Engine/Model.h"
+#include "Engine/Image.h"
 #include "Global.h"
 #include "PolygonCollider.h"
 #include "Scissors.h"
 #include "Sign.h"
-#include "Engine/Model.h"
-#include "Engine/Image.h"
 #include "StageSelectScene.h"
 #include <vector>
 using namespace std;
@@ -14,9 +14,8 @@ using namespace std;
 //ハサミの刃を管理するクラス
 class Stage : public GameObject
 {
-
-    int StageModel_;
-    int BackImage_;
+    int StageModel_; //ステージモデル
+    int BackImage_;  //背景
 
     Global gl;
 
@@ -48,7 +47,7 @@ public:
     void Update() override;
 
     //読み込み
-    void Load(const int st);
+    void Load(const int stage);
 
     //描画
     void Draw() override;
@@ -67,21 +66,25 @@ public:
     //衝突した辺の法線と衝突点を調べる
     void GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitPoint);
 
-    //Stage
+    //ステージのコライダ設定
     void Stage1();
     void Stage2();
     void Stage3();
 
+    //ステージの読み込み
     void Stage1Load();
     void Stage2Load();
     void Stage3Load();
 
-    //弾く時の管理
-    XMFLOAT3 Repel();
+    //弾く時の値
+    XMFLOAT3 Repel(){ return XMFLOAT3(0.1f,0.3f,0); }
 
+    //弾く床をチェック
     void RepelCheck(int i);
-    void SinkCheck(int i);
 
-    //沈む時の管理
-    XMFLOAT3 Sink();
+    //沈む時の値
+    XMFLOAT3 Sink() { return XMFLOAT3(0,-0.01f,0); }
+
+    //沈む床をチェック
+    void SinkCheck(int i);
 };

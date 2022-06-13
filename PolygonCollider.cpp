@@ -1,5 +1,4 @@
 #include "PolygonCollider.h"
-#include "Global.h"
 
 
 //多角形の頂点の位置を追加
@@ -157,12 +156,14 @@ bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 //はじく床を追加
 void PolygonCollider::AddRepel(int num)
 {
+	//はじく床の配列に追加
 	Global::Repel_.push_back(num - 1);
 }
 
 //沈む床を追加
 void PolygonCollider::AddSink(int num)
 {
+	//沈む床の配列に追加
 	Global::Sink_.push_back(num - 1);
 }
 
@@ -171,17 +172,13 @@ void PolygonCollider::SetRepel(int search)
 {
 	for (int i = 0; i < Global::Repel_.size(); i++)
 	{
+		//引数と配列内の数字が同じだったら
 		if (Global::Repel_[i] == search)
 		{
+			//変数に代入
 			RepelNumber = search;
 		}	
 	}
-}
-
-//はじく床の番号を送る
-int PolygonCollider::GetRepel()
-{
-	return RepelNumber;
 }
 
 //沈む床との判定を行う
@@ -189,15 +186,11 @@ void PolygonCollider::SetSink(int search)
 {
 	for (int i = 0; i < Global::Sink_.size(); i++)
 	{
+		//引数と配列内の数字が同じだったら
 		if (Global::Sink_[i] == search)
 		{
+			//変数に代入
 			SinkNumber = search;
 		}
 	}
-}
-
-//沈む床との判定を送る
-int PolygonCollider::GetSink()
-{
-	return SinkNumber;
 }

@@ -7,6 +7,7 @@
 #include "Engine/Audio.h"
 #include "GameOver.h"
 #include "Global.h"
+#include "GoalStaging.h"
 #include "HP.h"
 #include "ItemModel.h"
 #include "ItemImage.h"
@@ -14,7 +15,6 @@
 #include "Scissors.h"
 #include "Stage.h"
 #include "StageSelectScene.h"
-#include "GoalStaging.h"
 #include "Sign.h"
 
 

@@ -52,10 +52,10 @@ public:
 
 	//‚Í‚¶‚­°‚Æ‚Ì”»’è•‘—‚é
 	void SetRepel(int search);
-	int GetRepel();
+	int GetRepel() { return RepelNumber; }
 
 	//’¾‚Ş°‚Æ‚Ì”»’è•‘—‚é
 	void SetSink(int search);
-	int GetSink();
+	int GetSink() { return SinkNumber; }
 };
 
