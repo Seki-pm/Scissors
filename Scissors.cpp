@@ -355,6 +355,8 @@ void Scissors::Release()
 void Scissors::Reflection()
 {
     int cnt = 0;
+    float value = 0.1f;
+
     //transform_.position_.x -= move_.x;
     //transform_.position_.y -= move_.y;
     //move_.x *= -0.3f;
@@ -397,33 +399,15 @@ void Scissors::Reflection()
         }
         cnt++;
 
-        //判定を10回行ったら強制的にはじく
-        if (cnt >= 10)
+        //判定が20回以上だと
+        if (cnt >= 20)
         {
-            if (move_.x <= 0)
-            {
-                move_.x = 0.1f;
-            }
-            if (move_.y <= 0)
-            {
-                move_.y = 0.1f;
-            }
-
-            move_.x *= -0.3f;
-            move_.y *= -0.3f;
-
+            //強制的に値を入れてScissorsを動かす(詰み防止対策)
+            move_.x -= value;
+            move_.y -= value;
         }
 
-        //ステージ外に出た場合スタート位置に戻る
-        if (transform_.position_.x < 0 ||
-            transform_.position_.y < 0 ||
-            cnt >= 100)
-        {
-            Global gl;
-            transform_.position_.x = gl.GetCameraStartX();
-            transform_.position_.y = gl.GetCameraStartY();
-        }
-
+        //ぶつかっている間HPを減らす(詰み防止対策)
         Global::HP--;
     }
 }
