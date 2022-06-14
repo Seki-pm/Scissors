@@ -60,7 +60,8 @@ public:
     bool IsHit(XMFLOAT3 position);
 
     //先端以外がステージとぶつかっているか調べる
-    //
+    //引数：ぶつかっているコライダ
+    //　　　ワールド座標
     bool IsHit(PolygonCollider target, XMMATRIX world);
 
     //衝突した辺の法線と衝突点を調べる
@@ -80,11 +81,13 @@ public:
     XMFLOAT3 Repel(){ return XMFLOAT3(0.1f,0.3f,0); }
 
     //弾く床をチェック
+    //引数：チェックする番号
     void RepelCheck(int i);
 
     //沈む時の値
     XMFLOAT3 Sink() { return XMFLOAT3(0,-0.01f,0); }
 
     //沈む床をチェック
+    //引数：チェックする番号
     void SinkCheck(int i);
 };

@@ -3,8 +3,7 @@
 //コンストラクタ
 TitleScene::TitleScene(GameObject* parent)
 	: GameObject(parent, "TitleScene"),
-	BackImageHandle_(-1), TitleImageHandle_(-1),
-	SpaceKeyImageHandle_(-1), SoundHandle_(-1),
+	BackImage_(-1), TitleImage_(-1),SpaceKeyImage_(-1), ScissorsSound_(-1),
 	size_(1), alpha_(255.f), theta_(0), TimerCnt(0), Timer_(false)
 {
 }
@@ -13,30 +12,30 @@ TitleScene::TitleScene(GameObject* parent)
 void TitleScene::Initialize()
 {
 	//-----------------------タイトル-----------------------------
-	TitleImageHandle_ = Image::Load("Image/TitleScene/Scissors.png");
-	assert(TitleImageHandle_ >= 0);
+	TitleImage_ = Image::Load("Image/TitleScene/Scissors.png");
+	assert(TitleImage_ >= 0);
 	TitleTrans.position_ = XMFLOAT3(0, 0.3f, 0);
 	TitleTrans.scale_ = XMFLOAT3(3.f, 3.f, 0);
-	Image::SetTransform(TitleImageHandle_, TitleTrans);
+	Image::SetTransform(TitleImage_, TitleTrans);
 	//------------------------------------------------------------
 
 	//-----------------------背景--------------------------------
-	BackImageHandle_ = Image::Load("Image/TitleScene/Title_Back.png");
-	assert(BackImageHandle_ >= 0);
-	Image::SetTransform(BackImageHandle_, transform_);
+	BackImage_ = Image::Load("Image/TitleScene/Title_Back.png");
+	assert(BackImage_ >= 0);
+	Image::SetTransform(BackImage_, transform_);
 	//------------------------------------------------------------
 
 	//------------------ Space -------------------------
-	SpaceKeyImageHandle_ = Image::Load("Image/TitleScene/Space.png");
-	assert(SpaceKeyImageHandle_ >= 0);
+	SpaceKeyImage_ = Image::Load("Image/TitleScene/Space.png");
+	assert(SpaceKeyImage_ >= 0);
 	SpaceTrans.scale_ = XMFLOAT3(size_, size_, size_);
 	SpaceTrans.position_ = XMFLOAT3(0, -0.6f, 0);
 	//------------------------------------------------------------
 
 
 	//--------- Sound ----------------
-	SoundHandle_ = Audio::Load("Sound/Title&Menu/Cut.wav");
-	assert(SoundHandle_ >= 0);
+	ScissorsSound_ = Audio::Load("Sound/Title&Menu/Cut.wav");
+	assert(ScissorsSound_ >= 0);
 	//-------------------------------
 }
 
@@ -44,10 +43,10 @@ void TitleScene::Initialize()
 void TitleScene::Update()
 {
 
-
+	//SPACE or マウスクリックで動き出す
 	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
-		Audio::Play(SoundHandle_);
+		Audio::Play(ScissorsSound_);
 
 		Timer_ = true;
 	}
@@ -63,27 +62,28 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//背景の描画
-	Image::Draw(BackImageHandle_);
+	Image::Draw(BackImage_);
 
 	//タイトルの描画
-	Image::Draw(TitleImageHandle_);
+	Image::Draw(TitleImage_);
 
 	//Space
-	Image::SetAlpha(SpaceKeyImageHandle_, (int)alpha_);
-	Image::SetTransform(SpaceKeyImageHandle_, SpaceTrans);
-	Image::Draw(SpaceKeyImageHandle_);
+	Image::SetAlpha(SpaceKeyImage_, (int)alpha_);
+	Image::SetTransform(SpaceKeyImage_, SpaceTrans);
+	Image::Draw(SpaceKeyImage_);
 
 }
 
 //開放
 void TitleScene::Release()
 {
-	BackImageHandle_ = -1;
-	TitleImageHandle_ = -1;
-	SpaceKeyImageHandle_ = -1;
-	SoundHandle_ = -1;
+	BackImage_ = -1;
+	TitleImage_ = -1;
+	SpaceKeyImage_ = -1;
+	ScissorsSound_ = -1;
 }
 
+//点滅
 void TitleScene::Blinking()
 {
 	alpha_ = (float)abs(cos(XMConvertToRadians((float)theta_)));
@@ -94,6 +94,7 @@ void TitleScene::Blinking()
 
 }
 
+//時間計測
 void TitleScene::Timer()
 {
 	//Timerフラグがtrueなら
@@ -109,6 +110,7 @@ void TitleScene::Timer()
 	{
 		Timer_ = false;
 
+		//StageSelectSceneに遷移
 		SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 		pSceneManager->ChangeScene(SCENE_ID_SELECT);
 	}

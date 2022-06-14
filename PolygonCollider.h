@@ -51,10 +51,12 @@ public:
 	void AddSink(int num);
 
 	//‚Í‚¶‚­°‚Æ‚Ì”»’è•‘—‚é
+	//ˆø”F‚Í‚¶‚­êŠ‚Ì”Ô†
 	void SetRepel(int search);
 	int GetRepel() { return RepelNumber; }
 
 	//’¾‚Ş°‚Æ‚Ì”»’è•‘—‚é
+	//ˆø”F’¾‚ŞêŠ‚Ì”Ô†
 	void SetSink(int search);
 	int GetSink() { return SinkNumber; }
 };

@@ -100,6 +100,7 @@ public:
     //開放
     void Release() override;
 
+    //地面の法線をセット
     void SetJumpDirection(XMFLOAT3 jumpDirection) { jumpDirection_ = jumpDirection; }
 
     //反射
@@ -120,10 +121,11 @@ public:
     //沈んだ時の動き
     void SinkMove();
 
+    //音の初期化
     void InitSound();
-    void Landing();
 
-    void Input();
+    //音を鳴らす
+    void Landing();
 
     //画像の初期化
     void InitImage();

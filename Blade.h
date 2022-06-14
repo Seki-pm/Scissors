@@ -9,7 +9,6 @@ class Blade : public GameObject
 {
     int BladeModel_;
 
-
 public:
     bool isPrick;   //’n–Ê‚Éh‚³‚Á‚Ä‚é‚©‚Ç‚¤‚©
     PolygonCollider collider;   //æ’[ˆÈŠO‚Ì“–‚½‚è”»’è

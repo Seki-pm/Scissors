@@ -3,7 +3,7 @@
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     Coin_(-1),rotate(8), Coin_Sound(-1)
+     CoinModel_(-1),rotate(8), CoinSound_(-1)
 {
 }
 
@@ -16,11 +16,11 @@ ItemModel::~ItemModel()
 void ItemModel::Initialize()
 {
 
-    Coin_ = Model::Load("Model/InGameObject/Coin.fbx");
-    assert(Coin_ >= 0);
+    CoinModel_ = Model::Load("Model/InGameObject/Coin.fbx");
+    assert(CoinModel_ >= 0);
 
-    Coin_Sound = Audio::Load("Sound/InStage/Get_Coin.wav");
-    assert(Coin_Sound >= 0);
+    CoinSound_ = Audio::Load("Sound/InStage/Get_Coin.wav");
+    assert(CoinSound_ >= 0);
 
 
     transform_.position_ = Global::ItemModelPos;
@@ -34,6 +34,7 @@ void ItemModel::Initialize()
 //更新
 void ItemModel::Update()
 {
+    //コインを取得したら
     if (Global::GetCoin)
     {
         //rotateの回転数に満たない間Animation
@@ -41,9 +42,8 @@ void ItemModel::Update()
         {
             Animation();
         }
-        else
-        {
-            KillMe();
+        else{
+            KillMe();  //消す
         }
     }
 }
@@ -51,15 +51,15 @@ void ItemModel::Update()
 //描画
 void ItemModel::Draw()
 {
-    Model::SetTransform(Coin_, transform_);
-    Model::Draw(Coin_);
+    Model::SetTransform(CoinModel_, transform_);
+    Model::Draw(CoinModel_);
 }
 
 //開放
 void ItemModel::Release()
 {
-    Coin_ = -1;
-    Coin_Sound = -1;
+    CoinModel_ = -1;
+    CoinSound_ = -1;
 }
 
 //何かに当たった
@@ -84,7 +84,7 @@ void ItemModel::OnCollision(GameObject* pTarget)
         }
 
         Global::GetCoin = true;
-        Audio::Play(Coin_Sound);
+        Audio::Play(CoinSound_);
     }
 }
 

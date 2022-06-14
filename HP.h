@@ -9,8 +9,8 @@ class HP : public GameObject
     Gauge*  pGauge_;  //ゲージ描画用
 
     //ロード用変数
-    int GaugeHandle_;    
-    int GaugeFrame_;
+    int GaugeImage_;    
+    int GaugeFrameImage_;
 
     Transform FrameTrans;
 

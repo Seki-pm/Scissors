@@ -103,8 +103,3 @@ void GameOver::SetSelect(int select)
     select_ = select;
 }
 
-//ƒQƒbƒg
-int GameOver::GetSelect()
-{
-    return select_;
-}

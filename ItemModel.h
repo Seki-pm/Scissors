@@ -12,10 +12,10 @@
 //コインを管理するクラス
 class ItemModel : public GameObject
 {
-    int Coin_;
-    int rotate; //回転数
+    int CoinModel_; //コインモデル用変数
+    int CoinSound_; //コイン取得時の音
 
-    int Coin_Sound;
+    int rotate; //回転数
 
 public:
     //コンストラクタ

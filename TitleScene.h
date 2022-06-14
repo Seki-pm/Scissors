@@ -1,27 +1,34 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/SceneManager.h"
+#include "Engine/Audio.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
-#include "Engine/Audio.h"
+
 
 //タイトルシーンを管理するクラス
 class TitleScene : public GameObject
 {
-	int BackImageHandle_;
-	int TitleImageHandle_;
-	int SpaceKeyImageHandle_;
-	int SoundHandle_;
-	
+	//画像用変数
+	int BackImage_;
+	int TitleImage_;
+	int SpaceKeyImage_;
+
+	//音用変数
+	int ScissorsSound_;
+
+	//タイムを数える
 	int TimerCnt;
 
-
+	//
 	bool Timer_;
 
+	//画像の動き用の変数
 	float size_;
 	float alpha_;
 	float theta_;
 
+	//Transform変数
 	Transform TitleTrans;
 	Transform SpaceTrans;
 
@@ -42,7 +49,9 @@ public:
 	//開放
 	void Release() override;
 
+	//点滅
 	void Blinking();
 
+	//時間計測
 	void Timer();
 };

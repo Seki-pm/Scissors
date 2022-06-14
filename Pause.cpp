@@ -101,5 +101,5 @@ void Pause::Release()
     PauseBackImage_ = -1;
     ContinueImage_ = -1;
     BackMenuImage_ = -1;
-
+    SelectFrameImage_ = -1;
 }

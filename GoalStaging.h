@@ -12,7 +12,7 @@ class GoalStaging : public GameObject
     Global gl; //globalを使う
 
     int BalloonModel_;    //モデル番号
-    int SoundHandle_;  //サウンド用
+    int GoalSound_;  //サウンド用
 
     //画像ロード用
     int BackImage_;
@@ -24,7 +24,7 @@ class GoalStaging : public GameObject
     Transform EnterTrans;
     Transform BalloonTrans;
 
-    //サイズ
+    //サイズ(暗転処理用)
     float size_;
 
     //フラグ

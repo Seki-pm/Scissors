@@ -77,7 +77,7 @@ public:
 	void SetTransPos_Z(float z);
 	float GetTransPos_Z();
 
-	//カメラのスタートとゴール位置を設定
+	//カメラのスタートとゴール位置を設定（ X と Y ）
 	void SetCameraStartX(float start);
 	void SetCameraStartY(float start);
 	float GetCameraStartX();

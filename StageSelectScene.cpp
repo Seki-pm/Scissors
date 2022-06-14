@@ -5,17 +5,20 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
 	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
 	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
-	ComingSoonImage_(-1),Drawflg(true)
+	Drawflg(true)
 {
+	//STAGE_NUMBER 初期化
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
 	}
 
+	//STAGE_LEVEL 初期化
 	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
 		LevelHandle_[i] = -1;
 	}
 
+	//STAGE_LOCK 初期化
 	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
 		StageLockHandle_[i] = -1;
@@ -251,26 +254,29 @@ void StageSelectScene::Draw()
 //開放
 void StageSelectScene::Release()
 {
+	//STAGE_NUMBER 開放
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
 		StageHandle_[i] = -1;
 	}
 
+	//STAGE_LEVEL 開放
 	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
 		LevelHandle_[i] = -1;
 	}
 
+	//STAGE_LOCK 開放
 	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
 		StageLockHandle_[i] = -1;
 	}
 
 	FrameImageHandle_ = -1;
-	BackImage_ = -1;
+	DescriptionImage_ = -1;
 	SelectSound_ = -1;
 	DeterSound_ = -1;
+	BackImage_ = -1;
 	LockSound_ = -1;
-	ComingSoonImage_ = -1;
 }
 
 //ステージのロック解除管理
@@ -278,22 +284,18 @@ void StageSelectScene::StageUnlock()
 {
 	Image::Draw(StageHandle_[STAGE_NUMBER_1]);
 
-	if (Global::Unlock2)
-	{
+	//アンロックフラグを基に描画の内容を変える
+	if (Global::Unlock2){
 		Image::Draw(StageHandle_[STAGE_NUMBER_2]);
 	}
-	else
-	{
+	else{
 		Image::Draw(StageLockHandle_[STAGE_LOCK_2]);
 	}
 
-	if (Global::Unlock3)
-	{
+	if (Global::Unlock3){
 		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
-		//Image::Draw(ComingSoonImage_);
 	}
-	else
-	{
+	else{
 		Image::Draw(StageLockHandle_[STAGE_LOCK_3]);
 	}
 }
@@ -301,6 +303,7 @@ void StageSelectScene::StageUnlock()
 //コインの取得状況
 void StageSelectScene::GetCoin()
 {
+	//一度だけ描画
 	if (Drawflg)
 	{
 		Global::ItemImageSca = Global::ItemImageSca_Select; //表示サイズ

@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/SceneManager.h"
+#include "Engine/Audio.h"
 #include "Engine/Camera.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
-#include "Engine/Audio.h"
 #include "GameOver.h"
 #include "Global.h"
 #include "GoalStaging.h"
@@ -13,9 +13,10 @@
 #include "ItemImage.h"
 #include "Pause.h"
 #include "Scissors.h"
+#include "Sign.h"
 #include "Stage.h"
 #include "StageSelectScene.h"
-#include "Sign.h"
+
 
 
 //ステージシーンを管理するクラス
@@ -23,8 +24,8 @@ class StageScene : public GameObject
 {
 
 	Stage* pStage_;
-	Global global;
 	Scissors* pScissors_;
+	Global global;
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数

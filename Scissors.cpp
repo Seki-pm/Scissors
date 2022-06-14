@@ -9,12 +9,12 @@ Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), 
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
     pBlade_L(nullptr), pBlade_R(nullptr),pNumber_(nullptr),pStage_(nullptr),
-    FallFlg(true), CalcFlg(false), SoundFlg(false),IsRepel(false),IsSink(false),
-    CountDown(0), MoveY(0),powerX(0),powerY(0),TransPos_Y(0),
-    AnglePass_(0.0f),  NumberImage_(-1), DengerImage_(-1),   Key(0),
-    Land_Glass(-1), Land_Wood(-1),    Land_Gravel(-1),       Land_Stone(-1), 
-    Land_Sand(-1),  Land_Volcano(-1), Land_Volcano_Sand(-1), Land_Iron(-1),
-    Timer_(360), JumpPower(0.1f), GLAVITY(0.03f)
+    FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
+    CountDown(0),      MoveY(0),         powerX(0),        powerY(0),         TransPos_Y(0),
+    AnglePass_(0.0f),  NumberImage_(-1), DengerImage_(-1),      Key(0),
+    Land_Glass(-1),    Land_Wood(-1),    Land_Gravel(-1),       Land_Stone(-1), 
+    Land_Sand(-1),     Land_Volcano(-1), Land_Volcano_Sand(-1), Land_Iron(-1),
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
 {
 }
 
@@ -33,8 +33,7 @@ void Scissors::Initialize()
     pBlade_R = Instantiate<Blade>(this);    //右刃
     pBlade_R->Load(1);
 
-    //テスト用
-    //pBlade_R->isPrick = true;   //右が地面に刺さってるとして
+    //RBladeを45°傾ける
     pBlade_R->SetRotateZ(45);
 
     //初期位置
@@ -46,6 +45,7 @@ void Scissors::Initialize()
     //画像の初期化
     InitImage();
 
+    //アイテム取得用のコライダーを設定
     SphereCollider* collision =
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
@@ -103,8 +103,8 @@ void Scissors::Update()
     }
 
     //床ギミック
-    RepelMove();
-    SinkMove();
+    RepelMove();  //はじく
+    SinkMove();   //沈む
 }
 
 
@@ -652,7 +652,7 @@ void Scissors::Landing()
             Audio::Play(Land_Sand);
         }
         //普通の地面(前半)
-        else if (transform_.position_.x <= 73)
+        else if (transform_.position_.x <= 74)
         {
             Audio::Play(Land_Volcano_Sand);
             Audio::Stop(Land_Sand);

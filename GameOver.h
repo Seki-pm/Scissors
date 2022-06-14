@@ -40,8 +40,8 @@ public:
     //開放
     void Release() override;
 
-    //引数をセット
+    //引数をSET&GET
     void SetSelect(int select);
-    int GetSelect();
+    int GetSelect() { return select_; }
 };
 

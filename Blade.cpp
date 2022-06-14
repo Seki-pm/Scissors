@@ -33,10 +33,6 @@ void Blade::Load(const int lr)
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける
-        //collider.AddPoint(-0.4f, 0.7f);
-        //collider.AddPoint(0.2f, 0.8f);
-        //collider.AddPoint(0.0f, -0.8f);
-
         collider.AddPoint(-0.37f, 0.74f);
         collider.AddPoint(-0.05f, 0.75f);
         collider.AddPoint(-0.0f, -0.8f);
@@ -48,10 +44,6 @@ void Blade::Load(const int lr)
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける
-        //collider.AddPoint(-0.2f, 0.8f);
-        //collider.AddPoint(0.4f, 0.7f);
-        //collider.AddPoint(-0.0f, -0.8f);
-         
         collider.AddPoint(0.5f, 0.75f);
         collider.AddPoint(0.37f, 0.74f);
         collider.AddPoint(-0.0f, -0.8f);

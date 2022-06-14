@@ -1,12 +1,11 @@
 #include "StageScene.h"
 
-
-
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
-	: GameObject(parent, "StageScene"),pStage_(nullptr),
-    Pos_X(0),Pos_Y(0),Pos_Z(0), Gselect_(-1), Pselect_(-1),
-    SelectSound_(-1), DeterSound_(-1)
+	: GameObject(parent, "StageScene"),
+    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
+    pStage_(nullptr), pScissors_(nullptr),
+    Pos_X(0), Pos_Y(0), Pos_Z(0)
 {
 }
 
@@ -98,6 +97,8 @@ void StageScene::GameOverSEL()
         //GameOver表示
         Instantiate<GameOver>(this);
         Global::IsGameOver = false;
+
+        //アイテム再表示
         Global::ItemReDraw = true;
     }
 
@@ -235,9 +236,10 @@ void StageScene::NextStageUnlock( int SelectStage )
 //ゴール演出用
 void StageScene::Timer()
 {
-    //trueの時アンロックをし、ステージ選択へ遷移
+    //trueの時
     if (Global::Timer)
     {
+        //次のステージをアンロックをし、ステージ選択へ遷移
         NextStageUnlock(Global::SelectStage);
         Global::Timer = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");

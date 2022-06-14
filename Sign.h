@@ -5,6 +5,7 @@
 //操作説明オブジェクトを管理するクラス
 class Sign : public GameObject
 {
+    //モデルを入れる変数
     int TipsHandle_;
     int TipsHandle2_;
     int TipsHandle3_;
