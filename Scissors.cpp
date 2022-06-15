@@ -140,7 +140,7 @@ void Scissors::OpenClose()
     float ang = acos(XMVectorGetX(XMVector3Dot(LMax, RMax)));
 
     //170“xˆÈã‚Ü‚½‚Í2“x–¢–ž‚È‚ç‚à‚Ç‚·
-    if (XMConvertToDegrees(ang) > 170 || XMConvertToDegrees(ang) < 2)   
+    if (XMConvertToDegrees(ang) > 170|| XMConvertToDegrees(ang) < 2)   
     {
         pBlade_L->Open(angle);
         pBlade_R->Open(-angle);

@@ -33,15 +33,15 @@ void StageSelectScene::Initialize()
 	//画像データのロード
 	//---------------------- STAGE ------------------------------
 
-	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/MenuScene/STAGE1.png");
+	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/StageSelectScene/STAGE1.png");
 	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
 	Stage[STAGE_NUMBER_1].position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 
-	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/MenuScene/STAGE2.png");
+	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/StageSelectScene/STAGE2.png");
 	assert(StageHandle_[STAGE_NUMBER_2] >= 0);
 	Stage[STAGE_NUMBER_2].position_ = XMFLOAT3(0, 0.2f, 0);
 
-	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/MenuScene/STAGE3.png");
+	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/StageSelectScene/STAGE3.png");
 	assert(StageHandle_[STAGE_NUMBER_3] >= 0);
 	Stage[STAGE_NUMBER_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
 
@@ -54,11 +54,11 @@ void StageSelectScene::Initialize()
 
 	//------------------- STAGE_ROCK --------------------------
 
-	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/MenuScene/Lock_Stage2.png");
+	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/StageSelectScene/Lock_Stage2.png");
 	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
 	Lock[STAGE_LOCK_2].position_ = XMFLOAT3(0, 0.2f, 0);
 
-	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/MenuScene/Lock_Stage3.png");
+	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/StageSelectScene/Lock_Stage3.png");
 	assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
 	Lock[STAGE_LOCK_3].position_ = XMFLOAT3(0.6f, 0.2f, 0);
 
@@ -68,15 +68,15 @@ void StageSelectScene::Initialize()
 	//--------------------------------------------------
 
 	//-------------------- Level ---------------------------
-	LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/MenuScene/Easy.png");
+	LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/StageSelectScene/Easy.png");
 	assert(LevelHandle_[STAGE_LEVEL_EASY] >= 0);
 	Level[STAGE_LEVEL_EASY].position_ = XMFLOAT3(-0.6f, 0.5f, 0);
 
-	LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/MenuScene/Normal.png");
+	LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/StageSelectScene/Normal.png");
 	assert(LevelHandle_[STAGE_LEVEL_NORMAL] >= 0);
 	Level[STAGE_LEVEL_NORMAL].position_ = XMFLOAT3(0, 0.5f, 0);
 
-	LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/MenuScene/Hard.png");
+	LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/StageSelectScene/Hard.png");
 	assert(LevelHandle_[STAGE_LEVEL_HARD] >= 0);
 	Level[STAGE_LEVEL_HARD].position_ = XMFLOAT3(0.6f, 0.5f, 0);
 
@@ -88,7 +88,7 @@ void StageSelectScene::Initialize()
 
 
 	//--------------- 選択用フレーム ------------
-	FrameImageHandle_ = Image::Load("Image/MenuScene/Frame.png");
+	FrameImageHandle_ = Image::Load("Image/StageSelectScene/Frame.png");
 	assert(FrameImageHandle_ >= 0);
 	FrameTransform.position_ = XMFLOAT3(-0.6f, 0.2f, 0);
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
@@ -99,10 +99,10 @@ void StageSelectScene::Initialize()
 	//---------------------------------------------
 
 	//---------------- 説明 ----------------------
-	DescriptionImage_ = Image::Load("Image/MenuScene/Description.png");
+	DescriptionImage_ = Image::Load("Image/StageSelectScene/Description.png");
 	assert(DescriptionImage_ >= 0);
 	auto DescTrans = Transform();
-	DescTrans.position_ = XMFLOAT3(0.0f, -0.5f, 0);
+	DescTrans.position_ = XMFLOAT3(0.0f, -0.6f, 0);
 	Image::SetTransform(DescriptionImage_, DescTrans);
 	//--------------------------------------------
 
