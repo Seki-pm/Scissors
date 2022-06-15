@@ -456,15 +456,18 @@ void Scissors::Restart()
     move_ = XMFLOAT3(0, 0, 0);
     transform_.position_ = Global::InitPos;
     transform_.rotate_ = Global::InitRot;
-    Global::HP = Global::MAXHP;
+
     Global::JumpStart = 0;
     Global::JumpEnd = 0;
-    pBlade_L->SetRotateZ(0);
-    pBlade_R->SetRotateZ(90);
     Global::GameOver = false;
     Global::IsGameOver = false;
-    FallFlg = true;
     Global::ItemReDraw = true;
+    Global::HP = Global::MAXHP;
+    pBlade_L->SetRotateZ(0);
+    pBlade_R->SetRotateZ(90);
+    pBlade_L->isPrick = false;
+    pBlade_R->isPrick = false;
+    FallFlg = true;
 }
 
 //’e‚©‚ê‚½Žž‚Ì“®‚«
