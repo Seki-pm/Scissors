@@ -19,17 +19,6 @@ GameOver::~GameOver()
 //初期化
 void GameOver::Initialize()
 {
-    //取得したコインを無くす
-    switch (Global::SelectStage)
-    {
-    case STAGE_NUMBER_1:
-        Global::GetCoin_1 = false; break;
-    case STAGE_NUMBER_2:
-        Global::GetCoin_2 = false; break;
-    case STAGE_NUMBER_3:
-        Global::GetCoin_3 = false; break;
-    }
-
     //画像データのロード
     //ゲームオーバー
     GameOverBackImage_ = Image::Load("Image/InGameMenu/BlackBack.png");
