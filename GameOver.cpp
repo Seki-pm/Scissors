@@ -23,11 +23,11 @@ void GameOver::Initialize()
     switch (Global::SelectStage)
     {
     case STAGE_NUMBER_1:
-        Global::GetCoin_1 = false;
-        break;
+        Global::GetCoin_1 = false; break;
     case STAGE_NUMBER_2:
-        Global::GetCoin_2 = false;
-        break;
+        Global::GetCoin_2 = false; break;
+    case STAGE_NUMBER_3:
+        Global::GetCoin_3 = false; break;
     }
 
     //画像データのロード

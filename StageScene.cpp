@@ -67,9 +67,17 @@ void StageScene::Update()
         Instantiate<ItemModel>(this);
         Global::ItemReDraw = false;
         Global::GetCoin = false;
-        Global::GetCoin_1 = false;
-        Global::GetCoin_2 = false;
-        Global::GetCoin_3 = false;
+
+        //Žæ“¾‚µ‚½ƒRƒCƒ“‚ð–³‚­‚·
+        switch (Global::SelectStage)
+        {
+        case STAGE_NUMBER_1:
+            Global::GetCoin_1 = false; break;
+        case STAGE_NUMBER_2:
+            Global::GetCoin_2 = false; break;
+        case STAGE_NUMBER_3:
+            Global::GetCoin_3 = false; break;
+        }
     }
 }
 
