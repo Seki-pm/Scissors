@@ -137,6 +137,12 @@ void Stage::Stage1()
         pc2.AddPoint(-4, -1);
         colliders_.push_back(pc2);
 
+        pc21.AddPoint(3.5f, 1);
+        pc21.AddPoint(5.5f, 1);
+        pc21.AddPoint(5.5f, 0);
+        pc21.AddPoint(3.5f, 0);
+        colliders_.push_back(pc21);
+
         //斜め床(右上がり)
         pc3.AddPoint(14.7f,       0);
         pc3.AddPoint(19.37f,  1.68f);
@@ -162,24 +168,24 @@ void Stage::Stage1()
     //壁からゴール前まで
     {
         //右の壁
-        pc6.AddPoint(38,  8);
-        pc6.AddPoint(39,  8);
-        pc6.AddPoint(39, -1);
-        pc6.AddPoint(38, -1);
+        pc6.AddPoint(38.5f,  7);
+        pc6.AddPoint(42,     7);
+        pc6.AddPoint(42,    -1);
+        pc6.AddPoint(38.5f, -1);
         colliders_.push_back(pc6);
 
         //左の壁
-        pc7.AddPoint(33, 12.5f);
-        pc7.AddPoint(34, 12.5f);
-        pc7.AddPoint(34,  3.5f);
-        pc7.AddPoint(33,  3.5f);
+        pc7.AddPoint(33,    12.5f);
+        pc7.AddPoint(34.5f, 12.5f);
+        pc7.AddPoint(34.5f,  4.5f);
+        pc7.AddPoint(33,     4.5f);
         colliders_.push_back(pc7);
 
         //壁上がった後の床
-        pc8.AddPoint(39,    8);
-        pc8.AddPoint(47.5f, 8);
-        pc8.AddPoint(47.5f, 7);
-        pc8.AddPoint(39,    7);
+        pc8.AddPoint(38.5f, 8);
+        pc8.AddPoint(48,    8);
+        pc8.AddPoint(48,    7);
+        pc8.AddPoint(38.5f, 7);
         colliders_.push_back(pc8);
 
     }

@@ -403,7 +403,7 @@ void Scissors::Reflection()
         if (cnt >= 20)
         {
             //‹­§“I‚É’l‚ğ“ü‚ê‚ÄScissors‚ğ“®‚©‚·(‹l‚İ–h~‘Îô)
-            move_.x -= value;
+            move_.x += value;
             move_.y -= value;
         }
 

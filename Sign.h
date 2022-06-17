@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/Model.h"
+#include "Engine/Image.h"
+#include "Global.h"
 
 //操作説明オブジェクトを管理するクラス
 class Sign : public GameObject
@@ -12,7 +14,15 @@ class Sign : public GameObject
     int TipsHandle4_;
     int TipsHandle5_;
 
+    //画像を入れる変数
+    int Tutorial_;
+    int Tutorial2_;
+
     float size_;
+
+    Global gl;
+
+    Transform SignTrans;
 
 public:
     //コンストラクタ

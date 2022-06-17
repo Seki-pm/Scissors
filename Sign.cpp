@@ -20,7 +20,6 @@ void Sign::Initialize()
     //方向を決める...ジャンプ...
     TipsHandle_ = Model::Load("Model/InGameObject/Sign1.fbx");
     assert(TipsHandle_ >= 0);
-    auto SignTrans = Transform();
     SignTrans.position_ = XMFLOAT3(2, 0, 0);
     SignTrans.scale_ = XMFLOAT3(size_, size_, size_);
     Model::SetTransform(TipsHandle_, SignTrans);
@@ -56,11 +55,24 @@ void Sign::Initialize()
     SignTrans5.position_ = XMFLOAT3(11, 0, 0);
     SignTrans5.scale_ = XMFLOAT3(size_, size_, size_);
     Model::SetTransform(TipsHandle5_, SignTrans5);
+
+    //====================  チュートリアル画像  =======================
+    Tutorial_ = Image::Load("Image/StageScene/Tutorial.png");
+    assert(Tutorial_ >= 0);
+    auto TutorialTrans = Transform();
+    TutorialTrans.position_ = XMFLOAT3(-0.8f, 0, 0);
+    TutorialTrans.scale_ = XMFLOAT3(size_, size_, size_);
+
+    //Transform mac = Image::GetMatrix(Tutorial_);
+    //Image::SetTransform(Tutorial_, mac);
+
 }
 
 //更新
 void Sign::Update()
 {
+
+
 }
 
 //描画
@@ -71,6 +83,14 @@ void Sign::Draw()
     Model::Draw(TipsHandle3_);
     Model::Draw(TipsHandle4_);
     Model::Draw(TipsHandle5_);
+
+    if (gl.GetTransPos_X() >= SignTrans.position_.x)
+    {
+
+
+        Image::Draw(Tutorial_);
+    }
+
 }
 
 //開放
