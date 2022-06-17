@@ -27,11 +27,14 @@
     <Filter Include="03Scene">
       <UniqueIdentifier>{b2ee06db-ad4c-4ac2-8ae7-a6acdc6ef161}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04InGameObject">
-      <UniqueIdentifier>{2361106b-b0f9-4bf2-bb39-25270c7a8783}</UniqueIdentifier>
+    <Filter Include="05InGameImage">
+      <UniqueIdentifier>{0f8695b5-1ee3-4b95-b6e5-371c387b58d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05Player">
-      <UniqueIdentifier>{10fbe95f-1164-45dc-aec7-54c8b0b8c6cb}</UniqueIdentifier>
+    <Filter Include="06Player">
+      <UniqueIdentifier>{3e614cea-08de-4770-9337-6779f8a98774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04InGameModel">
+      <UniqueIdentifier>{2361106b-b0f9-4bf2-bb39-25270c7a8783}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -103,45 +106,47 @@
     <ClCompile Include="TitleScene.cpp">
       <Filter>03Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scissors.cpp">
-      <Filter>05Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Blade.cpp">
-      <Filter>05Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Number.cpp" />
-    <ClCompile Include="HP.cpp">
-      <Filter>05Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Gauge.cpp">
-      <Filter>04InGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemImage.cpp">
-      <Filter>04InGameObject</Filter>
-    </ClCompile>
     <ClCompile Include="ItemModel.cpp">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Sign.cpp">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>04InGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOver.cpp">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Sound.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="GoalStaging.cpp">
-      <Filter>04InGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Pause.cpp">
-      <Filter>04InGameObject</Filter>
-    </ClCompile>
     <ClCompile Include="StageScene.cpp">
       <Filter>03Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="Gauge.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="GoalStaging.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemImage.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="Pause.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>05InGameImage</Filter>
+    </ClCompile>
+    <ClCompile Include="Blade.cpp">
+      <Filter>06Player</Filter>
+    </ClCompile>
+    <ClCompile Include="HP.cpp">
+      <Filter>06Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Scissors.cpp">
+      <Filter>06Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,45 +218,47 @@
     <ClInclude Include="TitleScene.h">
       <Filter>03Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scissors.h">
-      <Filter>05Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Blade.h">
-      <Filter>05Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Number.h" />
-    <ClInclude Include="HP.h">
-      <Filter>05Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Gauge.h">
-      <Filter>04InGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemImage.h">
-      <Filter>04InGameObject</Filter>
-    </ClInclude>
     <ClInclude Include="ItemModel.h">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Sign.h">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>04InGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>04InGameObject</Filter>
+      <Filter>04InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sound.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="GoalStaging.h">
-      <Filter>04InGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Pause.h">
-      <Filter>04InGameObject</Filter>
-    </ClInclude>
     <ClInclude Include="StageScene.h">
       <Filter>03Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="Gauge.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="GoalStaging.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemImage.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="Pause.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>05InGameImage</Filter>
+    </ClInclude>
+    <ClInclude Include="Blade.h">
+      <Filter>06Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HP.h">
+      <Filter>06Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Scissors.h">
+      <Filter>06Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
