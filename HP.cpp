@@ -22,7 +22,7 @@ void HP::Initialize()
     //ƒQ[ƒWƒtƒŒ[ƒ€
     GaugeFrameImage_ = Image::Load("Image/StageScene/GaugeFrame.png");
     assert(GaugeFrameImage_ >= 0);
-    FrameTrans.position_ = XMFLOAT3(-0.58f, 0.8f, 0);
+    FrameTrans.position_ = XMFLOAT3(-0.59f, 0.88f, 0);
     Image::SetTransform(GaugeFrameImage_, FrameTrans);
 
 }
@@ -35,7 +35,7 @@ void HP::Update()
 //•`‰æ
 void HP::Draw()
 {
-    pGauge_->Draw(Global::HP, -0.978f, 0.77f, GaugeImage_);
+    pGauge_->Draw(Global::HP, -0.99f, 0.85f, GaugeImage_);
     Image::Draw(GaugeFrameImage_);
 }
 

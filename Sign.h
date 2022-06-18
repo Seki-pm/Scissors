@@ -23,6 +23,8 @@ class Sign : public GameObject
     Global gl;
 
     Transform SignTrans;
+    Transform SignTrans2;
+    Transform SignTrans5;
 
 public:
     //コンストラクタ
