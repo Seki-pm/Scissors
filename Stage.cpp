@@ -200,10 +200,10 @@ void Stage::Stage1()
         colliders_.push_back(pc9);
 
         //ゴール壁
-        pc10.AddPoint(60, 14);
-        pc10.AddPoint(61, 14);
-        pc10.AddPoint(61,  4);
-        pc10.AddPoint(60,  4);
+        pc10.AddPoint(60.5f, 14);
+        pc10.AddPoint(61,    14);
+        pc10.AddPoint(61,     4);
+        pc10.AddPoint(60.5f,  4);
         colliders_.push_back(pc10);
     }
 

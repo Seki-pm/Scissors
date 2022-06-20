@@ -8,11 +8,11 @@
 class Sign : public GameObject
 {
     //ƒ‚ƒfƒ‹‚ğ“ü‚ê‚é•Ï”
-    int TipsHandle_;
-    int TipsHandle2_;
-    int TipsHandle3_;
-    int TipsHandle4_;
-    int TipsHandle5_;
+    int TipsModel_;
+    int TipsModel2_;
+    int TipsModel3_;
+    int TipsModel4_;
+    int TipsModel5_;
 
     //‰æ‘œ‚ğ“ü‚ê‚é•Ï”
     int Tutorial_;

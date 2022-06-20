@@ -3,8 +3,8 @@
 //コンストラクタ
 Sign::Sign(GameObject* parent)
     :GameObject(parent, "Sign"),
-    TipsHandle_(-1), TipsHandle2_(-1), TipsHandle3_(-1), 
-    TipsHandle4_(-1), TipsHandle5_(-1),size_(1.7f),
+    TipsModel_(-1), TipsModel2_(-1), TipsModel3_(-1),
+    TipsModel4_(-1), TipsModel5_(-1),size_(1.7f),
     Tutorial_(-1), Tutorial2_(-1)
 {
 }
@@ -19,42 +19,42 @@ void Sign::Initialize()
 {
     //===================== 看板モデルのロード ==============================
     //方向を決める...ジャンプ...
-    TipsHandle_ = Model::Load("Model/InGameObject/Sign1.fbx");
-    assert(TipsHandle_ >= 0);
+    TipsModel_ = Model::Load("Model/InGameObject/Sign1.fbx");
+    assert(TipsModel_ >= 0);
     SignTrans.position_ = XMFLOAT3(2, 0, 0);
     SignTrans.scale_ = XMFLOAT3(size_, size_, size_);
-    Model::SetTransform(TipsHandle_, SignTrans);
+    Model::SetTransform(TipsModel_, SignTrans);
 
     //刃が地面に刺さってる時は,,,
-    TipsHandle2_ = Model::Load("Model/InGameObject/Sign2.fbx");
-    assert(TipsHandle2_ >= 0);
+    TipsModel2_ = Model::Load("Model/InGameObject/Sign2.fbx");
+    assert(TipsModel2_ >= 0);
     SignTrans2.position_ = XMFLOAT3(8, 0, 0);
     SignTrans2.scale_ = XMFLOAT3(size_, size_, size_);
-    Model::SetTransform(TipsHandle2_, SignTrans2);
+    Model::SetTransform(TipsModel2_, SignTrans2);
 
     //刃が地面に着くたびに...
-    TipsHandle3_ = Model::Load("Model/InGameObject/Sign3.fbx");
-    assert(TipsHandle3_ >= 0);
+    TipsModel3_ = Model::Load("Model/InGameObject/Sign3.fbx");
+    assert(TipsModel3_ >= 0);
     auto SignTrans3 = Transform();
     SignTrans3.position_ = XMFLOAT3(11, 0, 0);
     SignTrans3.scale_ = XMFLOAT3(size_, size_, size_);
-    Model::SetTransform(TipsHandle3_, SignTrans3);
+    Model::SetTransform(TipsModel3_, SignTrans3);
 
     //[Esc]を押すと...
-    TipsHandle4_ = Model::Load("Model/InGameObject/Sign4.fbx");
-    assert(TipsHandle4_ >= 0);
+    TipsModel4_ = Model::Load("Model/InGameObject/Sign4.fbx");
+    assert(TipsModel4_ >= 0);
     auto SignTrans4 = Transform();
-    SignTrans4.position_ = XMFLOAT3(11, 0, 0);
+    SignTrans4.position_ = XMFLOAT3(14, 0, 0);
     SignTrans4.scale_ = XMFLOAT3(size_, size_, size_);
-    Model::SetTransform(TipsHandle4_, SignTrans4);
+    Model::SetTransform(TipsModel4_, SignTrans4);
 
 
     //壁に刃を向けてジャンプすると...
-    TipsHandle5_ = Model::Load("Model/InGameObject/Sign5.fbx");
-    assert(TipsHandle5_ >= 0);
+    TipsModel5_ = Model::Load("Model/InGameObject/Sign5.fbx");
+    assert(TipsModel5_ >= 0);
     SignTrans5.position_ = XMFLOAT3(30, 0, 0);
     SignTrans5.scale_ = XMFLOAT3(size_, size_, size_);
-    Model::SetTransform(TipsHandle5_, SignTrans5);
+    Model::SetTransform(TipsModel5_, SignTrans5);
 
 
 
@@ -84,11 +84,11 @@ void Sign::Update()
 void Sign::Draw()
 {
     //看板の描画
-    Model::Draw(TipsHandle_);
-    Model::Draw(TipsHandle2_);
-    Model::Draw(TipsHandle3_);
-    Model::Draw(TipsHandle4_);
-    Model::Draw(TipsHandle5_);
+    Model::Draw(TipsModel_);
+    Model::Draw(TipsModel2_);
+    Model::Draw(TipsModel3_);
+    Model::Draw(TipsModel4_);
+    Model::Draw(TipsModel5_);
 
 
     //条件付きでチュートリアルの描画
@@ -99,6 +99,7 @@ void Sign::Draw()
     }
 
     if (gl.GetTransPos_X() >= SignTrans5.position_.x &&
+        gl.GetTransPos_X() <= 42 && 
         gl.GetTransPos_Y() <= 4.5f)
     {
         Image::Draw(Tutorial2_);
@@ -108,11 +109,11 @@ void Sign::Draw()
 //開放
 void Sign::Release()
 {
-    TipsHandle_ = -1;
-    TipsHandle2_ = -1;
-    TipsHandle3_ = -1;
-    TipsHandle4_ = -1;
-    TipsHandle5_ = -1;
+    TipsModel_ = -1;
+    TipsModel2_ = -1;
+    TipsModel3_ = -1;
+    TipsModel4_ = -1;
+    TipsModel5_ = -1;
     Tutorial_ = -1;
     Tutorial2_ = -1;
 }
