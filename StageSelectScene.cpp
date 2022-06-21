@@ -132,7 +132,6 @@ void StageSelectScene::Update()
 	//スペースを押したときに
 	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
-
 		//1ならSTAGE1へ
 		if (Global::SelectStage == STAGE_NUMBER_1 ||
 			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 || 
@@ -148,6 +147,12 @@ void StageSelectScene::Update()
 		}
 	}
 
+	//隠しコマンド
+	if (Input::IsKeyDown(DIK_LSHIFT))
+	{
+		Global::Unlock2 = true;
+		Global::Unlock3 = true;
+	}
 
 	//選択
 	MouseSelect();

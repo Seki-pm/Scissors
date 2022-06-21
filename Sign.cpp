@@ -59,7 +59,7 @@ void Sign::Initialize()
     Model::SetTransform(TipsModel_[Tips_5], SignTrans5);
 
 
-    //壁に刃を向けてジャンプすると...
+    //壁でも地面と同じ様に...
     TipsModel_[Tips_6] = Model::Load("Model/InGameObject/Sign5.fbx");
     assert(TipsModel_[Tips_6] >= 0);
     auto SignTrans6 = Transform();
