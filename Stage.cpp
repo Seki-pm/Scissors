@@ -124,10 +124,10 @@ void Stage::Stage1()
     //スタートから壁まで
     {
         //スタートの壁
-        pc1.AddPoint(-5,  7);
-        pc1.AddPoint(-4,  7);
-        pc1.AddPoint(-4, -1);
-        pc1.AddPoint(-5, -1);
+        pc1.AddPoint(-5,     7);
+        pc1.AddPoint(-3.5f,  7);
+        pc1.AddPoint(-3.5f, -1);
+        pc1.AddPoint(-5,    -1);
         colliders_.push_back(pc1);
 
         //初めの床
@@ -193,10 +193,10 @@ void Stage::Stage1()
     //ゴール
     {
         //ゴール床
-        pc9.AddPoint(49, 5.3f);
-        pc9.AddPoint(60, 5.3f);
-        pc9.AddPoint(60, 4);
-        pc9.AddPoint(49, 4);
+        pc9.AddPoint(49.5f, 5.3f);
+        pc9.AddPoint(60,    5.3f);
+        pc9.AddPoint(60,    4);
+        pc9.AddPoint(49.5f, 4);
         colliders_.push_back(pc9);
 
         //ゴール壁

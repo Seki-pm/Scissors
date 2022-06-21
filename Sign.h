@@ -4,15 +4,23 @@
 #include "Engine/Image.h"
 #include "Global.h"
 
+
+
 //操作説明オブジェクトを管理するクラス
 class Sign : public GameObject
 {
+    enum Tips {
+        Tips_1 = 1,
+        Tips_2,
+        Tips_3,
+        Tips_4,
+        Tips_5,
+        Tips_6,
+        Tips_MAX
+    };
+
     //モデルを入れる変数
-    int TipsModel_;
-    int TipsModel2_;
-    int TipsModel3_;
-    int TipsModel4_;
-    int TipsModel5_;
+    int TipsModel_[Tips_MAX];
 
     //画像を入れる変数
     int Tutorial_;
