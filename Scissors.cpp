@@ -180,7 +180,7 @@ void Scissors::Rotation()
     }
     if (Input::IsKey(DIK_RIGHT))
     {
-        if (AnglePass_ < 170)
+        if (AnglePass_ < 150)
         {
             angle = -2;
         }
@@ -436,18 +436,18 @@ void Scissors::RotateMax()
     data.dir.z = nowPivotPoint_.z - transform_.position_.z;
 
     //回転の角度の計算をする
-    XMVECTOR normal = XMLoadFloat3(&jumpDirection_);     //XMFLOAT3 → XMVECTOR
+    XMVECTOR normal = XMLoadFloat3(&jumpDirection_);     //XMFLOAT3 → XMVECTOR(法線)
     XMMATRIX Rotmat = XMMatrixRotationZ(45.5f);          //法線回転用の回転行列
     normal = XMVector3TransformCoord(normal, Rotmat);    //normalとRotmatをかける
     normal = XMVector3Normalize(normal);                 //normalを正規化
-    XMVECTOR dir = XMLoadFloat3(&data.dir);              //レイのベクトルを正規化
+    XMVECTOR dir = XMLoadFloat3(&data.dir);              //XMFLOAT3 → XMVECTOR(レイのベクトル)
+    dir = XMVector3Normalize(dir);                       //レイのベクトルを正規化
 
     //内積を使って法線とレイの角度を求める
     XMVECTOR Vdot = XMVector3Dot(normal, -dir);
     XMFLOAT3 Fdot;
     XMStoreFloat3(&Fdot, Vdot);
     float angle = acos(Fdot.y);
-    //assert(angle >= 0);
     AnglePass_ = XMConvertToDegrees(angle);
 }
 
