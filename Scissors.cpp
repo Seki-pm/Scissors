@@ -447,6 +447,7 @@ void Scissors::RotateMax()
     XMFLOAT3 Fdot;
     XMStoreFloat3(&Fdot, Vdot);
     float angle = acos(Fdot.y);
+    //assert(angle >= 0);
     AnglePass_ = XMConvertToDegrees(angle);
 }
 

@@ -14,6 +14,7 @@ public:
     PolygonCollider collider;   //先端以外の当たり判定
     Stage* pStage;  //ステージのアドレス
 
+    
 public:
     //コンストラクタ
     Blade(GameObject* parent);

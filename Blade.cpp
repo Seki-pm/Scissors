@@ -6,7 +6,7 @@
 //コンストラクタ
 Blade::Blade(GameObject* parent)
     :GameObject(parent, "Blade"),
-    isPrick(false),BladeModel_(-1)
+    pStage(nullptr),isPrick(false),BladeModel_(-1)
 {
 }
 
@@ -33,9 +33,10 @@ void Blade::Load(const int lr)
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける
-        collider.AddPoint(-0.37f, 0.74f);
-        collider.AddPoint(-0.05f, 0.75f);
-        collider.AddPoint(-0.0f, -0.8f);
+        collider.AddPoint(-0.37f, 0.73f);
+        collider.AddPoint(-0.06f, 0.75f);
+        collider.AddPoint(0.02f, -0.78f);
+        
     }
     else  
     {
@@ -44,9 +45,9 @@ void Blade::Load(const int lr)
         assert(BladeModel_ >= 0);
 
         //コライダーを手動でつける
-        collider.AddPoint(0.5f, 0.75f);
+        collider.AddPoint(0.05f, 0.75f);
         collider.AddPoint(0.37f, 0.74f);
-        collider.AddPoint(-0.0f, -0.8f);
+        collider.AddPoint(-0.02f, -0.78f);
     }
 }
 

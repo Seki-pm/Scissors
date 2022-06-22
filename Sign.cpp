@@ -60,7 +60,7 @@ void Sign::Initialize()
 
 
     //•Ç‚Å‚à’n–Ê‚Æ“¯‚¶—l‚É...
-    TipsModel_[Tips_6] = Model::Load("Model/InGameObject/Sign5.fbx");
+    TipsModel_[Tips_6] = Model::Load("Model/InGameObject/Sign6.fbx");
     assert(TipsModel_[Tips_6] >= 0);
     auto SignTrans6 = Transform();
     SignTrans6.position_ = XMFLOAT3(31, 0, 0);
