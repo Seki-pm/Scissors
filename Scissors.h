@@ -64,7 +64,6 @@ class Scissors : public GameObject
     int Land_Volcano_Sand;
     int Land_Volcano;
 
-
     ///////////////privateŠÖ”//////////////////////////////////////
     //ŠJ•Â
     void OpenClose();

@@ -332,6 +332,8 @@ void Scissors::Draw()
 
         pNumber_->Draw(CountDown, 0.06f, 0.8f, NumberImage_);
     }
+
+    pNumber_->Draw(AnglePass_, 0.06f, 0.8f, NumberImage_);
 }
 
 //開放
@@ -447,8 +449,8 @@ void Scissors::RotateMax()
     XMVECTOR Vdot = XMVector3Dot(normal, -dir);
     XMFLOAT3 Fdot;
     XMStoreFloat3(&Fdot, Vdot);
-    float angle = acos(Fdot.y);
-    AnglePass_ = XMConvertToDegrees(angle);
+    float angle = acos(Fdot.y);              //acosでラジアン角度を求める
+    AnglePass_ = XMConvertToDegrees(angle);  //ラジアン → 度
 }
 
 //リスタート
