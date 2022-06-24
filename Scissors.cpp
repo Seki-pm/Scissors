@@ -333,7 +333,6 @@ void Scissors::Draw()
         pNumber_->Draw(CountDown, 0.06f, 0.8f, NumberImage_);
     }
 
-    pNumber_->Draw(AnglePass_, 0.06f, 0.8f, NumberImage_);
 }
 
 //ŠJ•ú
