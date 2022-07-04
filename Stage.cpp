@@ -58,6 +58,7 @@ void Stage::Release()
 {
     BackImage_ = -1;
     StageModel_ = -1;
+    sounds_.clear();
 }
 
 // 引数の点の位置がステージに当たってるかチェック
@@ -223,6 +224,23 @@ void Stage::Stage1Load()
 
     BackImage_ = Image::Load("Image/StageScene/Stage1_Back.png");
     assert(BackImage_ >= 0);
+
+
+    //サウンドを追加
+    for (int i = 1; i < St1_Max; i++)
+    {
+        int Sound_ = -1;
+        switch (i)
+        {
+        case St1_Glass:
+            Sound_ = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav"); break;
+        case St1_Wood:
+            Sound_ = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav"); break;
+        }
+        assert(Sound_ >= 0);
+        sounds_.push_back(Sound_);
+    }
+
 
     //コインの位置
     Global::ItemModelPos = XMFLOAT3(51, 10, 0);
@@ -922,6 +940,71 @@ void Stage::SinkCheck(int i)
     {
         Global::SinkFlg = false;
     }
+}
+
+void Stage::Landing()
+{
+    pScissors_ = (Scissors*)FindObject("Scissors");
+
+    switch (Global::SelectStage)
+    {
+    case STAGE_NUMBER_1:
+        //草の地面
+        if (pScissors_->GetJumpDirection().x == 0 && pScissors_->Transform.y <= 7)
+        {
+            Audio::Play(sounds_[St1_Glass]);
+        }
+        //壁の時
+        else if (pScissors_->GetJumpDirection().x == 1 || pScissors_->GetJumpDirection().x == -1)
+        {
+            break;
+        }
+        //それ以外
+        else
+        {
+            Audio::Play(sounds_[St1_Wood]);
+        }
+        break;
+/*
+    case STAGE_NUMBER_2:
+        //砂利の地面
+        if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
+            || transform_.position_.x > 94.5f)
+        {
+            Audio::Play(Land_Gravel);
+        }
+        //それ以外
+        else
+        {
+            Audio::Play(Land_Stone);
+        }
+        break;
+    case STAGE_NUMBER_3:
+        //弾く地面
+        if (Global::RepelFlg)
+        {
+            Audio::Play(Land_Iron);
+        }
+        //沈む地面
+        else if (Global::SinkFlg)
+        {
+            Audio::Play(Land_Sand);
+        }
+        //普通の地面(前半)
+        else if (transform_.position_.x <= 74)
+        {
+            Audio::Play(Land_Volcano_Sand);
+            Audio::Stop(Land_Sand);
+        }
+        //普通の地面(後半)
+        else
+        {
+            Audio::Play(Land_Volcano);
+            Audio::Stop(Land_Sand);
+        }
+
+        break;
+    */}
 }
 
 

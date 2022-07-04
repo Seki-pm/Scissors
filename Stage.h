@@ -4,23 +4,35 @@
 #include "Engine/Image.h"
 #include "Global.h"
 #include "PolygonCollider.h"
-#include "Scissors.h"
 #include "Sign.h"
+#include "Scissors.h"
 #include "StageSelectScene.h"
 #include <vector>
 using namespace std;
 
+class Scissors;
+
+enum Stage1_Sound {
+    St1_Glass = 1,
+    St1_Wood = 2,
+    St1_Max
+};
 
 //ハサミの刃を管理するクラス
 class Stage : public GameObject
 {
     int StageModel_; //ステージモデル
     int BackImage_;  //背景
+    int Sound_;
 
     Global gl;
+    Scissors* pScissors_;
 
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
+
+    //サウンド(Stageごとのサウンドを入れる)
+    vector<int> sounds_;
 
     // 一つ一つの地形の面の頂点を入れる
     PolygonCollider pc1, pc2, pc3, pc4, pc5, pc6,
@@ -90,4 +102,7 @@ public:
     //沈む床をチェック
     //引数：チェックする番号
     void SinkCheck(int i);
+
+    //音を鳴らす
+    void Landing();
 };

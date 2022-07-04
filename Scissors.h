@@ -81,6 +81,11 @@ class Scissors : public GameObject
 
 
 public:
+    //float TransX;
+    //float TransY;
+    //float TransZ;
+    //XMFLOAT3 transform;
+
     //コンストラクタ
     Scissors(GameObject* parent);
 
@@ -101,6 +106,15 @@ public:
 
     //地面の法線をセット
     void SetJumpDirection(XMFLOAT3 jumpDirection) { jumpDirection_ = jumpDirection; }
+    //XMFLOAT3 GetJumpDirection() { return jumpDirection_; }
+
+    void SetTransform()
+    {
+        //TransX = transform_.position_.x;
+        //TransY = transform_.position_.y;
+        //TransZ = transform_.position_.z;
+        //transform = transform_.position_;
+    }
 
     //反射
     void Reflection();

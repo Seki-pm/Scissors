@@ -57,6 +57,8 @@ void Scissors::Update()
 {
     GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
+    SetTransform();
+    
     if (!Global::GameOver && !Global::Pause)
     {
         //ハサミの開閉
@@ -544,6 +546,8 @@ void Scissors::SinkMove()
     }
 }
 
+
+
 //音楽の初期化
 void Scissors::InitSound()
 {
@@ -593,7 +597,7 @@ void Scissors::InitSound()
     //---------------------------------------------------
 }
 
-//音を流す
+//音を流す(GameSceneで流す)
 void Scissors::Landing()
 {
     switch(Global::SelectStage)
