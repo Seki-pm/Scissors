@@ -8,12 +8,10 @@
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), 
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
-    pBlade_L(nullptr), pBlade_R(nullptr),pNumber_(nullptr),pStage_(nullptr),
+    pBlade_L(nullptr), pBlade_R(nullptr),pStage_(nullptr),
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),         TransPos_Y(0),
-    AnglePass_(0.0f),  NumberImage_(-1), DengerImage_(-1),      Key(0),
-    Land_Glass(-1),    Land_Wood(-1),    Land_Gravel(-1),       Land_Stone(-1), 
-    Land_Sand(-1),     Land_Volcano(-1), Land_Volcano_Sand(-1), Land_Iron(-1),
+    AnglePass_(0.0f),  Key(0),
     Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
 {
 }
@@ -38,12 +36,6 @@ void Scissors::Initialize()
 
     //初期位置
     transform_.position_ = Global::InitPos;
-
-    //サウンドのロード
-    InitSound();
-
-    //画像の初期化
-    InitImage();
 
     //アイテム取得用のコライダーを設定
     SphereCollider* collision =
@@ -263,10 +255,10 @@ void Scissors::JumpAndFall()
 
         if (SoundFlg)
         {
-            //音を出す
-            Landing();
             SoundFlg = false;
+            Landing();
         }
+
 
         //壁かどうかでSPACEの入力を変える
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
@@ -325,33 +317,11 @@ void Scissors::JumpAndFall()
 //描画
 void Scissors::Draw()
 {
-    if (Global::SinkFlg)
-    {
-        auto DengerTrans = Transform();
-        DengerTrans.position_ = XMFLOAT3(0,0.8f,0);
-        Image::SetTransform(DengerImage_, DengerTrans);
-        Image::Draw(DengerImage_);
-
-        pNumber_->Draw(CountDown, 0.06f, 0.8f, NumberImage_);
-    }
-
 }
 
 //開放
 void Scissors::Release()
 {
-    NumberImage_ = -1;
-    DengerImage_ = -1;
-
-
-    Land_Glass = -1;
-    Land_Wood = -1;
-    Land_Gravel = -1;
-    Land_Stone = -1;
-    Land_Iron = -1;
-    Land_Sand = -1;
-    Land_Volcano = -1;
-    Land_Volcano_Sand = -1;
 }
 
 //反射
@@ -516,12 +486,13 @@ void Scissors::RepelMove()
 //沈む動き
 void Scissors::SinkMove()
 {
+    SetCountDown(CountDown);
+
     //フラグが立ったら
     if (Global::SinkFlg)
     {
         Timer_--;
         CountDown = Timer_ / 60;
-
 
         if (!IsSink)
         {
@@ -546,58 +517,7 @@ void Scissors::SinkMove()
     }
 }
 
-
-
-//音楽の初期化
-void Scissors::InitSound()
-{
-
-    //--------- STAGE1 ----------------------------------
-       //----------- 草 --------------------
-    Land_Glass = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav");
-    assert(Land_Glass >= 0);
-
-      //------------ 木 --------------------
-    Land_Wood = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav");
-    assert(Land_Wood >= 0);
-
-    //---------------------------------------------------
-
-
-    //-------------- STAGE2 ---------------------------
-
-      //-------------- 砂利 ----------------
-    Land_Gravel = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav");
-    assert(Land_Gravel >= 0);
-
-      //-------------- 石 ---------------------
-    Land_Stone = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav");
-    assert(Land_Stone >= 0);
-
-    //-------------------------------------------------
-
-    //-------------- STAGE3 ---------------------------
-
-      //------------- 弾く -----------------
-    Land_Iron = Audio::Load("Sound/InStage/Stage3/FootStep_Iron.wav");
-    assert(Land_Iron >= 0);
-
-      //------------- 沈む -----------------
-    Land_Sand = Audio::Load("Sound/InStage/Stage3/FootStep_Sand.wav");
-    assert(Land_Sand >= 0);
-
-      //------------- 火山砂地帯(前半) ---------------------
-    Land_Volcano_Sand = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano_Sand.wav");
-    assert(Land_Volcano_Sand >= 0);
-
-      //------------- 火山地帯（後半）-------------------
-    Land_Volcano = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano.wav");
-    assert(Land_Volcano >= 0);
-
-    //---------------------------------------------------
-}
-
-//音を流す(GameSceneで流す)
+//足音を流す
 void Scissors::Landing()
 {
     switch(Global::SelectStage)
@@ -606,7 +526,7 @@ void Scissors::Landing()
         //草の地面
         if (jumpDirection_.x == 0 && transform_.position_.y <= 7)
         {
-            Audio::Play(Land_Glass);
+            Audio::Play(Stage1_Sound::St1_Glass);
         }
         //壁の時
         else if(jumpDirection_.x == 1 || jumpDirection_.x == -1)
@@ -616,7 +536,7 @@ void Scissors::Landing()
         //それ以外
         else
         {
-            Audio::Play(Land_Wood);
+            Audio::Play(Stage1_Sound::St1_Wood);
         }
         break;
 
@@ -625,51 +545,38 @@ void Scissors::Landing()
         if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
             || transform_.position_.x > 94.5f)
         {
-            Audio::Play(Land_Gravel);
+            Audio::Play(Stage2_Sound::St2_Gravel);
         }
         //それ以外
         else
         {
-            Audio::Play(Land_Stone);
+            Audio::Play(Stage2_Sound::St2_Stone);
         }
         break;
     case STAGE_NUMBER_3:
         //弾く地面
         if (Global::RepelFlg)
         {
-            Audio::Play(Land_Iron);
+            Audio::Play(Stage3_Sound::St3_Iron);
         }
         //沈む地面
         else if (Global::SinkFlg)
         {
-            Audio::Play(Land_Sand);
+            Audio::Play(Stage3_Sound::St3_Sand);
         }
         //普通の地面(前半)
         else if (transform_.position_.x <= 74)
         {
-            Audio::Play(Land_Volcano_Sand);
-            Audio::Stop(Land_Sand);
+            Audio::Play(Stage3_Sound::St3_Volcano_Sand);
+            Audio::Stop(Stage3_Sound::St3_Sand);
         }
         //普通の地面(後半)
         else
         {
-            Audio::Play(Land_Volcano);
-            Audio::Stop(Land_Sand);
+            Audio::Play(Stage3_Sound::St3_Volcano);
+            Audio::Stop(Stage3_Sound::St3_Sand);
         }
 
         break;
     }
 }
-
-//画像の初期化
-void Scissors::InitImage()
-{
-    //数字   
-    NumberImage_ = Image::Load("Image/StageScene/Number.png");
-    assert(NumberImage_ >= 0);
-    
-    //数字の背景
-    DengerImage_ = Image::Load("Image/StageScene/Denger.png");
-    assert(DengerImage_ >= 0);
-}
-

@@ -12,19 +12,13 @@
 #include "Stage.h"
 #include "StageSelectScene.h"
 #include <vector>
-#include "Number.h"
-
 
 //ハサミを管理するクラス
 class Scissors : public GameObject
 {
-    int NumberImage_;
-    int DengerImage_;
-
     //ブレードが２つ
     Blade* pBlade_L , *pBlade_R;
     Stage* pStage_;
-    Number* pNumber_;
 
     XMFLOAT3 move_;         //移動
     XMFLOAT3 jumpDirection_; //ジャンプ方向（刺さってる地面の法線）
@@ -49,20 +43,10 @@ class Scissors : public GameObject
     //沈んだ時用
     bool IsSink;
     float MoveY;
-    int CountDown;
     int Timer_;
+    int CountDown;
+    int CountPass;
 
-    //SE
-    int Land_Glass;     
-    int Land_Wood;
-      
-    int Land_Gravel;   
-    int Land_Stone;
-
-    int Land_Iron;      
-    int Land_Sand; 
-    int Land_Volcano_Sand;
-    int Land_Volcano;
 
     ///////////////private関数//////////////////////////////////////
     //開閉
@@ -79,12 +63,13 @@ class Scissors : public GameObject
 
     ////////////////////////////////////////////////////////////////////
 
-
 public:
-    //float TransX;
-    //float TransY;
-    //float TransZ;
-    //XMFLOAT3 transform;
+    float TransX;
+    float TransY;
+    float TransZ;
+    XMFLOAT3 transform;
+
+
 
     //コンストラクタ
     Scissors(GameObject* parent);
@@ -106,14 +91,14 @@ public:
 
     //地面の法線をセット
     void SetJumpDirection(XMFLOAT3 jumpDirection) { jumpDirection_ = jumpDirection; }
-    //XMFLOAT3 GetJumpDirection() { return jumpDirection_; }
+    XMFLOAT3 GetJumpDirection() { return jumpDirection_; }
 
     void SetTransform()
     {
-        //TransX = transform_.position_.x;
-        //TransY = transform_.position_.y;
-        //TransZ = transform_.position_.z;
-        //transform = transform_.position_;
+        TransX = transform_.position_.x;
+        TransY = transform_.position_.y;
+        TransZ = transform_.position_.z;
+        transform = transform_.position_;
     }
 
     //反射
@@ -134,12 +119,10 @@ public:
     //沈んだ時の動き
     void SinkMove();
 
-    //音の初期化
-    void InitSound();
-
-    //音を鳴らす
+    //足音を鳴らす
     void Landing();
 
-    //画像の初期化
-    void InitImage();
+    //カウントダウンを送る
+    void SetCountDown(int countdown) { CountPass = countdown; }
+    int GetCountDown() { return CountPass; };
 };

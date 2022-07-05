@@ -5,17 +5,31 @@
 #include "Global.h"
 #include "PolygonCollider.h"
 #include "Sign.h"
-#include "Scissors.h"
 #include "StageSelectScene.h"
+#include "Number.h"
 #include <vector>
 using namespace std;
 
 class Scissors;
 
 enum Stage1_Sound {
-    St1_Glass = 1,
-    St1_Wood = 2,
+    St1_Glass = 0,
+    St1_Wood = 1,
     St1_Max
+};
+
+enum Stage2_Sound {
+    St2_Gravel = 0,
+    St2_Stone = 1,
+    St2_Max 
+};
+
+enum Stage3_Sound {
+    St3_Iron = 0,
+    St3_Sand = 1,
+    St3_Volcano_Sand = 2,
+    St3_Volcano = 3,
+    St3_Max
 };
 
 //ハサミの刃を管理するクラス
@@ -23,10 +37,11 @@ class Stage : public GameObject
 {
     int StageModel_; //ステージモデル
     int BackImage_;  //背景
-    int Sound_;
+    int NumberImage_;
+    int DengerImage_;
 
+    Number* pNumber_;
     Global gl;
-    Scissors* pScissors_;
 
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
@@ -103,6 +118,6 @@ public:
     //引数：チェックする番号
     void SinkCheck(int i);
 
-    //音を鳴らす
-    void Landing();
+    //音を渡す
+    vector<int> GetSound() { return sounds_; }
 };

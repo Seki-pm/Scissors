@@ -1,8 +1,10 @@
 ﻿#include "Stage.h"
+#include "Scissors.h"
 
 //コンストラクタ
 Stage::Stage(GameObject* parent)
-    :GameObject(parent, "Stage"),StageModel_(-1), BackImage_(-1)
+    :GameObject(parent, "Stage"),
+    StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1)
 {
 }
 
@@ -48,9 +50,21 @@ void Stage::Load(const int stage)
 //描画
 void Stage::Draw()
 {
+    Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
+
     Image::Draw(BackImage_);
     Model::SetTransform(StageModel_, transform_);
     Model::Draw(StageModel_);
+
+    if (Global::SinkFlg)
+    {
+        auto DengerTrans = Transform();
+        DengerTrans.position_ = XMFLOAT3(0, 0.8f, 0);
+        Image::SetTransform(DengerImage_, DengerTrans);
+        Image::Draw(DengerImage_);
+
+        pNumber_->Draw(pScissors_->GetCountDown(), 0.06f, 0.8f, NumberImage_);
+    }
 }
 
 //開放
@@ -58,7 +72,8 @@ void Stage::Release()
 {
     BackImage_ = -1;
     StageModel_ = -1;
-    sounds_.clear();
+    DengerImage_ = -1;
+    NumberImage_ = -1;
 }
 
 // 引数の点の位置がステージに当たってるかチェック
@@ -148,7 +163,7 @@ void Stage::Stage1()
         pc3.AddPoint(14.7f,       0);
         pc3.AddPoint(19.37f,  1.68f);
         pc3.AddPoint(19.71f,  0.74f);
-        pc3.AddPoint(15.02,  -0.97f);
+        pc3.AddPoint(15.02f, -0.97f);
         colliders_.push_back(pc3);
 
         //斜め床(右下がり)
@@ -227,7 +242,7 @@ void Stage::Stage1Load()
 
 
     //サウンドを追加
-    for (int i = 1; i < St1_Max; i++)
+    for (int i = 0; i < St1_Max; i++)
     {
         int Sound_ = -1;
         switch (i)
@@ -238,7 +253,6 @@ void Stage::Stage1Load()
             Sound_ = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav"); break;
         }
         assert(Sound_ >= 0);
-        sounds_.push_back(Sound_);
     }
 
 
@@ -479,6 +493,20 @@ void Stage::Stage2Load()
     assert(StageModel_ >= 0);
     BackImage_ = Image::Load("Image/StageScene/Stage2_Back.png");
     assert(BackImage_ >= 0);
+
+    //サウンドを追加
+    for (int i = 0; i < St2_Max; i++)
+    {
+        int Sound_ = -1;
+        switch (i)
+        {
+        case St1_Glass:
+            Sound_ = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav"); break;
+        case St1_Wood:
+            Sound_ = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav"); break;
+        }
+        assert(Sound_ >= 0);
+    }
 
     //コインの位置
     Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
@@ -893,6 +921,32 @@ void Stage::Stage3Load()
     BackImage_ = Image::Load("Image/StageScene/Stage3_Back.png");
     assert(BackImage_ >= 0);
 
+    //数字   
+    NumberImage_ = Image::Load("Image/StageScene/Number.png");
+    assert(NumberImage_ >= 0);
+
+    //数字の背景
+    DengerImage_ = Image::Load("Image/StageScene/Denger.png");
+    assert(DengerImage_ >= 0);
+
+    //サウンドを追加
+    for (int i = 0; i < St3_Max; i++)
+    {
+        int Sound_ = -1;
+        switch (i)
+        {
+        case St3_Iron:
+            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Iron.wav"); break;
+        case St3_Sand:
+            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Sand.wav"); break;
+        case St3_Volcano_Sand:
+            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano_Sand.wav"); break;
+        case St3_Volcano:
+            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano.wav"); break;
+        }
+        assert(Sound_ >= 0);
+    }
+
     //コインの位置
     Global::ItemModelPos = XMFLOAT3(50.5f, 15.5f, 0);
 }
@@ -941,70 +995,3 @@ void Stage::SinkCheck(int i)
         Global::SinkFlg = false;
     }
 }
-
-void Stage::Landing()
-{
-    pScissors_ = (Scissors*)FindObject("Scissors");
-
-    switch (Global::SelectStage)
-    {
-    case STAGE_NUMBER_1:
-        //草の地面
-        if (pScissors_->GetJumpDirection().x == 0 && pScissors_->Transform.y <= 7)
-        {
-            Audio::Play(sounds_[St1_Glass]);
-        }
-        //壁の時
-        else if (pScissors_->GetJumpDirection().x == 1 || pScissors_->GetJumpDirection().x == -1)
-        {
-            break;
-        }
-        //それ以外
-        else
-        {
-            Audio::Play(sounds_[St1_Wood]);
-        }
-        break;
-/*
-    case STAGE_NUMBER_2:
-        //砂利の地面
-        if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
-            || transform_.position_.x > 94.5f)
-        {
-            Audio::Play(Land_Gravel);
-        }
-        //それ以外
-        else
-        {
-            Audio::Play(Land_Stone);
-        }
-        break;
-    case STAGE_NUMBER_3:
-        //弾く地面
-        if (Global::RepelFlg)
-        {
-            Audio::Play(Land_Iron);
-        }
-        //沈む地面
-        else if (Global::SinkFlg)
-        {
-            Audio::Play(Land_Sand);
-        }
-        //普通の地面(前半)
-        else if (transform_.position_.x <= 74)
-        {
-            Audio::Play(Land_Volcano_Sand);
-            Audio::Stop(Land_Sand);
-        }
-        //普通の地面(後半)
-        else
-        {
-            Audio::Play(Land_Volcano);
-            Audio::Stop(Land_Sand);
-        }
-
-        break;
-    */}
-}
-
-

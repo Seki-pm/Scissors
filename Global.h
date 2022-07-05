@@ -45,6 +45,7 @@ public:
 	static int NORMAL_DAMAGE;   //通常のダメージ
 	static float JumpStart;     //ジャンプの開始位置
 	static float JumpEnd;       //ジャンプの終了位置
+	static bool Soundflg;
 
 	//Globalのフラグ
 	static bool Timer;          //GoalStaging用のタイマー

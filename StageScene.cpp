@@ -23,7 +23,6 @@ void StageScene::Initialize()
     pStage_ = Instantiate<Stage>(this);
     pStage_->Load(Global::SelectStage);
 
-
     //ハサミ本体
     Instantiate<Scissors>(this);
 
@@ -43,6 +42,7 @@ void StageScene::Initialize()
 //更新
 void StageScene::Update()
 {
+   
     //ハサミの位置を取得
     Pos_X = global.GetTransPos_X();
     Pos_Y = global.GetTransPos_Y();
@@ -254,3 +254,4 @@ void StageScene::Timer()
         pSceneManager->ChangeScene(SCENE_ID_SELECT);
     }
 }
+

@@ -67,4 +67,5 @@ public:
 
 	//ƒS[ƒ‹‰‰o—p
 	void Timer();
+
 };

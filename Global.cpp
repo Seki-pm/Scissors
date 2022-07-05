@@ -51,6 +51,7 @@ int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
 
+bool Global::Soundflg = false;
 
 int Global::SCENE_ID = 0;
 
