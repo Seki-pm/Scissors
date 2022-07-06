@@ -3,10 +3,13 @@
 #include "Engine/Input.h"
 #include "Gauge.h"
 
+class Scissors;
+
 //HPを管理するクラス
 class HP : public GameObject
 {
     Gauge*  pGauge_;  //ゲージ描画用
+    Scissors* pScissors_;
 
     //ロード用変数
     int GaugeImage_;    

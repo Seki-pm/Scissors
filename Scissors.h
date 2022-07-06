@@ -31,6 +31,7 @@ class Scissors : public GameObject
     bool FallFlg; //落下フラグ
     bool SoundFlg; //音フラグ
 
+
     float JumpPower;
 
     //弾かれた時用
@@ -64,11 +65,8 @@ class Scissors : public GameObject
     ////////////////////////////////////////////////////////////////////
 
 public:
-    float TransX;
-    float TransY;
-    float TransZ;
-    XMFLOAT3 transform;
-
+    bool IsJump;
+    int CurrentHP;
 
 
     //コンストラクタ

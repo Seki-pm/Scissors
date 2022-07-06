@@ -10,8 +10,7 @@ StageScene::StageScene(GameObject* parent)
 
 //初期化
 void StageScene::Initialize()
-{
-    Global::HP = Global::MAXHP;                             //最大体力を設定
+{                      
     Global::ItemImagePos = Global::ItemImagePos_Stage;      //コインの位置をステージ用に設定
     Global::ItemImageSca = Global::ItemImageSca_Stage;      //コインの大きさをステージ用に設定
     Global::GameOver = false;                               //GameOverではない

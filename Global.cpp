@@ -39,11 +39,9 @@ bool Global::Timer = false;
 
 bool Global::RepelFlg = false;
 bool Global::SinkFlg = false;
-bool Global::IsJump = true;
 bool Global::ItemReDraw = false;
 
 int   Global::MAXHP = 500;
-int   Global::HP = Global::MAXHP;
 int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;

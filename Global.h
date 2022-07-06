@@ -7,7 +7,7 @@ using namespace std;
 class Global
 {
 private:
-	//ScissorsのPosition
+	//
 	static XMFLOAT3 Position_;
 
 	//カメラのStart & Goal
@@ -36,7 +36,6 @@ public:
 	static bool Unlock3;
 
 	//Player関連
-	static int HP;              //現在HP
 	static int MAXHP;           //最大HP
 	static int NORMAL_DAMAGE;   //通常のダメージ
 	static float JumpStart;     //ジャンプの開始位置
@@ -54,7 +53,6 @@ public:
 	static bool Pause;          //Pause用
 	static bool RepelFlg;       //弾かれる時用
 	static bool SinkFlg;        //沈む時用
-	static bool IsJump;         //ジャンプができるか否か
 	static bool ItemReDraw;     //アイテムの再表示
 
 	//Scene管理用

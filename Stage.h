@@ -41,6 +41,7 @@ class Stage : public GameObject
     int DengerImage_;
 
     Number* pNumber_;
+    //Scissors* pScissors_;
     Global gl;
 
     //コライダー（凸多角形を複数個組み合わせる）

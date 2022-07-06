@@ -949,6 +949,7 @@ void Stage::Stage3Load()
 //はじく床をチェック
 void Stage::RepelCheck(int i)
 {
+    Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
     PolygonCollider pc;
     pc.SetRepel(i);
 
@@ -957,15 +958,15 @@ void Stage::RepelCheck(int i)
     {
         //フラグをtrue
         Global::RepelFlg = true;
-        Global::IsJump = false;
-        Global::HP -= 5;
+        pScissors_->IsJump = false;
+        pScissors_->CurrentHP -= 5;
 
     }
     //そうでなければ戻す
     else
     {
         Global::RepelFlg = false;
-        Global::IsJump = true;
+        pScissors_->IsJump = true;
     }
 }
 

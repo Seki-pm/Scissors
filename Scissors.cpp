@@ -11,7 +11,7 @@ Scissors::Scissors(GameObject* parent)
     pBlade_L(nullptr), pBlade_R(nullptr),pStage_(nullptr),
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),         TransPos_Y(0),
-    AnglePass_(0.0f),  Key(0),
+    AnglePass_(0.0f),  Key(0),           IsJump(true),
     Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
 {
 }
@@ -42,6 +42,7 @@ void Scissors::Initialize()
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
 
+    CurrentHP = Global::MAXHP;
 }
 
 //更新
@@ -193,7 +194,7 @@ void Scissors::Rotation()
 //左右移動
 void Scissors::Move()
 {
-    if (!pBlade_L->IsPrick() && !pBlade_R->IsPrick() && Global::IsJump)     //どっちも刺さってなければ
+    if (!pBlade_L->IsPrick() && !pBlade_R->IsPrick() && IsJump)     //どっちも刺さってなければ
     {
         if (Input::IsKey(DIK_D))
         {
@@ -263,7 +264,7 @@ void Scissors::JumpAndFall()
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
         {
             //壁なら長押しで反応なし
-            if (Input::IsKeyDown(DIK_SPACE) && Global::IsJump)
+            if (Input::IsKeyDown(DIK_SPACE) && IsJump)
             {
                 //地面の法線よりちょっと上向きにジャンプ
                 move_.x = jumpDirection_.x * 0.2f;
@@ -286,7 +287,7 @@ void Scissors::JumpAndFall()
             }
         }
         //壁ではないなら長押しで進める
-        else if (Input::IsKey(DIK_SPACE) && Global::IsJump)
+        else if (Input::IsKey(DIK_SPACE) && IsJump)
         {
             //地面の法線よりちょっと上向きにジャンプ
             move_.x = jumpDirection_.x * 0.2f;
@@ -380,7 +381,7 @@ void Scissors::Reflection()
         }
 
         //ぶつかっている間HPを減らす(詰み防止対策)
-        Global::HP--;
+        CurrentHP--;
     }
 }
 
@@ -422,7 +423,7 @@ void Scissors::Restart()
     Global::GameOver = false;
     Global::IsGameOver = false;
     Global::ItemReDraw = true;
-    Global::HP = Global::MAXHP;
+    CurrentHP = Global::MAXHP;
     pBlade_L->SetRotateZ(0);
     pBlade_R->SetRotateZ(90);
     pBlade_L->isPrick = false;

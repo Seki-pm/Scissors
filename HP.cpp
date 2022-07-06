@@ -1,4 +1,5 @@
 #include "HP.h"
+#include "Scissors.h"
 
 //コンストラクタ
 HP::HP(GameObject* parent)
@@ -25,6 +26,7 @@ void HP::Initialize()
     FrameTrans.position_ = XMFLOAT3(-0.59f, 0.88f, 0);
     Image::SetTransform(GaugeFrameImage_, FrameTrans);
 
+    pScissors_ = (Scissors*)FindObject("Scissors");
 }
 
 //更新
@@ -35,7 +37,7 @@ void HP::Update()
 //描画
 void HP::Draw()
 {
-    pGauge_->Draw(Global::HP, -0.99f, 0.85f, GaugeImage_);
+    pGauge_->Draw(pScissors_->CurrentHP, -0.99f, 0.85f, GaugeImage_);
     Image::Draw(GaugeFrameImage_);
 }
 
@@ -56,17 +58,17 @@ void HP::HPCalc()
     //高いところから降りたら
     if (JS - JE > 0.5f)
     {
-        Global::HP -= (JS - JE + ND) * 2;
+        pScissors_->CurrentHP -= (JS - JE + ND) * 2;
     }
 
     //平面移動or上った
     if (JS - JE <= 0.5f)
     {
-        Global::HP -= ND;
+        pScissors_->CurrentHP -= ND;
     }
 
     //ゲームオーバー判定
-    if (Global::HP <= 0)
+    if (pScissors_->CurrentHP <= 0)
     {
         Global::IsGameOver = true;
         Global::GameOver = true;
