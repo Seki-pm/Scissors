@@ -49,7 +49,6 @@ void Scissors::Update()
 {
     GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
-    SetTransform();
     
     if (!Global::GameOver && !Global::Pause)
     {
@@ -385,19 +384,6 @@ void Scissors::Reflection()
     }
 }
 
-//現在位置を送る
-void Scissors::SetPosition()
-{
-    Global global;
-    float transX = transform_.position_.x;
-    float transY = transform_.position_.y;
-    float transZ = transform_.position_.z;
-
-    global.SetTransPos_X(transX);
-    global.SetTransPos_Y(transY);
-    global.SetTransPos_Z(transZ);
-}
-
 //回転限度を求める計算
 void Scissors::RotateMax()
 {
@@ -524,7 +510,7 @@ void Scissors::Landing()
     {
     case STAGE_NUMBER_1:
         //草の地面
-        if (jumpDirection_.x == 0 && transform_.position_.y <= 7)
+        if (jumpDirection_.x == 0 && nowPivotPoint_.y <= 7)
         {
             Audio::Play(Stage1_Sound::St1_Glass);
         }
@@ -542,8 +528,8 @@ void Scissors::Landing()
 
     case STAGE_NUMBER_2:
         //砂利の地面
-        if (transform_.position_.y >= 1.3f && transform_.position_.x >= 23 && transform_.position_.x <= 94.5f
-            || transform_.position_.x > 94.5f)
+        if (nowPivotPoint_.y >= 1.3f && nowPivotPoint_.x >= 23 && nowPivotPoint_.x <= 94.5f
+            || nowPivotPoint_.x > 94.5f)
         {
             Audio::Play(Stage2_Sound::St2_Gravel);
         }
@@ -565,7 +551,7 @@ void Scissors::Landing()
             Audio::Play(Stage3_Sound::St3_Sand);
         }
         //普通の地面(前半)
-        else if (transform_.position_.x <= 74)
+        else if (nowPivotPoint_.x <= 74)
         {
             Audio::Play(Stage3_Sound::St3_Volcano_Sand);
             Audio::Stop(Stage3_Sound::St3_Sand);

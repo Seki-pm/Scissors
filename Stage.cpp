@@ -224,10 +224,8 @@ void Stage::Stage1()
     }
 
     //スタートとゴールのカメラ位置の設定
-    gl.SetCameraStartX(startX);
-    gl.SetCameraStartY(startY);
-    gl.SetCameraGoalX(goalX);
-    gl.SetCameraGoalY(goalY);
+    gl.SetCameraStart(startX , startY);
+    gl.SetCameraGoal(goalX, goalY);
 }
 
 //Stage1の読み込み
@@ -479,10 +477,8 @@ void Stage::Stage2()
     }
 
     //スタートとゴールの設定
-    gl.SetCameraStartX(startX);
-    gl.SetCameraStartY(startY);
-    gl.SetCameraGoalX(goalX);
-    gl.SetCameraGoalY(goalY);
+    gl.SetCameraStart(startX, startY);
+    gl.SetCameraGoal(goalX, goalY);
 }
 
 //Stage2の読み込み
@@ -906,10 +902,8 @@ void Stage::Stage3()
 
 
     //スタートとゴールの設定
-    gl.SetCameraStartX(startX);
-    gl.SetCameraStartY(startY);
-    gl.SetCameraGoalX(goalX);
-    gl.SetCameraGoalY(goalY);
+    gl.SetCameraStart(startX, startY);
+    gl.SetCameraGoal(goalX, goalY);
 }
 
 //Stage3の読み込み

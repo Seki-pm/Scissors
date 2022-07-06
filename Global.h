@@ -8,15 +8,11 @@ class Global
 {
 private:
 	//ScissorsのPosition
-	static float Trans_Pos_X;				
-	static float Trans_Pos_Y;				
-	static float Trans_Pos_Z;	
+	static XMFLOAT3 Position_;
 
 	//カメラのStart & Goal
-	static float Camera_StartX;
-	static float Camera_StartY;
-	static float Camera_GoalX;
-	static float Camera_GoalY;
+	static XMFLOAT2 Camera_Start;
+	static XMFLOAT2 Camera_Goal;
 
 public:
 
@@ -68,24 +64,14 @@ public:
 	static vector<int> Repel_;
 	static vector<int> Sink_;
 
-	//ハサミの現在ポジションをGlobalを通じて送る
-	void SetTransPos_X(float x);
-	float GetTransPos_X();
-
-	void SetTransPos_Y(float y);
-	float GetTransPos_Y();
-
-	void SetTransPos_Z(float z);
-	float GetTransPos_Z();
+	//ハサミの位置を設定&送る
+	void SetTransPos(XMFLOAT3 position);
+	XMFLOAT3 GetTransPos();
 
 	//カメラのスタートとゴール位置を設定（ X と Y ）
-	void SetCameraStartX(float start);
-	void SetCameraStartY(float start);
-	float GetCameraStartX();
-	float GetCameraStartY();
+	void SetCameraStart(float startX, float startY);
+    void SetCameraGoal(float goalX, float goalY);
 
-	void SetCameraGoalX(float goal);
-	void SetCameraGoalY(float goal);
-	float GetCameraGoalX();
-	float GetCameraGoalY();
+	XMFLOAT2 GetCameraStart();
+	XMFLOAT2 GetCameraGoal();
 };

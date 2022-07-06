@@ -2,14 +2,11 @@
 
 
 //グローバル変数初期化
-float Global::Trans_Pos_X = 0.f;
-float Global::Trans_Pos_Y = 0.f;
-float Global::Trans_Pos_Z = 0.f;
+XMFLOAT3 Global::Position_ = XMFLOAT3(0, 0, 0);
 
-float Global::Camera_StartX = 0.f;
-float Global::Camera_StartY = 0.f;
-float Global::Camera_GoalX = 0.f;
-float Global::Camera_GoalY = 0.f;
+
+XMFLOAT2 Global::Camera_Start = XMFLOAT2(0, 0);
+XMFLOAT2 Global::Camera_Goal = XMFLOAT2(0, 0);
 
 XMFLOAT3 Global::ItemModelPos = XMFLOAT3(0, 0, 0);
 
@@ -55,78 +52,35 @@ bool Global::Soundflg = false;
 
 int Global::SCENE_ID = 0;
 
-//x座標
-void Global::SetTransPos_X(float x)
+
+void Global::SetTransPos(XMFLOAT3 position)
 {
-	Trans_Pos_X = x;
+	Position_ = position;
 }
 
-float Global::GetTransPos_X()
+XMFLOAT3 Global::GetTransPos()
 {
-	return Trans_Pos_X;
-}
-
-//y座標
-void Global::SetTransPos_Y(float y)
-{
-	Trans_Pos_Y = y;
-}
-
-float Global::GetTransPos_Y()
-{
-	return Trans_Pos_Y;
-}
-
-//z座標
-void Global::SetTransPos_Z(float z)
-{
-	Trans_Pos_Z = z;
-}
-
-float Global::GetTransPos_Z()
-{
-	return Trans_Pos_Z;
+	return Position_;
 }
 
 
 
-
-void Global::SetCameraStartX(float start)
+void Global::SetCameraStart(float startX, float startY)
 {
-	Camera_StartX = start;
+	Camera_Start = XMFLOAT2(startX, startY);
 }
 
-void Global::SetCameraStartY(float start)
+void Global::SetCameraGoal(float goalX, float goalY)
 {
-	Camera_StartY = start;
+	Camera_Goal = XMFLOAT2(goalX, goalY);
 }
 
-float Global::GetCameraStartX()
+XMFLOAT2 Global::GetCameraStart()
 {
-	return Camera_StartX;
+	return Camera_Start;
 }
 
-float Global::GetCameraStartY()
+XMFLOAT2 Global::GetCameraGoal()
 {
-	return Camera_StartY;
-}
-
-void Global::SetCameraGoalX(float goal)
-{
-	Camera_GoalX = goal;
-}
-
-void Global::SetCameraGoalY(float goal)
-{
-	Camera_GoalY = goal;
-}
-
-float Global::GetCameraGoalX()
-{
-	return Camera_GoalX;
-}
-
-float Global::GetCameraGoalY()
-{
-	return Camera_GoalY;
+	return Camera_Goal;
 }

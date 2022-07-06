@@ -93,19 +93,15 @@ public:
     void SetJumpDirection(XMFLOAT3 jumpDirection) { jumpDirection_ = jumpDirection; }
     XMFLOAT3 GetJumpDirection() { return jumpDirection_; }
 
-    void SetTransform()
-    {
-        TransX = transform_.position_.x;
-        TransY = transform_.position_.y;
-        TransZ = transform_.position_.z;
-        transform = transform_.position_;
-    }
-
     //反射
     void Reflection();
 
     //位置をセットする
-    void SetPosition();
+    void SetPosition()
+    {
+        Global gl;
+        gl.SetTransPos(transform_.position_);
+    }
 
     //回転限度
     void RotateMax();

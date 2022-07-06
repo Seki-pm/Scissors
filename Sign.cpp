@@ -100,15 +100,15 @@ void Sign::Draw()
     
 
     //条件付きでチュートリアルの描画
-    if (gl.GetTransPos_X() >= SignTrans.position_.x &&
-        gl.GetTransPos_X() <= SignTrans2.position_.x)
+    if (gl.GetTransPos().x >= SignTrans.position_.x &&
+        gl.GetTransPos().x <= SignTrans2.position_.x)
     {
         Image::Draw(Tutorial_);
     }
 
-    if (gl.GetTransPos_X() >= SignTrans5.position_.x &&
-        gl.GetTransPos_X() <= 42 && 
-        gl.GetTransPos_Y() <= 4.5f)
+    if (gl.GetTransPos().x >= SignTrans5.position_.x &&
+        gl.GetTransPos().x <= 42 &&
+        gl.GetTransPos().x <= 4.5f)
     {
         Image::Draw(Tutorial2_);
     }

@@ -4,8 +4,6 @@
 #include "Engine/Image.h"
 #include "Global.h"
 
-
-
 //操作説明オブジェクトを管理するクラス
 class Sign : public GameObject
 {

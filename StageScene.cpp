@@ -4,8 +4,7 @@
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
     SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
-    pStage_(nullptr), pScissors_(nullptr),
-    Pos_X(0), Pos_Y(0), Pos_Z(0)
+    pStage_(nullptr)
 {
 }
 
@@ -42,14 +41,8 @@ void StageScene::Initialize()
 //更新
 void StageScene::Update()
 {
-   
-    //ハサミの位置を取得
-    Pos_X = global.GetTransPos_X();
-    Pos_Y = global.GetTransPos_Y();
-    Pos_Z = global.GetTransPos_Z();
-
     //ステージのスタート&ゴール位置を入れる
-    CameraMove(global.GetCameraStartX(), global.GetCameraGoalX());
+    CameraMove(gl.GetCameraStart().x, gl.GetCameraGoal().x);
 
     //ゲームオーバー
     GameOverSEL();
@@ -198,30 +191,30 @@ void StageScene::CameraMove(float start, float goal)
 
     //transform.x に応じてカメラ移動を止める
     //スタート付近
-    if (Pos_X < start)
+    if (gl.GetTransPos().x < start)
     {
-        Camera::SetPosition(XMFLOAT3(global.GetCameraStartX(), Pos_Y, -10));
-        Camera::SetTarget(XMFLOAT3(global.GetCameraStartX(), Pos_Y, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, -10));
+        Camera::SetTarget(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, Pos_Z));
     }
     //ゴール付近
-    else if (Pos_X >= goal)
+    else if (gl.GetTransPos().x >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(global.GetCameraGoalX(), Pos_Y, -10));
-        Camera::SetTarget(XMFLOAT3(global.GetCameraGoalX(), Pos_Y, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, -10));
+        Camera::SetTarget(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
     //そうでない場合Playerに追従する
     else
     {
-        Camera::SetPosition(XMFLOAT3(Pos_X, Pos_Y, -10));
-        Camera::SetTarget(XMFLOAT3(Pos_X, Pos_Y, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, -10));
+        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
 
 
     //transform.y が0より小さい場合カメラを止める
-    if (Pos_Y < -6)
+    if (gl.GetTransPos().y < -6)
     {
-        Camera::SetPosition(XMFLOAT3(Pos_X, -3, -10));
-        Camera::SetTarget(XMFLOAT3(Pos_X, -3, Pos_Z));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, -3, -10));
+        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, -3, gl.GetTransPos().z));
     }
 }
 

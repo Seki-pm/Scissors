@@ -23,7 +23,7 @@ void GoalStaging::Initialize()
     //モデルデータのロード
     BalloonModel_ = Model::Load("Model/InGameObject/Balloon.fbx");
     assert(BalloonModel_ >= 0);
-    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoalX(), gl.GetCameraGoalY(), 0.f);
+    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
     BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
     Model::SetTransform(BalloonModel_, BalloonTrans);
 
@@ -61,7 +61,7 @@ void GoalStaging::Update()
     //}
 
     //ゴールについたら文字表示
-    if (gl.GetTransPos_X() >= gl.GetCameraGoalX() - 1.5f)
+    if (gl.GetTransPos().x >= gl.GetCameraGoal().x - 1.5f)
     {
         //文字表示
         StringFlg = true;

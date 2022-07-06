@@ -12,7 +12,6 @@
 #include "ItemModel.h"
 #include "ItemImage.h"
 #include "Pause.h"
-#include "Scissors.h"
 #include "Sign.h"
 #include "Stage.h"
 #include "StageSelectScene.h"
@@ -24,8 +23,7 @@ class StageScene : public GameObject
 {
 
 	Stage* pStage_;
-	Scissors* pScissors_;
-	Global global;
+	Global gl;
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
@@ -67,5 +65,4 @@ public:
 
 	//ゴール演出用
 	void Timer();
-
 };
