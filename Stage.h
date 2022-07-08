@@ -41,7 +41,6 @@ class Stage : public GameObject
     int DengerImage_;
 
     Number* pNumber_;
-    //Scissors* pScissors_;
     Global gl;
 
     //コライダー（凸多角形を複数個組み合わせる）
@@ -60,6 +59,13 @@ class Stage : public GameObject
                     pc37, pc38, pc39, pc40, pc41, pc42,
                     pc43, pc44, pc45, pc46, pc47, pc48,
                     pc49, pc50;
+
+    XMFLOAT4 StGo;
+    float startX;
+    float startY;
+    float goalX;
+    float goalY;
+    int Sound_;
 
 public:
     //コンストラクタ

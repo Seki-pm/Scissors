@@ -3,6 +3,8 @@
 #define NormalJumpPower 0.1f;
 #define SinkJumpPower 0.001f;
 #define SinkTimer 360;
+#define InitPosition XMFLOAT3(0, 1, 0);
+#define InitRotate XMFLOAT3(0, 0, 0);
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
@@ -12,7 +14,7 @@ Scissors::Scissors(GameObject* parent)
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),         TransPos_Y(0),
     AnglePass_(0.0f),  Key(0),           IsJump(true),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f), CurrentHP(0)
 {
 }
 
@@ -35,7 +37,7 @@ void Scissors::Initialize()
     pBlade_R->SetRotateZ(45);
 
     //初期位置
-    transform_.position_ = Global::InitPos;
+    transform_.position_ = InitPosition;
 
     //アイテム取得用のコライダーを設定
     SphereCollider* collision =
@@ -76,7 +78,7 @@ void Scissors::Update()
 
 
 
-    //落下したら || 沈んだら
+    //落下したら or 沈んだら
     if (transform_.position_.y <= -8 && FallFlg
         || 60 >= Timer_)
     {
@@ -406,8 +408,8 @@ void Scissors::RotateMax()
 void Scissors::Restart()
 {
     move_ = XMFLOAT3(0, 0, 0);
-    transform_.position_ = Global::InitPos;
-    transform_.rotate_ = Global::InitRot;
+    transform_.position_ = InitPosition;
+    transform_.rotate_ = InitRotate;
 
     Global::JumpStart = 0;
     Global::JumpEnd = 0;

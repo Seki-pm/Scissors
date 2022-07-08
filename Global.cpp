@@ -12,12 +12,6 @@ XMFLOAT3 Global::ItemModelPos = XMFLOAT3(0, 0, 0);
 
 XMFLOAT3 Global::ItemImagePos = XMFLOAT3(0,0,0);
 XMFLOAT3 Global::ItemImageSca = XMFLOAT3(0,0,0);
-XMFLOAT3 Global::ItemImagePos_Stage = XMFLOAT3(0.9f, 0.8f, 0.f);
-XMFLOAT3 Global::ItemImageSca_Stage = XMFLOAT3(0.5f, 0.5f, 0.5f);
-XMFLOAT3 Global::ItemImageSca_Select = XMFLOAT3(0.4f, 0.4f, 0.4f);
-
-XMFLOAT3 Global::InitPos = XMFLOAT3(0, 1, 0);
-XMFLOAT3 Global::InitRot = XMFLOAT3(0, 0, 0);
 
 int Global::SelectStage = 1;
 
@@ -45,10 +39,6 @@ int   Global::MAXHP = 500;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
 
-bool Global::Soundflg = false;
-
-int Global::SCENE_ID = 0;
-
 
 void Global::SetTransPos(XMFLOAT3 position)
 {
@@ -59,8 +49,6 @@ XMFLOAT3 Global::GetTransPos()
 {
 	return Position_;
 }
-
-
 
 void Global::SetCameraStart(float startX, float startY)
 {

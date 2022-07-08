@@ -1,5 +1,9 @@
 #include "StageScene.h"
 
+#define ItemImage_Scale_Stage XMFLOAT3(0.5f,0.5f,0.5f);
+#define ItemImage_Position_Stage XMFLOAT3(0.9f, 0.8f, 0.f);
+
+
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
@@ -11,8 +15,8 @@ StageScene::StageScene(GameObject* parent)
 //初期化
 void StageScene::Initialize()
 {                      
-    Global::ItemImagePos = Global::ItemImagePos_Stage;      //コインの位置をステージ用に設定
-    Global::ItemImageSca = Global::ItemImageSca_Stage;      //コインの大きさをステージ用に設定
+    Global::ItemImagePos = ItemImage_Position_Stage;      //コインの位置をステージ用に設定
+    Global::ItemImageSca = ItemImage_Scale_Stage;         //コインの大きさをステージ用に設定
     Global::GameOver = false;                               //GameOverではない
     Global::IsGameOver = false;                             //GameOverではない
     Global::GetCoin = false;                                //コインを取得していない

@@ -16,20 +16,13 @@ private:
 
 public:
 
-	//Playerの初期位置 & 初期回転角度
-	static XMFLOAT3 InitPos;
-	static XMFLOAT3 InitRot;
-
 	//StageSelectSceneの選択されている番号
 	static int SelectStage;
 
-	//コインの表示位置
-	static XMFLOAT3 ItemModelPos;  //モデル
+	//コインの表示位置・大きさ
+	static XMFLOAT3 ItemModelPos;  //モデル位置
 	static XMFLOAT3 ItemImagePos;  //画像位置
 	static XMFLOAT3 ItemImageSca;  //画像サイズ
-	static XMFLOAT3 ItemImagePos_Stage;   //画像(StageScene)
-	static XMFLOAT3 ItemImageSca_Stage;   //画像(StageScene)
-	static XMFLOAT3 ItemImageSca_Select;  //画像(SelectScene)
 
 	//StageUnlock変数
 	static bool Unlock2;
@@ -39,7 +32,6 @@ public:
 	static int MAXHP;           //最大HP
 	static float JumpStart;     //ジャンプの開始位置
 	static float JumpEnd;       //ジャンプの終了位置
-	static bool Soundflg;
 
 	//Globalのフラグ
 	static bool Timer;          //GoalStaging用のタイマー

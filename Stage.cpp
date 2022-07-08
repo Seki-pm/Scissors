@@ -1,10 +1,23 @@
 ﻿#include "Stage.h"
 #include "Scissors.h"
 
+#define St1_ItemModel_Pos XMFLOAT3(51, 10, 0);
+#define St2_ItemModel_Pos XMFLOAT3(-1.5f, 17, 0);
+#define St3_ItemModel_Pos XMFLOAT3(50.5f, 15.5f, 0);
+
+#define DengerImage_Pos XMFLOAT3(0, 0.8f, 0);
+
+#define St1_Start_Goal_Pos XMFLOAT4(2, 0, 55, 4);
+#define St2_Start_Goal_Pos XMFLOAT4(2, 0, 125, 0.36f);
+#define St3_Start_Goal_Pos XMFLOAT4(3, 0, 138, 16);
+
+#define Repel_Damage 5
+
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
-    StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1)
+    StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
+    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),pNumber_(nullptr)
 {
 }
 
@@ -59,7 +72,7 @@ void Stage::Draw()
     if (Global::SinkFlg)
     {
         auto DengerTrans = Transform();
-        DengerTrans.position_ = XMFLOAT3(0, 0.8f, 0);
+        DengerTrans.position_ = DengerImage_Pos;
         Image::SetTransform(DengerImage_, DengerTrans);
         Image::Draw(DengerImage_);
 
@@ -132,10 +145,11 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
 void Stage::Stage1()
 {
     //スタートとゴールを設定
-    float startX = 2;
-    float startY = 0;
-    float goalX = 55;
-    float goalY = 4;
+    StGo = St1_Start_Goal_Pos;
+    startX = StGo.x;
+    startY = StGo.y;
+    goalX = StGo.z;
+    goalY = StGo.w;
     
     //スタートから壁まで
     {
@@ -242,7 +256,8 @@ void Stage::Stage1Load()
     //サウンドを追加
     for (int i = 0; i < St1_Max; i++)
     {
-        int Sound_ = -1;
+        Sound_ = -1;
+
         switch (i)
         {
         case St1_Glass:
@@ -255,7 +270,7 @@ void Stage::Stage1Load()
 
 
     //コインの位置
-    Global::ItemModelPos = XMFLOAT3(51, 10, 0);
+    Global::ItemModelPos = St1_ItemModel_Pos;
     //看板
     Instantiate<Sign>(this);
 }
@@ -263,10 +278,11 @@ void Stage::Stage1Load()
 //Stage2のコライダ設定
 void Stage::Stage2()
 {
-    float startX = 2;
-    float startY = 0;
-    float goalX = 125;
-    float goalY = 0.36f;
+    StGo = St2_Start_Goal_Pos;
+    startX = StGo.x;
+    startY = StGo.y;
+    goalX = StGo.z;
+    goalY = StGo.w;
 
     //スタートから穴まで
     {
@@ -493,7 +509,8 @@ void Stage::Stage2Load()
     //サウンドを追加
     for (int i = 0; i < St2_Max; i++)
     {
-        int Sound_ = -1;
+        Sound_ = -1;
+
         switch (i)
         {
         case St1_Glass:
@@ -505,16 +522,17 @@ void Stage::Stage2Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = XMFLOAT3(-1.5f, 17, 0);
+    Global::ItemModelPos = St2_ItemModel_Pos;
 }
 
 //Stage3のコライダ設定
 void Stage::Stage3()
 {
-    float startX = 3;
-    float startY = 0;
-    float goalX = 138;
-    float goalY = 16;
+    StGo = St3_Start_Goal_Pos;
+    startX = StGo.x;
+    startY = StGo.y;
+    goalX = StGo.z;
+    goalY = StGo.w;
 
     //スタートから壁まで
     {
@@ -926,7 +944,8 @@ void Stage::Stage3Load()
     //サウンドを追加
     for (int i = 0; i < St3_Max; i++)
     {
-        int Sound_ = -1;
+        Sound_ = -1;
+
         switch (i)
         {
         case St3_Iron:
@@ -942,7 +961,7 @@ void Stage::Stage3Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = XMFLOAT3(50.5f, 15.5f, 0);
+    Global::ItemModelPos = St3_ItemModel_Pos;
 }
 
 
@@ -959,7 +978,7 @@ void Stage::RepelCheck(int i)
         //フラグをtrue
         Global::RepelFlg = true;
         pScissors_->IsJump = false;
-        pScissors_->CurrentHP -= 5;
+        pScissors_->CurrentHP -= Repel_Damage;
 
     }
     //そうでなければ戻す
