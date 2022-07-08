@@ -48,9 +48,7 @@ void Scissors::Initialize()
 //更新
 void Scissors::Update()
 {
-    GameOver* pGameOver = (GameOver*)FindObject("GameOver");
 
-    
     if (!Global::GameOver && !Global::Pause)
     {
         //ハサミの開閉
@@ -76,16 +74,9 @@ void Scissors::Update()
         Restart();
     }
 
-    //GameOverの時リトライを選択しているとリスタート
-    if (Global::GameOver && Input::IsKeyDown(DIK_SPACE))
-    {
-        if (pGameOver->GetSelect() == 0)
-        {
-            Restart();
-        }
-    }
 
-    //落下したら
+
+    //落下したら || 沈んだら
     if (transform_.position_.y <= -8 && FallFlg
         || 60 >= Timer_)
     {

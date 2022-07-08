@@ -8,7 +8,6 @@
 #include "Blade.h"
 #include "Global.h"
 #include "HP.h"
-#include "GameOver.h"
 #include "Stage.h"
 #include "StageSelectScene.h"
 #include <vector>

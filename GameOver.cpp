@@ -46,6 +46,8 @@ void GameOver::Update()
 //描画
 void GameOver::Draw()
 {
+    Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
+
     //背景描画
     Image::SetAlpha(GameOverBackImage_, alpha_);
     Image::SetTransform(GameOverBackImage_, transform_);
@@ -66,6 +68,7 @@ void GameOver::Draw()
         if (Input::IsKeyDown(DIK_SPACE))
         {
             KillMe();
+            pScissors_->Restart();
         }
     }
     //ステージ選択が選択されている時

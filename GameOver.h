@@ -5,6 +5,7 @@
 #include "Engine/Input.h"
 #include "StageSelectScene.h"
 #include "Global.h"
+#include "Scissors.h"
 
 //ゲームオーバーを管理するクラス
 class GameOver : public GameObject
