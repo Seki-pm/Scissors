@@ -37,7 +37,6 @@ public:
 
 	//Player関連
 	static int MAXHP;           //最大HP
-	static int NORMAL_DAMAGE;   //通常のダメージ
 	static float JumpStart;     //ジャンプの開始位置
 	static float JumpEnd;       //ジャンプの終了位置
 	static bool Soundflg;
@@ -66,10 +65,11 @@ public:
 	void SetTransPos(XMFLOAT3 position);
 	XMFLOAT3 GetTransPos();
 
-	//カメラのスタートとゴール位置を設定（ X と Y ）
+	//カメラのスタートとゴール位置を設定（ X , Y ）
 	void SetCameraStart(float startX, float startY);
     void SetCameraGoal(float goalX, float goalY);
 
+	//カメラのスタートとゴール位置を取得（ X , Y ）
 	XMFLOAT2 GetCameraStart();
 	XMFLOAT2 GetCameraGoal();
 };

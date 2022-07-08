@@ -47,7 +47,6 @@ void SceneManager::Update()
 		}
 		//Audio::Initialize();
 		currentSceneID_ = nextSceneID_;
-		Global::SCENE_ID = currentSceneID_;
 	}
 }
 

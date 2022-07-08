@@ -42,7 +42,6 @@ bool Global::SinkFlg = false;
 bool Global::ItemReDraw = false;
 
 int   Global::MAXHP = 500;
-int   Global::NORMAL_DAMAGE = 1;
 float Global::JumpStart = 0.f;
 float Global::JumpEnd = 0.f;
 

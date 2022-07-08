@@ -1,6 +1,8 @@
 #include "HP.h"
 #include "Scissors.h"
 
+#define NORMAL_DAMAGE 1
+
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
@@ -53,7 +55,7 @@ void HP::HPCalc()
 {
     float JS = Global::JumpStart;
     float JE = Global::JumpEnd;
-    float ND = Global::NORMAL_DAMAGE;
+    float ND = NORMAL_DAMAGE;
 
     //高いところから降りたら
     if (JS - JE > 0.5f)

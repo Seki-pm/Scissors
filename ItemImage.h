@@ -12,6 +12,8 @@ class ItemImage : public GameObject
     int FrameImage_;
     int CoinImage_;
 
+    SceneManager* pSceneManager_;
+
 public:
     //コンストラクタ
     ItemImage(GameObject* parent);

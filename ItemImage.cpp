@@ -15,7 +15,6 @@ ItemImage::~ItemImage()
 //初期化
 void ItemImage::Initialize()
 {
-
     //取得していない
     FrameImage_ = Image::Load("Image/StageScene/GetCoinFrame.png");
     assert(FrameImage_);
@@ -42,8 +41,10 @@ void ItemImage::Update()
 //描画
 void ItemImage::Draw()
 {
+    pSceneManager_ = (SceneManager*)FindObject("SceneManager");
+
     //現在シーンがSELECTの場合
-    if (Global::SCENE_ID == SCENE_ID_SELECT)
+    if (pSceneManager_->GetCurrentSceneID() == SCENE_ID_SELECT)
     {
         //コインを表示
         Image::Draw(CoinImage_);
