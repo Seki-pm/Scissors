@@ -5,13 +5,11 @@
 #include "Engine/Image.h"
 #include "Engine/Audio.h"
 #include "Global.h"
-#include "Scissors.h"
 
 //ゴール演出を管理するクラス
 class GoalStaging : public GameObject
 {
     Global gl; //globalを使う
-    Scissors* pScissors_;
 
     int BalloonModel_;    //モデル番号
     int GoalSound_;  //サウンド用

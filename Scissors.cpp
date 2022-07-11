@@ -6,15 +6,17 @@
 #define InitPosition XMFLOAT3(0, 1, 0);
 #define InitRotate XMFLOAT3(0, 0, 0);
 
+const int Fall_Max = -8;
+
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), 
     jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
     pBlade_L(nullptr), pBlade_R(nullptr),pStage_(nullptr),
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
-    CountDown(0),      MoveY(0),         powerX(0),        powerY(0),         TransPos_Y(0),
-    AnglePass_(0.0f),  Key(0),           IsJump(true),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f), CurrentHP(0)
+    CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
+    AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
 {
 }
 
@@ -77,10 +79,9 @@ void Scissors::Update()
     }
 
 
-
     //落下したら or 沈んだら
-    if (transform_.position_.y <= -8 && FallFlg
-        || 60 >= Timer_)
+    if (transform_.position_.y <= Fall_Max 
+        && FallFlg || 60 >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;

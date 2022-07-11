@@ -24,7 +24,6 @@ class TitleScene : public GameObject
 	bool Timer_;
 
 	//‰æ‘œ‚Ì“®‚«—p‚Ì•Ï”
-	float size_;
 	float alpha_;
 	float theta_;
 

@@ -90,4 +90,5 @@ public:
 	//ƒRƒCƒ“‚Ìæ“¾ó‹µ
 	void GetCoin();
 
+	XMFLOAT4 ImagePos(int x, int y);
 };

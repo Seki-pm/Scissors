@@ -13,6 +13,8 @@
 
 #define Repel_Damage 5
 
+const XMFLOAT2 Number_Pos = XMFLOAT2(0.06f, 0.8f);
+
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
@@ -76,7 +78,7 @@ void Stage::Draw()
         Image::SetTransform(DengerImage_, DengerTrans);
         Image::Draw(DengerImage_);
 
-        pNumber_->Draw(pScissors_->GetCountDown(), 0.06f, 0.8f, NumberImage_);
+        pNumber_->Draw(pScissors_->GetCountDown(), Number_Pos.x, Number_Pos.y, NumberImage_);
     }
 }
 

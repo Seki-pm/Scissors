@@ -1,7 +1,10 @@
 #include "HP.h"
 #include "Scissors.h"
 
+#define Frame_Pos XMFLOAT3(-0.59f, 0.88f, 0);
 #define NORMAL_DAMAGE 1
+
+const XMFLOAT2 HP_Image_Pos = XMFLOAT2(-0.99f, 0.85f);
 
 //コンストラクタ
 HP::HP(GameObject* parent)
@@ -25,7 +28,7 @@ void HP::Initialize()
     //ゲージフレーム
     GaugeFrameImage_ = Image::Load("Image/StageScene/GaugeFrame.png");
     assert(GaugeFrameImage_ >= 0);
-    FrameTrans.position_ = XMFLOAT3(-0.59f, 0.88f, 0);
+    FrameTrans.position_ = Frame_Pos;
     Image::SetTransform(GaugeFrameImage_, FrameTrans);
 
     pScissors_ = (Scissors*)FindObject("Scissors");
@@ -39,7 +42,7 @@ void HP::Update()
 //描画
 void HP::Draw()
 {
-    pGauge_->Draw(pScissors_->CurrentHP, -0.99f, 0.85f, GaugeImage_);
+    pGauge_->Draw(pScissors_->CurrentHP, HP_Image_Pos.x, HP_Image_Pos.y, GaugeImage_);
     Image::Draw(GaugeFrameImage_);
 }
 

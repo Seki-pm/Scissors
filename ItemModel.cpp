@@ -1,9 +1,15 @@
 #include "ItemModel.h"
 
+#define Item_Size XMFLOAT3(1.1f,1.1f,1.1f);
+
+const float Rotation_Speed = 16.6f;
+const float Up_Distance = 0.01f;
+const int   Rotation_Number = 8;
+
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     CoinModel_(-1),rotate(8), CoinSound_(-1)
+     CoinModel_(-1),rotate(Rotation_Number), CoinSound_(-1)
 {
 }
 
@@ -24,7 +30,7 @@ void ItemModel::Initialize()
 
 
     transform_.position_ = Global::ItemModelPos;
-    transform_.scale_ = XMFLOAT3(1.1f, 1.1f , 1.1f);
+    transform_.scale_ = Item_Size;
 
     SphereCollider* collision = 
     new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
@@ -91,6 +97,6 @@ void ItemModel::OnCollision(GameObject* pTarget)
 //簡易アニメーション
 void ItemModel::Animation()
 {
-    transform_.position_.y += 0.01f * 3;
-    transform_.rotate_.y += 16.6f * 3;
+    transform_.position_.y += Up_Distance * 3;
+    transform_.rotate_.y += Rotation_Speed * 3;
 }

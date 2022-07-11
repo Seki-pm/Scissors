@@ -21,19 +21,15 @@
 //ステージシーンを管理するクラス
 class StageScene : public GameObject
 {
-
 	Stage* pStage_;
 	Global gl;
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-
-	//Scissorsの位置を取得
-	float Pos_X, Pos_Y, Pos_Z;
-
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

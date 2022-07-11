@@ -227,8 +227,8 @@ void StageSelectScene::MouseSelect()
 	XMFLOAT3 mousePos = Input::GetMousePosition();
 
 	//Stage1è„
-	if ( 132 < mousePos.x && mousePos.x < 380 && 
-		 228 < mousePos.y && mousePos.y < 346)
+	if ( 132 < mousePos.x && mousePos.x < 388 && 
+		 228 < mousePos.y && mousePos.y < 356)
 	{
 		Global::SelectStage = STAGE_NUMBER_1;
 	}
@@ -346,4 +346,12 @@ void StageSelectScene::GetCoin()
 
 		Drawflg = false;
 	}
+}
+
+XMFLOAT4 StageSelectScene::ImagePos(int x, int y)
+{
+	int x2 = x + 256;
+	int y2 = y + 128;
+
+	return XMFLOAT4(x,y,x2,y2);
 }

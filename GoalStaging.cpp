@@ -1,11 +1,19 @@
 #include "GoalStaging.h"
 
+#define Bal_Ent_Size XMFLOAT3(0.8f,0.8f,0.8f);
+#define Enter_Pos XMFLOAT3(0.1f,0.1f,0.f);
+#define BackImage_Size XMFLOAT3(1.4f,1.4f,1.4f);
+#define CircleImage_Size XMFLOAT3(10,10,10);
+
+const int Time = 90;
+const float Size_Min = 1.4f;
+const float Scale_Down_Val = 0.15f;
 
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
     :GameObject(parent, "GoalStaging"), 
     BalloonModel_(-1), BackImage_(-1), EnterImage_(-1),
-    CircleImage_(-1),  GoalSound_(-1), size_(10), timer(0),
+    CircleImage_(-1),  GoalSound_(-1), timer(0),
     StagingFlg(false), StringFlg(false)
 {
 }
@@ -24,27 +32,27 @@ void GoalStaging::Initialize()
     BalloonModel_ = Model::Load("Model/InGameObject/Balloon.fbx");
     assert(BalloonModel_ >= 0);
     BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
-    BalloonTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
+    BalloonTrans.scale_ = Bal_Ent_Size;
     Model::SetTransform(BalloonModel_, BalloonTrans);
 
     //Enter
     EnterImage_ = Image::Load("Image/InGameMenu/Enter.png");
     assert(EnterImage_ >= 0);
-    EnterTrans.position_ = XMFLOAT3(0.1f, 0.1f, 0);
-    EnterTrans.scale_ = XMFLOAT3(0.8f, 0.8f, 0.8f);
+    EnterTrans.position_ = Enter_Pos;
+    EnterTrans.scale_ = Bal_Ent_Size;
     Image::SetTransform(EnterImage_, EnterTrans);
 
     //暗転
     BackImage_ = Image::Load("Image/InGameMenu/Clear_Black.png");
     assert(BackImage_ >= 0);
     auto BlackTrans = Transform();
-    BlackTrans.scale_ = XMFLOAT3(1.4f, 1.4f, 1.4f);
+    BlackTrans.scale_ = BackImage_Size;
     Image::SetTransform(BackImage_, BlackTrans);
 
     //収縮用
     CircleImage_ = Image::Load("Image/InGameMenu/Clear_Effect.png");
     assert(CircleImage_ >= 0);
-    CircleTrans.scale_ = XMFLOAT3(size_,size_,size_);
+    CircleTrans.scale_ = CircleImage_Size;
 
     //サウンド
     GoalSound_ = Audio::Load("Sound/InStage/Staging.wav");
@@ -100,12 +108,12 @@ void GoalStaging::Draw()
     //暗転処理
     if (StagingFlg)
     {
-        CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
+        CircleTrans.scale_ = CircleImage_Size;
         Image::SetTransform(CircleImage_, CircleTrans);
 
-        if (size_ > 1.4f)
+        if (size_ > Size_Min)
         {
-            size_ -= 0.15f;
+            size_ -= Scale_Down_Val;
             Image::Draw(CircleImage_);
         }
         else
@@ -131,7 +139,7 @@ void GoalStaging::Timer()
 {
     timer++;
 
-    if (timer >= 90)
+    if (timer >= Time)
     {
         Global::Timer = true;
         timer = 0;

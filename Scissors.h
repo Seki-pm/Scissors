@@ -35,7 +35,6 @@ class Scissors : public GameObject
 
     //’e‚©‚ê‚½Žž—p
     int Key;
-    float TransPos_Y;
     float powerY;
     float powerX;
     bool IsRepel;
