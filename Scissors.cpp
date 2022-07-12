@@ -258,7 +258,6 @@ void Scissors::JumpAndFall()
             Landing();
         }
 
-
         //•Ç‚©‚Ç‚¤‚©‚ÅSPACE‚Ì“ü—Í‚ð•Ï‚¦‚é
         if (jumpDirection_.x == 1 || jumpDirection_.x == -1)
         {
