@@ -20,7 +20,7 @@ Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
     StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
     startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),pNumber_(nullptr),
-    RepelFlg(false),SinkFlg(false),pScissors_(nullptr)
+    RepelFlg(false),pScissors_(nullptr)
 {
 }
 
@@ -32,8 +32,6 @@ Stage::~Stage()
 //初期化
 void Stage::Initialize()
 {
-    pScissors_ = (Scissors*)FindObject("Scissors");
-
     //左右反転
     transform_.rotate_.y = 180;
 
@@ -68,6 +66,8 @@ void Stage::Load(const int stage)
 //描画
 void Stage::Draw()
 {
+    pScissors_ = (Scissors*)FindObject("Scissors");
+
     Image::Draw(BackImage_);
     Model::SetTransform(StageModel_, transform_);
     Model::Draw(StageModel_);
@@ -971,7 +971,8 @@ void Stage::Stage3Load()
 //はじく床をチェック
 void Stage::RepelCheck(int i)
 {
-    Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
+    pScissors_ = (Scissors*)FindObject("Scissors");
+
     PolygonCollider pc;
     pc.SetRepel(i);
 

@@ -18,7 +18,7 @@ Scissors::Scissors(GameObject* parent)
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
     AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0)
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
 {
 }
 
@@ -235,6 +235,7 @@ void Scissors::JumpAndFall()
     //どっちか刺さってたら
     else
     {
+
         //ジャンプ方向を入れる(はじく処理の方向)
         if (move_.x < 0) Key = 1;        //右に動いている時は左へ
         else if(move_.x > 0)  Key = -1;  //左に動いている時は右へ　弾く
