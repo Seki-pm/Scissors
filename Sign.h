@@ -24,8 +24,6 @@ class Sign : public GameObject
     int Tutorial_;
     int Tutorial2_;
 
-    float size_;
-
     Global gl;
 
     Transform SignTrans;

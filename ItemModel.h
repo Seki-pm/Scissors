@@ -17,6 +17,10 @@ class ItemModel : public GameObject
 
     int rotate; //回転数
 
+    const float Rotation_Speed;
+    const float Up_Distance;
+    const int   Rotation_Number;
+
 public:
     //コンストラクタ
     ItemModel(GameObject* parent);

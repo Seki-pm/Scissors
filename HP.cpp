@@ -4,12 +4,12 @@
 #define Frame_Pos XMFLOAT3(-0.59f, 0.88f, 0);
 #define NORMAL_DAMAGE 1
 
-const XMFLOAT2 HP_Image_Pos = XMFLOAT2(-0.99f, 0.85f);
 
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pGauge_(nullptr),GaugeImage_(-1), GaugeFrameImage_(-1)
+    pGauge_(nullptr),GaugeImage_(-1), GaugeFrameImage_(-1), pScissors_(nullptr),
+    HP_Image_Pos(XMFLOAT2(-0.99f, 0.85f))
 {
 }
 

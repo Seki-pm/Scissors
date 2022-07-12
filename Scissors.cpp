@@ -6,9 +6,7 @@
 #define InitPosition XMFLOAT3(0, 1, 0);
 #define InitRotate XMFLOAT3(0, 0, 0);
 
-const int Fall_Max = -8;
-const float JUMP_POWER = 0.2f;
-const int TimerMin = 60;
+
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
@@ -18,7 +16,8 @@ Scissors::Scissors(GameObject* parent)
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
     AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0),
+    Fall_Max(-8),      JUMP_POWER(0.2f), TimerMin(60)
 {
 }
 

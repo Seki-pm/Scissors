@@ -2,14 +2,12 @@
 
 #define Item_Size XMFLOAT3(1.1f,1.1f,1.1f);
 
-const float Rotation_Speed = 16.6f;
-const float Up_Distance = 0.01f;
-const int   Rotation_Number = 8;
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     CoinModel_(-1),rotate(Rotation_Number), CoinSound_(-1)
+     CoinModel_(-1),rotate(Rotation_Number), CoinSound_(-1),
+    Rotation_Speed(16.6f), Up_Distance(0.01f), Rotation_Number(8)
 {
 }
 

@@ -29,6 +29,11 @@ class StageScene : public GameObject
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
 
+
+	const int Camera_Set_Pos;
+	const int Camera_Fall_Max;
+	const int Fall_Max;
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

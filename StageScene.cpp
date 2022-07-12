@@ -3,14 +3,12 @@
 #define ItemImage_Scale_Stage XMFLOAT3(0.5f,0.5f,0.5f);
 #define ItemImage_Position_Stage XMFLOAT3(0.9f, 0.8f, 0.f);
 
-const int Camera_Set_Pos = -10;
-const int Camera_Fall_Max = -3;
-const int Fall_Max = -6;
 
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
-    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1)
+    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
+    Camera_Set_Pos(-10), Camera_Fall_Max(-3), Fall_Max(-6)
 {
 }
 

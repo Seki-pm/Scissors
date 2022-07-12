@@ -13,14 +13,12 @@
 
 #define Repel_Damage 5
 
-const XMFLOAT2 Number_Pos = XMFLOAT2(0.06f, 0.8f);
-
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
     StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
-    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),pNumber_(nullptr),
-    RepelFlg(false),pScissors_(nullptr)
+    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)), Number_Pos(XMFLOAT2(0.06f, 0.8f)),
+    RepelFlg(false), SinkFlg(false), pScissors_(nullptr), pNumber_(nullptr)
 {
 }
 

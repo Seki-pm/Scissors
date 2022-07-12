@@ -44,6 +44,8 @@ class Stage : public GameObject
     Global gl;
     Scissors* pScissors_;
 
+    const XMFLOAT2 Number_Pos;
+
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
 
