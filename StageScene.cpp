@@ -10,8 +10,7 @@ const int Fall_Max = -6;
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
-    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
-    pStage_(nullptr)
+    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1)
 {
 }
 
@@ -25,7 +24,7 @@ void StageScene::Initialize()
     Global::GetCoin = false;                                //コインを取得していない
 
     //ステージ
-    pStage_ = Instantiate<Stage>(this);
+    Stage* pStage_ = Instantiate<Stage>(this);
     pStage_->Load(Global::SelectStage);
 
     //ハサミ本体
@@ -242,12 +241,14 @@ void StageScene::NextStageUnlock( int SelectStage )
 //ゴール演出用
 void StageScene::Timer()
 {
+    GoalStaging* pGoalStaging_ = (GoalStaging*)FindObject("GoalStaging");
+
     //trueの時
-    if (Global::Timer)
+    if (pGoalStaging_->timer_)
     {
         //次のステージをアンロックをし、ステージ選択へ遷移
         NextStageUnlock(Global::SelectStage);
-        Global::Timer = false;
+        pGoalStaging_->timer_ = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);
     }

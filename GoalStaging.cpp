@@ -3,9 +3,8 @@
 #define Bal_Ent_Size XMFLOAT3(0.8f,0.8f,0.8f);
 #define Enter_Pos XMFLOAT3(0.1f,0.1f,0.f);
 #define BackImage_Size XMFLOAT3(1.4f,1.4f,1.4f);
-#define CircleImage_Size XMFLOAT3(10,10,10);
 
-const int Time = 90;
+const int TIME = 90;
 const float Size_Min = 1.4f;
 const float Scale_Down_Val = 0.15f;
 
@@ -13,8 +12,8 @@ const float Scale_Down_Val = 0.15f;
 GoalStaging::GoalStaging(GameObject* parent)
     :GameObject(parent, "GoalStaging"), 
     BalloonModel_(-1), BackImage_(-1), EnterImage_(-1),
-    CircleImage_(-1),  GoalSound_(-1), timer(0),
-    StagingFlg(false), StringFlg(false)
+    CircleImage_(-1),  GoalSound_(-1), time_(0),size_(10),
+    timer_(false),StagingFlg(false), StringFlg(false)
 {
 }
 
@@ -26,7 +25,6 @@ GoalStaging::~GoalStaging()
 //初期化
 void GoalStaging::Initialize()
 {
-    Global gl;
 
     //モデルデータのロード
     BalloonModel_ = Model::Load("Model/InGameObject/Balloon.fbx");
@@ -52,7 +50,7 @@ void GoalStaging::Initialize()
     //収縮用
     CircleImage_ = Image::Load("Image/InGameMenu/Clear_Effect.png");
     assert(CircleImage_ >= 0);
-    CircleTrans.scale_ = CircleImage_Size;
+    CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
 
     //サウンド
     GoalSound_ = Audio::Load("Sound/InStage/Staging.wav");
@@ -108,7 +106,7 @@ void GoalStaging::Draw()
     //暗転処理
     if (StagingFlg)
     {
-        CircleTrans.scale_ = CircleImage_Size;
+        CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
         Image::SetTransform(CircleImage_, CircleTrans);
 
         if (size_ > Size_Min)
@@ -137,11 +135,11 @@ void GoalStaging::Release()
 //時間管理
 void GoalStaging::Timer()
 {
-    timer++;
+    time_++;
 
-    if (timer >= Time)
+    if (time_ >= TIME)
     {
-        Global::Timer = true;
-        timer = 0;
+        timer_ = true;
+        time_ = 0;
     }
 }

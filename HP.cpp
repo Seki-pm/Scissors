@@ -56,8 +56,8 @@ void HP::Release()
 //HPåvéZ
 void HP::HPCalc()
 {
-    float JS = Global::JumpStart;
-    float JE = Global::JumpEnd;
+    float JS = pScissors_->JumpStart;
+    float JE = pScissors_->JumpEnd;
     float ND = NORMAL_DAMAGE;
 
     //çÇÇ¢Ç∆Ç±ÇÎÇ©ÇÁç~ÇËÇΩÇÁ

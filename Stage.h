@@ -42,6 +42,7 @@ class Stage : public GameObject
 
     Number* pNumber_;
     Global gl;
+    Scissors* pScissors_;
 
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
@@ -68,6 +69,11 @@ class Stage : public GameObject
     int Sound_;
 
 public:
+    
+    bool RepelFlg;
+    bool SinkFlg;
+
+
     //コンストラクタ
     Stage(GameObject* parent);
 

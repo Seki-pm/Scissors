@@ -7,7 +7,7 @@ using namespace std;
 class Global
 {
 private:
-	//
+	//ハサミの位置を入れる変数
 	static XMFLOAT3 Position_;
 
 	//カメラのStart & Goal
@@ -28,13 +28,10 @@ public:
 	static bool Unlock2;
 	static bool Unlock3;
 
-	//Player関連
+	//Playerの最大HP
 	static int MAXHP;           //最大HP
-	static float JumpStart;     //ジャンプの開始位置
-	static float JumpEnd;       //ジャンプの終了位置
 
 	//Globalのフラグ
-	static bool Timer;          //GoalStaging用のタイマー
 	static bool GetCoin;        //コインのGetしたか
 	static bool GetCoin_1;      //Stage1のコインをGet
 	static bool GetCoin_2;      //Stage2のコインをGet
@@ -42,12 +39,7 @@ public:
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
-	static bool RepelFlg;       //弾かれる時用
-	static bool SinkFlg;        //沈む時用
 	static bool ItemReDraw;     //アイテムの再表示
-
-	//Scene管理用
-	static int SCENE_ID;
 
 	//地面ギミック用動的配列
 	static vector<int> Repel_;

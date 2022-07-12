@@ -4,12 +4,10 @@
 //ÉOÉçÅ[ÉoÉãïœêîèâä˙âª
 XMFLOAT3 Global::Position_ = XMFLOAT3(0, 0, 0);
 
-
 XMFLOAT2 Global::Camera_Start = XMFLOAT2(0, 0);
 XMFLOAT2 Global::Camera_Goal = XMFLOAT2(0, 0);
 
 XMFLOAT3 Global::ItemModelPos = XMFLOAT3(0, 0, 0);
-
 XMFLOAT3 Global::ItemImagePos = XMFLOAT3(0,0,0);
 XMFLOAT3 Global::ItemImageSca = XMFLOAT3(0,0,0);
 
@@ -29,15 +27,10 @@ bool Global::GetCoin_3 = false;
 bool Global::Pause  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;
-bool Global::Timer = false;
 
-bool Global::RepelFlg = false;
-bool Global::SinkFlg = false;
 bool Global::ItemReDraw = false;
 
 int   Global::MAXHP = 500;
-float Global::JumpStart = 0.f;
-float Global::JumpEnd = 0.f;
 
 
 void Global::SetTransPos(XMFLOAT3 position)

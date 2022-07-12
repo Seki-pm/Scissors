@@ -32,9 +32,12 @@ class GoalStaging : public GameObject
     bool StringFlg;
 
     //時間管理
-    int timer;
+    int time_;
+
 
 public:
+    bool timer_;
+
     //コンストラクタ
     GoalStaging(GameObject* parent);
 

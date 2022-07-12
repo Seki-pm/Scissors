@@ -21,7 +21,6 @@
 //ステージシーンを管理するクラス
 class StageScene : public GameObject
 {
-	Stage* pStage_;
 	Global gl;
 
 	int Gselect_; //GameOver選択用変数

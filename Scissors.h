@@ -65,6 +65,8 @@ class Scissors : public GameObject
 public:
     bool IsJump;
     int CurrentHP;
+    float JumpStart;
+    float JumpEnd;
 
 
     //コンストラクタ

@@ -19,7 +19,8 @@ const XMFLOAT2 Number_Pos = XMFLOAT2(0.06f, 0.8f);
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
     StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
-    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),pNumber_(nullptr)
+    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),pNumber_(nullptr),
+    RepelFlg(false),SinkFlg(false),pScissors_(nullptr)
 {
 }
 
@@ -31,6 +32,8 @@ Stage::~Stage()
 //初期化
 void Stage::Initialize()
 {
+    pScissors_ = (Scissors*)FindObject("Scissors");
+
     //左右反転
     transform_.rotate_.y = 180;
 
@@ -65,13 +68,11 @@ void Stage::Load(const int stage)
 //描画
 void Stage::Draw()
 {
-    Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
-
     Image::Draw(BackImage_);
     Model::SetTransform(StageModel_, transform_);
     Model::Draw(StageModel_);
 
-    if (Global::SinkFlg)
+    if (SinkFlg)
     {
         auto DengerTrans = Transform();
         DengerTrans.position_ = DengerImage_Pos;
@@ -978,7 +979,7 @@ void Stage::RepelCheck(int i)
     if (i == pc.GetRepel())
     {
         //フラグをtrue
-        Global::RepelFlg = true;
+        RepelFlg = true;
         pScissors_->IsJump = false;
         pScissors_->CurrentHP -= Repel_Damage;
 
@@ -986,7 +987,7 @@ void Stage::RepelCheck(int i)
     //そうでなければ戻す
     else
     {
-        Global::RepelFlg = false;
+        RepelFlg = false;
         pScissors_->IsJump = true;
     }
 }
@@ -1000,14 +1001,14 @@ void Stage::SinkCheck(int i)
     //引数と同じ値ならば
     if (i == pc.GetSink())
     {
-        ////フラグをtrue
-        Global::SinkFlg = true;
-        Global::JumpStart = 0;
-        Global::JumpEnd = 0;
+        //フラグをtrue
+        SinkFlg = true;
+        pScissors_->JumpStart = 0;
+        pScissors_->JumpEnd = 0;
     }
     //そうでなければ戻す
     else
     {
-        Global::SinkFlg = false;
+        SinkFlg = false;
     }
 }

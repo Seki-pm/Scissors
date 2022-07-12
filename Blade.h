@@ -12,7 +12,7 @@ class Blade : public GameObject
 public:
     bool isPrick;   //地面に刺さってるかどうか
     PolygonCollider collider;   //先端以外の当たり判定
-    Stage* pStage;  //ステージのアドレス
+    Stage* pStage_;  //ステージのアドレス
 
     
 public:

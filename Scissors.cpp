@@ -7,6 +7,8 @@
 #define InitRotate XMFLOAT3(0, 0, 0);
 
 const int Fall_Max = -8;
+const float JUMP_POWER = 0.2f;
+const int TimerMin = 60;
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
@@ -16,7 +18,7 @@ Scissors::Scissors(GameObject* parent)
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
     AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f)
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0)
 {
 }
 
@@ -37,6 +39,8 @@ void Scissors::Initialize()
 
     //RBladeを45°傾ける
     pBlade_R->SetRotateZ(45);
+
+    pStage_ = (Stage*)FindObject("Stage");
 
     //初期位置
     transform_.position_ = InitPosition;
@@ -81,13 +85,13 @@ void Scissors::Update()
 
     //落下したら or 沈んだら
     if (transform_.position_.y <= Fall_Max 
-        && FallFlg || 60 >= Timer_)
+        && FallFlg || TimerMin >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
         Global::IsGameOver = true;
         FallFlg = false;
-        Global::SinkFlg = false;
+        pStage_->SinkFlg = false;
     }
 
     //床ギミック
@@ -222,7 +226,7 @@ void Scissors::JumpAndFall()
         move_.y -= GLAVITY;
 
         //着地地点の高さ
-        Global::JumpEnd = transform_.position_.y;
+        JumpEnd = transform_.position_.y;
 
         //着地音
         SoundFlg = true;
@@ -261,9 +265,9 @@ void Scissors::JumpAndFall()
             if (Input::IsKeyDown(DIK_SPACE) && IsJump)
             {
                 //地面の法線よりちょっと上向きにジャンプ
-                move_.x = jumpDirection_.x * 0.2f;
-                move_.y = jumpDirection_.y * 0.2f + 0.2f;
-                move_.z = jumpDirection_.z * 0.2f;
+                move_.x = jumpDirection_.x * JUMP_POWER;
+                move_.y = jumpDirection_.y * JUMP_POWER + 0.2f;
+                move_.z = jumpDirection_.z * JUMP_POWER;
 
                 //ここで１回動かしておかないと、次のフレームでも刺さったままで飛べない
                 transform_.position_.x += move_.x;
@@ -275,7 +279,7 @@ void Scissors::JumpAndFall()
                 pBlade_R->isPrick = false;
 
                 //ジャンプの初めの高さ
-                Global::JumpStart = transform_.position_.y;
+                JumpStart = transform_.position_.y;
                 CalcFlg = true;
 
             }
@@ -284,9 +288,9 @@ void Scissors::JumpAndFall()
         else if (Input::IsKey(DIK_SPACE) && IsJump)
         {
             //地面の法線よりちょっと上向きにジャンプ
-            move_.x = jumpDirection_.x * 0.2f;
-            move_.y = jumpDirection_.y * 0.2f + JumpPower;
-            move_.z = jumpDirection_.z * 0.2f;
+            move_.x = jumpDirection_.x * JUMP_POWER;
+            move_.y = jumpDirection_.y * JUMP_POWER + JumpPower;
+            move_.z = jumpDirection_.z * JUMP_POWER;
 
             //ここで１回動かしておかないと、次のフレームでも刺さったままで飛べない
             transform_.position_.x += move_.x;
@@ -298,7 +302,7 @@ void Scissors::JumpAndFall()
             pBlade_R->isPrick = false;
 
             //ジャンプの初めの高さ
-            Global::JumpStart = transform_.position_.y;
+            JumpStart = transform_.position_.y;
             CalcFlg = true;
 
         }
@@ -337,8 +341,8 @@ void Scissors::Reflection()
         transform_.position_.x -= move_.x;
 
         // ② 再度当たり判定を行う Y軸が当たっているかのチェック
-        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+        if (pBlade_L->pStage_->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+            pBlade_R->pStage_->IsHit(pBlade_R->collider, GetWorldMatrix()))
         {
             // ③ xを移動後の状態に戻して
             //    yを1フレーム前の位置にする 
@@ -352,8 +356,8 @@ void Scissors::Reflection()
             break;
        }
         // ④ 再度当たり判定を行う  X軸が当たっているかのチェック
-        if (pBlade_L->pStage->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
-            pBlade_R->pStage->IsHit(pBlade_R->collider, GetWorldMatrix()))
+        if (pBlade_L->pStage_->IsHit(pBlade_L->collider, GetWorldMatrix()) ||
+            pBlade_R->pStage_->IsHit(pBlade_R->collider, GetWorldMatrix()))
         {
             // ⑤ XもYも1フレーム前に戻す
             transform_.position_.x -= move_.x;
@@ -412,8 +416,8 @@ void Scissors::Restart()
     transform_.position_ = InitPosition;
     transform_.rotate_ = InitRotate;
 
-    Global::JumpStart = 0;
-    Global::JumpEnd = 0;
+    JumpStart = 0;
+    JumpEnd = 0;
     Global::GameOver = false;
     Global::IsGameOver = false;
     Global::ItemReDraw = true;
@@ -429,7 +433,7 @@ void Scissors::Restart()
 void Scissors::RepelMove()
 {
     //フラグがたったら
-    if (Global::RepelFlg)
+    if (pStage_->RepelFlg)
     {
         if (!IsRepel)
         { 
@@ -470,7 +474,7 @@ void Scissors::SinkMove()
     SetCountDown(CountDown);
 
     //フラグが立ったら
-    if (Global::SinkFlg)
+    if (pStage_->SinkFlg)
     {
         Timer_--;
         CountDown = Timer_ / 60;
@@ -536,12 +540,12 @@ void Scissors::Landing()
         break;
     case STAGE_NUMBER_3:
         //弾く地面
-        if (Global::RepelFlg)
+        if (pStage_->RepelFlg)
         {
             Audio::Play(Stage3_Sound::St3_Iron);
         }
         //沈む地面
-        else if (Global::SinkFlg)
+        else if (pStage_->SinkFlg)
         {
             Audio::Play(Stage3_Sound::St3_Sand);
         }
