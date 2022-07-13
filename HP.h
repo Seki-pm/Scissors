@@ -11,13 +11,17 @@ class HP : public GameObject
     Gauge*  pGauge_;  //ゲージ描画用
     Scissors* pScissors_;
 
-    const XMFLOAT2 HP_Image_Pos;
 
     //ロード用変数
     int GaugeImage_;    
     int GaugeFrameImage_;
 
     Transform FrameTrans;
+
+    const XMFLOAT3 FRAME_POS;
+    const int NORMAL_DAMAGE;
+    const XMFLOAT2 HP_IMAGE_POS;
+
 
 public:
     //コンストラクタ

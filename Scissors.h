@@ -46,9 +46,16 @@ class Scissors : public GameObject
     int CountDown;
     int CountPass;
 
-    const int Fall_Max;
-    const float JUMP_POWER;
-    const int TimerMin;
+
+    //定数
+    const int FALL_MAX;            //落ちる限界
+    const float JUMP_POWER;        //ジャンプ力
+    const int TIMER_MIN;           //最小時間
+    const float NORMAL_JUMPPOWER;  //通常のジャンプ力
+    const float SINK_JUMPPOWER;    //沈むときのジャンプ力
+    const int SINK_TIMER;          //沈む時間計測
+    const XMFLOAT3 INITPOSITION;   //初期位置
+    const XMFLOAT3 INITROTATE;     //初期回転角度
 
     ///////////////private関数//////////////////////////////////////
     //開閉

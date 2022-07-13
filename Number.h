@@ -4,6 +4,8 @@
 
 class Number
 {
+	const float NUMBER_INTERVAL = 0.06f;
+
 public:
 
 	//コンストラクタ

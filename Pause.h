@@ -16,6 +16,9 @@ class Pause : public GameObject
     Transform Continue;     //プレイシーンに戻る用
     Transform BackMenu;     //メニューシーンに戻る用
 
+    const XMFLOAT3 CONTINUE_POS;
+    const XMFLOAT3 BACKMENU_POS; 
+
 public:
     //コンストラクタ
     Pause(GameObject* parent);

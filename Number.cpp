@@ -1,6 +1,5 @@
 #include "Number.h"
 
-const float Number_InterVal = 0.06f;
 
 //コンストラクタ
 Number::Number()
@@ -25,7 +24,7 @@ void Number::Draw(int val, float x, float y, int hPict)
 	while (true)
 	{
 		//数字の幅分ずらす(数字の間隔)
-		trans.position_.x -= Number_InterVal;
+		trans.position_.x -= NUMBER_INTERVAL;
 
 		//各行列の計算
 		trans.Calclation();

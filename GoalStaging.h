@@ -34,6 +34,14 @@ class GoalStaging : public GameObject
     //時間管理
     int time_;
 
+    //定数
+    const XMFLOAT3 BAL_ENT_SIZE;   //風船&ENTER のサイズ
+    const XMFLOAT3 ENTER_POS;      //ENTER位置
+    const XMFLOAT3 BACKIMAGE_SIZE; //背景サイズ
+
+    const int TIME;          //時間
+    const float SIZE_MIN;    //最小サイズ
+    const float SCALE_DOWN_VAL; //縮小値
 
 public:
     bool timer_;

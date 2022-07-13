@@ -28,7 +28,7 @@ void ItemModel::Initialize()
 
 
     transform_.position_ = Global::ItemModelPos;
-    transform_.scale_ = Item_Size;
+    transform_.scale_ = ITEM_SIZE;
 
     SphereCollider* collision = 
     new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
