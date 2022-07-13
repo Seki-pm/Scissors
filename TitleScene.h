@@ -31,6 +31,12 @@ class TitleScene : public GameObject
 	Transform TitleTrans;
 	Transform SpaceTrans;
 
+	//定数
+	const XMFLOAT3 TITLE_POS; //タイトルの位置
+	const XMFLOAT3 TITLE_SCA; //タイトルの大きさ
+	const XMFLOAT3 SPACE_POS; //SPACEの位置
+	const int TIMER_COUNT;    //時間計測
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

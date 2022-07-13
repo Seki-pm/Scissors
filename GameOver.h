@@ -22,6 +22,10 @@ class GameOver : public GameObject
     Transform Retry;     //リトライ用
     Transform BackMenu;  //ステージ選択シーンに戻る用
 
+    //定数
+    const XMFLOAT3 RETRY_POS;
+    const XMFLOAT3 BACKMENU_POS;
+
 public:
     //コンストラクタ
     GameOver(GameObject* parent);

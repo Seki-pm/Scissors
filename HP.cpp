@@ -8,7 +8,8 @@
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pGauge_(nullptr),GaugeImage_(-1), GaugeFrameImage_(-1), pScissors_(nullptr),
+    GaugeImage_(-1), GaugeFrameImage_(-1),
+    pGauge_(nullptr), pScissors_(nullptr),
     HP_Image_Pos(XMFLOAT2(-0.99f, 0.85f))
 {
 }

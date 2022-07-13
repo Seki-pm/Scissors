@@ -1,4 +1,5 @@
 #include "Scissors.h"
+#include "Stage.cpp"
 
 #define NormalJumpPower 0.1f;
 #define SinkJumpPower 0.001f;

@@ -1,27 +1,15 @@
 #include "StageSelectScene.h"
 
-#define St1_ItemImage_Pos XMFLOAT3(-0.4f, 0, 0); 
-#define St2_ItemImage_Pos XMFLOAT3( 0.2f, 0, 0);
-#define St3_ItemImage_Pos XMFLOAT3( 0.8f, 0, 0);
-
-#define St1_Image_Pos XMFLOAT3(-0.6f, 0.2f, 0);
-#define St2_Image_Pos XMFLOAT3(   0 , 0.2f, 0);
-#define St3_Image_Pos XMFLOAT3( 0.6f, 0.2f, 0);
-
-#define Easy_Position   XMFLOAT3(-0.6f, 0.5f, 0);
-#define Normal_Position XMFLOAT3(   0 , 0.5f, 0);
-#define Hard_Position   XMFLOAT3( 0.6f, 0.5f, 0);
-
-#define Description_Pos XMFLOAT3(0.0f, -0.6f, 0);
-
-#define ItemImage_Scale_Select XMFLOAT3(0.4f, 0.4f, 0.4f);
-
 //コンストラクタ
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
 	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
 	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
-	Drawflg(true)
+	Drawflg(true),
+	ST1_ITEMIMAGE_POS(XMFLOAT3(-0.4f, 0, 0)), ST2_ITEMIMAGE_POS(XMFLOAT3(0.2f, 0, 0)),ST3_ITEMIMAGE_POS(XMFLOAT3(0.8f, 0, 0)),
+	ST1_IMAGE_POS(XMFLOAT3(-0.6f, 0.2f, 0)),  ST2_IMAGE_POS(XMFLOAT3(0, 0.2f, 0)),    ST3_IMAGE_POS(XMFLOAT3(0.6f, 0.2f, 0)),
+	EASY_POSITION(XMFLOAT3(-0.6f, 0.5f, 0)),  NORMAL_POSITION(XMFLOAT3(0, 0.5f, 0)),  HARD_POSITION(XMFLOAT3(0.6f, 0.5f, 0)),
+	DESCRIPTION_POS(XMFLOAT3(0.0f, -0.6f, 0)),ITEMIMAGE_SCALE_SELECT(XMFLOAT3(0.4f, 0.4f, 0.4f))
 {
 	//STAGE_NUMBER 初期化
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
@@ -49,15 +37,15 @@ void StageSelectScene::Initialize()
 
 	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/StageSelectScene/STAGE1.png");
 	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
-	Stage[STAGE_NUMBER_1].position_ = St1_Image_Pos;
+	Stage[STAGE_NUMBER_1].position_ = ST1_IMAGE_POS;
 
 	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/StageSelectScene/STAGE2.png");
 	assert(StageHandle_[STAGE_NUMBER_2] >= 0);
-	Stage[STAGE_NUMBER_2].position_ = St2_Image_Pos;
+	Stage[STAGE_NUMBER_2].position_ = ST2_IMAGE_POS;
 
 	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/StageSelectScene/STAGE3.png");
 	assert(StageHandle_[STAGE_NUMBER_3] >= 0);
-	Stage[STAGE_NUMBER_3].position_ = St3_Image_Pos;
+	Stage[STAGE_NUMBER_3].position_ = ST3_IMAGE_POS;
 
 
 	Image::SetTransform(StageHandle_[STAGE_NUMBER_1], Stage[STAGE_NUMBER_1]);
@@ -70,11 +58,11 @@ void StageSelectScene::Initialize()
 
 	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/StageSelectScene/Lock_Stage2.png");
 	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
-	Lock[STAGE_LOCK_2].position_ = St2_Image_Pos;
+	Lock[STAGE_LOCK_2].position_ = ST2_IMAGE_POS;
 
 	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/StageSelectScene/Lock_Stage3.png");
 	assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
-	Lock[STAGE_LOCK_3].position_ = St3_Image_Pos;
+	Lock[STAGE_LOCK_3].position_ = ST3_IMAGE_POS;
 
 	Image::SetTransform(StageLockHandle_[STAGE_LOCK_2], Lock[STAGE_LOCK_2]);
 	Image::SetTransform(StageLockHandle_[STAGE_LOCK_3], Lock[STAGE_LOCK_3]);
@@ -84,15 +72,15 @@ void StageSelectScene::Initialize()
 	//-------------------- Level ---------------------------
 	LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/StageSelectScene/Easy.png");
 	assert(LevelHandle_[STAGE_LEVEL_EASY] >= 0);
-	Level[STAGE_LEVEL_EASY].position_ = Easy_Position;
+	Level[STAGE_LEVEL_EASY].position_ = EASY_POSITION;
 
 	LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/StageSelectScene/Normal.png");
 	assert(LevelHandle_[STAGE_LEVEL_NORMAL] >= 0);
-	Level[STAGE_LEVEL_NORMAL].position_ = Normal_Position;
+	Level[STAGE_LEVEL_NORMAL].position_ = NORMAL_POSITION;
 
 	LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/StageSelectScene/Hard.png");
 	assert(LevelHandle_[STAGE_LEVEL_HARD] >= 0);
-	Level[STAGE_LEVEL_HARD].position_ = Hard_Position;
+	Level[STAGE_LEVEL_HARD].position_ = HARD_POSITION;
 
 	Image::SetTransform(LevelHandle_[STAGE_LEVEL_EASY], Level[STAGE_LEVEL_EASY]);
 	Image::SetTransform(LevelHandle_[STAGE_LEVEL_NORMAL], Level[STAGE_LEVEL_NORMAL]);
@@ -104,7 +92,7 @@ void StageSelectScene::Initialize()
 	//--------------- 選択用フレーム ------------
 	FrameImageHandle_ = Image::Load("Image/StageSelectScene/Frame.png");
 	assert(FrameImageHandle_ >= 0);
-	FrameTransform.position_ = St1_Image_Pos;
+	FrameTransform.position_ = ST1_IMAGE_POS;
 	Image::SetTransform(FrameImageHandle_, FrameTransform);
 
 
@@ -116,7 +104,7 @@ void StageSelectScene::Initialize()
 	DescriptionImage_ = Image::Load("Image/StageSelectScene/Description.png");
 	assert(DescriptionImage_ >= 0);
 	auto DescTrans = Transform();
-	DescTrans.position_ = Description_Pos;
+	DescTrans.position_ = DESCRIPTION_POS;
 	Image::SetTransform(DescriptionImage_, DescTrans);
 	//--------------------------------------------
 
@@ -209,13 +197,13 @@ void StageSelectScene::Select()
 	switch (Global::SelectStage)
 	{
 	case STAGE_NUMBER_1:
-		FrameTransform.position_ = St1_Image_Pos;
+		FrameTransform.position_ = ST1_IMAGE_POS;
 		break;
 	case STAGE_NUMBER_2:
-		FrameTransform.position_ = St2_Image_Pos;
+		FrameTransform.position_ = ST2_IMAGE_POS;
 		break;
 	case STAGE_NUMBER_3:
-		FrameTransform.position_ = St3_Image_Pos;
+		FrameTransform.position_ = ST3_IMAGE_POS;
 		break;
 	}
 }
@@ -323,24 +311,24 @@ void StageSelectScene::GetCoin()
 	//一度だけ描画
 	if (Drawflg)
 	{
-		Global::ItemImageSca = ItemImage_Scale_Select; //表示サイズ
+		Global::ItemImageSca = ITEMIMAGE_SCALE_SELECT; //表示サイズ
 
 		//Stage1のコイン
 		if (Global::GetCoin_1)
 		{
-			Global::ItemImagePos = St1_ItemImage_Pos //表示位置
+			Global::ItemImagePos = ST1_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示
 		}
 		//Stage2のコイン
 		if (Global::GetCoin_2)
 		{
-			Global::ItemImagePos = St2_ItemImage_Pos//表示位置
+			Global::ItemImagePos = ST2_ITEMIMAGE_POS;//表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
 		//Stage3のコイン
 		if (Global::GetCoin_3)
 		{
-			Global::ItemImagePos = St3_ItemImage_Pos //表示位置
+			Global::ItemImagePos = ST3_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示
 		}
 

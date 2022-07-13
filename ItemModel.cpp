@@ -1,13 +1,13 @@
 #include "ItemModel.h"
 
-#define Item_Size XMFLOAT3(1.1f,1.1f,1.1f);
 
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     CoinModel_(-1),rotate(Rotation_Number), CoinSound_(-1),
-    Rotation_Speed(16.6f), Up_Distance(0.01f), Rotation_Number(8)
+    ROTATION_SPEED(16.6f), UP_DISTANCE(0.01f), ROTATION_NUMBER(8),
+    CoinModel_(-1), rotate(ROTATION_NUMBER), CoinSound_(-1),
+    ITEM_SIZE(XMFLOAT3(1.1f, 1.1f, 1.1f))
 {
 }
 
@@ -95,6 +95,6 @@ void ItemModel::OnCollision(GameObject* pTarget)
 //簡易アニメーション
 void ItemModel::Animation()
 {
-    transform_.position_.y += Up_Distance * 3;
-    transform_.rotate_.y += Rotation_Speed * 3;
+    transform_.position_.y += UP_DISTANCE * 3;
+    transform_.rotate_.y += ROTATION_SPEED * 3;
 }
