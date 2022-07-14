@@ -1,21 +1,24 @@
 #include "Scissors.h"
 #include "Stage.cpp"
 
+#define NormalJumpPower 0.1f;
+#define SinkJumpPower 0.001f;
+#define SinkTimer 360;
+#define InitPosition XMFLOAT3(0, 1, 0);
+#define InitRotate XMFLOAT3(0, 0, 0);
 
 
 
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), 
-    jumpDirection_(XMFLOAT3(0,0,0)),     nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
+    jumpDirection_(XMFLOAT3(0,0,0)),nowPivotPoint_(XMFLOAT3(0,0,0)), move_(XMFLOAT3(0, 0, 0)),
     pBlade_L(nullptr), pBlade_R(nullptr),pStage_(nullptr),
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
     AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
     Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0),
-    FALL_MAX(-8),      JUMP_POWER(0.2f), TIMER_MIN(60),
-    NORMAL_JUMPPOWER(0.1f),               SINK_JUMPPOWER(0.001f),               SINK_TIMER(360),
-    INITPOSITION(XMFLOAT3(0, 1, 0)),     INITROTATE(XMFLOAT3(0, 0, 0))
+    Fall_Max(-8),      JUMP_POWER(0.2f), TimerMin(60)
 {
 }
 
@@ -40,7 +43,7 @@ void Scissors::Initialize()
     pStage_ = (Stage*)FindObject("Stage");
 
     //初期位置
-    transform_.position_ = INITPOSITION;
+    transform_.position_ = InitPosition;
 
     //アイテム取得用のコライダーを設定
     SphereCollider* collision =
@@ -81,8 +84,8 @@ void Scissors::Update()
 
 
     //落下したら or 沈んだら
-    if (transform_.position_.y <= FALL_MAX 
-        && FallFlg || TIMER_MIN >= Timer_)
+    if (transform_.position_.y <= Fall_Max 
+        && FallFlg || TimerMin >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
@@ -410,8 +413,8 @@ void Scissors::RotateMax()
 void Scissors::Restart()
 {
     move_ = XMFLOAT3(0, 0, 0);
-    transform_.position_ = INITPOSITION;
-    transform_.rotate_ = INITROTATE;
+    transform_.position_ = InitPosition;
+    transform_.rotate_ = InitRotate;
 
     JumpStart = 0;
     JumpEnd = 0;
@@ -486,16 +489,16 @@ void Scissors::SinkMove()
         {
             //MoveYの値分沈んでいく
             transform_.position_.y += MoveY;
-            JumpPower = SINK_JUMPPOWER;
+            JumpPower = SinkJumpPower;
         }
 
     }
     else
     {
         //最初に戻す
-        JumpPower = NORMAL_JUMPPOWER;
+        JumpPower = NormalJumpPower;
         IsSink = false;
-        Timer_ = SINK_TIMER;
+        Timer_ = SinkTimer;
     }
 }
 
