@@ -1,14 +1,10 @@
 #include "StageScene.h"
 
-#define ItemImage_Scale_Stage XMFLOAT3(0.5f,0.5f,0.5f);
-#define ItemImage_Position_Stage XMFLOAT3(0.9f, 0.8f, 0.f);
-
 
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
-    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
-    Camera_Set_Pos(-10), Camera_Fall_Max(-3), Fall_Max(-6)
+    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1)
 {
 }
 
@@ -195,28 +191,28 @@ void StageScene::CameraMove(float start, float goal)
     //スタート付近
     if (gl.GetTransPos().x < start)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, Camera_Set_Pos));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, CAMERA_SET_POS));
         Camera::SetTarget(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
     //ゴール付近
     else if (gl.GetTransPos().x >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, Camera_Set_Pos));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, CAMERA_SET_POS));
         Camera::SetTarget(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
     //そうでない場合Playerに追従する
     else
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, Camera_Set_Pos));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, CAMERA_SET_POS));
         Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
 
 
     //transform.y が0より小さい場合カメラを止める
-    if (gl.GetTransPos().y < Fall_Max)
+    if (gl.GetTransPos().y < FALL_MAX)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, Camera_Fall_Max, Camera_Set_Pos));
-        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, Camera_Fall_Max, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_MAX, CAMERA_SET_POS));
+        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_MAX, gl.GetTransPos().z));
     }
 }
 

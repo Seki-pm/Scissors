@@ -46,7 +46,7 @@ class Scissors : public GameObject
     int CountDown;
     int CountPass;
 
-    const int Fall_Max;
+    const int FALL_MAX;
     const float JUMP_POWER;
     const int TimerMin;
 
