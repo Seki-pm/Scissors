@@ -17,11 +17,9 @@ class ItemModel : public GameObject
 
     int rotate; //回転数
 
-    //定数
-    const float ROTATION_SPEED;  //回転速度
-    const float UP_DISTANCE;     //上に行く距離
-    const int   ROTATION_NUMBER; //回転数
-    const XMFLOAT3 ITEM_SIZE;    //アイテムのサイズ
+    const float Rotation_Speed;
+    const float Up_Distance;
+    const int   Rotation_Number;
 
 public:
     //コンストラクタ

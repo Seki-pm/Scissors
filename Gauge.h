@@ -6,10 +6,6 @@
 
 class Gauge
 {
-	const XMFLOAT3 TRANS_POS = XMFLOAT3(2.f, 1.3f, 0.96f); //位置
-	const int SETRECT_HEIGHT = 130;   //切り取る高さ
-	const int IMAGE_WIDTH = 512;      //画像幅
-
 public:
 
 	//コンストラクタ

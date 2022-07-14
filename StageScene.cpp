@@ -1,21 +1,22 @@
 #include "StageScene.h"
 
+#define ItemImage_Scale_Stage XMFLOAT3(0.5f,0.5f,0.5f);
+#define ItemImage_Position_Stage XMFLOAT3(0.9f, 0.8f, 0.f);
+
 
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
     SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1),
-    CAMERA_SET_POS(-10), CAMERA_FALL_POS(-3), FALL_MAX(-6),
-    ITEMIMAGE_SCALE_STAGE(XMFLOAT3(0.5f, 0.5f, 0.5f)),
-    ITEMIMAGE_POSITION_STAGE(XMFLOAT3(0.9f, 0.8f, 0.f))
+    Camera_Set_Pos(-10), Camera_Fall_Max(-3), Fall_Max(-6)
 {
 }
 
 //初期化
 void StageScene::Initialize()
 {                      
-    Global::ItemImagePos = ITEMIMAGE_POSITION_STAGE;      //コインの位置をステージ用に設定
-    Global::ItemImageSca = ITEMIMAGE_SCALE_STAGE;         //コインの大きさをステージ用に設定
+    Global::ItemImagePos = ItemImage_Position_Stage;      //コインの位置をステージ用に設定
+    Global::ItemImageSca = ItemImage_Scale_Stage;         //コインの大きさをステージ用に設定
     Global::GameOver = false;                               //GameOverではない
     Global::IsGameOver = false;                             //GameOverではない
     Global::GetCoin = false;                                //コインを取得していない
@@ -194,28 +195,28 @@ void StageScene::CameraMove(float start, float goal)
     //スタート付近
     if (gl.GetTransPos().x < start)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, Camera_Set_Pos));
         Camera::SetTarget(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
     //ゴール付近
     else if (gl.GetTransPos().x >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, Camera_Set_Pos));
         Camera::SetTarget(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
     //そうでない場合Playerに追従する
     else
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, Camera_Set_Pos));
         Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, gl.GetTransPos().z));
     }
 
 
     //transform.y が0より小さい場合カメラを止める
-    if (gl.GetTransPos().y < FALL_MAX)
+    if (gl.GetTransPos().y < Fall_Max)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_POS, CAMERA_SET_POS));
-        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_POS, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, Camera_Fall_Max, Camera_Set_Pos));
+        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, Camera_Fall_Max, gl.GetTransPos().z));
     }
 }
 

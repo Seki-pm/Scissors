@@ -5,11 +5,10 @@ GameOver::GameOver(GameObject* parent)
     :GameObject(parent, "GameOver"),
     GameOverBackImage_(-1), BackMenuImage_(-1),
     RetryImage_(-1),SelectFrameImage_(-1),
-    alpha_(150), select_(0),
-    RETRY_POS(XMFLOAT3(-0.3f, 0, 0)), BACKMENU_POS(XMFLOAT3(0.3f, 0, 0))
+    alpha_(150), select_(0)
 {
-    Retry.position_ = RETRY_POS;
-    BackMenu.position_ = BACKMENU_POS;
+    Retry.position_ = XMFLOAT3(-0.3f, 0, 0);
+    BackMenu.position_ = XMFLOAT3(0.3f, 0, 0);
 }
 
 //デストラクタ

@@ -29,12 +29,10 @@ class StageScene : public GameObject
 	int SelectSound_;      //選択音
 	int DeterSound_;       //決定音
 
-	//定数
-	const XMFLOAT3 ITEMIMAGE_POSITION_STAGE; //アイテム画像の位置(STAGE)
-	const XMFLOAT3 ITEMIMAGE_SCALE_STAGE;    //アイテム画像のサイズ(STAGE)
-	const int CAMERA_SET_POS;   //カメラの位置
-	const int CAMERA_FALL_POS;  //落下したときのカメラ
-	const int FALL_MAX;  //落下限界
+
+	const int Camera_Set_Pos;
+	const int Camera_Fall_Max;
+	const int Fall_Max;
 
 public:
 	//コンストラクタ

@@ -1,15 +1,24 @@
 ﻿#include "Stage.h"
 #include "Scissors.h"
 
+#define St1_ItemModel_Pos XMFLOAT3(51, 10, 0);
+#define St2_ItemModel_Pos XMFLOAT3(-1.5f, 17, 0);
+#define St3_ItemModel_Pos XMFLOAT3(50.5f, 15.5f, 0);
+
+#define DengerImage_Pos XMFLOAT3(0, 0.8f, 0);
+
+#define St1_Start_Goal_Pos XMFLOAT4(2, 0, 55, 4);
+#define St2_Start_Goal_Pos XMFLOAT4(2, 0, 125, 0.36f);
+#define St3_Start_Goal_Pos XMFLOAT4(3, 0, 138, 16);
+
+#define Repel_Damage 5
+
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
     StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
-    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)), NUMBER_POS(XMFLOAT2(0.06f, 0.8f)),
-    RepelFlg(false), SinkFlg(false), pScissors_(nullptr), pNumber_(nullptr),
-    ST1_ITEMMODEL_POS(XMFLOAT3(51, 10, 0)),ST2_ITEMMODEL_POS(XMFLOAT3(-1.5f, 17, 0)),ST3_ITEMMODEL_POS(XMFLOAT3(50.5f, 15.5f, 0)),
-    ST1_START_GOAL_POS(XMFLOAT4(2, 0, 55, 4)),ST2_START_GOAL_POS(XMFLOAT4(2, 0, 125, 0.36f)),ST3_START_GOAL_POS(XMFLOAT4(3, 0, 138, 16)),
-    DENGERIMAGE_POS(XMFLOAT3(0, 0.8f, 0)),REPEL_DAMAGE(5)
+    startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)), Number_Pos(XMFLOAT2(0.06f, 0.8f)),
+    RepelFlg(false), SinkFlg(false), pScissors_(nullptr), pNumber_(nullptr)
 {
 }
 
@@ -64,11 +73,11 @@ void Stage::Draw()
     if (SinkFlg)
     {
         auto DengerTrans = Transform();
-        DengerTrans.position_ = DENGERIMAGE_POS;
+        DengerTrans.position_ = DengerImage_Pos;
         Image::SetTransform(DengerImage_, DengerTrans);
         Image::Draw(DengerImage_);
 
-        pNumber_->Draw(pScissors_->GetCountDown(), NUMBER_POS.x, NUMBER_POS.y, NumberImage_);
+        pNumber_->Draw(pScissors_->GetCountDown(), Number_Pos.x, Number_Pos.y, NumberImage_);
     }
 }
 
@@ -137,7 +146,7 @@ void Stage::GetNormal(XMFLOAT3 p1, XMFLOAT3 p2, XMFLOAT3* normal, XMFLOAT3* hitP
 void Stage::Stage1()
 {
     //スタートとゴールを設定
-    StGo = ST1_START_GOAL_POS;
+    StGo = St1_Start_Goal_Pos;
     startX = StGo.x;
     startY = StGo.y;
     goalX = StGo.z;
@@ -262,7 +271,7 @@ void Stage::Stage1Load()
 
 
     //コインの位置
-    Global::ItemModelPos = ST1_ITEMMODEL_POS;
+    Global::ItemModelPos = St1_ItemModel_Pos;
     //看板
     Instantiate<Sign>(this);
 }
@@ -270,7 +279,7 @@ void Stage::Stage1Load()
 //Stage2のコライダ設定
 void Stage::Stage2()
 {
-    StGo = ST2_START_GOAL_POS;
+    StGo = St2_Start_Goal_Pos;
     startX = StGo.x;
     startY = StGo.y;
     goalX = StGo.z;
@@ -514,13 +523,13 @@ void Stage::Stage2Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = ST2_ITEMMODEL_POS;
+    Global::ItemModelPos = St2_ItemModel_Pos;
 }
 
 //Stage3のコライダ設定
 void Stage::Stage3()
 {
-    StGo = ST3_START_GOAL_POS;
+    StGo = St3_Start_Goal_Pos;
     startX = StGo.x;
     startY = StGo.y;
     goalX = StGo.z;
@@ -953,7 +962,7 @@ void Stage::Stage3Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = ST3_ITEMMODEL_POS;
+    Global::ItemModelPos = St3_ItemModel_Pos;
 }
 
 
@@ -971,7 +980,7 @@ void Stage::RepelCheck(int i)
         //フラグをtrue
         RepelFlg = true;
         pScissors_->IsJump = false;
-        pScissors_->CurrentHP -= REPEL_DAMAGE;
+        pScissors_->CurrentHP -= Repel_Damage;
 
     }
     //そうでなければ戻す

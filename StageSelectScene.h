@@ -61,30 +61,6 @@ private:
 	Transform Level[STAGE_LEVEL_MAX];
 	Transform FrameTransform;
 
-
-	//定数
-	//各ステージのアイテム画像の位置
-	const XMFLOAT3 ST1_ITEMIMAGE_POS; 
-	const XMFLOAT3 ST2_ITEMIMAGE_POS;
-	const XMFLOAT3 ST3_ITEMIMAGE_POS;
-
-	//各ステージ画像の位置
-	const XMFLOAT3 ST1_IMAGE_POS;
-	const XMFLOAT3 ST2_IMAGE_POS;
-	const XMFLOAT3 ST3_IMAGE_POS;
- 
-	//難易度画像
-	const XMFLOAT3 EASY_POSITION;
-	const XMFLOAT3 NORMAL_POSITION;
-	const XMFLOAT3 HARD_POSITION;
-
-	const XMFLOAT3 DESCRIPTION_POS;  //説明位置
-
-	const XMFLOAT3 ITEMIMAGE_SCALE_SELECT; //アイテム画像のサイズ
-
-
-
-
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
