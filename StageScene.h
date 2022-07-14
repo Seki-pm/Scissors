@@ -30,12 +30,9 @@ class StageScene : public GameObject
 	int DeterSound_;       //決定音
 
 
-	//定数
-	const int CAMERA_SET_POS = -10;
-	const int CAMERA_FALL_MAX = -3;
-	const int FALL_MAX = -6;
-	const XMFLOAT3 ItemImage_Scale_Stage = XMFLOAT3(0.5f,0.5f,0.5f);
-	const XMFLOAT3 ItemImage_Position_Stage = XMFLOAT3(0.9f, 0.8f, 0.f);
+	const int Camera_Set_Pos;
+	const int Camera_Fall_Max;
+	const int Fall_Max;
 
 public:
 	//コンストラクタ
