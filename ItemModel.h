@@ -15,14 +15,12 @@ class ItemModel : public GameObject
     int CoinModel_; //コインモデル用変数
     int CoinSound_; //コイン取得時の音
 
-    int rotate; //回転数
-
     //定数
     const float ROTATION_SPEED = 16.6f;    //回転速度
     const float UP_DISTANCE = 0.01f;       //上がる距離
-    const int   ROTATION_NUMBER = 8;   //回転数
+    const int   ROTATION_NUMBER = 8;       //回転数
 
-    //const XMFLOAT3 ITEM_SIZE = XMFLOAT3(1.1f, 1.1f, 1.1f); //アイテムのサイズ
+    const XMFLOAT3 ITEM_SIZE = XMFLOAT3(1.1f, 1.1f, 1.1f); //アイテムのサイズ
 
 public:
     //コンストラクタ

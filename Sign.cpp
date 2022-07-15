@@ -1,18 +1,5 @@
 #include "Sign.h"
 
-
-#define SIGN1_POS XMFLOAT3( 2, 0, 0)
-#define SIGN2_POS XMFLOAT3( 8, 0, 0)
-#define SIGN3_POS XMFLOAT3(11, 0, 0)
-#define SIGN4_POS XMFLOAT3(14, 0, 0)
-#define SIGN5_POS XMFLOAT3(28, 0, 0)
-#define SIGN6_POS XMFLOAT3(31, 0, 0)
-
-#define SIGN_SIZE XMFLOAT3(1.7f,1.7f,1.7f)
-
-#define TUTORIAL_POS XMFLOAT3(0,   0.65f, 0)
-#define TUTORIAL_SCA XMFLOAT3(0.5f, 0.5f, 0.5f)
-
 //コンストラクタ
 Sign::Sign(GameObject* parent)
     :GameObject(parent, "Sign"),

@@ -1,12 +1,10 @@
 #include "ItemModel.h"
 
-#define ITEM_SIZE XMFLOAT3(1.1f,1.1f,1.1f);
-
 
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     CoinModel_(-1),rotate(ROTATION_NUMBER), CoinSound_(-1)
+     CoinModel_(-1), CoinSound_(-1)
 {
 }
 
@@ -41,7 +39,7 @@ void ItemModel::Update()
     if (Global::GetCoin)
     {
         //rotateの回転数に満たない間Animation
-        if (transform_.rotate_.y < rotate * 180)
+        if (transform_.rotate_.y < ROTATION_NUMBER * 180)
         {
             Animation();
         }

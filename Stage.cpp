@@ -1,18 +1,6 @@
 ﻿#include "Stage.h"
 #include "Scissors.h"
 
-#define ST1_ITEMMODEL_POS XMFLOAT3(51, 10, 0);
-#define ST2_ITEMMODEL_POS XMFLOAT3(-1.5f, 17, 0);
-#define ST3_ITEMMODEL_POS XMFLOAT3(50.5f, 15.5f, 0);
-
-#define DENGER_IMAGE_POS XMFLOAT3(0, 0.8f, 0);
-
-#define ST1_START_GOAL_POS XMFLOAT4(2, 0, 55, 4);
-#define ST2_START_GOAL_POS XMFLOAT4(2, 0, 125, 0.36f);
-#define ST3_START_GOAL_POS XMFLOAT4(3, 0, 138, 16);
-
-#define REPEL_DAMAGE 5
-
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
