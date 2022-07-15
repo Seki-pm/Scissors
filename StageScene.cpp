@@ -11,8 +11,8 @@ StageScene::StageScene(GameObject* parent)
 //初期化
 void StageScene::Initialize()
 {                      
-    Global::ItemImagePos = ItemImage_Position_Stage;      //コインの位置をステージ用に設定
-    Global::ItemImageSca = ItemImage_Scale_Stage;         //コインの大きさをステージ用に設定
+    Global::ItemImagePos = ITEMIMAGE_POSITION_STAGE;      //コインの位置をステージ用に設定
+    Global::ItemImageSca = ITEMIMAGE_SCALE_STAGE;         //コインの大きさをステージ用に設定
     Global::GameOver = false;                               //GameOverではない
     Global::IsGameOver = false;                             //GameOverではない
     Global::GetCoin = false;                                //コインを取得していない

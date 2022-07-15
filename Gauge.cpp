@@ -1,8 +1,8 @@
 #include "Gauge.h"
 
-const XMFLOAT3 Trans_Pos = XMFLOAT3( 2.f,1.3f,0.96f);
-const int SetRect_Height = 130;
-const int IMAGE_WIDTH = 512;
+const XMFLOAT3 TRANS_SCA = XMFLOAT3( 2.f,1.3f,0.96f); //表示位置
+const int SETRECT_HEIGHT = 130;   //切り取る高さ
+const int IMAGE_WIDTH = 512;      //画像幅
 
 //コンストラクタ
 Gauge::Gauge()
@@ -27,7 +27,7 @@ void Gauge::Draw(int val, float x, float y, int hPict)
 	//出す場所
 	trans.position_.x = x;
 	trans.position_.y = y;
-	trans.scale_ = Trans_Pos;
+	trans.scale_ = TRANS_SCA;
 
 	//画像の幅(%)を計算
 	float ImageWidth_ = IMAGE_WIDTH;      //画像の幅
@@ -49,7 +49,7 @@ void Gauge::Draw(int val, float x, float y, int hPict)
 	trans.Calclation();
 
 	//切り取ってゲージを減らす
-	Image::SetRect(hPict, X, 0, width, SetRect_Height);
+	Image::SetRect(hPict, X, 0, width, SETRECT_HEIGHT);
 
 	//描画
  	Image::SetTransform(hPict, trans);

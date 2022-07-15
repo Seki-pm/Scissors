@@ -1,10 +1,10 @@
 #include "Scissors.h"
 
-#define NormalJumpPower 0.1f;
-#define SinkJumpPower 0.001f;
-#define SinkTimer 360;
-#define InitPosition XMFLOAT3(0, 1, 0);
-#define InitRotate XMFLOAT3(0, 0, 0);
+#define NORMAL_JUMP_POWER 0.1f;
+#define SINK_JUMP_POWER 0.001f;
+#define SINK_TIMER 360;
+#define INIT_POSITION XMFLOAT3(0, 1, 0);
+#define INIT_ROTATE XMFLOAT3(0, 0, 0);
 
 
 
@@ -16,8 +16,7 @@ Scissors::Scissors(GameObject* parent)
     FallFlg(true),     CalcFlg(false),   SoundFlg(false),  IsRepel(false),    IsSink(false),
     CountDown(0),      MoveY(0),         powerX(0),        powerY(0),        
     AnglePass_(0.0f),  Key(0),           IsJump(true),     CurrentHP(0),      CountPass(0),
-    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0),
-    FALL_MAX(-8),      JUMP_POWER(0.2f), TimerMin(60)
+    Timer_(360),       JumpPower(0.1f),  GLAVITY(0.03f),   JumpStart(0),      JumpEnd(0)
 {
 }
 
@@ -42,7 +41,7 @@ void Scissors::Initialize()
     pStage_ = (Stage*)FindObject("Stage");
 
     //初期位置
-    transform_.position_ = InitPosition;
+    transform_.position_ = INIT_POSITION;
 
     //アイテム取得用のコライダーを設定
     SphereCollider* collision =
@@ -84,7 +83,7 @@ void Scissors::Update()
 
     //落下したら or 沈んだら
     if (transform_.position_.y <= FALL_MAX 
-        && FallFlg || TimerMin >= Timer_)
+        && FallFlg || TIMER_MIN >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;
@@ -412,8 +411,8 @@ void Scissors::RotateMax()
 void Scissors::Restart()
 {
     move_ = XMFLOAT3(0, 0, 0);
-    transform_.position_ = InitPosition;
-    transform_.rotate_ = InitRotate;
+    transform_.position_ = INIT_POSITION;
+    transform_.rotate_ = INIT_ROTATE;
 
     JumpStart = 0;
     JumpEnd = 0;
@@ -488,16 +487,16 @@ void Scissors::SinkMove()
         {
             //MoveYの値分沈んでいく
             transform_.position_.y += MoveY;
-            JumpPower = SinkJumpPower;
+            JumpPower = SINK_JUMP_POWER;
         }
 
     }
     else
     {
         //最初に戻す
-        JumpPower = NormalJumpPower;
+        JumpPower = NORMAL_JUMP_POWER;
         IsSink = false;
-        Timer_ = SinkTimer;
+        Timer_ = SINK_TIMER;
     }
 }
 

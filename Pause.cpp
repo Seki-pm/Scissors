@@ -4,8 +4,8 @@
 #include "Engine/Input.h"
 #include "Global.h"
 
-#define Continue_Pos XMFLOAT3(-0.3f, 0, 0);
-#define BackMenu_Pos XMFLOAT3( 0.3f, 0, 0);
+#define CONTINUE_POS XMFLOAT3(-0.3f, 0, 0);
+#define BACKMENU_POS XMFLOAT3( 0.3f, 0, 0);
 
 //コンストラクタ
 Pause::Pause(GameObject* parent)
@@ -14,8 +14,8 @@ Pause::Pause(GameObject* parent)
     BackMenuImage_(-1), SelectFrameImage_(-1),
     select_(0), alpha_(150)
 {
-    Continue.position_ = Continue_Pos;
-    BackMenu.position_ = BackMenu_Pos;
+    Continue.position_ = CONTINUE_POS;
+    BackMenu.position_ = BACKMENU_POS;
 }
 
 //デストラクタ

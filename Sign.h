@@ -30,6 +30,20 @@ class Sign : public GameObject
     Transform SignTrans2;
     Transform SignTrans5;
 
+    //定数
+/*    //看板の位置
+    const XMFLOAT3 SIGN1_POS = XMFLOAT3(2, 0, 0);
+    const XMFLOAT3 SIGN2_POS = XMFLOAT3(8, 0, 0);
+    const XMFLOAT3 SIGN3_POS = XMFLOAT3(11, 0, 0);
+    const XMFLOAT3 SIGN4_POS = XMFLOAT3(14, 0, 0);
+    const XMFLOAT3 SIGN5_POS = XMFLOAT3(28, 0, 0);
+    const XMFLOAT3 SIGN6_POS = XMFLOAT3(31, 0, 0);
+
+    const XMFLOAT3 SIGN_SIZE = XMFLOAT3(1.7f,1.7f,1.7f); //看板のサイズ
+
+    const XMFLOAT3 TUTORIAL_POS = XMFLOAT3(0,   0.65f, 0);   //チュートリアルの位置
+    const XMFLOAT3 TUTORIAL_SCA = XMFLOAT3(0.5f, 0.5f, 0.5f); //チュートリアルのサイズ
+    */
 public:
     //コンストラクタ
     Sign(GameObject* parent);

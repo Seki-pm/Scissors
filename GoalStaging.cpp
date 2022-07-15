@@ -1,12 +1,12 @@
 #include "GoalStaging.h"
 
-#define Bal_Ent_Size XMFLOAT3(0.8f,0.8f,0.8f);
-#define Enter_Pos XMFLOAT3(0.1f,0.1f,0.f);
-#define BackImage_Size XMFLOAT3(1.4f,1.4f,1.4f);
+#define BAL_ENT_SIZE XMFLOAT3(0.8f,0.8f,0.8f);
+#define ENTER_POS XMFLOAT3(0.1f,0.1f,0.f);
+#define BACKIMAGE_SIZE XMFLOAT3(1.4f,1.4f,1.4f);
 
 const int TIME = 90;
-const float Size_Min = 1.4f;
-const float Scale_Down_Val = 0.15f;
+const float SIZE_MIN = 1.4f;
+const float SCALE_DOWN_VAL = 0.15f;
 
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
@@ -30,21 +30,21 @@ void GoalStaging::Initialize()
     BalloonModel_ = Model::Load("Model/InGameObject/Balloon.fbx");
     assert(BalloonModel_ >= 0);
     BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
-    BalloonTrans.scale_ = Bal_Ent_Size;
+    BalloonTrans.scale_ = BAL_ENT_SIZE;
     Model::SetTransform(BalloonModel_, BalloonTrans);
 
     //Enter
     EnterImage_ = Image::Load("Image/InGameMenu/Enter.png");
     assert(EnterImage_ >= 0);
-    EnterTrans.position_ = Enter_Pos;
-    EnterTrans.scale_ = Bal_Ent_Size;
+    EnterTrans.position_ = ENTER_POS;
+    EnterTrans.scale_ = BAL_ENT_SIZE;
     Image::SetTransform(EnterImage_, EnterTrans);
 
     //暗転
     BackImage_ = Image::Load("Image/InGameMenu/Clear_Black.png");
     assert(BackImage_ >= 0);
     auto BlackTrans = Transform();
-    BlackTrans.scale_ = BackImage_Size;
+    BlackTrans.scale_ = BACKIMAGE_SIZE;
     Image::SetTransform(BackImage_, BlackTrans);
 
     //収縮用
@@ -109,9 +109,9 @@ void GoalStaging::Draw()
         CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
         Image::SetTransform(CircleImage_, CircleTrans);
 
-        if (size_ > Size_Min)
+        if (size_ > SIZE_MIN)
         {
-            size_ -= Scale_Down_Val;
+            size_ -= SCALE_DOWN_VAL;
             Image::Draw(CircleImage_);
         }
         else

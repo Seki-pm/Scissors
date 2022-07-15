@@ -44,8 +44,6 @@ class Stage : public GameObject
     Global gl;
     Scissors* pScissors_;
 
-    const XMFLOAT2 Number_Pos;
-
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
 
@@ -69,6 +67,23 @@ class Stage : public GameObject
     float goalX;
     float goalY;
     int Sound_;
+
+
+    //定数
+    /*//各ステージのアイテムモデル位置
+    const XMFLOAT3 ST1_ITEMMODEL_POS = XMFLOAT3(51, 10, 0);
+    const XMFLOAT3 ST2_ITEMMODEL_POS = XMFLOAT3(-1.5f, 17, 0);
+    const XMFLOAT3 ST3_ITEMMODEL_POS = XMFLOAT3(50.5f, 15.5f, 0);
+
+    //各ステージのスタートとゴールの位置
+    const XMFLOAT4 ST1_START_GOAL_POS = XMFLOAT4(2, 0, 55, 4);
+    const XMFLOAT4 ST2_START_GOAL_POS = XMFLOAT4(2, 0, 125, 0.36f);
+    const XMFLOAT4 ST3_START_GOAL_POS = XMFLOAT4(3, 0, 138, 16);
+
+    const XMFLOAT3 DENGER_IMAGE_POS = XMFLOAT3(0, 0.8f, 0); //Denger画像位置
+
+    const int REPEL_DAMAGE = 5; //弾かれたときのダメージ*/
+    const XMFLOAT2 NUMBER_POS = XMFLOAT2(0.06f, 0.8f);      //数字位置
 
 public:
     

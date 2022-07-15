@@ -61,6 +61,29 @@ private:
 	Transform Level[STAGE_LEVEL_MAX];
 	Transform FrameTransform;
 
+	//定数
+	//各ステージのアイテム画像位置
+	const XMFLOAT3 ST1_ITEMIMAGE_POS = XMFLOAT3(-0.4f, 0, 0);
+	const XMFLOAT3 ST2_ITEMIMAGE_POS = XMFLOAT3( 0.2f, 0, 0);
+	const XMFLOAT3 ST3_ITEMIMAGE_POS = XMFLOAT3( 0.8f, 0, 0);
+
+	//各ステージ画像位置
+	const XMFLOAT3 ST1_IMAGE_POS = XMFLOAT3(-0.6f, 0.2f, 0);
+	const XMFLOAT3 ST2_IMAGE_POS = XMFLOAT3(   0 , 0.2f, 0);
+	const XMFLOAT3 ST3_IMAGE_POS = XMFLOAT3( 0.6f, 0.2f, 0);
+
+	//難易度の画像位置
+	const XMFLOAT3 EASY_POSITION = XMFLOAT3(-0.6f, 0.5f, 0);
+	const XMFLOAT3 NOMAL_POSITION = XMFLOAT3(   0 , 0.5f, 0);
+	const XMFLOAT3 HARD_POSITION = XMFLOAT3( 0.6f, 0.5f, 0);
+
+	const XMFLOAT3 DESCRIPTION_POS = XMFLOAT3(0.0f, -0.6f, 0);   //説明画像の位置
+	const XMFLOAT3 ITEMIMAGE_SCALE_SELECT = XMFLOAT3(0.4f, 0.4f, 0.4f); //アイテム画像のサイズ
+
+	//マウスで選択できる位置
+	//const XMFLOAT4 ST1_MOUSE_POS = ImagePos(132, 228); 
+	//const XMFLOAT4 ST2_MOUSE_POS = ImagePos(513, 228);
+	//const XMFLOAT4 ST3_MOUSE_POS = ImagePos(897, 228);
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -90,5 +113,6 @@ public:
 	//コインの取得状況
 	void GetCoin();
 
-	XMFLOAT4 ImagePos(int x, int y);
+	//画像の4頂点を取得( height=256 , width=128 )
+	XMFLOAT4 ImagePos(int x1, int y1);
 };

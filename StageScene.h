@@ -31,11 +31,11 @@ class StageScene : public GameObject
 
 
 	//定数
-	const int CAMERA_SET_POS = -10;
-	const int CAMERA_FALL_MAX = -3;
-	const int FALL_MAX = -6;
-	const XMFLOAT3 ItemImage_Scale_Stage = XMFLOAT3(0.5f,0.5f,0.5f);
-	const XMFLOAT3 ItemImage_Position_Stage = XMFLOAT3(0.9f, 0.8f, 0.f);
+	const int CAMERA_SET_POS = -10; //カメラ位置
+	const int CAMERA_FALL_MAX = -3; //落下時のカメラ限界
+	const int FALL_MAX = -8;        //Playerの落下限界
+	const XMFLOAT3 ITEMIMAGE_SCALE_STAGE = XMFLOAT3(0.5f,0.5f,0.5f);     //アイテム画像のサイズ
+	const XMFLOAT3 ITEMIMAGE_POSITION_STAGE = XMFLOAT3(0.9f, 0.8f, 0.f); //アイテム画像の位置
 
 public:
 	//コンストラクタ

@@ -34,6 +34,10 @@ class GoalStaging : public GameObject
     //時間管理
     int time_;
 
+    //定数
+    //const XMFLOAT3 BAL_ENT_SIZE = XMFLOAT3(0.8f, 0.8f, 0.8f);   //風船、Enterのサイズ
+    //const XMFLOAT3 ENTER_POS = XMFLOAT3(0.1f, 0.1f, 0.f);       //Enterの位置
+    //const XMFLOAT3 BACKIMAGE_SIZE = XMFLOAT3(1.4f, 1.4f, 1.4f); //背景サイズ
 
 public:
     bool timer_;

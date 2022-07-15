@@ -1,11 +1,5 @@
 #include "TitleScene.h"
 
-#define Title_Pos XMFLOAT3(0,0.3f,0)
-#define Title_Sca XMFLOAT3(3,3,0)
-#define Space_Pos XMFLOAT3(0,-0.6f,0)
-
-#define TimerCount 80
-
 //コンストラクタ
 TitleScene::TitleScene(GameObject* parent)
 	: GameObject(parent, "TitleScene"),
@@ -20,8 +14,8 @@ void TitleScene::Initialize()
 	//-----------------------タイトル-----------------------------
 	TitleImage_ = Image::Load("Image/TitleScene/Scissors.png");
 	assert(TitleImage_ >= 0);
-	TitleTrans.position_ = Title_Pos;
-	TitleTrans.scale_ = Title_Sca;
+	TitleTrans.position_ = TITLE_POS;
+	TitleTrans.scale_ = TITLE_SCA;
 	Image::SetTransform(TitleImage_, TitleTrans);
 	//------------------------------------------------------------
 
@@ -34,7 +28,7 @@ void TitleScene::Initialize()
 	//------------------ Space -------------------------
 	SpaceKeyImage_ = Image::Load("Image/TitleScene/Space.png");
 	assert(SpaceKeyImage_ >= 0);
-	SpaceTrans.position_ = Space_Pos;
+	SpaceTrans.position_ = SPACE_POS;
 	//------------------------------------------------------------
 
 
@@ -111,7 +105,7 @@ void TitleScene::Timer()
 	}
 
 	//約1.3秒後...
-	if (TimerCnt >= TimerCount)
+	if (TimerCnt >= TIMER_COUNT)
 	{
 		Timer_ = false;
 
