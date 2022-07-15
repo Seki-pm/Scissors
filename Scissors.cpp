@@ -1,13 +1,5 @@
 #include "Scissors.h"
 
-#define NORMAL_JUMP_POWER 0.1f;
-#define SINK_JUMP_POWER 0.001f;
-#define SINK_TIMER 360;
-#define INIT_POSITION XMFLOAT3(0, 1, 0);
-#define INIT_ROTATE XMFLOAT3(0, 0, 0);
-
-
-
 //コンストラクタ
 Scissors::Scissors(GameObject* parent)
     :GameObject(parent, "Scissors"), 
@@ -83,7 +75,7 @@ void Scissors::Update()
 
     //落下したら or 沈んだら
     if (transform_.position_.y <= FALL_MAX 
-        && FallFlg || TIMER_MIN >= Timer_)
+        && FallFlg || SINK_TIMER_MIN >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
         Global::GameOver = true;

@@ -48,15 +48,17 @@ class Scissors : public GameObject
 
     //定数
     const int FALL_MAX = -8;        //落下限界
+    
     const float JUMP_POWER = 0.2f;  //ジャンプ力
-    const int TIMER_MIN = 60;       //タイマーの最小値
-/*
     const float NORMAL_JUMP_POWER = 0.1f; //通常のジャンプ力
     const float SINK_JUMP_POWER = 0.001f; //沈んだ時のジャンプ力
+
     const int SINK_TIMER = 360;           //沈むタイマー
+    const int SINK_TIMER_MIN = 60;       //タイマーの最小値
+
     const XMFLOAT3 INIT_POSITION = XMFLOAT3(0, 1, 0); //初期位置
     const XMFLOAT3 INIT_ROTATE = XMFLOAT3(0, 0, 0);   //初期回転角度
-    */
+    
     ///////////////private関数//////////////////////////////////////
     //開閉
     void OpenClose();

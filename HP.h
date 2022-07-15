@@ -19,10 +19,9 @@ class HP : public GameObject
     Transform FrameTrans;
 
     //定数
-    const XMFLOAT2 HP_IMAGE_POS;
-
-    //const XMFLOAT3 FRAME_POS = XMFLOAT3(-0.59f, 0.88f, 0); //フレーム位置
-    //const int  NORMAL_DAMAGE = 1; //通常のダメージ
+    const XMFLOAT2 HP_IMAGE_POS = XMFLOAT2(-0.99f, 0.85f); //HPゲージ位置
+    const XMFLOAT3 FRAME_POS = XMFLOAT3(-0.59f, 0.88f, 0); //フレーム位置
+    const int  NORMAL_DAMAGE = 1; //通常のダメージ
 
 public:
     //コンストラクタ

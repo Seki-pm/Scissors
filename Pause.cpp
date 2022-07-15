@@ -4,9 +4,6 @@
 #include "Engine/Input.h"
 #include "Global.h"
 
-//#define CONTINUE_POS XMFLOAT3(-0.3f, 0, 0);
-//#define BACKMENU_POS XMFLOAT3( 0.3f, 0, 0);
-
 //コンストラクタ
 Pause::Pause(GameObject* parent)
     :GameObject(parent, "Pause"),
