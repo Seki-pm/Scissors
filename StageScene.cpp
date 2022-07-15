@@ -3,9 +3,14 @@
 
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
-	: GameObject(parent, "StageScene"),
-    SelectSound_(-1), DeterSound_(-1), Gselect_(-1), Pselect_(-1)
+	: GameObject(parent, "StageScene"), Gselect_(-1), Pselect_(-1)
+    //SelectSound_(-1), DeterSound_(-1), 
 {
+    for (int i = 0; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
+
 }
 
 //初期化

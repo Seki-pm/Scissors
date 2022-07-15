@@ -45,7 +45,7 @@ private:
 	int StageLockHandle_[STAGE_LOCK_MAX];
 	int LevelHandle_[STAGE_LEVEL_MAX];
 
-	int FrameImageHandle_; //フレーム
+	int FrameImage_; //フレーム
 	int BackImage_;        //背景
 	int DescriptionImage_; //説明
 
@@ -81,9 +81,10 @@ private:
 	const XMFLOAT3 ITEMIMAGE_SCALE_SELECT = XMFLOAT3(0.4f, 0.4f, 0.4f); //アイテム画像のサイズ
 
 	//マウスで選択できる位置
-	//const XMFLOAT4 ST1_MOUSE_POS = ImagePos(132, 228); 
-	//const XMFLOAT4 ST2_MOUSE_POS = ImagePos(513, 228);
-	//const XMFLOAT4 ST3_MOUSE_POS = ImagePos(897, 228);
+	const XMFLOAT4 ST1_MOUSE_POS = ImagePos(128, 228); 
+	const XMFLOAT4 ST2_MOUSE_POS = ImagePos(513, 228);
+	const XMFLOAT4 ST3_MOUSE_POS = ImagePos(897, 228);
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

@@ -23,11 +23,20 @@ class StageScene : public GameObject
 {
 	Global gl;
 
+	enum Load {
+
+		SelectSound_,
+		DeterSound_,
+		LOAD_MAX
+	};
+
+	int LoadHandle_[LOAD_MAX];
+
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
-	int SelectSound_;      //選択音
-	int DeterSound_;       //決定音
+	//int SelectSound_;      //選択音
+	//int DeterSound_;       //決定音
 
 
 	//定数

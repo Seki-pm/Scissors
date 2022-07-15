@@ -4,13 +4,12 @@
 //コンストラクタ
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
-	FrameImageHandle_(-1), BackImage_(-1), SelectSound_(-1),
-	DeterSound_(-1), DescriptionImage_(-1), LockSound_(-1),
+	FrameImage_(), BackImage_(), DescriptionImage_(), SelectSound_(), DeterSound_(), LockSound_(),
 	Drawflg(true)
 {
 	//STAGE_NUMBER 初期化
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
-		StageHandle_[i] = -1;
+		StageHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 
 	//STAGE_LEVEL 初期化
@@ -87,10 +86,10 @@ void StageSelectScene::Initialize()
 
 
 	//--------------- 選択用フレーム ------------
-	FrameImageHandle_ = Image::Load("Image/StageSelectScene/Frame.png");
-	assert(FrameImageHandle_ >= 0);
+	FrameImage_ = Image::Load("Image/StageSelectScene/Frame.png");
+	assert(FrameImage_ >= 0);
 	FrameTransform.position_ = ST1_IMAGE_POS;
-	Image::SetTransform(FrameImageHandle_, FrameTransform);
+	Image::SetTransform(FrameImage_, FrameTransform);
 
 
 	BackImage_ = Image::Load("Image/TitleScene/Title_Back.png");
@@ -212,20 +211,20 @@ void StageSelectScene::MouseSelect()
 	XMFLOAT3 mousePos = Input::GetMousePosition();
 
 	//Stage1上
-	if ( 132 < mousePos.x && mousePos.x < 388 && 
-		 228 < mousePos.y && mousePos.y < 356)
+	if (ST1_MOUSE_POS.x < mousePos.x && mousePos.x < ST1_MOUSE_POS.z &&
+		ST1_MOUSE_POS.y < mousePos.y && mousePos.y < ST1_MOUSE_POS.w)
 	{
 		Global::SelectStage = STAGE_NUMBER_1;
 	}
 	//Stage2上
-	else if (513 < mousePos.x && mousePos.x < 765 &&
-		     226 < mousePos.y && mousePos.y < 351)
+	else if (ST2_MOUSE_POS.x < mousePos.x && mousePos.x < ST2_MOUSE_POS.z &&
+		     ST2_MOUSE_POS.y < mousePos.y && mousePos.y < ST2_MOUSE_POS.w)
 	{
 		Global::SelectStage = STAGE_NUMBER_2;
 	}
 	//Stage3上
-	else if (897 < mousePos.x && mousePos.x < 1148 &&
-		     224 < mousePos.y && mousePos.y < 347)
+	else if (ST3_MOUSE_POS.x < mousePos.x && mousePos.x < ST3_MOUSE_POS.z &&
+		     ST3_MOUSE_POS.y < mousePos.y && mousePos.y < ST3_MOUSE_POS.w)
 	{
 		Global::SelectStage = STAGE_NUMBER_3;
 	}
@@ -246,8 +245,8 @@ void StageSelectScene::Draw()
 	//ステージのロック解除
 	StageUnlock();
 
-	Image::SetTransform(FrameImageHandle_, FrameTransform);
-	Image::Draw(FrameImageHandle_);
+	Image::SetTransform(FrameImage_, FrameTransform);
+	Image::Draw(FrameImage_);
 
 	//コインの取得状況
 	GetCoin();
@@ -273,7 +272,7 @@ void StageSelectScene::Release()
 		StageLockHandle_[i] = -1;
 	}
 
-	FrameImageHandle_ = -1;
+	FrameImage_ = -1;
 	DescriptionImage_ = -1;
 	SelectSound_ = -1;
 	DeterSound_ = -1;

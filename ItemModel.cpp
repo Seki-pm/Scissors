@@ -4,7 +4,8 @@
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
-     CoinModel_(-1), CoinSound_(-1)
+     CoinModel_(INITIAL_ERROR_VALUE), 
+     CoinSound_(INITIAL_ERROR_VALUE)
 {
 }
 

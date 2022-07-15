@@ -3,11 +3,12 @@
 //コンストラクタ
 Sign::Sign(GameObject* parent)
     :GameObject(parent, "Sign"),
-    Tutorial_(-1), Tutorial2_(-1)
+    Tutorial_(INITIAL_ERROR_VALUE), 
+    Tutorial2_(INITIAL_ERROR_VALUE)
 {
     for (int i = 1; i < Tips_MAX; i++)
     {
-        TipsModel_[i] = -1;
+        TipsModel_[i] = INITIAL_ERROR_VALUE;
     }
 }
 
