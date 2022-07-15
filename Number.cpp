@@ -1,5 +1,6 @@
 #include "Number.h"
 
+//定数
 const float NUMBER_INTERVAL = 0.06f; //数字の間隔
 
 //コンストラクタ

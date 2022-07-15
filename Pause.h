@@ -17,8 +17,8 @@ class Pause : public GameObject
     Transform BackMenu;     //メニューシーンに戻る用
 
     //定数
-    //const XMFLOAT3 CONTINUE_POS = XMFLOAT3(-0.3f, 0, 0); //「プレイシーンに戻る」画像位置
-    //const XMFLOAT3 BACKMENU_POS = XMFLOAT3(0.3f, 0, 0);  //「メニューシーンに戻る」画像位置
+    const XMFLOAT3 CONTINUE_POS = XMFLOAT3(-0.3f, 0, 0); //「プレイシーンに戻る」画像位置
+    const XMFLOAT3 BACKMENU_POS = XMFLOAT3(0.3f, 0, 0);  //「メニューシーンに戻る」画像位置
 public:
     //コンストラクタ
     Pause(GameObject* parent);

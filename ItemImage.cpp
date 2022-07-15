@@ -20,7 +20,7 @@ void ItemImage::Initialize()
     assert(FrameImage_);
     auto FrameTrans = Transform();
     FrameTrans.position_ = Global::ItemImagePos;
-    FrameTrans.scale_ = XMFLOAT3(0.3f,0.3f,0.3f);
+    FrameTrans.scale_ = FRAME_SIZE;
     Image::SetTransform(FrameImage_, FrameTrans);
 
     //Žæ“¾‚µ‚½
@@ -41,7 +41,7 @@ void ItemImage::Update()
 //•`‰æ
 void ItemImage::Draw()
 {
-    pSceneManager_ = (SceneManager*)FindObject("SceneManager");
+    SceneManager* pSceneManager_ = (SceneManager*)FindObject("SceneManager");
 
     //Œ»ÝƒV[ƒ“‚ªSELECT‚Ìê‡
     if (pSceneManager_->GetCurrentSceneID() == SCENE_ID_SELECT)

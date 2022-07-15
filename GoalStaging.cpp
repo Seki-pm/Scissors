@@ -1,13 +1,5 @@
 #include "GoalStaging.h"
 
-#define BAL_ENT_SIZE XMFLOAT3(0.8f,0.8f,0.8f);
-#define ENTER_POS XMFLOAT3(0.1f,0.1f,0.f);
-#define BACKIMAGE_SIZE XMFLOAT3(1.4f,1.4f,1.4f);
-
-const int TIME = 90;
-const float SIZE_MIN = 1.4f;
-const float SCALE_DOWN_VAL = 0.15f;
-
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
     :GameObject(parent, "GoalStaging"), 

@@ -7,8 +7,8 @@ GameOver::GameOver(GameObject* parent)
     RetryImage_(-1),SelectFrameImage_(-1),
     alpha_(150), select_(0)
 {
-    Retry.position_ = XMFLOAT3(-0.3f, 0, 0);
-    BackMenu.position_ = XMFLOAT3(0.3f, 0, 0);
+    Retry.position_ = RETRY_POS;
+    BackMenu.position_ = BACKMENU_POS;
 }
 
 //デストラクタ

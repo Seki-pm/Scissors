@@ -12,10 +12,8 @@ class ItemImage : public GameObject
     int FrameImage_;
     int CoinImage_;
 
-    SceneManager* pSceneManager_;
-
     //定数
-    //const XMFLOAT3 FRAME_SIZE = XMFLOAT3(0.3f, 0.3f, 0.3f);  //フレームのサイズ
+    const XMFLOAT3 FRAME_SIZE = XMFLOAT3(0.3f, 0.3f, 0.3f);  //フレームのサイズ
 public:
     //コンストラクタ
     ItemImage(GameObject* parent);

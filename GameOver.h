@@ -23,8 +23,8 @@ class GameOver : public GameObject
     Transform BackMenu;  //ステージ選択シーンに戻る用
 
     //定数
-    //const XMFLOAT3 RETRY_POS = XMFLOAT3(-0.3f, 0, 0);   //「リトライ」位置
-    //const XMFLOAT3 BACKMENU_POS = XMFLOAT3(0.3f, 0, 0); //「ステージ選択に戻る」位置
+    const XMFLOAT3 RETRY_POS = XMFLOAT3(-0.3f, 0, 0);   //「リトライ」位置
+    const XMFLOAT3 BACKMENU_POS = XMFLOAT3(0.3f, 0, 0); //「ステージ選択に戻る」位置
 
 public:
     //コンストラクタ

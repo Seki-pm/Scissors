@@ -1,8 +1,9 @@
 #include "Gauge.h"
 
-const XMFLOAT3 TRANS_SCA = XMFLOAT3( 2.f,1.3f,0.96f); //表示位置
-const int SETRECT_HEIGHT = 130;   //切り取る高さ
+//定数
+const XMFLOAT3 TRANS_SCA = XMFLOAT3(2.f, 1.3f, 0.96f); //表示サイズ
 const int IMAGE_WIDTH = 512;      //画像幅
+const int SETRECT_HEIGHT = 130;   //切り取る高さ
 
 //コンストラクタ
 Gauge::Gauge()
