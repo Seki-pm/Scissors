@@ -35,23 +35,37 @@ enum STAGE_LEVEL
 };
 
 
+
 //ステージ選択シーンを管理するクラス
 class StageSelectScene : public GameObject
 {
 private:
 
+	//サウンド
+	enum SELECT_SOUND
+	{
+		SOUND_SELECT = 1,
+		SOUND_DETERMINATION = 2,
+		SOUND_LOCK = 3,
+		SOUND_MAX
+	};
+
+	//ロード用変数
+	enum Load
+	{
+		LOAD_MIN = 0,
+		FrameImage_,
+		BackImage_,
+		DescriptionImage_,
+		LOAD_MAX
+	};
+
 	//enumのものを配列にあてる
-	int StageHandle_[STAGE_NUMBER_MAX];       
-	int StageLockHandle_[STAGE_LOCK_MAX];
-	int LevelHandle_[STAGE_LEVEL_MAX];
-
-	int FrameImage_; //フレーム
-	int BackImage_;        //背景
-	int DescriptionImage_; //説明
-
-	int SelectSound_;      //選択音
-	int DeterSound_;       //決定音
-	int LockSound_;        //ロック音
+	int StageHandle_[STAGE_NUMBER_MAX];    //ステージ番号
+	int StageLockHandle_[STAGE_LOCK_MAX];  //ロック画像
+	int LevelHandle_[STAGE_LEVEL_MAX];     //難易度画像
+	int SoundHandle_[SOUND_MAX];           //選択などの音
+	int LoadHandle_[LOAD_MAX];             //その他ロード画像
 
 	bool Drawflg; //表示させるか否か(一度だけ)
 
@@ -115,5 +129,6 @@ public:
 	void GetCoin();
 
 	//画像の4頂点を取得( height=256 , width=128 )
+	//引数：左上の頂点座標（ X , Y ）
 	XMFLOAT4 ImagePos(int x1, int y1);
 };

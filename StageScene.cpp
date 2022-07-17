@@ -4,13 +4,7 @@
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"), Gselect_(-1), Pselect_(-1)
-    //SelectSound_(-1), DeterSound_(-1), 
 {
-    for (int i = 0; i < LOAD_MAX; i++)
-    {
-        LoadHandle_[i] = INITIAL_ERROR_VALUE;
-    }
-
 }
 
 //初期化
@@ -86,8 +80,6 @@ void StageScene::Draw()
 //開放
 void StageScene::Release()
 {
-    SelectSound_ = -1;
-    DeterSound_ = -1;
     Global::Repel_.clear();
     Global::Sink_.clear();
 }
@@ -115,24 +107,18 @@ void StageScene::GameOverSEL()
         if (Input::IsKeyDown(DIK_LEFT))
         {
             Gselect_ = 0;
-            Audio::Play(SelectSound_);
-
             //GameOverクラスに渡す
             pGameOver->SetSelect(Gselect_);
         }
         if (Input::IsKeyDown(DIK_RIGHT))
         {
             Gselect_ = 1;
-            Audio::Play(SelectSound_);
-
             //GameOverクラスに渡す
             pGameOver->SetSelect(Gselect_);
         }
 
         if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
         {
-            Audio::Play(DeterSound_);
-
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
             pSceneManager->ChangeScene(SCENE_ID_SELECT);
         }
@@ -159,16 +145,12 @@ void StageScene::PauseSEL()
         if (Input::IsKeyDown(DIK_LEFT))
         {
             Pselect_ = 0;
-            Audio::Play(SelectSound_);
-
             //Pauseクラスに渡す
             pPause->SetSelect(Pselect_);
         }
         if (Input::IsKeyDown(DIK_RIGHT))
         {
             Pselect_ = 1;
-            Audio::Play(SelectSound_);
-
             //Pauseクラスに渡す
             pPause->SetSelect(Pselect_);
         }
@@ -179,8 +161,6 @@ void StageScene::PauseSEL()
         {
             Global::GetCoin = false;
             Global::Pause = false;
-
-            Audio::Play(DeterSound_);
 
             //メニューシーンに移動
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
