@@ -60,8 +60,8 @@ void ItemModel::Draw()
 //ŠJ•ú
 void ItemModel::Release()
 {
-    CoinModel_ = -1;
-    CoinSound_ = -1;
+    CoinModel_ = INITIAL_ERROR_VALUE;
+    CoinSound_ = INITIAL_ERROR_VALUE;
 }
 
 //‰½‚©‚É“–‚½‚Á‚½

@@ -10,10 +10,20 @@
 //ゲームオーバーを管理するクラス
 class GameOver : public GameObject
 {
-    int GameOverBackImage_;    //GameOverの背景(不透明)
-    int BackMenuImage_;     //ステージ選択シーンに戻るボタン
-    int RetryImage_;        //リトライボタン
-    int SelectFrameImage_;  //選択用フレーム
+    //ロード用変数
+    enum Load
+    {
+        LOAD_MIN = 0,
+        GameOverBackImage_,    //GameOverの背景(不透明)
+        BackMenuImage_,        //ステージ選択シーンに戻るボタン
+        RetryImage_,           //リトライボタン
+        SelectFrameImage_,     //選択用フレーム
+        LOAD_MAX
+    };
+
+    //enumを入れる配列
+    int LoadHandle_[LOAD_MAX];
+
 
     //メンバ変数
     int select_;    //選択

@@ -11,13 +11,21 @@ class GoalStaging : public GameObject
 {
     Global gl; //globalを使う
 
-    int BalloonModel_;    //モデル番号
-    int GoalSound_;  //サウンド用
 
-    //画像ロード用
-    int BackImage_;
-    int CircleImage_;
-    int EnterImage_;
+    //ロード用変数
+    enum Load
+    {
+        LOAD_MIN = 0,
+        BackImage_,
+        CircleImage_,
+        EnterImage_,
+        BalloonModel_, //モデル番号
+        GoalSound_,    //サウンド用
+        LOAD_MAX
+    };
+
+    //enumを入れる配列
+    int LoadHandle_[LOAD_MAX];
 
     //各Transform
     Transform CircleTrans;
@@ -44,7 +52,7 @@ class GoalStaging : public GameObject
     const XMFLOAT3 BACKIMAGE_SIZE = XMFLOAT3(1.4f, 1.4f, 1.4f); //背景サイズ
 
 public:
-    bool timer_;
+    bool timer_; //タイマーフラグ
 
     //コンストラクタ
     GoalStaging(GameObject* parent);

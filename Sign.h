@@ -21,7 +21,7 @@ class Sign : public GameObject
     int TipsModel_[Tips_MAX];
 
     //画像を入れる変数
-    int Tutorial_;
+    int Tutorial_;   //チュートリアル
     int Tutorial2_;
 
     Global gl;

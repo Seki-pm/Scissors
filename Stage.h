@@ -35,14 +35,33 @@ enum Stage3_Sound {
 //ハサミの刃を管理するクラス
 class Stage : public GameObject
 {
-    int StageModel_; //ステージモデル
-    int BackImage_;  //背景
-    int NumberImage_;
-    int DengerImage_;
+    //ロード用変数
+    enum Load
+    {
+        LOAD_MIN = 0,
+        StageModel_,   //ステージモデル
+        BackImage_,    //背景
+        NumberImage_,  //数字画像
+        DengerImage_,  //危険画像
+        Sound_,        //サウンド入れる変数
+        LOAD_MAX
+    };
 
+    //enumを入れる配列
+    int LoadHandle_[LOAD_MAX];
+
+    //クラスのポインタ
     Number* pNumber_;
     Global gl;
     Scissors* pScissors_;
+
+    //各ステージのstartとgoalの座標を入れる変数
+    XMFLOAT4 StGo;
+    float startX;
+    float startY;
+    float goalX;
+    float goalY;
+
 
     //コライダー（凸多角形を複数個組み合わせる）
     vector<PolygonCollider> colliders_;
@@ -60,13 +79,6 @@ class Stage : public GameObject
                     pc37, pc38, pc39, pc40, pc41, pc42,
                     pc43, pc44, pc45, pc46, pc47, pc48,
                     pc49, pc50;
-
-    XMFLOAT4 StGo;
-    float startX;
-    float startY;
-    float goalX;
-    float goalY;
-    int Sound_;
 
 
     //定数

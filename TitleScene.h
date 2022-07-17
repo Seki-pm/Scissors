@@ -4,23 +4,30 @@
 #include "Engine/Audio.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
+#include "Global.h"
 
 
 //タイトルシーンを管理するクラス
 class TitleScene : public GameObject
 {
-	//画像用変数
-	int BackImage_;
-	int TitleImage_;
-	int SpaceKeyImage_;
+	//ロード用変数
+	enum Load
+	{
+		LOAD_MIN = 0,
+		BackImage_,
+		TitleImage_,
+		SpaceKeyImage_,
+		ScissorsSound_,
+		LOAD_MAX
+	};
 
-	//音用変数
-	int ScissorsSound_;
+	//enumを入れる配列
+	int LoadHandle_[LOAD_MAX];
 
 	//タイムを数える
 	int TimerCnt;
 
-	//
+	//タイマーフラグ
 	bool Timer_;
 
 	//画像の動き用の変数

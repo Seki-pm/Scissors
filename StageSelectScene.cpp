@@ -4,8 +4,7 @@
 //コンストラクタ
 StageSelectScene::StageSelectScene(GameObject* parent)
 	: GameObject(parent, "StageSelectScene"),
-	FrameImage_(), BackImage_(), DescriptionImage_(), SelectSound_(), DeterSound_(), LockSound_(),
-	Drawflg(true)
+	  Drawflg(true)
 {
 	//STAGE_NUMBER 初期化
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
@@ -15,13 +14,25 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 	//STAGE_LEVEL 初期化
 	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
-		LevelHandle_[i] = -1;
+		LevelHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 
 	//STAGE_LOCK 初期化
 	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
-		StageLockHandle_[i] = -1;
+		StageLockHandle_[i] = INITIAL_ERROR_VALUE;
+	}
+
+	//SELECT_SOUND 初期化
+	for (int i = SOUND_SELECT; i < SOUND_MAX; i++)
+	{
+		SoundHandle_[i] = INITIAL_ERROR_VALUE;
+	}
+
+	//Load 初期化
+	for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+	{
+		LoadHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 }
 
@@ -29,97 +40,101 @@ StageSelectScene::StageSelectScene(GameObject* parent)
 void StageSelectScene::Initialize()
 {
 	//画像データのロード
-	//---------------------- STAGE ------------------------------
+	//---------------------- STAGE ----------------------
+	{
+		StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/StageSelectScene/STAGE1.png");
+		assert(StageHandle_[STAGE_NUMBER_1] >= 0);
+		Stage[STAGE_NUMBER_1].position_ = ST1_IMAGE_POS;
 
-	StageHandle_[STAGE_NUMBER_1] = Image::Load("Image/StageSelectScene/STAGE1.png");
-	assert(StageHandle_[STAGE_NUMBER_1] >= 0);
-	Stage[STAGE_NUMBER_1].position_ = ST1_IMAGE_POS;
+		StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/StageSelectScene/STAGE2.png");
+		assert(StageHandle_[STAGE_NUMBER_2] >= 0);
+		Stage[STAGE_NUMBER_2].position_ = ST2_IMAGE_POS;
 
-	StageHandle_[STAGE_NUMBER_2] = Image::Load("Image/StageSelectScene/STAGE2.png");
-	assert(StageHandle_[STAGE_NUMBER_2] >= 0);
-	Stage[STAGE_NUMBER_2].position_ = ST2_IMAGE_POS;
-
-	StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/StageSelectScene/STAGE3.png");
-	assert(StageHandle_[STAGE_NUMBER_3] >= 0);
-	Stage[STAGE_NUMBER_3].position_ = ST3_IMAGE_POS;
+		StageHandle_[STAGE_NUMBER_3] = Image::Load("Image/StageSelectScene/STAGE3.png");
+		assert(StageHandle_[STAGE_NUMBER_3] >= 0);
+		Stage[STAGE_NUMBER_3].position_ = ST3_IMAGE_POS;
 
 
-	Image::SetTransform(StageHandle_[STAGE_NUMBER_1], Stage[STAGE_NUMBER_1]);
-	Image::SetTransform(StageHandle_[STAGE_NUMBER_2], Stage[STAGE_NUMBER_2]);
-	Image::SetTransform(StageHandle_[STAGE_NUMBER_3], Stage[STAGE_NUMBER_3]);
-
+		Image::SetTransform(StageHandle_[STAGE_NUMBER_1], Stage[STAGE_NUMBER_1]);
+		Image::SetTransform(StageHandle_[STAGE_NUMBER_2], Stage[STAGE_NUMBER_2]);
+		Image::SetTransform(StageHandle_[STAGE_NUMBER_3], Stage[STAGE_NUMBER_3]);
+	}
 	//---------------------------------------------------
 
-	//------------------- STAGE_ROCK --------------------------
+	//------------------- STAGE_ROCK --------------------
+	{
+		StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/StageSelectScene/Lock_Stage2.png");
+		assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
+		Lock[STAGE_LOCK_2].position_ = ST2_IMAGE_POS;
 
-	StageLockHandle_[STAGE_LOCK_2] = Image::Load("Image/StageSelectScene/Lock_Stage2.png");
-	assert(StageLockHandle_[STAGE_LOCK_2] >= 0);
-	Lock[STAGE_LOCK_2].position_ = ST2_IMAGE_POS;
+		StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/StageSelectScene/Lock_Stage3.png");
+		assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
+		Lock[STAGE_LOCK_3].position_ = ST3_IMAGE_POS;
 
-	StageLockHandle_[STAGE_LOCK_3] = Image::Load("Image/StageSelectScene/Lock_Stage3.png");
-	assert(StageLockHandle_[STAGE_LOCK_3] >= 0);
-	Lock[STAGE_LOCK_3].position_ = ST3_IMAGE_POS;
+		Image::SetTransform(StageLockHandle_[STAGE_LOCK_2], Lock[STAGE_LOCK_2]);
+		Image::SetTransform(StageLockHandle_[STAGE_LOCK_3], Lock[STAGE_LOCK_3]);
+	}
+	//---------------------------------------------------
 
-	Image::SetTransform(StageLockHandle_[STAGE_LOCK_2], Lock[STAGE_LOCK_2]);
-	Image::SetTransform(StageLockHandle_[STAGE_LOCK_3], Lock[STAGE_LOCK_3]);
+	//---------------------- Level ----------------------
+	{
+		LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/StageSelectScene/Easy.png");
+		assert(LevelHandle_[STAGE_LEVEL_EASY] >= 0);
+		Level[STAGE_LEVEL_EASY].position_ = EASY_POSITION;
 
-	//--------------------------------------------------
+		LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/StageSelectScene/Normal.png");
+		assert(LevelHandle_[STAGE_LEVEL_NORMAL] >= 0);
+		Level[STAGE_LEVEL_NORMAL].position_ = NOMAL_POSITION;
 
-	//-------------------- Level ---------------------------
-	LevelHandle_[STAGE_LEVEL_EASY] = Image::Load("Image/StageSelectScene/Easy.png");
-	assert(LevelHandle_[STAGE_LEVEL_EASY] >= 0);
-	Level[STAGE_LEVEL_EASY].position_ = EASY_POSITION;
+		LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/StageSelectScene/Hard.png");
+		assert(LevelHandle_[STAGE_LEVEL_HARD] >= 0);
+		Level[STAGE_LEVEL_HARD].position_ = HARD_POSITION;
 
-	LevelHandle_[STAGE_LEVEL_NORMAL] = Image::Load("Image/StageSelectScene/Normal.png");
-	assert(LevelHandle_[STAGE_LEVEL_NORMAL] >= 0);
-	Level[STAGE_LEVEL_NORMAL].position_ = NOMAL_POSITION;
-
-	LevelHandle_[STAGE_LEVEL_HARD] = Image::Load("Image/StageSelectScene/Hard.png");
-	assert(LevelHandle_[STAGE_LEVEL_HARD] >= 0);
-	Level[STAGE_LEVEL_HARD].position_ = HARD_POSITION;
-
-	Image::SetTransform(LevelHandle_[STAGE_LEVEL_EASY], Level[STAGE_LEVEL_EASY]);
-	Image::SetTransform(LevelHandle_[STAGE_LEVEL_NORMAL], Level[STAGE_LEVEL_NORMAL]);
-	Image::SetTransform(LevelHandle_[STAGE_LEVEL_HARD], Level[STAGE_LEVEL_HARD]);
-
+		Image::SetTransform(LevelHandle_[STAGE_LEVEL_EASY], Level[STAGE_LEVEL_EASY]);
+		Image::SetTransform(LevelHandle_[STAGE_LEVEL_NORMAL], Level[STAGE_LEVEL_NORMAL]);
+		Image::SetTransform(LevelHandle_[STAGE_LEVEL_HARD], Level[STAGE_LEVEL_HARD]);
+	}
 	//---------------------------------------------------
 
 
-	//--------------- 選択用フレーム ------------
-	FrameImage_ = Image::Load("Image/StageSelectScene/Frame.png");
-	assert(FrameImage_ >= 0);
-	FrameTransform.position_ = ST1_IMAGE_POS;
-	Image::SetTransform(FrameImage_, FrameTransform);
+	//-------------------- Load画像 ---------------------
+	{
+		//--------------- 選択用フレーム ------------
+		LoadHandle_[FrameImage_] = Image::Load("Image/StageSelectScene/Frame.png");
+		assert(LoadHandle_[FrameImage_] >= 0);
+		FrameTransform.position_ = ST1_IMAGE_POS;
+		Image::SetTransform(LoadHandle_[FrameImage_], FrameTransform);
 
 
-	BackImage_ = Image::Load("Image/TitleScene/Title_Back.png");
-	assert(BackImage_ >= 0);
-	//---------------------------------------------
+		LoadHandle_[BackImage_] = Image::Load("Image/TitleScene/Title_Back.png");
+		assert(BackImage_ >= 0);
+		//---------------------------------------------
 
-	//---------------- 説明 ----------------------
-	DescriptionImage_ = Image::Load("Image/StageSelectScene/Description.png");
-	assert(DescriptionImage_ >= 0);
-	auto DescTrans = Transform();
-	DescTrans.position_ = DESCRIPTION_POS;
-	Image::SetTransform(DescriptionImage_, DescTrans);
-	//--------------------------------------------
+		//---------------- 説明 ----------------------
+		LoadHandle_[DescriptionImage_] = Image::Load("Image/StageSelectScene/Description.png");
+		assert(LoadHandle_[DescriptionImage_] >= 0);
+		auto DescTrans = Transform();
+		DescTrans.position_ = DESCRIPTION_POS;
+		Image::SetTransform(LoadHandle_[DescriptionImage_], DescTrans);
+	}
+	//---------------------------------------------------
 
 
-	//------------- 音 ----------------------------------
+	//----------------------- 音 ------------------------
+	{
+		//------ Select --------------
+		SoundHandle_[SOUND_SELECT] = Audio::Load("Sound/Title&Menu/Select.wav");
+		assert(SoundHandle_[SOUND_SELECT] >= 0);
 
-	//------ Select --------------
-	SelectSound_ = Audio::Load("Sound/Title&Menu/Select.wav");
-	assert(SelectSound_ >= 0);
+		//------ Determination -------------
+		SoundHandle_[SOUND_DETERMINATION] = Audio::Load("Sound/Title&Menu/Determination.wav");
+		assert(SoundHandle_[SOUND_DETERMINATION] >= 0);
 
-	//------ Determination -------------
-	DeterSound_ = Audio::Load("Sound/Title&Menu/Determination.wav");
-	assert(DeterSound_ >= 0);
-
-	//------------ ロック中 -----------
-	LockSound_ = Audio::Load("Sound/Title&Menu/KeyLock.wav");
-	assert(LockSound_ >= 0);
-
-	//----------------------------------------------------
+		//------------ ロック中 -----------
+		SoundHandle_[SOUND_LOCK] = Audio::Load("Sound/Title&Menu/KeyLock.wav");
+		assert(SoundHandle_[SOUND_LOCK] >= 0);
+	}
+	//---------------------------------------------------
 }
 
 //更新
@@ -133,13 +148,13 @@ void StageSelectScene::Update()
 			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 || 
 			Global::SelectStage == STAGE_NUMBER_3 && Global::Unlock3)
 		{
-			Audio::Play(DeterSound_); //○
+			Audio::Play(SoundHandle_[SOUND_DETERMINATION]); //○
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
 			pSceneManager->ChangeScene(SCENE_ID_STAGE);
 		}
 		else
 		{
-			Audio::Play(LockSound_); //×
+			Audio::Play(SoundHandle_[SOUND_LOCK]); //×
 		}
 	}
 
@@ -161,7 +176,7 @@ void StageSelectScene::Select()
 	//方向キーで選択
 	if (Input::IsKeyDown(DIK_RIGHT))
 	{
-		Audio::Play(SelectSound_);
+		Audio::Play(SoundHandle_[SOUND_SELECT]);
 
 		switch (Global::SelectStage)
 		{
@@ -176,7 +191,7 @@ void StageSelectScene::Select()
 
 	if (Input::IsKeyDown(DIK_LEFT))
 	{
-		Audio::Play(SelectSound_);
+		Audio::Play(SoundHandle_[SOUND_SELECT]);
 
 		switch (Global::SelectStage)
 		{
@@ -233,8 +248,8 @@ void StageSelectScene::MouseSelect()
 //描画
 void StageSelectScene::Draw()
 {
-	Image::Draw(BackImage_);
-	Image::Draw(DescriptionImage_);
+	Image::Draw(LoadHandle_[BackImage_]);
+	Image::Draw(LoadHandle_[DescriptionImage_]);
 
 	//STAGE難易度の描画
 	for (int i = 0; i < STAGE_LEVEL_MAX; i++)
@@ -245,8 +260,8 @@ void StageSelectScene::Draw()
 	//ステージのロック解除
 	StageUnlock();
 
-	Image::SetTransform(FrameImage_, FrameTransform);
-	Image::Draw(FrameImage_);
+	Image::SetTransform(LoadHandle_[FrameImage_], FrameTransform);
+	Image::Draw(LoadHandle_[FrameImage_]);
 
 	//コインの取得状況
 	GetCoin();
@@ -257,27 +272,33 @@ void StageSelectScene::Release()
 {
 	//STAGE_NUMBER 開放
 	for (int i = STAGE_NUMBER_1; i < STAGE_NUMBER_MAX; i++) {
-		StageHandle_[i] = -1;
+		StageHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 
 	//STAGE_LEVEL 開放
 	for (int i = STAGE_LEVEL_EASY; i < STAGE_LEVEL_MAX; i++)
 	{
-		LevelHandle_[i] = -1;
+		LevelHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 
 	//STAGE_LOCK 開放
 	for (int i = STAGE_LOCK_2; i < STAGE_LOCK_MAX; i++)
 	{
-		StageLockHandle_[i] = -1;
+		StageLockHandle_[i] = INITIAL_ERROR_VALUE;
 	}
 
-	FrameImage_ = -1;
-	DescriptionImage_ = -1;
-	SelectSound_ = -1;
-	DeterSound_ = -1;
-	BackImage_ = -1;
-	LockSound_ = -1;
+	//SELECT_SOUND 開放
+	for (int i = SOUND_SELECT; i < SOUND_MAX; i++)
+	{
+		SoundHandle_[i] = INITIAL_ERROR_VALUE;
+	}
+
+	//Load 開放
+	for (int i = FrameImage_; i < LOAD_MAX; i++)
+	{
+		LoadHandle_[i] = INITIAL_ERROR_VALUE;
+	}
+
 }
 
 //ステージのロック解除管理
@@ -332,9 +353,11 @@ void StageSelectScene::GetCoin()
 	}
 }
 
+//画像の4頂点を取得
 XMFLOAT4 StageSelectScene::ImagePos(int x1, int y1)
 {
-	int x2 = x1 + 256;
+	//右下の座標を求める
+	int x2 = x1 + 256;  
 	int y2 = y1 + 128;
 
 	return XMFLOAT4(x1, y1, x2, y2);

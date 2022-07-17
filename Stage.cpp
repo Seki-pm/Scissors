@@ -4,10 +4,14 @@
 //コンストラクタ
 Stage::Stage(GameObject* parent)
     :GameObject(parent, "Stage"),
-    StageModel_(-1), BackImage_(-1), NumberImage_(-1), DengerImage_(-1),Sound_(-1),
     startX(0),startY(0),goalX(0),goalY(0),StGo(XMFLOAT4(0,0,0,0)),
     RepelFlg(false), SinkFlg(false), pScissors_(nullptr), pNumber_(nullptr)
 {
+    //Load 初期化
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
 }
 
 //デストラクタ
@@ -54,28 +58,29 @@ void Stage::Draw()
 {
     pScissors_ = (Scissors*)FindObject("Scissors");
 
-    Image::Draw(BackImage_);
-    Model::SetTransform(StageModel_, transform_);
-    Model::Draw(StageModel_);
+    Image::Draw(LoadHandle_[BackImage_]);
+    Model::SetTransform(LoadHandle_[StageModel_], transform_);
+    Model::Draw(LoadHandle_[StageModel_]);
 
     if (SinkFlg)
     {
         auto DengerTrans = Transform();
         DengerTrans.position_ = DENGER_IMAGE_POS;
-        Image::SetTransform(DengerImage_, DengerTrans);
-        Image::Draw(DengerImage_);
+        Image::SetTransform(LoadHandle_[DengerImage_], DengerTrans);
+        Image::Draw(LoadHandle_[DengerImage_]);
 
-        pNumber_->Draw(pScissors_->GetCountDown(), NUMBER_POS.x, NUMBER_POS.y, NumberImage_);
+        pNumber_->Draw(pScissors_->GetCountDown(), NUMBER_POS.x, NUMBER_POS.y, LoadHandle_[NumberImage_]);
     }
 }
 
 //開放
 void Stage::Release()
 {
-    BackImage_ = -1;
-    StageModel_ = -1;
-    DengerImage_ = -1;
-    NumberImage_ = -1;
+    //Load 開放
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
 }
 
 // 引数の点の位置がステージに当たってるかチェック
@@ -235,26 +240,26 @@ void Stage::Stage1()
 void Stage::Stage1Load()
 {
     //ステージモデルと背景を読み込み
-    StageModel_ = Model::Load("Model/Stage/Stage1/stage1.fbx");
-    assert(StageModel_ >= 0);
+    LoadHandle_[StageModel_] = Model::Load("Model/Stage/Stage1/stage1.fbx");
+    assert(LoadHandle_[StageModel_] >= 0);
 
-    BackImage_ = Image::Load("Image/StageScene/Stage1_Back.png");
+    LoadHandle_[BackImage_] = Image::Load("Image/StageScene/Stage1_Back.png");
     assert(BackImage_ >= 0);
 
 
     //サウンドを追加
     for (int i = 0; i < St1_Max; i++)
     {
-        Sound_ = -1;
+        LoadHandle_[Sound_] = INITIAL_ERROR_VALUE;
 
         switch (i)
         {
         case St1_Glass:
-            Sound_ = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage1/FootStep_Glass.wav"); break;
         case St1_Wood:
-            Sound_ = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage1/FootStep_Wood.wav"); break;
         }
-        assert(Sound_ >= 0);
+        assert(LoadHandle_[Sound_] >= 0);
     }
 
 
@@ -490,22 +495,22 @@ void Stage::Stage2()
 void Stage::Stage2Load()
 {
     //ステージモデルと背景を読み込み
-    StageModel_ = Model::Load("Model/Stage/Stage2/stage2.fbx");
-    assert(StageModel_ >= 0);
-    BackImage_ = Image::Load("Image/StageScene/Stage2_Back.png");
-    assert(BackImage_ >= 0);
+    LoadHandle_[StageModel_] = Model::Load("Model/Stage/Stage2/stage2.fbx");
+    assert(LoadHandle_[StageModel_] >= 0);
+    LoadHandle_[BackImage_] = Image::Load("Image/StageScene/Stage2_Back.png");
+    assert(LoadHandle_[BackImage_] >= 0);
 
     //サウンドを追加
     for (int i = 0; i < St2_Max; i++)
     {
-        Sound_ = -1;
+        LoadHandle_[Sound_] = INITIAL_ERROR_VALUE;
 
         switch (i)
         {
         case St1_Glass:
-            Sound_ = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav"); break;
         case St1_Wood:
-            Sound_ = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav"); break;
         }
         assert(Sound_ >= 0);
     }
@@ -917,34 +922,34 @@ void Stage::Stage3()
 void Stage::Stage3Load()
 {
     //ステージモデルと背景を読み込み
-    StageModel_ = Model::Load("Model/Stage/Stage3/stage3.fbx");
-    assert(StageModel_ >= 0);
-    BackImage_ = Image::Load("Image/StageScene/Stage3_Back.png");
-    assert(BackImage_ >= 0);
+    LoadHandle_[StageModel_] = Model::Load("Model/Stage/Stage3/stage3.fbx");
+    assert(LoadHandle_[StageModel_] >= 0);
+    LoadHandle_[BackImage_] = Image::Load("Image/StageScene/Stage3_Back.png");
+    assert(LoadHandle_[BackImage_] >= 0);
 
     //数字   
-    NumberImage_ = Image::Load("Image/StageScene/Number.png");
-    assert(NumberImage_ >= 0);
+    LoadHandle_[NumberImage_] = Image::Load("Image/StageScene/Number.png");
+    assert(LoadHandle_[NumberImage_] >= 0);
 
     //数字の背景
-    DengerImage_ = Image::Load("Image/StageScene/Denger.png");
-    assert(DengerImage_ >= 0);
+    LoadHandle_[DengerImage_] = Image::Load("Image/StageScene/Denger.png");
+    assert(LoadHandle_[DengerImage_] >= 0);
 
     //サウンドを追加
     for (int i = 0; i < St3_Max; i++)
     {
-        Sound_ = -1;
+        LoadHandle_[Sound_] = INITIAL_ERROR_VALUE;
 
         switch (i)
         {
         case St3_Iron:
-            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Iron.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage3/FootStep_Iron.wav"); break;
         case St3_Sand:
-            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Sand.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage3/FootStep_Sand.wav"); break;
         case St3_Volcano_Sand:
-            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano_Sand.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano_Sand.wav"); break;
         case St3_Volcano:
-            Sound_ = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano.wav"); break;
+            LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage3/FootStep_Volcano.wav"); break;
         }
         assert(Sound_ >= 0);
     }

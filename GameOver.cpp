@@ -3,12 +3,14 @@
 //コンストラクタ
 GameOver::GameOver(GameObject* parent)
     :GameObject(parent, "GameOver"),
-    GameOverBackImage_(-1), BackMenuImage_(-1),
-    RetryImage_(-1),SelectFrameImage_(-1),
-    alpha_(150), select_(0)
+     alpha_(150), select_(0)
 {
-    Retry.position_ = RETRY_POS;
-    BackMenu.position_ = BACKMENU_POS;
+    //Load 初期化
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
+
 }
 
 //デストラクタ
@@ -19,23 +21,25 @@ GameOver::~GameOver()
 //初期化
 void GameOver::Initialize()
 {
-    //画像データのロード
+    Retry.position_ = RETRY_POS;
+    BackMenu.position_ = BACKMENU_POS;
+
+    //--------------------  画像データのロード  ---------------------
     //ゲームオーバー
-    GameOverBackImage_ = Image::Load("Image/InGameMenu/BlackBack.png");
-    assert(GameOverBackImage_ >= 0);
+    LoadHandle_[GameOverBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
+    assert(LoadHandle_[GameOverBackImage_] >= 0);
 
     //リトライ
-    RetryImage_ = Image::Load("Image/InGameMenu/Retry.png");
-    assert(RetryImage_ >= 0);
+    LoadHandle_[RetryImage_] = Image::Load("Image/InGameMenu/Retry.png");
+    assert(LoadHandle_[RetryImage_] >= 0);
 
     //セレクトフレーム
-    SelectFrameImage_ = Image::Load("Image/InGameMenu/SelectFrame.png");
-    assert(SelectFrameImage_ >= 0);
+    LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
+    assert(LoadHandle_[SelectFrameImage_] >= 0);
 
     //ステージ選択に戻る
-    BackMenuImage_ = Image::Load("Image/InGameMenu/BackButton.png");
-    assert(BackMenuImage_ >= 0);
-
+    LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
+    assert(LoadHandle_[BackMenuImage_] >= 0);
 }
 
 //更新
@@ -49,21 +53,21 @@ void GameOver::Draw()
     Scissors* pScissors_ = (Scissors*)FindObject("Scissors");
 
     //背景描画
-    Image::SetAlpha(GameOverBackImage_, alpha_);
-    Image::SetTransform(GameOverBackImage_, transform_);
-    Image::Draw(GameOverBackImage_);
+    Image::SetAlpha(LoadHandle_[GameOverBackImage_], alpha_);
+    Image::SetTransform(LoadHandle_[GameOverBackImage_], transform_);
+    Image::Draw(LoadHandle_[GameOverBackImage_]);
 
-    Image::SetTransform(RetryImage_, Retry);
-    Image::Draw(RetryImage_);
+    Image::SetTransform(LoadHandle_[RetryImage_], Retry);
+    Image::Draw(LoadHandle_[RetryImage_]);
 
-    Image::SetTransform(BackMenuImage_, BackMenu);
-    Image::Draw(BackMenuImage_);
+    Image::SetTransform(LoadHandle_[BackMenuImage_], BackMenu);
+    Image::Draw(LoadHandle_[BackMenuImage_]);
 
 
     //リトライが選択されている時
     if (select_ == 0)
     {
-        Image::SetTransform(SelectFrameImage_, Retry);
+        Image::SetTransform(LoadHandle_[SelectFrameImage_], Retry);
         
         if (Input::IsKeyDown(DIK_SPACE))
         {
@@ -74,19 +78,20 @@ void GameOver::Draw()
     //ステージ選択が選択されている時
     else if(select_ == 1)
     {
-        Image::SetTransform(SelectFrameImage_, BackMenu);
+        Image::SetTransform(LoadHandle_[SelectFrameImage_], BackMenu);
     }
 
-    Image::Draw(SelectFrameImage_);
+    Image::Draw(LoadHandle_[SelectFrameImage_]);
 }
 
 //開放
 void GameOver::Release()
 {
-    GameOverBackImage_ = -1;
-    BackMenuImage_     = -1;
-    RetryImage_        = -1;
-    SelectFrameImage_  = -1;
+    //Load 開放
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
 }
 
 //セット
