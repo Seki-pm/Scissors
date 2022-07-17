@@ -16,9 +16,9 @@ class GoalStaging : public GameObject
     enum Load
     {
         LOAD_MIN = 0,
-        BackImage_,
-        CircleImage_,
-        EnterImage_,
+        BackImage_,    //背景画像
+        CircleImage_,  //収縮用画像
+        EnterImage_,   //Enter画像
         BalloonModel_, //モデル番号
         GoalSound_,    //サウンド用
         LOAD_MAX

@@ -14,10 +14,10 @@ class TitleScene : public GameObject
 	enum Load
 	{
 		LOAD_MIN = 0,
-		BackImage_,
-		TitleImage_,
-		SpaceKeyImage_,
-		ScissorsSound_,
+		BackImage_,     //背景画像
+		TitleImage_,    //タイトル画像
+		SpaceKeyImage_, //SPACE画像
+		ScissorsSound_, //ハサミの音
 		LOAD_MAX
 	};
 
