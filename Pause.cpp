@@ -1,8 +1,4 @@
 #include "Pause.h"
-#include "Engine/SceneManager.h"
-#include "Engine/Image.h"
-#include "Engine/Input.h"
-#include "Global.h"
 
 //コンストラクタ
 Pause::Pause(GameObject* parent)
@@ -24,32 +20,34 @@ Pause::~Pause()
 //初期化
 void Pause::Initialize()
 {
+    //表示位置の設定
     Continue.position_ = CONTINUE_POS;
     BackMenu.position_ = BACKMENU_POS;
 
     //-------------------- 画像データのロード --------------------------
-    //不透明背景
-    LoadHandle_[PauseBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
-    assert(LoadHandle_[PauseBackImage_] >= 0);
+    {
+        //不透明背景
+        LoadHandle_[PauseBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
+        assert(LoadHandle_[PauseBackImage_] >= 0);
 
-    //続ける
-    LoadHandle_[ContinueImage_] = Image::Load("Image/InGameMenu/Continue.png");
-    assert(LoadHandle_[ContinueImage_] >= 0);
+        //続ける
+        LoadHandle_[ContinueImage_] = Image::Load("Image/InGameMenu/Continue.png");
+        assert(LoadHandle_[ContinueImage_] >= 0);
 
-    //ステージ選択に戻る
-    LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
-    assert(LoadHandle_[BackMenuImage_] >= 0);
+        //ステージ選択に戻る
+        LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
+        assert(LoadHandle_[BackMenuImage_] >= 0);
 
-    //セレクトフレーム
-    LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
-    assert(LoadHandle_[SelectFrameImage_] >= 0);
-
+        //セレクトフレーム
+        LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
+        assert(LoadHandle_[SelectFrameImage_] >= 0);
+    }
+    //------------------------------------------------------------------
 }
 
 //更新
 void Pause::Update()
 {
-
     //プレイシーンに戻るが選択されているとき
     if (Global::Pause && select_ == 0)
     {

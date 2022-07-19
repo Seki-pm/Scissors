@@ -35,7 +35,6 @@ enum STAGE_LEVEL
 };
 
 
-
 //ステージ選択シーンを管理するクラス
 class StageSelectScene : public GameObject
 {

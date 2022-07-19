@@ -8,7 +8,7 @@
 #include "Transform.h"
 
 
-constexpr int INITIAL_ERROR_VALUE = -1;
+constexpr int INITIAL_ERROR_VALUE = -1; //初期化用エラー値
 
 using namespace DirectX;
 

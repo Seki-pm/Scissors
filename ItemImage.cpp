@@ -3,8 +3,8 @@
 //コンストラクタ
 ItemImage::ItemImage(GameObject* parent)
     :GameObject(parent, "ItemImage"),
-    FrameImage_(INITIAL_ERROR_VALUE), 
-    CoinImage_(INITIAL_ERROR_VALUE)
+     FrameImage_(INITIAL_ERROR_VALUE), 
+     CoinImage_(INITIAL_ERROR_VALUE)
 {
 }
 

@@ -90,6 +90,7 @@ void TitleScene::Release()
 //“_–Å
 void TitleScene::Blinking()
 {
+	//alpha_‚ğ‘‚â‚µ‚Ä“_–Å‚³‚¹‚é
 	alpha_ = (float)abs(cos(XMConvertToRadians((float)theta_)));
 	alpha_ *= 255.f;
 

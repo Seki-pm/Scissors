@@ -4,8 +4,6 @@
 #include "Engine/Audio.h"
 #include "Engine/Input.h"
 #include "Engine/Image.h"
-#include "Global.h"
-
 
 //タイトルシーンを管理するクラス
 class TitleScene : public GameObject

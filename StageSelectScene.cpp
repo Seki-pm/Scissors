@@ -180,12 +180,9 @@ void StageSelectScene::Select()
 
 		switch (Global::SelectStage)
 		{
-		case STAGE_NUMBER_1:
-			Global::SelectStage = STAGE_NUMBER_2; break;
-		case STAGE_NUMBER_2:
-			Global::SelectStage = STAGE_NUMBER_3; break;
-		case STAGE_NUMBER_3:
-			Global::SelectStage = STAGE_NUMBER_1; break;
+		case STAGE_NUMBER_1: Global::SelectStage = STAGE_NUMBER_2; break;
+		case STAGE_NUMBER_2: Global::SelectStage = STAGE_NUMBER_3; break;
+		case STAGE_NUMBER_3: Global::SelectStage = STAGE_NUMBER_1; break;
 		}
 	}
 
@@ -195,27 +192,18 @@ void StageSelectScene::Select()
 
 		switch (Global::SelectStage)
 		{
-		case STAGE_NUMBER_1:
-			Global::SelectStage = STAGE_NUMBER_3; break;
-		case STAGE_NUMBER_2:
-			Global::SelectStage = STAGE_NUMBER_1; break;
-		case STAGE_NUMBER_3:
-			Global::SelectStage = STAGE_NUMBER_2; break;
+		case STAGE_NUMBER_1: Global::SelectStage = STAGE_NUMBER_3; break;
+		case STAGE_NUMBER_2: Global::SelectStage = STAGE_NUMBER_1; break;
+		case STAGE_NUMBER_3: Global::SelectStage = STAGE_NUMBER_2; break;
 		}
 	}
 
 	//フレームの位置変更
 	switch (Global::SelectStage)
 	{
-	case STAGE_NUMBER_1:
-		FrameTransform.position_ = ST1_IMAGE_POS;
-		break;
-	case STAGE_NUMBER_2:
-		FrameTransform.position_ = ST2_IMAGE_POS;
-		break;
-	case STAGE_NUMBER_3:
-		FrameTransform.position_ = ST3_IMAGE_POS;
-		break;
+	case STAGE_NUMBER_1: FrameTransform.position_ = ST1_IMAGE_POS; break;
+	case STAGE_NUMBER_2: FrameTransform.position_ = ST2_IMAGE_POS; break;
+	case STAGE_NUMBER_3: FrameTransform.position_ = ST3_IMAGE_POS; break;
 	}
 }
 
@@ -357,8 +345,8 @@ void StageSelectScene::GetCoin()
 XMFLOAT4 StageSelectScene::ImagePos(int x1, int y1)
 {
 	//右下の座標を求める
-	int x2 = x1 + 256;  
-	int y2 = y1 + 128;
+	float x2 = (float)x1 + 256;  
+	float y2 = (float)y1 + 128;
 
-	return XMFLOAT4(x1, y1, x2, y2);
+	return XMFLOAT4((float)x1, (float)y1, x2, y2);
 }

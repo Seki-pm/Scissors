@@ -8,7 +8,8 @@ class Scissors;
 //HPを管理するクラス
 class HP : public GameObject
 {
-    Gauge*  pGauge_;  //ゲージ描画用
+    //アクセス用ポインタ
+    Gauge*  pGauge_; 
     Scissors* pScissors_;
 
 
@@ -21,7 +22,8 @@ class HP : public GameObject
     //定数
     const XMFLOAT2 HP_IMAGE_POS = XMFLOAT2(-0.99f, 0.85f); //HPゲージ位置
     const XMFLOAT3 FRAME_POS = XMFLOAT3(-0.59f, 0.88f, 0); //フレーム位置
-    const int  NORMAL_DAMAGE = 1; //通常のダメージ
+    const float    HAS_DAMAGE = 0.5f; //ダメージを食らう高さ
+    const int      NORMAL_DAMAGE = 1; //通常のダメージ
 
 public:
     //コンストラクタ

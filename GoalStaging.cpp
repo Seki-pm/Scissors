@@ -21,36 +21,39 @@ GoalStaging::~GoalStaging()
 //初期化
 void GoalStaging::Initialize()
 {
+    //------------------------  データの読み込み  ---------------------------------
+    {
+        //モデルデータのロード
+        LoadHandle_[BalloonModel_] = Model::Load("Model/InGameObject/Balloon.fbx");
+        assert(LoadHandle_[BalloonModel_] >= 0);
+        BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
+        BalloonTrans.scale_ = BAL_ENT_SIZE;
+        Model::SetTransform(LoadHandle_[BalloonModel_], BalloonTrans);
 
-    //モデルデータのロード
-    LoadHandle_[BalloonModel_] = Model::Load("Model/InGameObject/Balloon.fbx");
-    assert(LoadHandle_[BalloonModel_] >= 0);
-    BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
-    BalloonTrans.scale_ = BAL_ENT_SIZE;
-    Model::SetTransform(LoadHandle_[BalloonModel_], BalloonTrans);
+        //Enter
+        LoadHandle_[EnterImage_] = Image::Load("Image/InGameMenu/Enter.png");
+        assert(LoadHandle_[EnterImage_] >= 0);
+        EnterTrans.position_ = ENTER_POS;
+        EnterTrans.scale_ = BAL_ENT_SIZE;
+        Image::SetTransform(LoadHandle_[EnterImage_], EnterTrans);
 
-    //Enter
-    LoadHandle_[EnterImage_] = Image::Load("Image/InGameMenu/Enter.png");
-    assert(LoadHandle_[EnterImage_] >= 0);
-    EnterTrans.position_ = ENTER_POS;
-    EnterTrans.scale_ = BAL_ENT_SIZE;
-    Image::SetTransform(LoadHandle_[EnterImage_], EnterTrans);
+        //暗転
+        LoadHandle_[BackImage_] = Image::Load("Image/InGameMenu/Clear_Black.png");
+        assert(LoadHandle_[BackImage_] >= 0);
+        auto BlackTrans = Transform();
+        BlackTrans.scale_ = BACKIMAGE_SIZE;
+        Image::SetTransform(LoadHandle_[BackImage_], BlackTrans);
 
-    //暗転
-    LoadHandle_[BackImage_] = Image::Load("Image/InGameMenu/Clear_Black.png");
-    assert(LoadHandle_[BackImage_] >= 0);
-    auto BlackTrans = Transform();
-    BlackTrans.scale_ = BACKIMAGE_SIZE;
-    Image::SetTransform(LoadHandle_[BackImage_], BlackTrans);
+        //収縮用
+        LoadHandle_[CircleImage_] = Image::Load("Image/InGameMenu/Clear_Effect.png");
+        assert(LoadHandle_[CircleImage_] >= 0);
+        CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
 
-    //収縮用
-    LoadHandle_[CircleImage_] = Image::Load("Image/InGameMenu/Clear_Effect.png");
-    assert(LoadHandle_[CircleImage_] >= 0);
-    CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
-
-    //サウンド
-    LoadHandle_[GoalSound_] = Audio::Load("Sound/InStage/Staging.wav");
-    assert(LoadHandle_[GoalSound_] >= 0);
+        //サウンド
+        LoadHandle_[GoalSound_] = Audio::Load("Sound/InStage/Staging.wav");
+        assert(LoadHandle_[GoalSound_] >= 0);
+    }
+    //-----------------------------------------------------------------------------
 }
 
 //更新
@@ -105,8 +108,10 @@ void GoalStaging::Draw()
         CircleTrans.scale_ = XMFLOAT3(size_, size_, size_);
         Image::SetTransform(LoadHandle_[CircleImage_], CircleTrans);
 
+        //size_の大きさで表示画像を変える
         if (size_ > SIZE_MIN)
         {
+            //サイズを縮小させる
             size_ -= SCALE_DOWN_VAL;
             Image::Draw(LoadHandle_[CircleImage_]);
         }
@@ -133,6 +138,7 @@ void GoalStaging::Timer()
 {
     time_++;
 
+    //TIMEまでカウント
     if (time_ >= TIME)
     {
         timer_ = true;

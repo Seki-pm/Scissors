@@ -1,7 +1,4 @@
 #include "Blade.h"
-#include "Engine/Model.h"
-#include "Stage.h"
-#include "Scissors.h"
 
 //コンストラクタ
 Blade::Blade(GameObject* parent)
@@ -94,7 +91,7 @@ void Blade::Draw()
 //開放
 void Blade::Release()
 {
-    BladeModel_ = -1;
+    BladeModel_ = INITIAL_ERROR_VALUE;
 }
 
 

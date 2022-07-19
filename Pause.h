@@ -1,5 +1,9 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include "Engine/SceneManager.h"
+#include "Engine/Image.h"
+#include "Engine/Input.h"
+#include "Global.h"
 
 //ˆê’â~‚ğŠÇ—‚·‚éƒNƒ‰ƒX
 class Pause : public GameObject

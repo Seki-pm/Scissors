@@ -3,9 +3,9 @@
 #include "Engine/SceneManager.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
-#include "StageSelectScene.h"
 #include "Global.h"
 #include "Scissors.h"
+#include "StageSelectScene.h"
 
 //ゲームオーバーを管理するクラス
 class GameOver : public GameObject

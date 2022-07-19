@@ -17,17 +17,22 @@ ItemModel::~ItemModel()
 //初期化
 void ItemModel::Initialize()
 {
+    //----- データの読み込み ------ 
+    {
+        //-------------- コインモデル --------------------
+        CoinModel_ = Model::Load("Model/InGameObject/Coin.fbx");
+        assert(CoinModel_ >= 0);
 
-    CoinModel_ = Model::Load("Model/InGameObject/Coin.fbx");
-    assert(CoinModel_ >= 0);
+        //------------ 取得時のサウンド ------------------
+        CoinSound_ = Audio::Load("Sound/InStage/Get_Coin.wav");
+        assert(CoinSound_ >= 0);
+    }
 
-    CoinSound_ = Audio::Load("Sound/InStage/Get_Coin.wav");
-    assert(CoinSound_ >= 0);
-
-
+    //コインの位置を設定
     transform_.position_ = Global::ItemModelPos;
     transform_.scale_ = ITEM_SIZE;
 
+    //コライダ設定
     SphereCollider* collision = 
     new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
@@ -39,7 +44,7 @@ void ItemModel::Update()
     //コインを取得したら
     if (Global::GetCoin)
     {
-        //rotateの回転数に満たない間Animation
+        //ROTATION_NUMBERの値に満たない間Animation
         if (transform_.rotate_.y < ROTATION_NUMBER * 180)
         {
             Animation();
@@ -74,15 +79,9 @@ void ItemModel::OnCollision(GameObject* pTarget)
         //どこのコインを取得したか
         switch (Global::SelectStage)
         {
-        case STAGE_NUMBER_1:
-            Global::GetCoin_1 = true;
-            break;
-        case STAGE_NUMBER_2:
-            Global::GetCoin_2 = true;
-            break;
-        case STAGE_NUMBER_3:
-            Global::GetCoin_3 = true;
-            break;
+        case STAGE_NUMBER_1: Global::GetCoin_1 = true; break;
+        case STAGE_NUMBER_2: Global::GetCoin_2 = true; break;
+        case STAGE_NUMBER_3: Global::GetCoin_3 = true; break;
         }
 
         Global::GetCoin = true;
@@ -93,6 +92,7 @@ void ItemModel::OnCollision(GameObject* pTarget)
 //簡易アニメーション
 void ItemModel::Animation()
 {
+    //回転しながら上昇
     transform_.position_.y += UP_DISTANCE * 3;
     transform_.rotate_.y += ROTATION_SPEED * 3;
 }

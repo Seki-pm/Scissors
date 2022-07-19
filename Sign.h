@@ -17,7 +17,7 @@ class Sign : public GameObject
         Tips_MAX
     };
 
-    //ƒ‚ƒfƒ‹‚ğ“ü‚ê‚é•Ï”
+    //ŠÅ”Â‚Ìenum‚ğ“ü‚ê‚é•Ï”
     int TipsModel_[Tips_MAX];
 
     //‰æ‘œ‚ğ“ü‚ê‚é•Ï”
@@ -26,6 +26,7 @@ class Sign : public GameObject
 
     Global gl;
 
+    //ŠeTransform
     Transform SignTrans;
     Transform SignTrans2;
     Transform SignTrans5;

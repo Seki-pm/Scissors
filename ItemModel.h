@@ -5,9 +5,8 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Audio.h"
-#include "StageSelectScene.h"
 #include "Global.h"
-
+#include "StageSelectScene.h"
 
 //コインを管理するクラス
 class ItemModel : public GameObject

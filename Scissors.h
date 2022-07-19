@@ -19,15 +19,15 @@ class Scissors : public GameObject
     Blade* pBlade_L , *pBlade_R;
     Stage* pStage_;
 
-    XMFLOAT3 move_;         //移動
+    XMFLOAT3 move_;          //移動
     XMFLOAT3 jumpDirection_; //ジャンプ方向（刺さってる地面の法線）
     XMFLOAT3 nowPivotPoint_; //現在の刺さっている場所
 
     float AnglePass_;  //角度を送る
-    float GLAVITY; //重力
+    float GLAVITY;     //重力
 
-    bool CalcFlg; //計算のフラグ
-    bool FallFlg; //落下フラグ
+    bool CalcFlg;  //計算のフラグ
+    bool FallFlg;  //落下フラグ
     bool SoundFlg; //音フラグ
 
 
@@ -51,7 +51,7 @@ class Scissors : public GameObject
     
     const float JUMP_POWER = 0.2f;  //ジャンプ力
     const float NORMAL_JUMP_POWER = 0.1f; //通常のジャンプ力
-    const float SINK_JUMP_POWER = 0.001f; //沈んだ時のジャンプ力
+    const float SINK_JUMP_POWER   = 0.001f; //沈んだ時のジャンプ力
 
     const int SINK_TIMER = 360;           //沈むタイマー
     const int SINK_TIMER_MIN = 60;       //タイマーの最小値
@@ -75,10 +75,10 @@ class Scissors : public GameObject
     ////////////////////////////////////////////////////////////////////
 
 public:
-    bool IsJump;
-    int CurrentHP;
-    float JumpStart;
-    float JumpEnd;
+    bool  IsJump;    //ジャンプできるか
+    int   CurrentHP; //現在HP
+    float JumpStart; //ジャンプスタート位置
+    float JumpEnd;   //ジャンプ着地位置
 
 
     //コンストラクタ

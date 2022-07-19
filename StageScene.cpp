@@ -3,7 +3,8 @@
 
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
-	: GameObject(parent, "StageScene"), Gselect_(-1), Pselect_(-1)
+	: GameObject(parent, "StageScene"),
+      Gselect_(-1), Pselect_(-1)
 {
 }
 
@@ -62,12 +63,9 @@ void StageScene::Update()
         //取得したコインを無くす
         switch (Global::SelectStage)
         {
-        case STAGE_NUMBER_1:
-            Global::GetCoin_1 = false; break;
-        case STAGE_NUMBER_2:
-            Global::GetCoin_2 = false; break;
-        case STAGE_NUMBER_3:
-            Global::GetCoin_3 = false; break;
+        case STAGE_NUMBER_1:   Global::GetCoin_1 = false; break;
+        case STAGE_NUMBER_2:   Global::GetCoin_2 = false; break;
+        case STAGE_NUMBER_3:   Global::GetCoin_3 = false; break;
         }
     }
 }
@@ -115,6 +113,7 @@ void StageScene::GameOverSEL()
             pGameOver->SetSelect(Gselect_);
         }
 
+        //StageSelectSceneに戻る
         if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
         {
             SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
@@ -191,7 +190,7 @@ void StageScene::CameraMove(float start, float goal)
     }
 
 
-    //transform.y が0より小さい場合カメラを止める
+    //transform.y が0より小さい（落下した）場合カメラを止める
     if (gl.GetTransPos().y < FALL_MAX)
     {
         Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_MAX, CAMERA_SET_POS));
@@ -204,14 +203,9 @@ void StageScene::NextStageUnlock( int SelectStage )
 {
     switch (SelectStage)
     {
-    case STAGE_NUMBER_1:
-        Global::Unlock2 = true;
-        break;
-    case STAGE_NUMBER_2:
-        Global::Unlock3 = true;
-        break;
-    case STAGE_NUMBER_3:
-        break;
+    case STAGE_NUMBER_1: Global::Unlock2 = true; break;
+    case STAGE_NUMBER_2: Global::Unlock3 = true; break;
+    case STAGE_NUMBER_3: break;
     }
 }
 

@@ -21,25 +21,29 @@ GameOver::~GameOver()
 //初期化
 void GameOver::Initialize()
 {
+    //表示位置設定
     Retry.position_ = RETRY_POS;
     BackMenu.position_ = BACKMENU_POS;
 
     //--------------------  画像データのロード  ---------------------
-    //ゲームオーバー
-    LoadHandle_[GameOverBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
-    assert(LoadHandle_[GameOverBackImage_] >= 0);
+    {
+        //ゲームオーバー
+        LoadHandle_[GameOverBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
+        assert(LoadHandle_[GameOverBackImage_] >= 0);
 
-    //リトライ
-    LoadHandle_[RetryImage_] = Image::Load("Image/InGameMenu/Retry.png");
-    assert(LoadHandle_[RetryImage_] >= 0);
+        //リトライ
+        LoadHandle_[RetryImage_] = Image::Load("Image/InGameMenu/Retry.png");
+        assert(LoadHandle_[RetryImage_] >= 0);
 
-    //セレクトフレーム
-    LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
-    assert(LoadHandle_[SelectFrameImage_] >= 0);
+        //セレクトフレーム
+        LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
+        assert(LoadHandle_[SelectFrameImage_] >= 0);
 
-    //ステージ選択に戻る
-    LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
-    assert(LoadHandle_[BackMenuImage_] >= 0);
+        //ステージ選択に戻る
+        LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
+        assert(LoadHandle_[BackMenuImage_] >= 0);
+    }
+    //---------------------------------------------------------------
 }
 
 //更新

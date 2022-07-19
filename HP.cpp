@@ -46,25 +46,25 @@ void HP::Draw()
 //開放
 void HP::Release()
 {
-    GaugeImage_ = -1;
-    GaugeFrameImage_ = -1;
+    GaugeImage_ = INITIAL_ERROR_VALUE;
+    GaugeFrameImage_ = INITIAL_ERROR_VALUE;
 }
 
 //HP計算
 void HP::HPCalc()
 {
-    float JS = pScissors_->JumpStart;
-    float JE = pScissors_->JumpEnd;
-    float ND = NORMAL_DAMAGE;
+    float JS = pScissors_->JumpStart;  //ジャンプ開始位置
+    float JE = pScissors_->JumpEnd;    //ジャンプ着地位置
+    float ND = NORMAL_DAMAGE;          //ダメージ量
 
     //高いところから降りたら
-    if (JS - JE > 0.5f)
+    if (JS - JE > HAS_DAMAGE)
     {
         pScissors_->CurrentHP -= (JS - JE + ND) * 2;
     }
 
     //平面移動or上った
-    if (JS - JE <= 0.5f)
+    if (JS - JE <= HAS_DAMAGE)
     {
         pScissors_->CurrentHP -= ND;
     }

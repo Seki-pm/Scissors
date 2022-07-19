@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include "Engine/Model.h"
 #include "PolygonCollider.h"
-
+#include "Stage.h"
+#include "Scissors.h"
 class Stage;
 
 //ハサミの刃を管理するクラス
@@ -10,10 +12,10 @@ class Blade : public GameObject
     int BladeModel_;
 
 public:
+
     bool isPrick;   //地面に刺さってるかどうか
     PolygonCollider collider;   //先端以外の当たり判定
     Stage* pStage_;  //ステージのアドレス
-
     
 public:
     //コンストラクタ

@@ -62,8 +62,10 @@ void Stage::Draw()
     Model::SetTransform(LoadHandle_[StageModel_], transform_);
     Model::Draw(LoadHandle_[StageModel_]);
 
+    //沈むフラグがたったら
     if (SinkFlg)
     {
+        //DengerImageとNumberを描画
         auto DengerTrans = Transform();
         DengerTrans.position_ = DENGER_IMAGE_POS;
         Image::SetTransform(LoadHandle_[DengerImage_], DengerTrans);
@@ -284,23 +286,23 @@ void Stage::Stage2()
     //スタートから穴まで
     {
         //スタートのの壁
-        pc1.AddPoint(-10, 28);
+        pc1.AddPoint(-10,   28);
         pc1.AddPoint(-3.7f, 28);
         pc1.AddPoint(-3.7f, -2);
-        pc1.AddPoint(-10, -2);
+        pc1.AddPoint(-10,   -2);
         colliders_.push_back(pc1);
 
         //最初の床
-        pc2.AddPoint(-5, 0);
-        pc2.AddPoint(42.5f, 0);
+        pc2.AddPoint(   -5,  0);
+        pc2.AddPoint(42.5f,  0);
         pc2.AddPoint(42.5f, -2);
-        pc2.AddPoint(-5, -2);
+        pc2.AddPoint(   -5, -2);
         colliders_.push_back(pc2);
 
         //少し高い床
         pc3.AddPoint(4.4f, 1.5f);
-        pc3.AddPoint(16, 1.5f);
-        pc3.AddPoint(16, 0);
+        pc3.AddPoint(  16, 1.5f);
+        pc3.AddPoint(  16, 0);
         pc3.AddPoint(4.4f, 0);
         colliders_.push_back(pc3);
 
@@ -313,16 +315,16 @@ void Stage::Stage2()
 
         //天井(地面)
         pc5.AddPoint(4.3f, 13.8f);
-        pc5.AddPoint(12, 13.8f);
-        pc5.AddPoint(12, 4.4f);
-        pc5.AddPoint(4.3f, 4.4f);
+        pc5.AddPoint(  12, 13.8f);
+        pc5.AddPoint(  12,  4.4f);
+        pc5.AddPoint(4.3f,  4.4f);
         colliders_.push_back(pc5);
 
         //壁（上）
         pc6.AddPoint(15.5f, 15.7f);
         pc6.AddPoint(18.8f, 15.7f);
-        pc6.AddPoint(18.8f, 8.3f);
-        pc6.AddPoint(15.5f, 8.3f);
+        pc6.AddPoint(18.8f,  8.3f);
+        pc6.AddPoint(15.5f,  8.3f);
         colliders_.push_back(pc6);
 
         //空中飛び石1
@@ -333,10 +335,10 @@ void Stage::Stage2()
         colliders_.push_back(pc7);
 
         //空中飛び石2
-        pc8.AddPoint(0.3f, 16.1f);
+        pc8.AddPoint(0.3f,  16.1f);
         pc8.AddPoint(0.74f, 16.1f);
         pc8.AddPoint(0.74f, 15.65f);
-        pc8.AddPoint(0.3f, 15.65f);
+        pc8.AddPoint(0.3f,  15.65f);
         colliders_.push_back(pc8);
 
         //凹凸1
@@ -482,8 +484,8 @@ void Stage::Stage2()
         colliders_.push_back(pc27);
 
         //ゴール壁
-        pc28.AddPoint(132.25f, 17.5f);
-        pc28.AddPoint(135.8f,  17.5f);
+        pc28.AddPoint(132.25f,  17.5f);
+        pc28.AddPoint(135.8f,   17.5f);
         pc28.AddPoint(135.8f,  -2.32f);
         pc28.AddPoint(132.25f, -2.32f);
         colliders_.push_back(pc28);
@@ -510,9 +512,9 @@ void Stage::Stage2Load()
 
         switch (i)
         {
-        case St1_Glass:
+        case St2_Gravel:
             LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage2/FootStep_Gravel.wav"); break;
-        case St1_Wood:
+        case St2_Stone:
             LoadHandle_[Sound_] = Audio::Load("Sound/InStage/Stage2/FootStep_Stone.wav"); break;
         }
         assert(Sound_ >= 0);
@@ -594,47 +596,47 @@ void Stage::Stage3()
         colliders_.push_back(pc8);
 
         //交互②(はじく)
-        pc9.AddPoint(40, 19);
+        pc9.AddPoint(40,    19);
         pc9.AddPoint(41.5f, 19);
         pc9.AddPoint(41.5f, 15);
-        pc9.AddPoint(40, 15);
+        pc9.AddPoint(40,    15);
         pc9.AddRepel(9);
         colliders_.push_back(pc9);
 
         //交互③
         pc10.AddPoint(41.5f, 19);
-        pc10.AddPoint(43, 19);
-        pc10.AddPoint(43, 15);
+        pc10.AddPoint(43,    19);
+        pc10.AddPoint(43,    15);
         pc10.AddPoint(41.5f, 15);
         colliders_.push_back(pc10);
 
         //交互④(はじく)
-        pc11.AddPoint(43, 19);
+        pc11.AddPoint(43,    19);
         pc11.AddPoint(44.5f, 19);
         pc11.AddPoint(44.5f, 15);
-        pc11.AddPoint(43, 15);
+        pc11.AddPoint(43,    15);
         pc11.AddRepel(11);
         colliders_.push_back(pc11);
 
         //交互⑤
         pc12.AddPoint(44.5f, 19);
-        pc12.AddPoint(46, 19);
-        pc12.AddPoint(46, 15);
+        pc12.AddPoint(46,    19);
+        pc12.AddPoint(46,    15);
         pc12.AddPoint(44.5f, 15);
         colliders_.push_back(pc12);
 
         //交互⑥(はじく)
-        pc13.AddPoint(46, 19);
+        pc13.AddPoint(46,    19);
         pc13.AddPoint(47.5f, 19);
         pc13.AddPoint(47.5f, 15);
-        pc13.AddPoint(46, 15);
+        pc13.AddPoint(46,    15);
         pc13.AddRepel(13);
         colliders_.push_back(pc13);
 
         //交互⑦
         pc14.AddPoint(47.5f, 19);
-        pc14.AddPoint(49, 19);
-        pc14.AddPoint(49, 15);
+        pc14.AddPoint(49,    19);
+        pc14.AddPoint(49,    15);
         pc14.AddPoint(47.5f, 15);
         colliders_.push_back(pc14);
 
@@ -670,23 +672,23 @@ void Stage::Stage3()
     //下コース
     {
         //下コース床
-        pc19.AddPoint(24, 0);
-        pc19.AddPoint(39, 0);
+        pc19.AddPoint(24,  0);
+        pc19.AddPoint(39,  0);
         pc19.AddPoint(39, -7);
         pc19.AddPoint(24, -7);
         colliders_.push_back(pc19);
 
         //沈む①
-        pc20.AddPoint(39, 0);
-        pc20.AddPoint(43, 0);
+        pc20.AddPoint(39,  0);
+        pc20.AddPoint(43,  0);
         pc20.AddPoint(43, -7);
         pc20.AddPoint(39, -7);
         pc20.AddSink(20);
         colliders_.push_back(pc20);
 
         //床②
-        pc21.AddPoint(43, 0);
-        pc21.AddPoint(49, 0);
+        pc21.AddPoint(43,  0);
+        pc21.AddPoint(49,  0);
         pc21.AddPoint(49, -7);
         pc21.AddPoint(43, -7);
         colliders_.push_back(pc21);
@@ -700,22 +702,22 @@ void Stage::Stage3()
         colliders_.push_back(pc22);
 
         //床③
-        pc23.AddPoint(52, 0);
-        pc23.AddPoint(56, 0);
+        pc23.AddPoint(52,  0);
+        pc23.AddPoint(56,  0);
         pc23.AddPoint(56, -7);
         pc23.AddPoint(52, -7);
         colliders_.push_back(pc23);
 
         //飛び床⑤
-        pc24.AddPoint(58, 1);
-        pc24.AddPoint(63, 1);
+        pc24.AddPoint(58,  1);
+        pc24.AddPoint(63,  1);
         pc24.AddPoint(63, -3);
         pc24.AddPoint(58, -3);
         colliders_.push_back(pc24);
 
         //飛び床⑥
-        pc25.AddPoint(65, 3);
-        pc25.AddPoint(69, 3);
+        pc25.AddPoint(65,  3);
+        pc25.AddPoint(69,  3);
         pc25.AddPoint(69, -1);
         pc25.AddPoint(65, -1);
         colliders_.push_back(pc25);
