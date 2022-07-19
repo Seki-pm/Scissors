@@ -7,12 +7,13 @@
 //コンストラクタ
 Pause::Pause(GameObject* parent)
     :GameObject(parent, "Pause"),
-    PauseBackImage_(-1), ContinueImage_(-1),
-    BackMenuImage_(-1), SelectFrameImage_(-1),
-    select_(0), alpha_(150)
+     select_(0), alpha_(150)
 {
-    Continue.position_ = CONTINUE_POS;
-    BackMenu.position_ = BACKMENU_POS;
+    //Load 初期化
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
 }
 
 //デストラクタ
@@ -23,22 +24,25 @@ Pause::~Pause()
 //初期化
 void Pause::Initialize()
 {
-    //画像データのロード
+    Continue.position_ = CONTINUE_POS;
+    BackMenu.position_ = BACKMENU_POS;
+
+    //-------------------- 画像データのロード --------------------------
     //不透明背景
-    PauseBackImage_ = Image::Load("Image/InGameMenu/BlackBack.png");
-    assert(PauseBackImage_ >= 0);
+    LoadHandle_[PauseBackImage_] = Image::Load("Image/InGameMenu/BlackBack.png");
+    assert(LoadHandle_[PauseBackImage_] >= 0);
 
     //続ける
-    ContinueImage_ = Image::Load("Image/InGameMenu/Continue.png");
-    assert(ContinueImage_ >= 0);
+    LoadHandle_[ContinueImage_] = Image::Load("Image/InGameMenu/Continue.png");
+    assert(LoadHandle_[ContinueImage_] >= 0);
 
     //ステージ選択に戻る
-    BackMenuImage_ = Image::Load("Image/InGameMenu/BackButton.png");
-    assert(BackMenuImage_ >= 0);
+    LoadHandle_[BackMenuImage_] = Image::Load("Image/InGameMenu/BackButton.png");
+    assert(LoadHandle_[BackMenuImage_] >= 0);
 
     //セレクトフレーム
-    SelectFrameImage_ = Image::Load("Image/InGameMenu/SelectFrame.png");
-    assert(SelectFrameImage_ >= 0);
+    LoadHandle_[SelectFrameImage_] = Image::Load("Image/InGameMenu/SelectFrame.png");
+    assert(LoadHandle_[SelectFrameImage_] >= 0);
 
 }
 
@@ -62,15 +66,15 @@ void Pause::Draw()
 {
 
     //背景
-    Image::SetAlpha(PauseBackImage_, alpha_);
-    Image::SetTransform(PauseBackImage_, transform_);
-    Image::Draw(PauseBackImage_);
+    Image::SetAlpha(LoadHandle_[PauseBackImage_], alpha_);
+    Image::SetTransform(LoadHandle_[PauseBackImage_], transform_);
+    Image::Draw(LoadHandle_[PauseBackImage_]);
 
-    Image::SetTransform(ContinueImage_, Continue);
-    Image::Draw(ContinueImage_);
+    Image::SetTransform(LoadHandle_[ContinueImage_], Continue);
+    Image::Draw(LoadHandle_[ContinueImage_]);
 
-    Image::SetTransform(BackMenuImage_, BackMenu);
-    Image::Draw(BackMenuImage_);
+    Image::SetTransform(LoadHandle_[BackMenuImage_], BackMenu);
+    Image::Draw(LoadHandle_[BackMenuImage_]);
 
 
 
@@ -79,7 +83,7 @@ void Pause::Draw()
     //プレイシーンに戻るが選択されいるとき
     if (select_ == 0)
     {
-        Image::SetTransform(SelectFrameImage_, Continue);
+        Image::SetTransform(LoadHandle_[SelectFrameImage_], Continue);
 
         if (Input::IsKeyDown(DIK_SPACE))
         {
@@ -89,17 +93,18 @@ void Pause::Draw()
     //メニューシーンに戻るが選択されているとき
     else if (select_ == 1)
     {
-        Image::SetTransform(SelectFrameImage_, BackMenu);
+        Image::SetTransform(LoadHandle_[SelectFrameImage_], BackMenu);
     }
 
-    Image::Draw(SelectFrameImage_);
+    Image::Draw(LoadHandle_[SelectFrameImage_]);
 }
 
 //開放
 void Pause::Release()
 {
-    PauseBackImage_ = -1;
-    ContinueImage_ = -1;
-    BackMenuImage_ = -1;
-    SelectFrameImage_ = -1;
+    //Load 開放
+    for (int i = LOAD_MIN + 1; i < LOAD_MAX; i++)
+    {
+        LoadHandle_[i] = INITIAL_ERROR_VALUE;
+    }
 }

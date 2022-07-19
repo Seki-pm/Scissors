@@ -6,7 +6,8 @@
 //コンストラクタ
 Blade::Blade(GameObject* parent)
     :GameObject(parent, "Blade"),
-    pStage_(nullptr),isPrick(false),BladeModel_(-1)
+     pStage_(nullptr),isPrick(false),
+     BladeModel_(INITIAL_ERROR_VALUE)
 {
 }
 

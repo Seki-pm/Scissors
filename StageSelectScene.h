@@ -44,9 +44,9 @@ private:
 	//サウンド
 	enum SELECT_SOUND
 	{
-		SOUND_SELECT = 1,
-		SOUND_DETERMINATION = 2,
-		SOUND_LOCK = 3,
+		SOUND_SELECT = 1,       //選択音
+		SOUND_DETERMINATION = 2,//決定音
+		SOUND_LOCK = 3,         //ロック音
 		SOUND_MAX
 	};
 
@@ -54,9 +54,9 @@ private:
 	enum Load
 	{
 		LOAD_MIN = 0,
-		FrameImage_,
-		BackImage_,
-		DescriptionImage_,
+		FrameImage_,       //フレーム画像
+		BackImage_,        //背景画像
+		DescriptionImage_, //説明画像
 		LOAD_MAX
 	};
 

@@ -4,10 +4,21 @@
 //一時停止を管理するクラス
 class Pause : public GameObject
 {
-    int PauseBackImage_;    //pauseの背景
-    int ContinueImage_;     //プレイシーンに戻るボタン
-    int BackMenuImage_;     //メニューシーンに戻るボタン
-    int SelectFrameImage_;  //選択用フレーム
+
+    //ロード用変数
+    enum Load
+    {
+        LOAD_MIN = 0,
+        PauseBackImage_,    //pauseの背景
+        ContinueImage_,     //プレイシーンに戻るボタン
+        BackMenuImage_,     //メニューシーンに戻るボタン
+        SelectFrameImage_,  //選択用フレーム
+        LOAD_MAX
+    };
+
+    //enumを入れる配列
+    int LoadHandle_[LOAD_MAX];
+
 
     //メンバ変数
     int select_;    //選択

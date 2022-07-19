@@ -4,7 +4,9 @@
 //コンストラクタ
 HP::HP(GameObject* parent)
     :GameObject(parent, "HP"),
-    pGauge_(nullptr),GaugeImage_(-1), GaugeFrameImage_(-1), pScissors_(nullptr)
+     pGauge_(nullptr), pScissors_(nullptr),
+     GaugeImage_(INITIAL_ERROR_VALUE), 
+     GaugeFrameImage_(INITIAL_ERROR_VALUE)
 {
 }
 

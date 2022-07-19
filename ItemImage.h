@@ -9,8 +9,8 @@
 class ItemImage : public GameObject
 {
     //画像ロード用
-    int FrameImage_;
-    int CoinImage_;
+    int FrameImage_;  //アイテムフレーム画像
+    int CoinImage_;   //コイン画像
 
     //定数
     const XMFLOAT3 FRAME_SIZE = XMFLOAT3(0.3f, 0.3f, 0.3f);  //フレームのサイズ

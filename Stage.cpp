@@ -81,6 +81,9 @@ void Stage::Release()
     {
         LoadHandle_[i] = INITIAL_ERROR_VALUE;
     }
+
+    Global::Repel_.clear();
+    Global::Sink_.clear();
 }
 
 // 引数の点の位置がステージに当たってるかチェック

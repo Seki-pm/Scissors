@@ -34,8 +34,8 @@ class Scissors : public GameObject
     float JumpPower;
 
     //’e‚©‚ê‚½Žž—p
-    int Key;
-    float powerY;
+    int Key;      //•ûŒü’è‚ß‚é
+    float powerY; 
     float powerX;
     bool IsRepel;
 

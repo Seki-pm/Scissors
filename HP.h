@@ -13,8 +13,8 @@ class HP : public GameObject
 
 
     //ロード用変数
-    int GaugeImage_;    
-    int GaugeFrameImage_;
+    int GaugeImage_;      //ゲージ画像
+    int GaugeFrameImage_; //ゲージフレーム画像
 
     Transform FrameTrans;
 

@@ -80,8 +80,6 @@ void StageScene::Draw()
 //ŠJ•ú
 void StageScene::Release()
 {
-    Global::Repel_.clear();
-    Global::Sink_.clear();
 }
 
 //GameOver
