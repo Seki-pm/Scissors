@@ -145,7 +145,7 @@ void StageSelectScene::Update()
 	{
 		//1Ç»ÇÁSTAGE1Ç÷
 		if (Global::SelectStage == STAGE_NUMBER_1 ||
-			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 || 
+			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 ||
 			Global::SelectStage == STAGE_NUMBER_3 && Global::Unlock3)
 		{
 			Audio::Play(SoundHandle_[SOUND_DETERMINATION]); //Åõ

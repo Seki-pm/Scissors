@@ -69,6 +69,8 @@ private:
 
 	bool Drawflg; //•\Ž¦‚³‚¹‚é‚©”Û‚©(ˆê“x‚¾‚¯)
 
+
+
 	//Šetransform
 	Transform Stage[STAGE_NUMBER_MAX];
 	Transform Lock[STAGE_LOCK_MAX];
