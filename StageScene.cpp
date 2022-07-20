@@ -4,7 +4,7 @@
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
-      Gselect_(-1), Pselect_(-1)
+      Gselect_(INITIAL_ERROR_VALUE), Pselect_(INITIAL_ERROR_VALUE)
 {
 }
 
@@ -52,22 +52,16 @@ void StageScene::Update()
     //ゴール演出用
     Timer();
 
-    //取得してからGameOverの場合コインを再表示する
-    //取得しているものは取得してないこととする
+    //取得してからリスタートの場合コインを再表示する
+    //取得しているものは取得してない様にする
     if (Global::GetCoin && Global::ItemReDraw)
     {
         Instantiate<ItemModel>(this);
         Global::ItemReDraw = false;
-        Global::GetCoin = false;
-
-        //取得したコインを無くす
-        switch (Global::SelectStage)
-        {
-        case STAGE_NUMBER_1:   Global::GetCoin_1 = false; break;
-        case STAGE_NUMBER_2:   Global::GetCoin_2 = false; break;
-        case STAGE_NUMBER_3:   Global::GetCoin_3 = false; break;
-        }
+        CoinDelete();  //コインの取得を無くす
     }
+
+
 }
 
 //描画
@@ -80,10 +74,10 @@ void StageScene::Release()
 {
 }
 
-//GameOver
+//ゲームオーバー
 void StageScene::GameOverSEL()
 {
-    GameOver* pGameOver = (GameOver*)FindObject("GameOver");
+    GameOver* pGameOver_ = (GameOver*)FindObject("GameOver");
 
     if (Global::IsGameOver)
     {
@@ -91,41 +85,49 @@ void StageScene::GameOverSEL()
         Instantiate<GameOver>(this);
         Global::IsGameOver = false;
 
-        //アイテム再表示
-        Global::ItemReDraw = true;
     }
 
     //GameOverになったら
     if (Global::GameOver)
     {
         //ボタンを選択
-        //選択
-        if (Input::IsKeyDown(DIK_LEFT))
         {
-            Gselect_ = 0;
-            //GameOverクラスに渡す
-            pGameOver->SetSelect(Gselect_);
-        }
-        if (Input::IsKeyDown(DIK_RIGHT))
-        {
-            Gselect_ = 1;
-            //GameOverクラスに渡す
-            pGameOver->SetSelect(Gselect_);
+            if (Input::IsKeyDown(DIK_LEFT))
+            {
+                Gselect_ = 0;
+                //GameOverクラスに渡す
+                pGameOver_->SetSelect(Gselect_);
+            }
+            if (Input::IsKeyDown(DIK_RIGHT))
+            {
+                Gselect_ = 1;
+                //GameOverクラスに渡す
+                pGameOver_->SetSelect(Gselect_);
+            }
         }
 
-        //StageSelectSceneに戻る
-        if (Input::IsKeyDown(DIK_SPACE) && Gselect_ == 1)
+        //SPACEを押したとき
+        if (Input::IsKeyDown(DIK_SPACE))
         {
-            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-            pSceneManager->ChangeScene(SCENE_ID_SELECT);
+            if (Gselect_ == 0)
+            {
+                pGameOver_->KillMe();     //GameOverを消す
+                pGameOver_->pScissors_->Restart(); //スタートに戻る
+            }
+            else if (Gselect_ == 1)
+            {
+                //ステージ選択シーンに移動
+                SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+                pSceneManager->ChangeScene(SCENE_ID_SELECT);
+            }
         }
     }
 }
 
-//Pause
+//ポーズ
 void StageScene::PauseSEL()
 {
-    Pause* pPause = (Pause*)FindObject("Pause");
+    Pause* pPause_ = (Pause*)FindObject("Pause");
 
     //一時停止する(falseの時のみ)
     if (!Global::Pause) {
@@ -135,33 +137,44 @@ void StageScene::PauseSEL()
             Global::Pause = true;
         }
     }
+
     //一時停止されたとき
     if (Global::Pause)
     {
         //ボタンを選択
-        if (Input::IsKeyDown(DIK_LEFT))
         {
-            Pselect_ = 0;
-            //Pauseクラスに渡す
-            pPause->SetSelect(Pselect_);
-        }
-        if (Input::IsKeyDown(DIK_RIGHT))
-        {
-            Pselect_ = 1;
-            //Pauseクラスに渡す
-            pPause->SetSelect(Pselect_);
+            if (Input::IsKeyDown(DIK_LEFT))
+            {
+                Pselect_ = 0;
+                //Pauseクラスに渡す
+                pPause_->SetSelect(Pselect_);
+            }
+            if (Input::IsKeyDown(DIK_RIGHT))
+            {
+                Pselect_ = 1;
+                //Pauseクラスに渡す
+                pPause_->SetSelect(Pselect_);
+            }
         }
 
-
-        //メニューシーンに移動する
-        if (Input::IsKeyDown(DIK_SPACE) && Pselect_ == 1)
+        //SPACEを押したとき
+        if (Input::IsKeyDown(DIK_SPACE))
         {
-            Global::GetCoin = false;
             Global::Pause = false;
 
-            //メニューシーンに移動
-            SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
-            pSceneManager->ChangeScene(SCENE_ID_SELECT);
+            if (Pselect_ == 0)
+            {
+                pPause_->KillMe(); //Pauseを消す
+            }
+            else if (Pselect_ == 1)
+            {
+                CoinDelete(); //コインの取得を無くす
+                //GetCoinSave();
+
+                //ステージ選択シーンに移動
+                SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
+                pSceneManager->ChangeScene(SCENE_ID_SELECT);
+            }
         }
     }
 }
@@ -225,3 +238,29 @@ void StageScene::Timer()
     }
 }
 
+//取得コインの削除
+void StageScene::CoinDelete()
+{
+    Global::GetCoin = false;
+
+    //取得したコインを無くす
+    switch (Global::SelectStage)
+    {
+    case STAGE_NUMBER_1:   Global::GetCoin_1 = false; break;
+    case STAGE_NUMBER_2:   Global::GetCoin_2 = false; break;
+    case STAGE_NUMBER_3:   Global::GetCoin_3 = false; break;
+    }
+}
+
+void StageScene::GetCoinSave()
+{
+    switch (Global::SelectStage)
+    {
+    case STAGE_NUMBER_1:
+        if (Global::GetCoin_1) Global::GetCoin = true; break;
+    case STAGE_NUMBER_2:
+        if (Global::GetCoin_2) Global::GetCoin = true; break;
+    case STAGE_NUMBER_3:
+        if (Global::GetCoin_3) Global::GetCoin = true; break;
+    }
+}

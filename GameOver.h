@@ -37,6 +37,8 @@ class GameOver : public GameObject
     const XMFLOAT3 BACKMENU_POS = XMFLOAT3(0.3f, 0, 0); //「ステージ選択に戻る」位置
 
 public:
+    Scissors* pScissors_;
+
     //コンストラクタ
     GameOver(GameObject* parent);
 

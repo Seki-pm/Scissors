@@ -2,8 +2,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/Model.h"
 #include "PolygonCollider.h"
-#include "Stage.h"
-#include "Scissors.h"
+
 class Stage;
 
 //ハサミの刃を管理するクラス

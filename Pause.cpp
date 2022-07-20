@@ -48,15 +48,6 @@ void Pause::Initialize()
 //更新
 void Pause::Update()
 {
-    //プレイシーンに戻るが選択されているとき
-    if (Global::Pause && select_ == 0)
-    {
-        if (Input::IsKeyDown(DIK_SPACE))
-        {
-            KillMe();
-            Global::Pause = false;
-        }
-    }
 }
 
 //描画
@@ -73,7 +64,6 @@ void Pause::Draw()
 
     Image::SetTransform(LoadHandle_[BackMenuImage_], BackMenu);
     Image::Draw(LoadHandle_[BackMenuImage_]);
-
 
 
 

@@ -1,4 +1,6 @@
 #include "Blade.h"
+#include "Scissors.h"
+#include "Stage.h"
 
 //コンストラクタ
 Blade::Blade(GameObject* parent)

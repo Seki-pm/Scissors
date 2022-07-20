@@ -64,4 +64,10 @@ public:
 
 	//ゴール演出用
 	void Timer();
+
+	//リスタート時のコイン削除用
+	void CoinDelete();
+
+	//取得したコインの保存機能
+	void GetCoinSave();
 };
