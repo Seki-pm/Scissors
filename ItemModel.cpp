@@ -1,6 +1,5 @@
 #include "ItemModel.h"
 
-
 //コンストラクタ
 ItemModel::ItemModel(GameObject* parent)
     :GameObject(parent, "ItemModel"),
@@ -79,9 +78,9 @@ void ItemModel::OnCollision(GameObject* pTarget)
         //どこのコインを取得したか
         switch (Global::SelectStage)
         {
-        case STAGE_NUMBER_1: Global::GetCoin_1 = true; break;
-        case STAGE_NUMBER_2: Global::GetCoin_2 = true; break;
-        case STAGE_NUMBER_3: Global::GetCoin_3 = true; break;
+        case STAGE_NUMBER_1: Global::stage1.Get_Coin = true; break;
+        case STAGE_NUMBER_2: Global::stage2.Get_Coin = true; break;
+        case STAGE_NUMBER_3: Global::stage3.Get_Coin = true; break;
         }
 
         Global::GetCoin = true;

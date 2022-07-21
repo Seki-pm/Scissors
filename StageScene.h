@@ -23,6 +23,9 @@ class StageScene : public GameObject
 {
 	Global gl;
 
+
+
+
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 
@@ -65,9 +68,6 @@ public:
 	//ゴール演出用
 	void Timer();
 
-	//リスタート時のコイン削除用
-	void CoinDelete();
-
-	//取得したコインの保存機能
-	void GetCoinSave();
+	//各ステージのコインを入手したかどうかの判定
+	void GetCoinJudge();
 };

@@ -4,7 +4,7 @@
 //コンストラクタ
 StageScene::StageScene(GameObject* parent)
 	: GameObject(parent, "StageScene"),
-      Gselect_(INITIAL_ERROR_VALUE), Pselect_(INITIAL_ERROR_VALUE)
+      Gselect_(0), Pselect_(0)
 {
 }
 
@@ -13,9 +13,9 @@ void StageScene::Initialize()
 {                      
     Global::ItemImagePos = ITEMIMAGE_POSITION_STAGE;      //コインの位置をステージ用に設定
     Global::ItemImageSca = ITEMIMAGE_SCALE_STAGE;         //コインの大きさをステージ用に設定
-    Global::GameOver = false;                               //GameOverではない
-    Global::IsGameOver = false;                             //GameOverではない
-    Global::GetCoin = false;                                //コインを取得していない
+    Global::GameOver = false;                             //GameOverではない
+    Global::IsGameOver = false;                           //GameOverではない
+    GetCoinJudge();                                       //コイン入手判定
 
     //ステージ
     Stage* pStage_ = Instantiate<Stage>(this);
@@ -58,7 +58,7 @@ void StageScene::Update()
     {
         Instantiate<ItemModel>(this);
         Global::ItemReDraw = false;
-        CoinDelete();  //コインの取得を無くす
+        GetCoinJudge(); //コイン入手判定
     }
 
 
@@ -168,8 +168,8 @@ void StageScene::PauseSEL()
             }
             else if (Pselect_ == 1)
             {
-                CoinDelete(); //コインの取得を無くす
-                //GetCoinSave();
+                
+                GetCoinJudge(); //コイン入手判定
 
                 //ステージ選択シーンに移動
                 SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
@@ -216,8 +216,8 @@ void StageScene::NextStageUnlock( int SelectStage )
 {
     switch (SelectStage)
     {
-    case STAGE_NUMBER_1: Global::Unlock2 = true; break;
-    case STAGE_NUMBER_2: Global::Unlock3 = true; break;
+    case STAGE_NUMBER_1: Global::stage2.UnLock = true; break;
+    case STAGE_NUMBER_2: Global::stage3.UnLock = true; break;
     case STAGE_NUMBER_3: break;
     }
 }
@@ -238,29 +238,47 @@ void StageScene::Timer()
     }
 }
 
-//取得コインの削除
-void StageScene::CoinDelete()
+//各ステージのコインを入手したかどうかの判定
+void StageScene::GetCoinJudge()
 {
     Global::GetCoin = false;
 
-    //取得したコインを無くす
-    switch (Global::SelectStage)
-    {
-    case STAGE_NUMBER_1:   Global::GetCoin_1 = false; break;
-    case STAGE_NUMBER_2:   Global::GetCoin_2 = false; break;
-    case STAGE_NUMBER_3:   Global::GetCoin_3 = false; break;
-    }
-}
-
-void StageScene::GetCoinSave()
-{
+    //現在のステージのコインを取得しているか
     switch (Global::SelectStage)
     {
     case STAGE_NUMBER_1:
-        if (Global::GetCoin_1) Global::GetCoin = true; break;
+        //クリアフラグがtrueなら
+        if (Global::stage1.Clear) {
+            Global::GetCoin = true;
+            Global::stage1.Get_Coin = true;
+        }
+        else
+        {
+            Global::GetCoin = false;
+            Global::stage1.Get_Coin = false;
+        }
+        break;
     case STAGE_NUMBER_2:
-        if (Global::GetCoin_2) Global::GetCoin = true; break;
+        if (Global::stage2.Clear) {
+            Global::GetCoin = true;
+            Global::stage2.Get_Coin = true;
+        }
+        else
+        {
+            Global::GetCoin = false;
+            Global::stage2.Get_Coin = false;
+        }
+        break;
     case STAGE_NUMBER_3:
-        if (Global::GetCoin_3) Global::GetCoin = true; break;
+        if (Global::stage3.Clear) {
+            Global::GetCoin = true;
+            Global::stage3.Get_Coin = true;
+        }
+        else
+        {
+            Global::GetCoin = false;
+            Global::stage3.Get_Coin = false;
+        }
+        break;
     }
 }

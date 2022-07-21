@@ -63,15 +63,14 @@ void Scissors::Update()
 
         //座標を送る
         SetPosition();
+
+        //スタートからやり直し（リトライ）
+        if (Input::IsKeyDown(DIK_R))
+        {
+            Restart();
+        }
     }
  
-
-    //スタートからやり直し（リトライ）
-    if (Input::IsKeyDown(DIK_R))
-    {
-        Restart();
-    }
-
 
     //落下したら or 沈んだら
     if (transform_.position_.y <= FALL_MAX 

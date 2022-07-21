@@ -145,8 +145,8 @@ void StageSelectScene::Update()
 	{
 		//1ならSTAGE1へ
 		if (Global::SelectStage == STAGE_NUMBER_1 ||
-			Global::SelectStage == STAGE_NUMBER_2 && Global::Unlock2 ||
-			Global::SelectStage == STAGE_NUMBER_3 && Global::Unlock3)
+			Global::SelectStage == STAGE_NUMBER_2 && Global::stage2.UnLock ||
+			Global::SelectStage == STAGE_NUMBER_3 && Global::stage3.UnLock)
 		{
 			Audio::Play(SoundHandle_[SOUND_DETERMINATION]); //○
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
@@ -161,8 +161,8 @@ void StageSelectScene::Update()
 	//隠しコマンド 全ステージアンロック
 	if (Input::IsKeyDown(DIK_LSHIFT))
 	{
-		Global::Unlock2 = true;
-		Global::Unlock3 = true;
+		Global::stage2.UnLock = true;
+		Global::stage3.UnLock = true;
 	}
 
 	//選択
@@ -295,14 +295,14 @@ void StageSelectScene::StageUnlock()
 	Image::Draw(StageHandle_[STAGE_NUMBER_1]);
 
 	//アンロックフラグを基に描画の内容を変える
-	if (Global::Unlock2){
+	if (Global::stage2.UnLock){
 		Image::Draw(StageHandle_[STAGE_NUMBER_2]);
 	}
 	else{
 		Image::Draw(StageLockHandle_[STAGE_LOCK_2]);
 	}
 
-	if (Global::Unlock3){
+	if (Global::stage3.UnLock){
 		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
 	}
 	else{
@@ -319,19 +319,19 @@ void StageSelectScene::GetCoin()
 		Global::ItemImageSca = ITEMIMAGE_SCALE_SELECT; //表示サイズ
 
 		//Stage1のコイン
-		if (Global::GetCoin_1)
+		if (Global::stage1.Get_Coin)
 		{
 			Global::ItemImagePos = ST1_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示
 		}
 		//Stage2のコイン
-		if (Global::GetCoin_2)
+		if (Global::stage2.Get_Coin)
 		{
 			Global::ItemImagePos = ST2_ITEMIMAGE_POS;//表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
 		//Stage3のコイン
-		if (Global::GetCoin_3)
+		if (Global::stage3.Get_Coin)
 		{
 			Global::ItemImagePos = ST3_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示

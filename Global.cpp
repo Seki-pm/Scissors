@@ -13,26 +13,23 @@ XMFLOAT3 Global::ItemImageSca = XMFLOAT3(0,0,0);
 
 int Global::SelectStage = 1;
 
-vector<int>Global::Repel_;
-vector<int>Global::Sink_;
-
-bool Global::Unlock2 = false;
-bool Global::Unlock3 = false;
+int Global::MAXHP = 500;
 
 bool Global::GetCoin  = false;
-bool Global::GetCoin_1 = false;
-bool Global::GetCoin_2 = false;
-bool Global::GetCoin_3 = false;
-
 bool Global::Pause  = false;
 bool Global::GameOver = false;
 bool Global::IsGameOver = false;
-
 bool Global::ItemReDraw = false;
 
-int   Global::MAXHP = 500;
+vector<int>Global::Repel_;
+vector<int>Global::Sink_;
+
+Global::Stage_Status Global::stage1 = { false,false,false };
+Global::Stage_Status Global::stage2 = { false,false,false };
+Global::Stage_Status Global::stage3 = { false,false,false };
 
 
+//ÉOÉçÅ[ÉoÉãä÷êî
 void Global::SetTransPos(XMFLOAT3 position)
 {
 	Position_ = position;

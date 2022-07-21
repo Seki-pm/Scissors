@@ -16,26 +16,19 @@ private:
 
 public:
 
-	//StageSelectSceneの選択されている番号
-	static int SelectStage;
-
 	//コインの表示位置・大きさ
 	static XMFLOAT3 ItemModelPos;  //モデル位置
 	static XMFLOAT3 ItemImagePos;  //画像位置
 	static XMFLOAT3 ItemImageSca;  //画像サイズ
 
-	//StageUnlock変数
-	static bool Unlock2;
-	static bool Unlock3;
+	//StageSelectSceneの選択されている番号
+	static int SelectStage;
 
 	//Playerの最大HP
-	static int MAXHP;           //最大HP
+	static int MAXHP; 
 
 	//Globalのフラグ
 	static bool GetCoin;        //コインのGetしたか
-	static bool GetCoin_1;      //Stage1のコインをGet
-	static bool GetCoin_2;      //Stage2のコインをGet
-	static bool GetCoin_3;      //Stage3のコインをGet
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
 	static bool Pause;          //Pause用
@@ -44,6 +37,21 @@ public:
 	//地面ギミック用動的配列
 	static vector<int> Repel_;
 	static vector<int> Sink_;
+
+
+	//ステージの状態を表す構造体
+	struct Stage_Status {
+		bool UnLock;   //アンロック状態
+		bool Get_Coin; //コインの状態
+		bool Clear;    //クリア状態
+	};
+
+	//構造体にアクセスするための変数
+	static Global::Stage_Status stage1;
+	static Global::Stage_Status stage2;
+	static Global::Stage_Status stage3;
+
+
 
 	//ハサミの位置を設定&送る
 	void SetTransPos(XMFLOAT3 position);

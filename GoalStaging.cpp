@@ -1,4 +1,5 @@
 #include "GoalStaging.h"
+#include "StageSelectScene.h"
 
 //コンストラクタ
 GoalStaging::GoalStaging(GameObject* parent)
@@ -94,6 +95,8 @@ void GoalStaging::Draw()
         //Enterキーを押したら
         if (Input::IsKeyDown(DIK_RETURN))
         {
+            ClearJudge(); //クリア判定
+
             Audio::Play(LoadHandle_[GoalSound_]);
 
             StringFlg = false;
@@ -143,5 +146,20 @@ void GoalStaging::Timer()
     {
         timer_ = true;
         time_ = 0;
+    }
+}
+
+//クリア判定
+void GoalStaging::ClearJudge()
+{
+    //コインを入手してクリアをしたらフラグを立てる
+    switch (Global::SelectStage)
+    {
+    case STAGE_NUMBER_1:
+        if (Global::stage1.Get_Coin) Global::stage1.Clear = true; break;
+    case STAGE_NUMBER_2:
+        if (Global::stage2.Get_Coin) Global::stage2.Clear = true; break;
+    case STAGE_NUMBER_3:
+        if (Global::stage3.Get_Coin) Global::stage3.Clear = true; break;
     }
 }

@@ -74,4 +74,7 @@ public:
 
     //タイマー
     void Timer();
+
+    //クリア判定
+    void ClearJudge();
 };
