@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Direct3D.h"
 #include <vector>
+#include <bitset>
 using namespace std;
 
 //グローバル変数（シーンをまたいで有効）
@@ -40,18 +41,26 @@ public:
 
 
 	//ステージの状態を表す構造体
-	struct Stage_Status {
-		bool UnLock;   //アンロック状態
-		bool Get_Coin; //コインの状態
-		bool Clear;    //クリア状態
+	static struct Stage_Status {
+		const unsigned char UnLock;
+		const unsigned char GetCoin;
+		const unsigned char Clear;
 	};
+
+	//ステージの状態を入れる変数
+	//
+	static int Status;
+
 
 	//構造体にアクセスするための変数
 	static Global::Stage_Status stage1;
 	static Global::Stage_Status stage2;
 	static Global::Stage_Status stage3;
 
-
+	//ビットフラグ管理
+	void setState(const unsigned char sstate );   //フラグを立てる
+	void unsetState(const unsigned char sstate);  //フラグを下げる
+	bool getState(const unsigned char sstate);    //フラグを確認する
 
 	//ハサミの位置を設定&送る
 	void SetTransPos(XMFLOAT3 position);

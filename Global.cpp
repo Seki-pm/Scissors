@@ -24,9 +24,12 @@ bool Global::ItemReDraw = false;
 vector<int>Global::Repel_;
 vector<int>Global::Sink_;
 
-Global::Stage_Status Global::stage1 = { false,false,false };
-Global::Stage_Status Global::stage2 = { false,false,false };
-Global::Stage_Status Global::stage3 = { false,false,false };
+int Global::Status = 0x0000;
+
+//ビットフラグで管理
+Global::Stage_Status Global::stage1 = { 1 << 0 ,1 << 1 ,1 << 2 };
+Global::Stage_Status Global::stage2 = { 1 << 3 ,1 << 4 ,1 << 5 };
+Global::Stage_Status Global::stage3 = { 1 << 6 ,1 << 7 ,1 << 8 };
 
 
 //グローバル関数
@@ -59,3 +62,21 @@ XMFLOAT2 Global::GetCameraGoal()
 {
 	return Camera_Goal;
 }
+
+
+void Global::setState(const unsigned char sstate )
+{
+	Status = Status | sstate; //フラグを立てるときは　OR
+}
+
+
+void Global::unsetState(const unsigned char sstate)
+{
+	Status = Status & ~sstate; //フラグを下げるときは AND NOT
+}
+
+bool Global::getState(const unsigned char sstate)
+{
+	return(Status & sstate); //フラグを確認するときは AND
+}
+

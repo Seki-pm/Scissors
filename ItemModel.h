@@ -11,6 +11,8 @@
 //コインを管理するクラス
 class ItemModel : public GameObject
 {
+    Global gl;
+
     int CoinModel_; //コインモデル用変数
     int CoinSound_; //コイン取得時の音
 

@@ -68,7 +68,7 @@ private:
 
 	bool Drawflg; //•\Ž¦‚³‚¹‚é‚©”Û‚©(ˆê“x‚¾‚¯)
 
-
+	Global gl;
 
 	//Šetransform
 	Transform Stage[STAGE_NUMBER_MAX];

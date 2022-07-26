@@ -23,9 +23,6 @@ class StageScene : public GameObject
 {
 	Global gl;
 
-
-
-
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数
 

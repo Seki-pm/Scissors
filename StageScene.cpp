@@ -216,8 +216,8 @@ void StageScene::NextStageUnlock( int SelectStage )
 {
     switch (SelectStage)
     {
-    case STAGE_NUMBER_1: Global::stage2.UnLock = true; break;
-    case STAGE_NUMBER_2: Global::stage3.UnLock = true; break;
+    case STAGE_NUMBER_1: gl.setState(Global::stage2.UnLock); break;
+    case STAGE_NUMBER_2: gl.setState(Global::stage3.UnLock); break;
     case STAGE_NUMBER_3: break;
     }
 }
@@ -248,36 +248,36 @@ void StageScene::GetCoinJudge()
     {
     case STAGE_NUMBER_1:
         //クリアフラグがtrueなら
-        if (Global::stage1.Clear) {
+        if (gl.getState(Global::stage1.Clear)) {
             Global::GetCoin = true;
-            Global::stage1.Get_Coin = true;
+            gl.setState(Global::stage1.GetCoin);
         }
         else
         {
             Global::GetCoin = false;
-            Global::stage1.Get_Coin = false;
+            gl.unsetState(Global::stage1.GetCoin);
         }
         break;
     case STAGE_NUMBER_2:
-        if (Global::stage2.Clear) {
+        if (gl.getState(Global::stage2.Clear)) {
             Global::GetCoin = true;
-            Global::stage2.Get_Coin = true;
+            gl.setState(Global::stage2.GetCoin);
         }
         else
         {
             Global::GetCoin = false;
-            Global::stage2.Get_Coin = false;
+            gl.unsetState(Global::stage2.GetCoin);
         }
         break;
     case STAGE_NUMBER_3:
-        if (Global::stage3.Clear) {
+        if (gl.getState(Global::stage3.Clear)) {
             Global::GetCoin = true;
-            Global::stage3.Get_Coin = true;
+            gl.setState(Global::stage3.GetCoin);
         }
         else
         {
             Global::GetCoin = false;
-            Global::stage3.Get_Coin = false;
+            gl.unsetState(Global::stage3.GetCoin);
         }
         break;
     }

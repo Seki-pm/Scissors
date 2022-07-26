@@ -11,7 +11,6 @@ class GoalStaging : public GameObject
 {
     Global gl; //globalを使う
 
-
     //ロード用変数
     enum Load
     {

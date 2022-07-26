@@ -26,6 +26,7 @@ void ItemModel::Initialize()
         CoinSound_ = Audio::Load("Sound/InStage/Get_Coin.wav");
         assert(CoinSound_ >= 0);
     }
+    //-----------------------------
 
     //コインの位置を設定
     transform_.position_ = Global::ItemModelPos;
@@ -71,6 +72,7 @@ void ItemModel::Release()
 //何かに当たった
 void ItemModel::OnCollision(GameObject* pTarget)
 {
+
     //当たったときの処理
     //Playerに当たったとき
     if (pTarget->GetObjectName() == "Scissors")
@@ -78,9 +80,9 @@ void ItemModel::OnCollision(GameObject* pTarget)
         //どこのコインを取得したか
         switch (Global::SelectStage)
         {
-        case STAGE_NUMBER_1: Global::stage1.Get_Coin = true; break;
-        case STAGE_NUMBER_2: Global::stage2.Get_Coin = true; break;
-        case STAGE_NUMBER_3: Global::stage3.Get_Coin = true; break;
+        case STAGE_NUMBER_1: gl.setState(Global::stage1.GetCoin); break;
+        case STAGE_NUMBER_2: gl.setState(Global::stage2.GetCoin); break;
+        case STAGE_NUMBER_3: gl.setState(Global::stage3.GetCoin); break;
         }
 
         Global::GetCoin = true;

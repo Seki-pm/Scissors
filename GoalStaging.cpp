@@ -156,10 +156,10 @@ void GoalStaging::ClearJudge()
     switch (Global::SelectStage)
     {
     case STAGE_NUMBER_1:
-        if (Global::stage1.Get_Coin) Global::stage1.Clear = true; break;
+        if (gl.getState(Global::stage1.GetCoin)) gl.setState(Global::stage1.Clear); break;
     case STAGE_NUMBER_2:
-        if (Global::stage2.Get_Coin) Global::stage2.Clear = true; break;
+        if (gl.getState(Global::stage2.GetCoin)) gl.setState(Global::stage2.Clear); break;
     case STAGE_NUMBER_3:
-        if (Global::stage3.Get_Coin) Global::stage3.Clear = true; break;
+        if (gl.getState(Global::stage3.GetCoin)) gl.setState(Global::stage3.Clear); break;
     }
 }
