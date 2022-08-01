@@ -42,13 +42,13 @@ public:
 
 	//ステージの状態を表す構造体
 	static struct Stage_Status {
-		const unsigned char UnLock;
-		const unsigned char GetCoin;
-		const unsigned char Clear;
+		const unsigned char UnLock;   //次のステージのアンロック
+		const unsigned char GetCoin;  //ステージのコインをゲットしたかどうか
+		const unsigned char Clear;    //コインを取ってクリアしたかどうか
 	};
 
 	//ステージの状態を入れる変数
-	static int Status;
+	static unsigned int Status;
 
 
 	//構造体にアクセスするための変数

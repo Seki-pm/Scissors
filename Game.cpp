@@ -24,12 +24,12 @@ bool Game::ItemReDraw = false;
 vector<int>Game::Repel_;
 vector<int>Game::Sink_;
 
-int Game::Status = 0x0000;
+unsigned int Game::Status = 0x0000;
 
 //ビットフラグで管理
-Game::Stage_Status Game::stage1 = { 1 << 0 ,1 << 1 ,1 << 2 };
-Game::Stage_Status Game::stage2 = { 1 << 3 ,1 << 4 ,1 << 5 };
-Game::Stage_Status Game::stage3 = { 1 << 6 ,1 << 7 ,1 << 8 };
+Game::Stage_Status Game::stage1 = { 1 << 0 ,1 << 1 ,1 << 2 };  //右から 1,2,3番目で管理
+Game::Stage_Status Game::stage2 = { 1 << 3 ,1 << 4 ,1 << 5 };  //右から 4,5,6番目で管理
+Game::Stage_Status Game::stage3 = { 1 << 6 ,1 << 7 ,1 << 8 };  //右から 7,8,9番目で管理
 
 
 //グローバル関数
