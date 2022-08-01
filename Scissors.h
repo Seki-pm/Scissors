@@ -6,7 +6,7 @@
 #include "Engine/Fbx.h"
 #include "Engine/Audio.h"
 #include "Blade.h"
-#include "Global.h"
+#include "Game.h"
 #include "HP.h"
 #include "Stage.h"
 #include "StageSelectScene.h"
@@ -109,8 +109,8 @@ public:
     //位置をセットする
     void SetPosition()
     {
-        Global gl;
-        gl.SetTransPos(transform_.position_);
+        Game game;
+        game.SetTransPos(transform_.position_);
     }
 
     //回転限度

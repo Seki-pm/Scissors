@@ -27,7 +27,7 @@ void GoalStaging::Initialize()
         //モデルデータのロード
         LoadHandle_[BalloonModel_] = Model::Load("Model/InGameObject/Balloon.fbx");
         assert(LoadHandle_[BalloonModel_] >= 0);
-        BalloonTrans.position_ = XMFLOAT3(gl.GetCameraGoal().x, gl.GetCameraGoal().y, 0.f);
+        BalloonTrans.position_ = XMFLOAT3(game.GetCameraGoal().x, game.GetCameraGoal().y, 0.f);
         BalloonTrans.scale_ = BAL_ENT_SIZE;
         Model::SetTransform(LoadHandle_[BalloonModel_], BalloonTrans);
 
@@ -67,7 +67,7 @@ void GoalStaging::Update()
     //}
 
     //ゴールについたら文字表示
-    if (gl.GetTransPos().x >= gl.GetCameraGoal().x - 1.5f)
+    if (game.GetTransPos().x >= game.GetCameraGoal().x - 1.5f)
     {
         //文字表示
         StringFlg = true;
@@ -153,13 +153,13 @@ void GoalStaging::Timer()
 void GoalStaging::ClearJudge()
 {
     //コインを入手してクリアをしたらフラグを立てる
-    switch (Global::SelectStage)
+    switch (Game::SelectStage)
     {
     case STAGE_NUMBER_1:
-        if (gl.getState(Global::stage1.GetCoin)) gl.setState(Global::stage1.Clear); break;
+        if (game.getState(Game::stage1.GetCoin)) game.setState(Game::stage1.Clear); break;
     case STAGE_NUMBER_2:
-        if (gl.getState(Global::stage2.GetCoin)) gl.setState(Global::stage2.Clear); break;
+        if (game.getState(Game::stage2.GetCoin)) game.setState(Game::stage2.Clear); break;
     case STAGE_NUMBER_3:
-        if (gl.getState(Global::stage3.GetCoin)) gl.setState(Global::stage3.Clear); break;
+        if (game.getState(Game::stage3.GetCoin)) game.setState(Game::stage3.Clear); break;
     }
 }

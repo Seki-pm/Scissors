@@ -5,13 +5,13 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Audio.h"
-#include "Global.h"
+#include "Game.h"
 #include "StageSelectScene.h"
 
 //コインを管理するクラス
 class ItemModel : public GameObject
 {
-    Global gl;
+    Game game;
 
     int CoinModel_; //コインモデル用変数
     int CoinSound_; //コイン取得時の音

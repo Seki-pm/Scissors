@@ -99,7 +99,7 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="PolygonCollider.cpp" />
-    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="StageSelectScene.cpp">
       <Filter>03Scene</Filter>
     </ClCompile>
@@ -211,7 +211,7 @@
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="PolygonCollider.h" />
-    <ClInclude Include="Global.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="StageSelectScene.h">
       <Filter>03Scene</Filter>
     </ClInclude>

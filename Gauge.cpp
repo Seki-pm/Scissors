@@ -37,7 +37,7 @@ void Gauge::Draw(int val, float x, float y, int hPict)
 
 	//現在のHP(%)を計算
 	float hp = (float)val;                             //現在のHP(int)
-	float Nowhp  = hp / Global::MAXHP * 100;    //現在のHP(%)
+	float Nowhp  = hp / Game::MAXHP * 100;    //現在のHP(%)
 
 
 	//使用している画像が右半分なので減少量も半分にする

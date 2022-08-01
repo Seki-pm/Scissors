@@ -26,7 +26,7 @@ void Stage::Initialize()
     transform_.rotate_.y = 180;
 
     //表示するステージ
-    switch (Global::SelectStage)
+    switch (Game::SelectStage)
     {
     case STAGE_NUMBER_1: Stage1(); break;
     case STAGE_NUMBER_2: Stage2(); break;
@@ -84,8 +84,8 @@ void Stage::Release()
         LoadHandle_[i] = INITIAL_ERROR_VALUE;
     }
 
-    Global::Repel_.clear();
-    Global::Sink_.clear();
+    Game::Repel_.clear();
+    Game::Sink_.clear();
 }
 
 // 引数の点の位置がステージに当たってるかチェック
@@ -237,8 +237,8 @@ void Stage::Stage1()
     }
 
     //スタートとゴールのカメラ位置の設定
-    gl.SetCameraStart(startX , startY);
-    gl.SetCameraGoal(goalX, goalY);
+    game.SetCameraStart(startX , startY);
+    game.SetCameraGoal(goalX, goalY);
 }
 
 //Stage1の読み込み
@@ -269,7 +269,7 @@ void Stage::Stage1Load()
 
 
     //コインの位置
-    Global::ItemModelPos = ST1_ITEMMODEL_POS;
+    Game::ItemModelPos = ST1_ITEMMODEL_POS;
     //看板
     Instantiate<Sign>(this);
 }
@@ -492,8 +492,8 @@ void Stage::Stage2()
     }
 
     //スタートとゴールの設定
-    gl.SetCameraStart(startX, startY);
-    gl.SetCameraGoal(goalX, goalY);
+    game.SetCameraStart(startX, startY);
+    game.SetCameraGoal(goalX, goalY);
 }
 
 //Stage2の読み込み
@@ -521,7 +521,7 @@ void Stage::Stage2Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = ST2_ITEMMODEL_POS;
+    Game::ItemModelPos = ST2_ITEMMODEL_POS;
 }
 
 //Stage3のコライダ設定
@@ -919,8 +919,8 @@ void Stage::Stage3()
 
 
     //スタートとゴールの設定
-    gl.SetCameraStart(startX, startY);
-    gl.SetCameraGoal(goalX, goalY);
+    game.SetCameraStart(startX, startY);
+    game.SetCameraGoal(goalX, goalY);
 }
 
 //Stage3の読み込み
@@ -960,7 +960,7 @@ void Stage::Stage3Load()
     }
 
     //コインの位置
-    Global::ItemModelPos = ST3_ITEMMODEL_POS;
+    Game::ItemModelPos = ST3_ITEMMODEL_POS;
 }
 
 

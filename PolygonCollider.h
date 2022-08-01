@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <DirectXMath.h>
-#include "Global.h"
+#include "Game.h"
 
 using namespace DirectX;
 using namespace std;

@@ -5,7 +5,7 @@
 #include "Engine/Image.h"
 #include "Engine/Transform.h"
 #include "Engine/Audio.h"
-#include "Global.h"
+#include "Game.h"
 #include "ItemImage.h"
 
 //ステージ番号
@@ -68,7 +68,7 @@ private:
 
 	bool Drawflg; //表示させるか否か(一度だけ)
 
-	Global gl;
+	Game game;
 
 	//各transform
 	Transform Stage[STAGE_NUMBER_MAX];

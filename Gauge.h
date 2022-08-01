@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Image.h"
 #include "Engine/Transform.h"
-#include "Global.h"
+#include "Game.h"
 
 
 class Gauge

@@ -4,12 +4,12 @@
 #include "Engine/Input.h"
 #include "Engine/Image.h"
 #include "Engine/Audio.h"
-#include "Global.h"
+#include "Game.h"
 
 //ゴール演出を管理するクラス
 class GoalStaging : public GameObject
 {
-    Global gl; //globalを使う
+    Game game; //globalを使う
 
     //ロード用変数
     enum Load

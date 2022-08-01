@@ -72,7 +72,7 @@ void HP::HPCalc()
     //ゲームオーバー判定
     if (pScissors_->CurrentHP <= 0)
     {
-        Global::IsGameOver = true;
-        Global::GameOver = true;
+        Game::IsGameOver = true;
+        Game::GameOver = true;
     }
 }

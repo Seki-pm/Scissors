@@ -2,7 +2,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/SceneManager.h"
 #include "Engine/Image.h"
-#include "Global.h"
+#include "Game.h"
 
 
 //アイテムの取得の有無の画像を管理するクラス

@@ -11,15 +11,15 @@ StageScene::StageScene(GameObject* parent)
 //初期化
 void StageScene::Initialize()
 {                      
-    Global::ItemImagePos = ITEMIMAGE_POSITION_STAGE;      //コインの位置をステージ用に設定
-    Global::ItemImageSca = ITEMIMAGE_SCALE_STAGE;         //コインの大きさをステージ用に設定
-    Global::GameOver = false;                             //GameOverではない
-    Global::IsGameOver = false;                           //GameOverではない
+    Game::ItemImagePos = ITEMIMAGE_POSITION_STAGE;      //コインの位置をステージ用に設定
+    Game::ItemImageSca = ITEMIMAGE_SCALE_STAGE;         //コインの大きさをステージ用に設定
+    Game::GameOver = false;                             //GameOverではない
+    Game::IsGameOver = false;                           //GameOverではない
     GetCoinJudge();                                       //コイン入手判定
 
     //ステージ
     Stage* pStage_ = Instantiate<Stage>(this);
-    pStage_->Load(Global::SelectStage);
+    pStage_->Load(Game::SelectStage);
 
     //ハサミ本体
     Instantiate<Scissors>(this);
@@ -41,7 +41,7 @@ void StageScene::Initialize()
 void StageScene::Update()
 {
     //ステージのスタート&ゴール位置を入れる
-    CameraMove(gl.GetCameraStart().x, gl.GetCameraGoal().x);
+    CameraMove(game.GetCameraStart().x, game.GetCameraGoal().x);
 
     //ゲームオーバー
     GameOverSEL();
@@ -54,10 +54,10 @@ void StageScene::Update()
 
     //取得してからリスタートの場合コインを再表示する
     //取得しているものは取得してない様にする
-    if (Global::GetCoin && Global::ItemReDraw)
+    if (Game::GetCoin && Game::ItemReDraw)
     {
         Instantiate<ItemModel>(this);
-        Global::ItemReDraw = false;
+        Game::ItemReDraw = false;
         GetCoinJudge(); //コイン入手判定
     }
 
@@ -79,16 +79,16 @@ void StageScene::GameOverSEL()
 {
     GameOver* pGameOver_ = (GameOver*)FindObject("GameOver");
 
-    if (Global::IsGameOver)
+    if (Game::IsGameOver)
     {
         //GameOver表示
         Instantiate<GameOver>(this);
-        Global::IsGameOver = false;
+        Game::IsGameOver = false;
 
     }
 
     //GameOverになったら
-    if (Global::GameOver)
+    if (Game::GameOver)
     {
         //ボタンを選択
         {
@@ -130,16 +130,16 @@ void StageScene::PauseSEL()
     Pause* pPause_ = (Pause*)FindObject("Pause");
 
     //一時停止する(falseの時のみ)
-    if (!Global::Pause) {
+    if (!Game::Pause) {
         if (Input::IsKeyDown(DIK_ESCAPE))
         {
             Instantiate<Pause>(this);			//一時停止
-            Global::Pause = true;
+            Game::Pause = true;
         }
     }
 
     //一時停止されたとき
-    if (Global::Pause)
+    if (Game::Pause)
     {
         //ボタンを選択
         {
@@ -160,7 +160,7 @@ void StageScene::PauseSEL()
         //SPACEを押したとき
         if (Input::IsKeyDown(DIK_SPACE))
         {
-            Global::Pause = false;
+            Game::Pause = false;
 
             if (Pselect_ == 0)
             {
@@ -184,30 +184,30 @@ void StageScene::CameraMove(float start, float goal)
 {
     //transform.x に応じてカメラ移動を止める
     //スタート付近
-    if (gl.GetTransPos().x < start)
+    if (game.GetTransPos().x < start)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, CAMERA_SET_POS));
-        Camera::SetTarget(XMFLOAT3(gl.GetCameraStart().x, gl.GetTransPos().y, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(game.GetCameraStart().x, game.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetTarget(XMFLOAT3(game.GetCameraStart().x, game.GetTransPos().y, game.GetTransPos().z));
     }
     //ゴール付近
-    else if (gl.GetTransPos().x >= goal)
+    else if (game.GetTransPos().x >= goal)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, CAMERA_SET_POS));
-        Camera::SetTarget(XMFLOAT3(gl.GetCameraGoal().x, gl.GetTransPos().y, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(game.GetCameraGoal().x, game.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetTarget(XMFLOAT3(game.GetCameraGoal().x, game.GetTransPos().y, game.GetTransPos().z));
     }
     //そうでない場合Playerに追従する
     else
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, CAMERA_SET_POS));
-        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, gl.GetTransPos().y, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(game.GetTransPos().x, game.GetTransPos().y, CAMERA_SET_POS));
+        Camera::SetTarget(XMFLOAT3(game.GetTransPos().x, game.GetTransPos().y, game.GetTransPos().z));
     }
 
 
     //transform.y が0より小さい（落下した）場合カメラを止める
-    if (gl.GetTransPos().y < FALL_MAX)
+    if (game.GetTransPos().y < FALL_MAX)
     {
-        Camera::SetPosition(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_MAX, CAMERA_SET_POS));
-        Camera::SetTarget(XMFLOAT3(gl.GetTransPos().x, CAMERA_FALL_MAX, gl.GetTransPos().z));
+        Camera::SetPosition(XMFLOAT3(game.GetTransPos().x, CAMERA_FALL_MAX, CAMERA_SET_POS));
+        Camera::SetTarget(XMFLOAT3(game.GetTransPos().x, CAMERA_FALL_MAX, game.GetTransPos().z));
     }
 }
 
@@ -216,8 +216,8 @@ void StageScene::NextStageUnlock( int SelectStage )
 {
     switch (SelectStage)
     {
-    case STAGE_NUMBER_1: gl.setState(Global::stage2.UnLock); break;
-    case STAGE_NUMBER_2: gl.setState(Global::stage3.UnLock); break;
+    case STAGE_NUMBER_1: game.setState(Game::stage2.UnLock); break;
+    case STAGE_NUMBER_2: game.setState(Game::stage3.UnLock); break;
     case STAGE_NUMBER_3: break;
     }
 }
@@ -231,7 +231,7 @@ void StageScene::Timer()
     if (pGoalStaging_->timer_)
     {
         //次のステージをアンロックをし、ステージ選択へ遷移
-        NextStageUnlock(Global::SelectStage);
+        NextStageUnlock(Game::SelectStage);
         pGoalStaging_->timer_ = false;
         SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
         pSceneManager->ChangeScene(SCENE_ID_SELECT);
@@ -241,43 +241,43 @@ void StageScene::Timer()
 //各ステージのコインを入手したかどうかの判定
 void StageScene::GetCoinJudge()
 {
-    Global::GetCoin = false;
+    Game::GetCoin = false;
 
     //現在のステージのコインを取得しているか
-    switch (Global::SelectStage)
+    switch (Game::SelectStage)
     {
     case STAGE_NUMBER_1:
         //クリアフラグがtrueなら
-        if (gl.getState(Global::stage1.Clear)) {
-            Global::GetCoin = true;
-            gl.setState(Global::stage1.GetCoin);
+        if (game.getState(Game::stage1.Clear)) {
+            Game::GetCoin = true;
+            game.setState(Game::stage1.GetCoin);
         }
         else
         {
-            Global::GetCoin = false;
-            gl.unsetState(Global::stage1.GetCoin);
+            Game::GetCoin = false;
+            game.unsetState(Game::stage1.GetCoin);
         }
         break;
     case STAGE_NUMBER_2:
-        if (gl.getState(Global::stage2.Clear)) {
-            Global::GetCoin = true;
-            gl.setState(Global::stage2.GetCoin);
+        if (game.getState(Game::stage2.Clear)) {
+            Game::GetCoin = true;
+            game.setState(Game::stage2.GetCoin);
         }
         else
         {
-            Global::GetCoin = false;
-            gl.unsetState(Global::stage2.GetCoin);
+            Game::GetCoin = false;
+            game.unsetState(Game::stage2.GetCoin);
         }
         break;
     case STAGE_NUMBER_3:
-        if (gl.getState(Global::stage3.Clear)) {
-            Global::GetCoin = true;
-            gl.setState(Global::stage3.GetCoin);
+        if (game.getState(Game::stage3.Clear)) {
+            Game::GetCoin = true;
+            game.setState(Game::stage3.GetCoin);
         }
         else
         {
-            Global::GetCoin = false;
-            gl.unsetState(Global::stage3.GetCoin);
+            Game::GetCoin = false;
+            game.unsetState(Game::stage3.GetCoin);
         }
         break;
     }

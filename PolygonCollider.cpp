@@ -157,23 +157,23 @@ bool PolygonCollider::Hit(PolygonCollider* target, XMMATRIX worldMatrix)
 void PolygonCollider::AddRepel(int num)
 {
 	//はじく床の配列に追加
-	Global::Repel_.push_back(num - 1);
+	Game::Repel_.push_back(num - 1);
 }
 
 //沈む床を追加
 void PolygonCollider::AddSink(int num)
 {
 	//沈む床の配列に追加
-	Global::Sink_.push_back(num - 1);
+	Game::Sink_.push_back(num - 1);
 }
 
 //はじく床との判定を行う
 void PolygonCollider::SetRepel(int search)
 {
-	for (int i = 0; i < Global::Repel_.size(); i++)
+	for (int i = 0; i < Game::Repel_.size(); i++)
 	{
 		//引数と配列内の数字が同じだったら
-		if (Global::Repel_[i] == search)
+		if (Game::Repel_[i] == search)
 		{
 			//変数に代入
 			RepelNumber = search;
@@ -184,10 +184,10 @@ void PolygonCollider::SetRepel(int search)
 //沈む床との判定を行う
 void PolygonCollider::SetSink(int search)
 {
-	for (int i = 0; i < Global::Sink_.size(); i++)
+	for (int i = 0; i < Game::Sink_.size(); i++)
 	{
 		//引数と配列内の数字が同じだったら
-		if (Global::Sink_[i] == search)
+		if (Game::Sink_[i] == search)
 		{
 			//変数に代入
 			SinkNumber = search;

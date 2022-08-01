@@ -2,7 +2,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/Model.h"
 #include "Engine/Image.h"
-#include "Global.h"
+#include "Game.h"
 #include "Number.h"
 #include "PolygonCollider.h"
 #include "Sign.h"
@@ -52,7 +52,7 @@ class Stage : public GameObject
 
     //クラスのポインタ
     Number* pNumber_;
-    Global gl;
+    Game game;
     Scissors* pScissors_;
 
     //各ステージのstartとgoalの座標を入れる変数

@@ -144,9 +144,9 @@ void StageSelectScene::Update()
 	if (Input::IsKeyDown(DIK_SPACE) || Input::IsMouseButtonDown(0))
 	{
 		//1ならSTAGE1へ
-		if (Global::SelectStage == STAGE_NUMBER_1 ||
-			Global::SelectStage == STAGE_NUMBER_2 && gl.getState(Global::stage2.UnLock) ||
-			Global::SelectStage == STAGE_NUMBER_3 && gl.getState(Global::stage3.UnLock))
+		if (Game::SelectStage == STAGE_NUMBER_1 ||
+			Game::SelectStage == STAGE_NUMBER_2 && game.getState(Game::stage2.UnLock) ||
+			Game::SelectStage == STAGE_NUMBER_3 && game.getState(Game::stage3.UnLock))
 		{
 			Audio::Play(SoundHandle_[SOUND_DETERMINATION]); //○
 			SceneManager* pSceneManager = (SceneManager*)FindObject("SceneManager");
@@ -161,8 +161,8 @@ void StageSelectScene::Update()
 	//隠しコマンド 全ステージアンロック
 	if (Input::IsKeyDown(DIK_LSHIFT))
 	{
-		gl.setState(Global::stage2.UnLock);
-		gl.setState(Global::stage3.UnLock);
+		game.setState(Game::stage2.UnLock);
+		game.setState(Game::stage3.UnLock);
 	}
 
 	//選択
@@ -178,11 +178,11 @@ void StageSelectScene::Select()
 	{
 		Audio::Play(SoundHandle_[SOUND_SELECT]);
 
-		switch (Global::SelectStage)
+		switch (Game::SelectStage)
 		{
-		case STAGE_NUMBER_1: Global::SelectStage = STAGE_NUMBER_2; break;
-		case STAGE_NUMBER_2: Global::SelectStage = STAGE_NUMBER_3; break;
-		case STAGE_NUMBER_3: Global::SelectStage = STAGE_NUMBER_1; break;
+		case STAGE_NUMBER_1: Game::SelectStage = STAGE_NUMBER_2; break;
+		case STAGE_NUMBER_2: Game::SelectStage = STAGE_NUMBER_3; break;
+		case STAGE_NUMBER_3: Game::SelectStage = STAGE_NUMBER_1; break;
 		}
 	}
 
@@ -190,16 +190,16 @@ void StageSelectScene::Select()
 	{
 		Audio::Play(SoundHandle_[SOUND_SELECT]);
 
-		switch (Global::SelectStage)
+		switch (Game::SelectStage)
 		{
-		case STAGE_NUMBER_1: Global::SelectStage = STAGE_NUMBER_3; break;
-		case STAGE_NUMBER_2: Global::SelectStage = STAGE_NUMBER_1; break;
-		case STAGE_NUMBER_3: Global::SelectStage = STAGE_NUMBER_2; break;
+		case STAGE_NUMBER_1: Game::SelectStage = STAGE_NUMBER_3; break;
+		case STAGE_NUMBER_2: Game::SelectStage = STAGE_NUMBER_1; break;
+		case STAGE_NUMBER_3: Game::SelectStage = STAGE_NUMBER_2; break;
 		}
 	}
 
 	//フレームの位置変更
-	switch (Global::SelectStage)
+	switch (Game::SelectStage)
 	{
 	case STAGE_NUMBER_1: FrameTransform.position_ = ST1_IMAGE_POS; break;
 	case STAGE_NUMBER_2: FrameTransform.position_ = ST2_IMAGE_POS; break;
@@ -217,19 +217,19 @@ void StageSelectScene::MouseSelect()
 	if (ST1_MOUSE_POS.x < mousePos.x && mousePos.x < ST1_MOUSE_POS.z &&
 		ST1_MOUSE_POS.y < mousePos.y && mousePos.y < ST1_MOUSE_POS.w)
 	{
-		Global::SelectStage = STAGE_NUMBER_1;
+		Game::SelectStage = STAGE_NUMBER_1;
 	}
 	//Stage2上
 	else if (ST2_MOUSE_POS.x < mousePos.x && mousePos.x < ST2_MOUSE_POS.z &&
 		     ST2_MOUSE_POS.y < mousePos.y && mousePos.y < ST2_MOUSE_POS.w)
 	{
-		Global::SelectStage = STAGE_NUMBER_2;
+		Game::SelectStage = STAGE_NUMBER_2;
 	}
 	//Stage3上
 	else if (ST3_MOUSE_POS.x < mousePos.x && mousePos.x < ST3_MOUSE_POS.z &&
 		     ST3_MOUSE_POS.y < mousePos.y && mousePos.y < ST3_MOUSE_POS.w)
 	{
-		Global::SelectStage = STAGE_NUMBER_3;
+		Game::SelectStage = STAGE_NUMBER_3;
 	}
 }
 
@@ -295,14 +295,14 @@ void StageSelectScene::StageUnlock()
 	Image::Draw(StageHandle_[STAGE_NUMBER_1]);
 
 	//アンロックフラグを基に描画の内容を変える
-	if (gl.getState(Global::stage2.UnLock)){
+	if (game.getState(Game::stage2.UnLock)){
 		Image::Draw(StageHandle_[STAGE_NUMBER_2]);
 	}
 	else{
 		Image::Draw(StageLockHandle_[STAGE_LOCK_2]);
 	}
 
-	if (gl.getState(Global::stage3.UnLock)){
+	if (game.getState(Game::stage3.UnLock)){
 		Image::Draw(StageHandle_[STAGE_NUMBER_3]);
 	}
 	else{
@@ -316,24 +316,24 @@ void StageSelectScene::GetCoin()
 	//一度だけ描画
 	if (Drawflg)
 	{
-		Global::ItemImageSca = ITEMIMAGE_SCALE_SELECT; //表示サイズ
+		Game::ItemImageSca = ITEMIMAGE_SCALE_SELECT; //表示サイズ
 
 		//Stage1のコイン
- 		if (gl.getState(Global::stage1.GetCoin))
+ 		if (game.getState(Game::stage1.GetCoin))
 		{
-			Global::ItemImagePos = ST1_ITEMIMAGE_POS; //表示位置
+			Game::ItemImagePos = ST1_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示
 		}
 		//Stage2のコイン
-		if (gl.getState(Global::stage2.GetCoin))
+		if (game.getState(Game::stage2.GetCoin))
 		{
-			Global::ItemImagePos = ST2_ITEMIMAGE_POS;//表示位置
+			Game::ItemImagePos = ST2_ITEMIMAGE_POS;//表示位置
 			Instantiate<ItemImage>(this);          //表示
 		}
 		//Stage3のコイン
-		if (gl.getState(Global::stage3.GetCoin))
+		if (game.getState(Game::stage3.GetCoin))
 		{
-			Global::ItemImagePos = ST3_ITEMIMAGE_POS; //表示位置
+			Game::ItemImagePos = ST3_ITEMIMAGE_POS; //表示位置
 			Instantiate<ItemImage>(this);            //表示
 		}
 

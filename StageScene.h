@@ -6,7 +6,7 @@
 #include "Engine/Input.h"
 #include "Engine/Image.h"
 #include "GameOver.h"
-#include "Global.h"
+#include "Game.h"
 #include "GoalStaging.h"
 #include "HP.h"
 #include "ItemImage.h"
@@ -19,9 +19,9 @@
 
 
 //ステージシーンを管理するクラス
-class StageScene : public GameObject
+class StageScene : public GameObject 
 {
-	Global gl;
+	Game game;
 
 	int Gselect_; //GameOver選択用変数
 	int Pselect_; //Pause選択用変数

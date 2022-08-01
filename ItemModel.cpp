@@ -29,7 +29,7 @@ void ItemModel::Initialize()
     //-----------------------------
 
     //コインの位置を設定
-    transform_.position_ = Global::ItemModelPos;
+    transform_.position_ = Game::ItemModelPos;
     transform_.scale_ = ITEM_SIZE;
 
     //コライダ設定
@@ -42,7 +42,7 @@ void ItemModel::Initialize()
 void ItemModel::Update()
 {
     //コインを取得したら
-    if (Global::GetCoin)
+    if (Game::GetCoin)
     {
         //ROTATION_NUMBERの値に満たない間Animation
         if (transform_.rotate_.y < ROTATION_NUMBER * 180)
@@ -78,14 +78,14 @@ void ItemModel::OnCollision(GameObject* pTarget)
     if (pTarget->GetObjectName() == "Scissors")
     {
         //どこのコインを取得したか
-        switch (Global::SelectStage)
+        switch (Game::SelectStage)
         {
-        case STAGE_NUMBER_1: gl.setState(Global::stage1.GetCoin); break;
-        case STAGE_NUMBER_2: gl.setState(Global::stage2.GetCoin); break;
-        case STAGE_NUMBER_3: gl.setState(Global::stage3.GetCoin); break;
+        case STAGE_NUMBER_1: game.setState(Game::stage1.GetCoin); break;
+        case STAGE_NUMBER_2: game.setState(Game::stage2.GetCoin); break;
+        case STAGE_NUMBER_3: game.setState(Game::stage3.GetCoin); break;
         }
 
-        Global::GetCoin = true;
+        Game::GetCoin = true;
         Audio::Play(CoinSound_);
     }
 }

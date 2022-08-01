@@ -5,7 +5,7 @@
 using namespace std;
 
 //グローバル変数（シーンをまたいで有効）
-class Global
+class Game
 {
 private:
 	//ハサミの位置を入れる変数
@@ -28,7 +28,7 @@ public:
 	//Playerの最大HP
 	static int MAXHP; 
 
-	//Globalのフラグ
+	//Gameのフラグ
 	static bool GetCoin;        //コインのGetしたか
 	static bool GameOver;       //GameOverの処理
 	static bool IsGameOver;     //GameOverを一回だけ表示
@@ -48,14 +48,13 @@ public:
 	};
 
 	//ステージの状態を入れる変数
-	//
 	static int Status;
 
 
 	//構造体にアクセスするための変数
-	static Global::Stage_Status stage1;
-	static Global::Stage_Status stage2;
-	static Global::Stage_Status stage3;
+	static Game::Stage_Status stage1;
+	static Game::Stage_Status stage2;
+	static Game::Stage_Status stage3;
 
 	//ビットフラグ管理
 	void setState(const unsigned char sstate );   //フラグを立てる

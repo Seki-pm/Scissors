@@ -2,7 +2,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/Model.h"
 #include "Engine/Image.h"
-#include "Global.h"
+#include "Game.h"
 
 //操作説明オブジェクトを管理するクラス
 class Sign : public GameObject
@@ -24,7 +24,7 @@ class Sign : public GameObject
     int Tutorial_;   //チュートリアル
     int Tutorial2_;
 
-    Global gl;
+    Game game;
 
     //各Transform
     Transform SignTrans;

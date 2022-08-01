@@ -40,14 +40,14 @@ void Scissors::Initialize()
         new SphereCollider(XMFLOAT3(0, 0, 0), 0.6f);
     AddCollider(collision);
 
-    CurrentHP = Global::MAXHP;
+    CurrentHP = Game::MAXHP;
 }
 
 //更新
 void Scissors::Update()
 {
 
-    if (!Global::GameOver && !Global::Pause)
+    if (!Game::GameOver && !Game::Pause)
     {
         //ハサミの開閉
         OpenClose();
@@ -77,8 +77,8 @@ void Scissors::Update()
         && FallFlg || SINK_TIMER_MIN >= Timer_)
     {
         move_ = XMFLOAT3(0, 0, 0);
-        Global::GameOver = true;
-        Global::IsGameOver = true;
+        Game::GameOver = true;
+        Game::IsGameOver = true;
         FallFlg = false;
         pStage_->SinkFlg = false;
     }
@@ -407,10 +407,10 @@ void Scissors::Restart()
 
     JumpStart = 0;
     JumpEnd = 0;
-    Global::GameOver = false;
-    Global::IsGameOver = false;
-    Global::ItemReDraw = true;
-    CurrentHP = Global::MAXHP;
+    Game::GameOver = false;
+    Game::IsGameOver = false;
+    Game::ItemReDraw = true;
+    CurrentHP = Game::MAXHP;
     pBlade_L->SetRotateZ(0);
     pBlade_R->SetRotateZ(90);
     pBlade_L->isPrick = false;
@@ -494,7 +494,7 @@ void Scissors::SinkMove()
 //足音を流す
 void Scissors::Landing()
 {
-    switch(Global::SelectStage)
+    switch(Game::SelectStage)
     {
     case STAGE_NUMBER_1:
         //草の地面

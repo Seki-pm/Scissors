@@ -20,7 +20,7 @@ void ItemImage::Initialize()
     FrameImage_ = Image::Load("Image/StageScene/GetCoinFrame.png");
     assert(FrameImage_);
     auto FrameTrans = Transform();
-    FrameTrans.position_ = Global::ItemImagePos;
+    FrameTrans.position_ = Game::ItemImagePos;
     FrameTrans.scale_ = FRAME_SIZE;
     Image::SetTransform(FrameImage_, FrameTrans);
 
@@ -28,8 +28,8 @@ void ItemImage::Initialize()
     CoinImage_ = Image::Load("Model/InGameObject/Coin.png");
     assert(CoinImage_);
     auto CoinTrans = Transform();
-    CoinTrans.position_ = Global::ItemImagePos;
-    CoinTrans.scale_ = Global::ItemImageSca;
+    CoinTrans.position_ = Game::ItemImagePos;
+    CoinTrans.scale_ = Game::ItemImageSca;
     Image::SetTransform(CoinImage_, CoinTrans);
 
 }
@@ -54,7 +54,7 @@ void ItemImage::Draw()
     else
     {
         //コインを取得したら
-        if (Global::GetCoin)
+        if (Game::GetCoin)
         {
             Image::Draw(CoinImage_); //コイン画像
         }
