@@ -24,17 +24,20 @@
       <UniqueIdentifier>{47a6a3f5-8cfd-436b-8d58-beccd108f3f3}</UniqueIdentifier>
       <Extensions>hlsl</Extensions>
     </Filter>
-    <Filter Include="03Scene">
+    <Filter Include="03Game">
+      <UniqueIdentifier>{5f757d36-d834-4c86-be2f-1cf639647fa0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\Scene">
       <UniqueIdentifier>{b2ee06db-ad4c-4ac2-8ae7-a6acdc6ef161}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05InGameImage">
+    <Filter Include="03Game\InGameModel">
+      <UniqueIdentifier>{2361106b-b0f9-4bf2-bb39-25270c7a8783}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03Game\InGameImage">
       <UniqueIdentifier>{0f8695b5-1ee3-4b95-b6e5-371c387b58d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06Player">
+    <Filter Include="03Game\Player">
       <UniqueIdentifier>{3e614cea-08de-4770-9337-6779f8a98774}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="04InGameModel">
-      <UniqueIdentifier>{2361106b-b0f9-4bf2-bb39-25270c7a8783}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -98,55 +101,59 @@
     <ClCompile Include="Engine\Text.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="PolygonCollider.cpp" />
-    <ClCompile Include="Game.cpp" />
     <ClCompile Include="StageSelectScene.cpp">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="ItemModel.cpp">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Sign.cpp">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Stage.cpp">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Sound.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="StageScene.cpp">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="Gauge.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="GoalStaging.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="ItemImage.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="Pause.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="Number.cpp">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClCompile>
     <ClCompile Include="Blade.cpp">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="HP.cpp">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
     </ClCompile>
     <ClCompile Include="Scissors.cpp">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>03Game</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonCollider.cpp">
+      <Filter>03Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,55 +217,59 @@
     <ClInclude Include="Engine\Text.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="PolygonCollider.h" />
-    <ClInclude Include="Game.h" />
     <ClInclude Include="StageSelectScene.h">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="TitleScene.h">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="ItemModel.h">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Sign.h">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Stage.h">
-      <Filter>04InGameModel</Filter>
+      <Filter>03Game\InGameModel</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Sound.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="StageScene.h">
-      <Filter>03Scene</Filter>
+      <Filter>03Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameOver.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="Gauge.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="GoalStaging.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="ItemImage.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="Pause.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="Number.h">
-      <Filter>05InGameImage</Filter>
+      <Filter>03Game\InGameImage</Filter>
     </ClInclude>
     <ClInclude Include="Blade.h">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
     </ClInclude>
     <ClInclude Include="HP.h">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
     </ClInclude>
     <ClInclude Include="Scissors.h">
-      <Filter>06Player</Filter>
+      <Filter>03Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>03Game</Filter>
+    </ClInclude>
+    <ClInclude Include="PolygonCollider.h">
+      <Filter>03Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
